@@ -1,0 +1,23 @@
+; file name : gdbm_header
+; cmhg file for my_mod  - comments start with ";"
+
+; this appears when you type "*help gdbm"
+help-string:  gdbm 0.04 GNU dbm manager
+
+; this appears in the *modules list
+title-string:gdbm
+
+; this is the startup function
+initialisation-code: gdbm_init
+
+; this is the section in the program which processes swis
+
+swi-chunk-base-number:	0x4cc40
+swi-handler-code: 	gdbm_swi
+swi-decoding-table:	Gdbm,
+			Open Store Fetch Exists FirstKey,
+			NextKey Close Delete Clear OpenIn
+
+
+
+

@@ -1,0 +1,15 @@
+Gdbm
+#Parent !Root
+#Prefix Gdbm_
+#Table Columns 2
+<Open>
+<Store>
+<Fetch>
+<Exists>
+<FirstKey>
+<NextKey>
+<Close>
+<Delete>
+<Clear>
+<OpenIn>
+#EndTable

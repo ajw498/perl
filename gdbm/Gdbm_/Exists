@@ -1,0 +1,8 @@
+Gdbm_Exists
+#Parent Gdbm_
+=>	R0 =	file handle from <Gdbm_Open>or <Gdbm_OpenIn>
+	R1 =	pointer to keyword
+	R2 =	length of keyword
+<=	R0 =	1 if key exists, 0 otherwise
+
+Checks whether a keyword exists.

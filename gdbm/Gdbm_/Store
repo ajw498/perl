@@ -1,0 +1,9 @@
+Gdbm_Store
+#Parent Gdbm_
+=>	R0 =	file handle from <Gdbm_Open>
+	R1 =	pointer to keyword
+	R2 =	length of keyword
+	R3 =	buffer for data
+	R4 =	length of data
+
+Stores data under a keyword in the database.

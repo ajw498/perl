@@ -1,0 +1,68 @@
+Versions of the gdbm module
+---------------------------
+S.W.Ellacott@brighton.ac.uk
+
+0.04 (13 Feb 2003)
+Recompiled for 32bit compatibility (Alex Waugh)
+
+0.03 (11 Jul 1997)
+a) Added new SWI Gdbm_OpenIn (&4CC49)
+	As Gdbm_Open but file is opened for reading only, enabling more than
+	one task to access the file simultaneously.
+b) SWIs now return 0 if no handle exists (eg if a file failed to open)
+
+0.02 (24 Jun 1997)
+a) Used low level file calls to avoid 13 ANSI file limit of Acorn C.
+b) Added finalisation code to close files if the module is killed.
+
+0.01
+Not released
+
+0.00 (29 Feb 1996)
+Original version as distributed with release 1.51 of Perl
+
+----------------------------------------------------------
+
+Versions of RDBM_File
+---------------------
+S.W.Ellacott@brighton.ac.uk
+
+3. Mon 14th July 1997 (requires gdbm version 0.03)
+a) Modified to be more compatible with UNIX dbm managers. NB this version is not
+entirely backwards compatible.
+The commands
+	use RDBM_File;
+	tie(%hash, RDBM_File, filename, flags, mode);
+are not interpreted as follows:
+The array '%hash' is tied to the file 'filename' using the package RDBM_File
+(as in Version 2). The 'mode' parameter, if present, is ignored. The flags
+parameter is now interpreted in a simililar way to DB_File. If 'flags' is 0,
+the file is opened for reading only. This means that more than one hash, even
+from different tasks, can access the file at the same time. If bit 2 is set,
+the file is opened for reading and writing, and if bit 4 is set, the file is
+created if it does not already exist. Thus 
+	flags = 0	Open for reading only
+	flags = 8	Open for read/write
+	flags = 10	Open for read/write, creating if necessary.
+Note that this means that 'tie(%hash, RDBM_File, filename)' or 
+tie(%hash, RDBM_File, filename,0) will open the file for reading only, whereas
+previously it would have opened for reading and writing.
+b) To support the above change, package RDBM_File now exports the symbols
+O_RDONLY, O_RDWR, O_CREAT, returning values of 0,2 and 8 respectively. So
+to open a file for reading and writing, creating if necessary, put
+	tie(%hash, RDBM_File, filename, O_RDWR|O_CREAT); .
+c) If a file fails to open, RDBM_File now returns 0 rather than dying. So you
+need to test the value returned by tie or dbmopen to see if the file opened
+successfully. (However version 0.03 of gdbm is less likely to crash than
+previous versions if you do not do this: you will simply not get any values
+returned.)
+d) If you try and access a value not previously defined, it is now set to
+0 rather than undef. So if you write '$hash{key}++' where '$hash{key}' has
+no previous value, $hash{key} is set to 1, instead of causing an error. (In my
+opinion this is not logical, but some UNIX scripts seem to require it:-{)
+
+
+2. Distributed with latex2html
+Now able to store numbers as well as strings.
+
+1. Distributed with Perl release 1.51

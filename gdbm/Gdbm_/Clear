@@ -1,0 +1,5 @@
+Gdbm_Clear
+#Parent Gdbm_
+=>	R0 =	file handle from <Gdbm_Open>
+
+Deletes all the entries in the database file. If the file was opened with <Gdbm_OpenIn> this SWI has no effect.

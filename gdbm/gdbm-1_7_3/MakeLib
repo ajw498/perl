@@ -1,0 +1,193 @@
+# Project:   GDBMlib
+
+
+# Toolflags:
+CCflags = -c -depend !Depend -IC: -throwback -zM -pcc 
+Linkflags = -o $@
+CMHGflags = 
+LibFileflags = -c -o $@
+Squeezeflags = -o $@
+ASflags = -throwback
+
+
+# Final targets:
+@.GDBMLib:   @.o.alloca @.o.bucket @.o.close @.o.dbmclose @.o.dbmdelete \
+        @.o.dbmdirfno @.o.dbmfetch @.o.dbminit @.o.dbmopen @.o.dbmpagfno @.o.dbmrdonly @.o.dbmseq \
+        @.o.dbmstore @.o.delete @.o.falloc @.o.fetch @.o.findkey @.o.gdbmclose @.o.gdbmdelete \
+        @.o.gdbmexists @.o.gdbmfetch @.o.gdbmopen @.o.gdbmreorg @.o.gdbmseq @.o.gdbmsetopt \
+        @.o.gdbmstore @.o.gdbmsync @.o.getopt @.o.global @.o.GNUreorg @.o.hash @.o.NOreorg \
+        @.o.riscos @.o.seq @.o.store @.o.update @.o.version C:o.Stubs 
+        LibFile $(LibFileflags) @.o.alloca @.o.bucket @.o.close @.o.dbmclose \
+        @.o.dbmdelete @.o.dbmdirfno @.o.dbmfetch @.o.dbminit @.o.dbmopen @.o.dbmpagfno \
+        @.o.dbmrdonly @.o.dbmseq @.o.dbmstore @.o.delete @.o.falloc @.o.fetch @.o.findkey \
+        @.o.gdbmclose @.o.gdbmdelete @.o.gdbmexists @.o.gdbmfetch @.o.gdbmopen @.o.gdbmreorg \
+        @.o.gdbmseq @.o.gdbmsetopt @.o.gdbmstore @.o.gdbmsync @.o.getopt @.o.global @.o.GNUreorg \
+        @.o.hash @.o.NOreorg @.o.riscos @.o.seq @.o.store @.o.update @.o.version \
+        C:o.Stubs 
+
+
+# User-editable dependencies:
+
+
+# Static dependencies:
+@.o.alloca:   @.c.alloca
+        cc $(ccflags) -o @.o.alloca @.c.alloca 
+@.o.bucket:   @.c.bucket
+        cc $(ccflags) -o @.o.bucket @.c.bucket 
+@.o.close:   @.c.close
+        cc $(ccflags) -o @.o.close @.c.close 
+@.o.dbmclose:   @.c.dbmclose
+        cc $(ccflags) -o @.o.dbmclose @.c.dbmclose 
+@.o.dbmdelete:   @.c.dbmdelete
+        cc $(ccflags) -o @.o.dbmdelete @.c.dbmdelete 
+@.o.dbmdirfno:   @.c.dbmdirfno
+        cc $(ccflags) -o @.o.dbmdirfno @.c.dbmdirfno 
+@.o.dbmfetch:   @.c.dbmfetch
+        cc $(ccflags) -o @.o.dbmfetch @.c.dbmfetch 
+@.o.dbminit:   @.c.dbminit
+        cc $(ccflags) -o @.o.dbminit @.c.dbminit 
+@.o.dbmopen:   @.c.dbmopen
+        cc $(ccflags) -o @.o.dbmopen @.c.dbmopen 
+@.o.dbmpagfno:   @.c.dbmpagfno
+        cc $(ccflags) -o @.o.dbmpagfno @.c.dbmpagfno 
+@.o.dbmrdonly:   @.c.dbmrdonly
+        cc $(ccflags) -o @.o.dbmrdonly @.c.dbmrdonly 
+@.o.dbmseq:   @.c.dbmseq
+        cc $(ccflags) -o @.o.dbmseq @.c.dbmseq 
+@.o.dbmstore:   @.c.dbmstore
+        cc $(ccflags) -o @.o.dbmstore @.c.dbmstore 
+@.o.delete:   @.c.delete
+        cc $(ccflags) -o @.o.delete @.c.delete 
+@.o.falloc:   @.c.falloc
+        cc $(ccflags) -o @.o.falloc @.c.falloc 
+@.o.fetch:   @.c.fetch
+        cc $(ccflags) -o @.o.fetch @.c.fetch 
+@.o.findkey:   @.c.findkey
+        cc $(ccflags) -o @.o.findkey @.c.findkey 
+@.o.gdbmclose:   @.c.gdbmclose
+        cc $(ccflags) -o @.o.gdbmclose @.c.gdbmclose 
+@.o.gdbmdelete:   @.c.gdbmdelete
+        cc $(ccflags) -o @.o.gdbmdelete @.c.gdbmdelete 
+@.o.gdbmexists:   @.c.gdbmexists
+        cc $(ccflags) -o @.o.gdbmexists @.c.gdbmexists 
+@.o.gdbmfetch:   @.c.gdbmfetch
+        cc $(ccflags) -o @.o.gdbmfetch @.c.gdbmfetch 
+@.o.gdbmopen:   @.c.gdbmopen
+        cc $(ccflags) -o @.o.gdbmopen @.c.gdbmopen 
+@.o.gdbmreorg:   @.c.gdbmreorg
+        cc $(ccflags) -o @.o.gdbmreorg @.c.gdbmreorg 
+@.o.gdbmseq:   @.c.gdbmseq
+        cc $(ccflags) -o @.o.gdbmseq @.c.gdbmseq 
+@.o.gdbmsetopt:   @.c.gdbmsetopt
+        cc $(ccflags) -o @.o.gdbmsetopt @.c.gdbmsetopt 
+@.o.gdbmstore:   @.c.gdbmstore
+        cc $(ccflags) -o @.o.gdbmstore @.c.gdbmstore 
+@.o.gdbmsync:   @.c.gdbmsync
+        cc $(ccflags) -o @.o.gdbmsync @.c.gdbmsync 
+@.o.getopt:   @.c.getopt
+        cc $(ccflags) -o @.o.getopt @.c.getopt 
+@.o.global:   @.c.global
+        cc $(ccflags) -o @.o.global @.c.global 
+@.o.GNUreorg:   @.c.GNUreorg
+        cc $(ccflags) -o @.o.GNUreorg @.c.GNUreorg 
+@.o.hash:   @.c.hash
+        cc $(ccflags) -o @.o.hash @.c.hash 
+@.o.NOreorg:   @.c.NOreorg
+        cc $(ccflags) -o @.o.NOreorg @.c.NOreorg 
+@.o.riscos:   @.c.riscos
+        cc $(ccflags) -o @.o.riscos @.c.riscos 
+@.o.seq:   @.c.seq
+        cc $(ccflags) -o @.o.seq @.c.seq 
+@.o.store:   @.c.store
+        cc $(ccflags) -o @.o.store @.c.store 
+@.o.update:   @.c.update
+        cc $(ccflags) -o @.o.update @.c.update 
+@.o.version:   @.c.version
+        cc $(ccflags) -o @.o.version @.c.version 
+
+
+# Dynamic dependencies:
+o.gdbmopen:	c.gdbmopen
+o.gdbmopen:	h.autoconf
+o.gdbmopen:	h.gdbmdefs
+o.gdbmopen:	h.systems
+o.gdbmopen:	h.stat
+o.gdbmopen:	h.fcntl
+o.gdbmopen:	h.gdbmconst
+o.gdbmopen:	h.proto
+o.gdbmopen:	h.gdbmerrno
+o.gdbmopen:	h.fcntl
+o.riscos:	c.riscos
+o.riscos:	h.stat
+o.riscos:	C:h.kernel
+o.close:	c.close
+o.close:	h.autoconf
+o.close:	h.gdbmdefs
+o.close:	h.systems
+o.close:	h.stat
+o.close:	h.fcntl
+o.close:	h.gdbmconst
+o.close:	h.proto
+o.close:	h.extern
+o.dbminit:	c.dbminit
+o.dbminit:	h.autoconf
+o.dbminit:	h.gdbmdefs
+o.dbminit:	h.systems
+o.dbminit:	h.stat
+o.dbminit:	h.fcntl
+o.dbminit:	h.gdbmconst
+o.dbminit:	h.proto
+o.dbminit:	h.gdbmerrno
+o.dbminit:	h.extern
+o.delete:	c.delete
+o.delete:	h.autoconf
+o.delete:	h.gdbmdefs
+o.delete:	h.systems
+o.delete:	h.stat
+o.delete:	h.fcntl
+o.delete:	h.gdbmconst
+o.delete:	h.proto
+o.delete:	h.extern
+o.gdbmclose:	c.gdbmclose
+o.gdbmclose:	h.autoconf
+o.gdbmclose:	h.gdbmdefs
+o.gdbmclose:	h.systems
+o.gdbmclose:	h.stat
+o.gdbmclose:	h.fcntl
+o.gdbmclose:	h.gdbmconst
+o.gdbmclose:	h.proto
+o.gdbmreorg:	c.gdbmreorg
+o.gdbmreorg:	h.autoconf
+o.gdbmreorg:	h.gdbmdefs
+o.gdbmreorg:	h.systems
+o.gdbmreorg:	h.stat
+o.gdbmreorg:	h.fcntl
+o.gdbmreorg:	h.gdbmconst
+o.gdbmreorg:	h.proto
+o.gdbmreorg:	h.gdbmerrno
+o.gdbmreorg:	h.extern
+o.gdbmsync:	c.gdbmsync
+o.gdbmsync:	h.autoconf
+o.gdbmsync:	h.gdbmdefs
+o.gdbmsync:	h.systems
+o.gdbmsync:	h.stat
+o.gdbmsync:	h.fcntl
+o.gdbmsync:	h.gdbmconst
+o.gdbmsync:	h.proto
+o.gdbmsync:	h.gdbmerrno
+o.hash:	c.hash
+o.hash:	h.autoconf
+o.hash:	h.gdbmdefs
+o.hash:	h.systems
+o.hash:	h.stat
+o.hash:	h.fcntl
+o.hash:	h.gdbmconst
+o.hash:	h.proto
+o.update:	c.update
+o.update:	h.autoconf
+o.update:	h.gdbmdefs
+o.update:	h.systems
+o.update:	h.stat
+o.update:	h.fcntl
+o.update:	h.gdbmconst
+o.update:	h.proto

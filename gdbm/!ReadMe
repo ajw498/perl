@@ -1,0 +1,21 @@
+This archive contains new versions of the gdbm module and RDBM_File. There
+is a new SWI, Gdbm_OpenIn, for gdbm, and RDBM_File has been modified to make
+it more like its UNIX counterparts. (This version of RDBM_File is intended for
+use with RiscOs release 1.51 of Perl 5.001. For use with the beta release
+of Perl 5.004, the SWI interface must be modified.) The C-source for gdbm
+is available from me at the email address below.
+
+Please read the file 'Versions' before installing them. This is particularly
+important for RDBM_File, which is not totally backwards compatible. The
+module gdbm should be placed in !System.modules and RDBM_File in the
+!Perl.riscos.pm directory.
+
+Users of the invaluable StrongHelp SWI index may have noticed that the
+documentation of Gdbm_Open is incorrect. The directory Gdbm_ here corrects
+that and also documents the new call. Start StrongHelp and click on the SWI
+link. This displays a window entitled SWI. Click 'Menu' and select 'Open
+Directory' to display a filer window. Replace the directory Gdbm_ with the one
+given here to update the data.
+
+Steve Ellacott
+S.W.Ellacott@brighton.ac.uk

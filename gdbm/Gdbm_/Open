@@ -1,0 +1,6 @@
+Gdbm_Open
+#Parent Gdbm_
+=>	R0 =	Pointer to filename
+<=	R0 =	file handle
+
+Opens a database file for reading and writing, returning the handle of the file so that it can be used in other calls. Returns 0 on failure.

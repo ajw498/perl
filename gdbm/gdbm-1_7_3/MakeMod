@@ -1,0 +1,42 @@
+# Project:   GdbmModule
+
+
+# Toolflags:
+CCflags = -c -depend !Depend -IC: -throwback -zM -pcc 
+Linkflags = -m -o $@ 
+CMHGflags = 
+LibFileflags = -c -o $@
+Squeezeflags = -o $@
+ASflags = -throwback
+
+
+# Final targets:
+@.gdbm:   @.GdbmLib @.o.gdbm @.o.gdbm_head 
+        link $(linkflags) @.GdbmLib @.o.gdbm @.o.gdbm_head C:o.stubs
+
+
+# User-editable dependencies:
+
+
+# Static dependencies:
+@.o.gdbm:   @.c.gdbm
+        cc $(ccflags) -o @.o.gdbm @.c.gdbm 
+@.o.gdbm_head:   @.cmhg.gdbm_head
+        cmhg @.cmhg.gdbm_head -o @.o.gdbm_head
+
+
+# Dynamic dependencies:
+o.gdbm:	c.gdbm
+o.gdbm:	C:h.kernel
+o.gdbm:	C:h.swis
+o.gdbm:	h.autoconf
+o.gdbm:	h.gdbmdefs
+o.gdbm:	h.systems
+o.gdbm:	h.stat
+o.gdbm:	h.fcntl
+o.gdbm:	h.gdbmconst
+o.gdbm:	h.proto
+o.gdbm:	h.gdbmerrno
+o.gdbm:	h.extern
+o.gdbm:	h.getopt
+o.gdbm:	h.fcntl

@@ -1,0 +1,10 @@
+|
+| !Help file for Perl
+|
+| $Id$
+|
+
+Set Perl$Help <Obey$Dir>.Documents.perl/html
+
+Filer_Run <Perl$Help>
+

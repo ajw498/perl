@@ -1,0 +1,6 @@
+Gdbm_OpenIn
+#Parent Gdbm_
+=>	R0 =	Pointer to filename
+<=	R0 =	file handle
+
+This SWI is available from gdbm version 0.03. Opens a database file for reading only, returning the handle of the file so that it can be used in other calls. Returns 0 on failure.

@@ -1,0 +1,8 @@
+|
+| !Run file for Perl
+|
+| $Id$
+|
+
+Obey <Obey$Dir>.!Boot
+

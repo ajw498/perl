@@ -1,0 +1,13 @@
+|
+|  $Id$
+|  $URL$
+|
+
+Echo Creating zip...
+
+Dir <Obey$Dir>
+
+remove perl/zip
+
+zip -r -9 -I perl/zip !Perl License ReadMe Source -x *svn*
+

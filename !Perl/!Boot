@@ -1,0 +1,27 @@
+|
+| !Boot file for Perl
+|
+| $Id$
+|
+
+Set Perl$Dir <Obey$Dir>
+
+IconSprites <Perl$Dir>.!Sprites
+| RISC OS 5 provides it's own icon for perl files
+If "<Boot$OSVersion>" < "500" Then IconSprites <Perl$Dir>.Sprites
+
+Set File$Type_102 Perl
+
+Set Alias$Perl Wimpslot -min 2000k |M /<Perl$Dir>.bin.perl %*0
+
+Set Alias$@RunType_102 Perl %%*0
+
+| Make sure Perl$Heap is unset, just in case an old !Perl has set it
+| If you really want the heap in a dynamic area, then you can set this
+| variable, but this will restrict functionality.
+Unset Perl$Heap
+
+| Uncomment the following line if you want the various perl utilities
+| addded to your run path 
+|Set Run$Path <Perl$Dir>.bin,<Run$Path>
+

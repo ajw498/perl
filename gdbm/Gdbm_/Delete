@@ -1,0 +1,7 @@
+Gdbm_Delete
+#Parent Gdbm_
+=>	R0 =	file handle from <Gdbm_Open>
+	R1 =	pointer to last keyword
+	R2 =	length of keyword
+
+Deletes the specified key. If the file was opened with <Gdbm_OpenIn> this SWI has no effect.

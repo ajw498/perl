@@ -1,0 +1,12 @@
+Gdbm_NextKey
+#Parent Gdbm_
+=>	R0 =	file handle from <Gdbm_Open>or <Gdbm_OpenIn>
+	R1 =	pointer to last keyword
+	R2 =	length of keyword
+	R3 =	pointer to buffer
+	R4 =	length of buffer
+<=	R0 =	length of keyword, or -1 if no keywords exist
+
+Returns the next keyword from the database.
+
+NOTE: Keywords are ordered in a hash table order. This is not necessarily alphabetic, and should not be relied on if <Gdbm_Delete> is called in the midst of a NextKey loop.

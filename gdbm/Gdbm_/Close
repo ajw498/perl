@@ -1,0 +1,5 @@
+Gdbm_Close
+#Parent Gdbm_
+=>	R0 =	file handle from <Gdbm_Open> or <Gdbm_OpenIn>
+
+Closes a database file.

@@ -1,0 +1,38 @@
+# Project:   Maketest
+
+
+# Toolflags:
+CCflags = -c -depend !Depend -IC: -throwback -pcc 
+Linkflags = -o $@
+CMHGflags = 
+LibFileflags = -c -o $@
+Squeezeflags = -o $@
+ASflags = -throwback
+
+
+# Final targets:
+@.testgdbm:   @.GDBMLib @.o.testgdbm 
+        link $(linkflags) @.GDBMLib @.o.testgdbm C:o.stubs
+
+
+# User-editable dependencies:
+
+
+# Static dependencies:
+@.o.testgdbm:   @.c.testgdbm
+        cc $(ccflags) -o @.o.testgdbm @.c.testgdbm 
+
+
+# Dynamic dependencies:
+o.testgdbm:	c.testgdbm
+o.testgdbm:	h.autoconf
+o.testgdbm:	h.gdbmdefs
+o.testgdbm:	h.systems
+o.testgdbm:	h.stat
+o.testgdbm:	h.fcntl
+o.testgdbm:	h.gdbmconst
+o.testgdbm:	h.proto
+o.testgdbm:	h.gdbmerrno
+o.testgdbm:	h.extern
+o.testgdbm:	h.getopt
+o.testgdbm:	h.fcntl

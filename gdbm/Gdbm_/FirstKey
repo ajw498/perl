@@ -1,0 +1,8 @@
+Gdbm_FirstKey
+#Parent Gdbm_
+=>	R0 =	file handle from <Gdbm_Open>or <Gdbm_OpenIn>
+	R1 =	pointer to buffer
+	R2 =	length of buffer
+<=	R0 =	length of keyword, or -1 if no keywords exist
+
+Returns the first keyword from the database.

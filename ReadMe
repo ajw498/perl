@@ -1,0 +1,36 @@
+RISC OS Port of Perl 5.8.6
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is the first release of Perl 5.8.6 for RISC OS. It is supplied
+under either the Artistic License or the GNU General Public License - see
+the files in the License directory for more information.
+
+You should copy the !Perl application somewhere suitable, and ensure it
+is booted by the filer before use.  Do not attempt to merge it with
+older !Perl applications. You will also need the SharedUnixLibrary
+module 1.05 or later, which is available from http://gccsdk.riscos.info/
+Documentation on non RISC OS specific aspects is located in
+!Perl.Documents.
+
+I have tried to keep the changes needed for this port to a minimum, so
+that the effort in maintaining the port is kept to a minimum, and
+keeping the port up to date should be easier. See the Source directory
+for the changes needed. It was cross compiled with the GCCSDK.
+
+There are currently no RISC OS specific modules supplied as there have
+been for earlier ports. If you would like to use any of these, then
+email me with details of which ones and I may consider adding them if
+there is sufficient demand.
+
+If you have problems or find bugs, please either report them to me or
+to the RISC OS Perl mailing list (Send an email to
+riscos-subscribe@perl.org to join). The mailing list is generally
+preferable, as it gives more people a chance to answer, and others can
+benefit from any reply.
+
+
+
+Alex Waugh
+
+mailto:alex@alexwaugh.com
+http://www.alexwaugh.com/perl/
