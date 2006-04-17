@@ -12,7 +12,7 @@ If "<Boot$OSVersion>" < "500" Then IconSprites <Perl$Dir>.Sprites
 
 Set File$Type_102 Perl
 
-Set Alias$Perl Wimpslot -min 2000k |M /<Perl$Dir>.bin.perl %*0
+Set Alias$Perl Wimpslot -min 5500k |M /<Perl$Dir>.bin.perl %*0
 
 Set Alias$@RunType_102 Perl %%*0
 

@@ -1,14 +1,12 @@
-RISC OS Port of Perl 5.8.6
+RISC OS Port of Perl 5.8.8
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is the first release of Perl 5.8.6 for RISC OS. It is supplied
-under either the Artistic License or the GNU General Public License - see
-the files in the License directory for more information.
+This is a port of Perl 5.8.8 for RISC OS. It is supplied under either the Artistic License or the GNU General Public License - see the files in the License directory for more information.
 
 You should copy the !Perl application somewhere suitable, and ensure it
 is booted by the filer before use.  Do not attempt to merge it with
 older !Perl applications. You will also need the SharedUnixLibrary
-module 1.05 or later, which is available from http://gccsdk.riscos.info/
+module 1.07 or later, which is available from http://gccsdk.riscos.info/
 Documentation on non RISC OS specific aspects is located in
 !Perl.Documents.
 

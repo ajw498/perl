@@ -1,0 +1,143 @@
+diff -ur perl-5.8.x-orig/ext/Errno/Errno_pm.PL perl-5.8.x/ext/Errno/Errno_pm.PL
+--- perl-5.8.x-orig/ext/Errno/Errno_pm.PL	2006-04-08 14:40:55.000000000 +0100
++++ perl-5.8.x/ext/Errno/Errno_pm.PL	2006-04-16 22:22:20.000000000 +0100
+@@ -128,6 +128,12 @@
+     } elsif ($Config{archname} eq 'epoc') {
+ 	# Watch out for cross compiling for EPOC (usually done on linux)
+ 	$file{'/usr/local/epocemx/epocsdk/include/libc/sys/errno.h'} = 1;
++    } elsif ($Config{archname} eq 'arm-riscos') {
++	# Watch out for cross compiling for RISC OS
++	my $dep = `echo "#include <errno.h>" | gcc -E -M -`;
++	if ($dep =~ /(\S+errno\.h)/) {
++	     $file{$1} = 1;
++	}
+     } elsif ($^O eq 'linux' &&
+ 	     $Config{gccversion} ne '' # might be using, say, Intel's icc
+ 	     ) {
+diff -ur perl-5.8.x-orig/hv.c perl-5.8.x/hv.c
+--- perl-5.8.x-orig/hv.c	2006-04-08 14:40:56.000000000 +0100
++++ perl-5.8.x/hv.c	2006-04-16 16:31:34.000000000 +0100
+@@ -1743,7 +1743,7 @@
+ 	xhv->xhv_eiter = Null(HE*); /* HvEITER(hv) = Null(HE*) */
+ 	return Null(HE*);
+     }
+-#ifdef DYNAMIC_ENV_FETCH  /* set up %ENV for iteration */
++#if defined(DYNAMIC_ENV_FETCH) && !defined(__riscos__)  /* set up %ENV for iteration */
+     if (!entry && SvRMAGICAL((SV*)hv) && mg_find((SV*)hv, PERL_MAGIC_env)) {
+ 	prime_env_iter();
+ #ifdef VMS
+diff -ur perl-5.8.x-orig/util.c perl-5.8.x/util.c
+--- perl-5.8.x-orig/util.c	2006-04-08 14:40:57.000000000 +0100
++++ perl-5.8.x/util.c	2006-04-16 16:46:43.000000000 +0100
+@@ -1500,7 +1500,7 @@
+     my_setenv_format(environ[i], nam, nlen, val, vlen);
+     } else {
+ # endif
+-#   if defined(__CYGWIN__) || defined(EPOC) || defined(SYMBIAN) 
++#   if defined(__CYGWIN__) || defined(EPOC) || defined(SYMBIAN) || defined(__riscos__) 
+ #       if defined(HAS_UNSETENV)
+         if (val == NULL) {
+             (void)unsetenv(nam);
+diff -urN perl-5.8.x-orig/README.riscos perl-5.8.x/README.riscos
+--- perl-5.8.x-orig/README.riscos	1970-01-01 01:00:00.000000000 +0100
++++ perl-5.8.x/README.riscos	2006-04-16 23:31:17.000000000 +0100
+@@ -0,0 +1,57 @@
++If you read this file _as_is_, just ignore the funny characters you
++see.  It is written in the POD format (see pod/perlpod.pod) which is
++specifically designed to be readable as is.
++
++=head1 NAME
++
++README.riscos - Perl version 5 for RISC OS
++
++=head1 DESCRIPTION
++
++This document give instructions for building Perl for RISC OS. It is
++complicated by the need to cross compile. There is a binary version of
++perl available from L<http://www.cp15.org/perl/> which you may wish to
++use instead of trying to compile it yourself.
++
++
++=head1 BUILD
++
++You need an installed and working gccsdk cross compiler
++L<http://gccsdk.riscos.info/> and REXEN
++L<http://www.cp15.org/programming/>
++
++Firstly, copy the source and build a native copy of perl for your host
++system.
++Then, in the source to be cross compiled:
++
++=over 4
++
++=item
++$ ./Configure
++
++=item
++Select the riscos hint file. The default answers for the rest of the
++questions are usually sufficient.
++
++=item
++$ make miniperl
++
++=item
++This should build miniperl and then fail when it tries to run it.
++
++=item
++Copy the miniperl executable from the native build done earlier to
++replace the cross compiled miniperl.
++
++=item
++$ make
++
++=item
++This will use miniperl to complete the rest of the build.
++
++=back
++
++=head1 AUTHOR
++
++Alex Waugh <alex@alexwaugh.com>
++
+diff -urN perl-5.8.x-orig/hints/riscos.sh perl-5.8.8/hints/riscos.sh
+--- perl-5.8.x-orig/hints/riscos.sh	1970-01-01 01:00:00.000000000 +0100
++++ perl-5.8.8/hints/riscos.sh	2006-04-17 21:01:58.000000000 +0100
+@@ -0,0 +1,38 @@
++#! /bin/sh
++# riscos.sh - hints for building perl using the gccsdk cross compiler for RISC OS
++#
++
++
++cc='gcc'
++locincpth=""
++ccflags="-mpoke-function-name -DDYNAMIC_ENV_FETCH -DPERL_USE_SAFE_PUTENV"
++prefix='/<Perl$Dir>'
++prefixexp='/<Perl$Dir>'
++privlib='/<Perl$Dir>/lib/perl5/5.8.8'
++privlibexp='/<Perl$Dir>/lib/perl5/5.8.8'
++archlib='/<Perl$Dir>/lib/perl5/5.8.8/arm-riscos'
++archlibexp='/<Perl$Dir>/lib/perl5/5.8.8/arm-riscos'
++bin='/<Perl$Dir>/bin'
++binexp='/<Perl$Dir>/bin'
++perlpath='/<Perl$Dir>/bin/perl'
++scriptdir='/<Perl$Dir>/bin'
++scriptdirexp='/<Perl$Dir>/bin'
++sitearch='/<Perl$Dir>/lib/perl5/site_perl/5.8.8/arm-riscos'
++sitearchexp='/<Perl$Dir>/lib/perl5/site_perl/5.8.8/arm-riscos'
++sitebin='/<Perl$Dir>/bin'
++sitebinexp='/<Perl$Dir>/bin'
++sitelib='/<Perl$Dir>/lib/perl5/site_perl/5.8.8'
++sitelib_stem='/<Perl$Dir>/lib/perl5/site_perl'
++sitelibexp='/<Perl$Dir>/lib/perl5/site_perl/5.8.8'
++osname='riscos'
++libpth=' '
++optimize='-O2'
++myarchname=''
++archname='arm-riscos'
++installprefix='/home/cross/PerlInst'
++mkdir -p $installprefix
++startperl="#!/usr/bin/perl"
++i_shadow='undef'
++ebcdic='undef'
++usemymalloc='undef'
++
