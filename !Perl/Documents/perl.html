@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perl - Practical Extraction and Report Language</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -51,13 +53,17 @@
 </p>
 <hr />
 <h1><a name="synopsis">SYNOPSIS</a></h1>
-<p><strong>perl</strong>	[&nbsp;<strong>-sTuU</strong>&nbsp;] [&nbsp;<strong>-hv</strong>&nbsp;]&nbsp;[&nbsp;<strong>-V</strong>[:<em>configvar</em>]&nbsp;]
-    [&nbsp;<strong>-cw</strong>&nbsp;]&nbsp;[&nbsp;<strong>-d</strong>[:<em>debugger</em>]&nbsp;]&nbsp;[&nbsp;<strong>-D</strong>[<em>number/list</em>]&nbsp;]
-    [&nbsp;<strong>-pna</strong>&nbsp;]&nbsp;[&nbsp;<strong>-F</strong><em>pattern</em>&nbsp;]&nbsp;[&nbsp;<strong>-l</strong>[<em>octal</em>]&nbsp;]&nbsp;[&nbsp;<strong>-0</strong>[<em>octal</em>]&nbsp;]
-    [&nbsp;<strong>-I</strong><em>dir</em>&nbsp;]&nbsp;[&nbsp;<strong>-m</strong>[<strong>-</strong>]<em>module</em>&nbsp;]&nbsp;[&nbsp;<strong>-M</strong>[<strong>-</strong>]<em>'module...'</em>&nbsp;]
-    [&nbsp;<strong>-P</strong>&nbsp;] [&nbsp;<strong>-S</strong>&nbsp;] [&nbsp;<strong>-x</strong>[<em>dir</em>]&nbsp;]
-    [&nbsp;<strong>-i</strong>[<em>extension</em>]&nbsp;] [&nbsp;<strong>-e</strong>&nbsp;<em>'command'</em>&nbsp;]&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<strong>--</strong>&nbsp;]&nbsp;[&nbsp;<em>programfile</em>&nbsp;]&nbsp;[&nbsp;<em>argument</em>&nbsp;]...</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td><strong>perl</strong><td>[&nbsp;<strong>-sTtuUWX</strong>&nbsp;]
+<tr><td><td>[&nbsp;<strong>-hv</strong>&nbsp;]&nbsp;[&nbsp;<strong>-V</strong>[:<em>configvar</em>]&nbsp;]
+<tr><td><td>[&nbsp;<strong>-cw</strong>&nbsp;]&nbsp;[&nbsp;<strong>-d</strong>[<strong>t</strong>][:<em>debugger</em>]&nbsp;]&nbsp;[&nbsp;<strong>-D</strong>[<em>number/list</em>]&nbsp;]
+<tr><td><td>[&nbsp;<strong>-pna</strong>&nbsp;]&nbsp;[&nbsp;<strong>-F</strong><em>pattern</em>&nbsp;]&nbsp;[&nbsp;<strong>-l</strong>[<em>octal</em>]&nbsp;]&nbsp;[&nbsp;<strong>-0</strong>[<em>octal/hexadecimal</em>]&nbsp;]
+<tr><td><td>[&nbsp;<strong>-I</strong><em>dir</em>&nbsp;]&nbsp;[&nbsp;<strong>-m</strong>[<strong>-</strong>]<em>module</em>&nbsp;]&nbsp;[&nbsp;<strong>-M</strong>[<strong>-</strong>]<em>'module...'</em>&nbsp;]&nbsp;[&nbsp;<strong>-f</strong>&nbsp;]
+<tr><td><td>[&nbsp;<strong>-C&nbsp;[<em>number/list</em>]&nbsp;</strong>]
+<tr><td><td>[&nbsp;<strong>-P</strong>&nbsp;]
+<tr><td><td>[&nbsp;<strong>-S</strong>&nbsp;]
+<tr><td><td>[&nbsp;<strong>-x</strong>[<em>dir</em>]&nbsp;]
+<tr><td><td>[&nbsp;<strong>-i</strong>[<em>extension</em>]&nbsp;]
+<tr><td><td>[&nbsp;<strong>-e</strong>&nbsp;<em>'command'</em>&nbsp;]&nbsp;[&nbsp;<strong>--</strong>&nbsp;]&nbsp;[&nbsp;<em>programfile</em>&nbsp;]&nbsp;[&nbsp;<em>argument</em>&nbsp;]...</table></p>
 <p>If you're new to Perl, you should start with <a href="perlintro.html">the perlintro manpage</a>, which is a 
 general intro for beginners and provides some background to help you
 navigate the rest of Perl's extensive documentation.</p>
@@ -153,6 +159,8 @@ navigate the rest of Perl's extensive documentation.</p>
     <a href="perlcompile.html">perlcompile</a>         Perl compiler suite intro</pre>
 <pre>
     <a href="perlfilter.html">perlfilter</a>          Perl source filters</pre>
+<pre>
+    <a href="perlglossary.html">perlglossary</a>        Perl Glossary</pre>
 <p>
 </p>
 <h2><a name="internals_and_c_language_interface">Internals and C Language Interface</a></h2>
@@ -182,6 +190,8 @@ navigate the rest of Perl's extensive documentation.</p>
 <pre>
     <a href="perlhist.html">perlhist</a>            Perl history records
     <a href="perldelta.html">perldelta</a>           Perl changes since previous version
+    <a href="perl587delta.html">perl587delta</a>        Perl changes in version 5.8.7
+    <a href="perl586delta.html">perl586delta</a>        Perl changes in version 5.8.6
     <a href="perl585delta.html">perl585delta</a>        Perl changes in version 5.8.5
     <a href="perl584delta.html">perl584delta</a>        Perl changes in version 5.8.4
     <a href="perl583delta.html">perl583delta</a>        Perl changes in version 5.8.3
@@ -225,12 +235,14 @@ navigate the rest of Perl's extensive documentation.</p>
     <a href="perlhpux.html">perlhpux</a>            Perl notes for HP-UX
     <a href="perlhurd.html">perlhurd</a>            Perl notes for Hurd
     <a href="perlirix.html">perlirix</a>            Perl notes for Irix
+    <a href="perllinux.html">perllinux</a>           Perl notes for Linux
     <a href="perlmachten.html">perlmachten</a>         Perl notes for Power MachTen
     <a href="perlmacos.html">perlmacos</a>           Perl notes for Mac OS (Classic)
     <a href="perlmacosx.html">perlmacosx</a>          Perl notes for Mac OS X
     <a href="perlmint.html">perlmint</a>            Perl notes for MiNT
     <a href="perlmpeix.html">perlmpeix</a>           Perl notes for MPE/iX
     <a href="perlnetware.html">perlnetware</a>         Perl notes for NetWare
+    <a href="perlopenbsd.html">perlopenbsd</a>         Perl notes for OpenBSD
     <a href="perlos2.html">perlos2</a>             Perl notes for OS/2
     <a href="perlos390.html">perlos390</a>           Perl notes for OS/390
     <a href="perlos400.html">perlos400</a>           Perl notes for OS/400
@@ -303,58 +315,59 @@ scripts into Perl scripts.</p>
 <p>Begun in 1993 (see <a href="perlhist.html">the perlhist manpage</a>), Perl version 5 is nearly a complete
 rewrite that provides the following additional benefits:</p>
 <ul>
-<li></li>
-modularity and reusability using innumerable modules
+<li>
+<p>modularity and reusability using innumerable modules</p>
 <p>Described in <a href="perlmod.html">the perlmod manpage</a>, <a href="perlmodlib.html">the perlmodlib manpage</a>, and <a href="perlmodinstall.html">the perlmodinstall manpage</a>.</p>
-<p></p>
-<li></li>
-embeddable and extensible
+</li>
+<li>
+<p>embeddable and extensible</p>
 <p>Described in <a href="perlembed.html">the perlembed manpage</a>, <a href="perlxstut.html">the perlxstut manpage</a>, <a href="perlxs.html">the perlxs manpage</a>, <a href="perlcall.html">the perlcall manpage</a>,
-<a href="perlguts.html">the perlguts manpage</a>, and <em>xsubpp</em>.</p>
-<p></p>
-<li></li>
-roll-your-own magic variables (including multiple simultaneous DBM
-implementations)
-<p>Described in <a href="perltie.html">the perltie manpage</a> and <em>AnyDBM_File</em>.</p>
-<p></p>
-<li></li>
-subroutines can now be overridden, autoloaded, and prototyped
+<a href="perlguts.html">the perlguts manpage</a>, and <a href="../../ExtUtils/xsubpp.html">the xsubpp manpage</a>.</p>
+</li>
+<li>
+<p>roll-your-own magic variables (including multiple simultaneous DBM
+implementations)</p>
+<p>Described in <a href="perltie.html">the perltie manpage</a> and <a href="../../AnyDBM_File.html">the AnyDBM_File manpage</a>.</p>
+</li>
+<li>
+<p>subroutines can now be overridden, autoloaded, and prototyped</p>
 <p>Described in <a href="perlsub.html">the perlsub manpage</a>.</p>
-<p></p>
-<li></li>
-arbitrarily nested data structures and anonymous functions
+</li>
+<li>
+<p>arbitrarily nested data structures and anonymous functions</p>
 <p>Described in <a href="perlreftut.html">the perlreftut manpage</a>, <a href="perlref.html">the perlref manpage</a>, <a href="perldsc.html">the perldsc manpage</a>, and <a href="perllol.html">the perllol manpage</a>.</p>
-<p></p>
-<li></li>
-object-oriented programming
+</li>
+<li>
+<p>object-oriented programming</p>
 <p>Described in <a href="perlobj.html">the perlobj manpage</a>, <a href="perlboot.html">the perlboot manpage</a>, <a href="perltoot.html">the perltoot manpage</a>, <a href="perltooc.html">the perltooc manpage</a>,
 and <a href="perlbot.html">the perlbot manpage</a>.</p>
-<p></p>
-<li></li>
-support for light-weight processes (threads)
-<p>Described in <a href="perlthrtut.html">the perlthrtut manpage</a> and <em>threads</em>.</p>
-<p></p>
-<li></li>
-support for Unicode, internationalization, and localization
-<p>Described in <a href="perluniintro.html">the perluniintro manpage</a>, <a href="perllocale.html">the perllocale manpage</a> and <a href="../Locale/Maketext.html">the Locale::Maketext manpage</a>.</p>
-<p></p>
-<li></li>
-lexical scoping
+</li>
+<li>
+<p>support for light-weight processes (threads)</p>
+<p>Described in <a href="perlthrtut.html">the perlthrtut manpage</a> and <a href="../../threads.html">the threads manpage</a>.</p>
+</li>
+<li>
+<p>support for Unicode, internationalization, and localization</p>
+<p>Described in <a href="perluniintro.html">the perluniintro manpage</a>, <a href="perllocale.html">the perllocale manpage</a> and <a href="../../Locale/Maketext.html">the Locale::Maketext manpage</a>.</p>
+</li>
+<li>
+<p>lexical scoping</p>
 <p>Described in <a href="perlsub.html">the perlsub manpage</a>.</p>
-<p></p>
-<li></li>
-regular expression enhancements
+</li>
+<li>
+<p>regular expression enhancements</p>
 <p>Described in <a href="perlre.html">the perlre manpage</a>, with additional examples in <a href="perlop.html">the perlop manpage</a>.</p>
-<p></p>
-<li></li>
-enhanced debugger and interactive Perl environment,
-with integrated editor support
+</li>
+<li>
+<p>enhanced debugger and interactive Perl environment,
+with integrated editor support</p>
 <p>Described in <a href="perldebtut.html">the perldebtut manpage</a>, <a href="perldebug.html">the perldebug manpage</a> and <a href="perldebguts.html">the perldebguts manpage</a>.</p>
-<p></p>
-<li></li>
-POSIX 1003.1 compliant library
-<p>Described in <em>POSIX</em>.</p>
-<p></p></ul>
+</li>
+<li>
+<p>POSIX 1003.1 compliant library</p>
+<p>Described in <a href="../../POSIX.html">the POSIX manpage</a>.</p>
+</li>
+</ul>
 <p>Okay, that's <em>definitely</em> enough hype.</p>
 <p>
 </p>
@@ -392,7 +405,7 @@ Perl developers, please write to <a href="mailto:perl-thanks@perl.org">perl-than
  s2p    sed to perl translator</pre>
 <pre>
  <a href="http://www.perl.org/">http://www.perl.org/</a>       the Perl homepage
- <a href="http://www.perl.com/">http://www.perl.com/</a>       Perl articles (O'Reilly Media)
+ <a href="http://www.perl.com/">http://www.perl.com/</a>       Perl articles (O'Reilly)
  <a href="http://www.cpan.org/">http://www.cpan.org/</a>       the Comprehensive Perl Archive
  <a href="http://www.pm.org/">http://www.pm.org/</a>         the Perl Mongers</pre>
 <p>

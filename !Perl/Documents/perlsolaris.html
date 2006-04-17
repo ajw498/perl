@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>README.solaris - Perl version 5 on Solaris systems</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -92,7 +94,6 @@
 
 	<li><a href="#sunos_4_x">SunOS 4.x</a></li>
 	<li><a href="#author">AUTHOR</a></li>
-	<li><a href="#last_modified">LAST MODIFIED</a></li>
 </ul>
 <!-- INDEX END -->
 
@@ -185,31 +186,32 @@ number as reported by uname.  Here's a partial translation table:</p>
 <p>There are many, many sources for Solaris information.  A few of the
 important ones for perl:</p>
 <dl>
-<dt><strong><a name="item_solaris_faq">Solaris FAQ</a></strong><br />
-</dt>
+<dt><strong><a name="item_solaris_faq">Solaris FAQ</a></strong>
+
 <dd>
-The Solaris FAQ is available at
-<a href="http://www.science.uva.nl/pub/solaris/solaris2.html">http://www.science.uva.nl/pub/solaris/solaris2.html</a>.
+<p>The Solaris FAQ is available at
+<a href="http://www.science.uva.nl/pub/solaris/solaris2.html">http://www.science.uva.nl/pub/solaris/solaris2.html</a>.</p>
 </dd>
 <dd>
 <p>The Sun Managers' FAQ is available at
 <a href="ftp://ftp.cs.toronto.edu/pub/jdd/sunmanagers/faq">ftp://ftp.cs.toronto.edu/pub/jdd/sunmanagers/faq</a></p>
 </dd>
-<p></p>
-<dt><strong><a name="item_precompiled_binaries">Precompiled Binaries</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_precompiled_binaries">Precompiled Binaries</a></strong>
+
 <dd>
-Precompiled binaries, links to many sites, and much, much more are
+<p>Precompiled binaries, links to many sites, and much, much more are
 available at <a href="http://www.sunfreeware.com/">http://www.sunfreeware.com/</a> and
-<a href="http://www.blastwave.org/">http://www.blastwave.org/</a>.
+<a href="http://www.blastwave.org/">http://www.blastwave.org/</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_solaris_documentation">Solaris Documentation</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_solaris_documentation">Solaris Documentation</a></strong>
+
 <dd>
-All Solaris documentation is available on-line at <a href="http://docs.sun.com/">http://docs.sun.com/</a>.
+<p>All Solaris documentation is available on-line at <a href="http://docs.sun.com/">http://docs.sun.com/</a>.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -531,51 +533,52 @@ malloc. [XXX further investigation is needed here.]</p>
 <hr />
 <h1><a name="make_problems_">MAKE PROBLEMS.</a></h1>
 <dl>
-<dt><strong><a name="item_dynamic_loading_problems_with_gnu_as_and_gnu_ld">Dynamic Loading Problems With GNU as and GNU ld</a></strong><br />
-</dt>
+<dt><strong><a name="item_dynamic_loading_problems_with_gnu_as_and_gnu_ld">Dynamic Loading Problems With GNU as and GNU ld</a></strong>
+
 <dd>
-If you have problems with dynamic loading using gcc on SunOS or
+<p>If you have problems with dynamic loading using gcc on SunOS or
 Solaris, and you are using GNU as and GNU ld, see the section
-<a href="#gnu_as_and_gnu_ld">GNU as and GNU ld</a> above.
+<a href="#gnu_as_and_gnu_ld">GNU as and GNU ld</a> above.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_ld_2eso_2e1_3a__2e_2fperl_3a_fatal_3a_relocation_e">ld.so.1: ./perl: fatal: relocation error:</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_ld_2eso_2e1_3a__2e_2fperl_3a_fatal_3a_relocation_e">ld.so.1: ./perl: fatal: relocation error:</a></strong>
+
 <dd>
-If you get this message on SunOS or Solaris, and you're using gcc,
+<p>If you get this message on SunOS or Solaris, and you're using gcc,
 it's probably the GNU as or GNU ld problem in the previous item
-<a href="#gnu_as_and_gnu_ld">GNU as and GNU ld</a>.
+<a href="#gnu_as_and_gnu_ld">GNU as and GNU ld</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_dlopen_3a_stub_interception_failed">dlopen: stub interception failed</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_dlopen_3a_stub_interception_failed">dlopen: stub interception failed</a></strong>
+
 <dd>
-The primary cause of the 'dlopen: stub interception failed' message is
+<p>The primary cause of the 'dlopen: stub interception failed' message is
 that the LD_LIBRARY_PATH environment variable includes a directory
 which is a symlink to /usr/lib (such as /lib).  See
-<a href="#ld_library_path">LD_LIBRARY_PATH</a> above.
+<a href="#ld_library_path">LD_LIBRARY_PATH</a> above.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__23error__22no_datamodel_native_specified_22">#error ``No DATAMODEL_NATIVE specified''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__23error__22no_datamodel_native_specified_22">#error ``No DATAMODEL_NATIVE specified''</a></strong>
+
 <dd>
-This is a common error when trying to build perl on Solaris 2.6 with a
+<p>This is a common error when trying to build perl on Solaris 2.6 with a
 gcc installation from Solaris 2.5 or 2.5.1.  The Solaris header files
 changed, so you need to update your gcc installation.  You can either
 rerun the fixincludes script from gcc or take the opportunity to
-update your gcc installation.
+update your gcc installation.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_sh_3a_ar_3a_not_found">sh: ar: not found</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_sh_3a_ar_3a_not_found">sh: ar: not found</a></strong>
+
 <dd>
-This is a message from your shell telling you that the command 'ar'
+<p>This is a message from your shell telling you that the command 'ar'
 was not found.  You need to check your PATH environment variable to
 make sure that it includes the directory with the 'ar' command.  This
 is a common problem on Solaris, where 'ar' is in the /usr/ccs/bin/
-directory.
+directory.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -754,11 +757,6 @@ with Encode, and you should be fine in SunOS 4.x.</p>
 drawing heavily on advice from Alan Burlison, Nick Ing-Simmons, Tim Bunce,
 and many other Solaris users over the years.</p>
 <p>Please report any errors, updates, or suggestions to <em><a href="mailto:perlbug@perl.org">perlbug@perl.org</a></em>.</p>
-<p>
-</p>
-<hr />
-<h1><a name="last_modified">LAST MODIFIED</a></h1>
-<p>$Id: README.solaris,v 1.4 2000/11/11 20:29:58 doughera Exp $</p>
 <table border="0" width="100%" cellspacing="0" cellpadding="3">
 <tr><td class="block" style="background-color: #cccccc" valign="middle">
 <big><strong><span class="block">&nbsp;README.solaris - Perl version 5 on Solaris systems</span></strong></big>

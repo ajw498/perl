@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlsec - Perl security</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -77,11 +79,11 @@ Tainted data may not be used directly or indirectly in any command
 that invokes a sub-shell, nor in any command that modifies files,
 directories, or processes, <strong>with the following exceptions</strong>:</p>
 <ul>
-<li></li>
-Arguments to <code>print</code> and <code>syswrite</code> are <strong>not</strong> checked for taintedness.
-<p></p>
-<li></li>
-Symbolic methods
+<li>
+<p>Arguments to <code>print</code> and <code>syswrite</code> are <strong>not</strong> checked for taintedness.</p>
+</li>
+<li>
+<p>Symbolic methods</p>
 <pre>
     $obj-&gt;$method(@args);</pre>
 <p>and symbolic sub references</p>
@@ -93,7 +95,8 @@ unless you want external data to affect your control flow.  Unless
 you carefully limit what these symbolic values are, people are able
 to call functions <strong>outside</strong> your Perl code, such as POSIX::system,
 in which case they are able to run arbitrary external code.</p>
-<p></p></ul>
+</li>
+</ul>
 <p>For efficiency reasons, Perl takes a conservative view of
 whether data is tainted.  If an expression contains tainted data,
 any subexpression may be considered tainted, even if the value
@@ -249,6 +252,10 @@ the <code>lib</code> pragma, e.g.:</p>
 <p>The benefit of using <code>-Mlib=/foo</code> over <code>-I/foo</code>, is that the former
 will automagically remove any duplicated directories, while the later
 will not.</p>
+<p>Note that if a tainted string is added to <code>@INC</code>, the following
+problem will be reported:</p>
+<pre>
+  Insecure dependency in require while running with -T switch</pre>
 <p>
 </p>
 <h2><a name="cleaning_up_your_path">Cleaning Up Your Path</a></h2>
@@ -430,11 +437,11 @@ be attacked by choosing the input carefully to consume large amounts
 of either time or space or both.  This can lead into the so-called
 <em>Denial of Service</em> (DoS) attacks.</p>
 <ul>
-<li></li>
-Hash Function - the algorithm used to ``order'' hash elements has been
+<li>
+<p>Hash Function - the algorithm used to ``order'' hash elements has been
 changed several times during the development of Perl, mainly to be
 reasonably fast.  In Perl 5.8.1 also the security aspect was taken
-into account.
+into account.</p>
 <p>In Perls before 5.8.1 one could rather easily generate data that as
 hash keys would cause Perl to consume large amounts of time because
 internal structure of hashes would badly degenerate.  In Perl 5.8.1
@@ -455,29 +462,30 @@ continues to be, affected by the insertion order.</p>
 <p>Also note that while the order of the hash elements might be
 randomised, this ``pseudoordering'' should <strong>not</strong> be used for
 applications like shuffling a list randomly (use List::Util::shuffle()
-for that, see <a href="../List/Util.html">the List::Util manpage</a>, a standard core module since Perl 5.8.0;
+for that, see <a href="../../List/Util.html">the List::Util manpage</a>, a standard core module since Perl 5.8.0;
 or the CPAN module Algorithm::Numerical::Shuffle), or for generating
 permutations (use e.g. the CPAN modules Algorithm::Permute or
 Algorithm::FastPermute), or for any cryptographic applications.</p>
-<p></p>
-<li></li>
-Regular expressions - Perl's regular expression engine is so called
+</li>
+<li>
+<p>Regular expressions - Perl's regular expression engine is so called
 NFA (Non-Finite Automaton), which among other things means that it can
 rather easily consume large amounts of both time and space if the
 regular expression may match in several ways.  Careful crafting of the
 regular expressions can help but quite often there really isn't much
 one can do (the book ``Mastering Regular Expressions'' is required
 reading, see <a href="perlfaq2.html">the perlfaq2 manpage</a>).  Running out of space manifests itself by
-Perl running out of memory.
-<p></p>
-<li></li>
-Sorting - the quicksort algorithm used in Perls before 5.8.0 to
+Perl running out of memory.</p>
+</li>
+<li>
+<p>Sorting - the quicksort algorithm used in Perls before 5.8.0 to
 implement the <code>sort()</code> function is very easy to trick into misbehaving
 so that it consumes a lot of time.  Nothing more is required than
 resorting a list already sorted.  Starting from Perl 5.8.0 a different
 sorting algorithm, mergesort, is used.  Mergesort is insensitive to
-its input data, so it cannot be similarly fooled.
-<p></p></ul>
+its input data, so it cannot be similarly fooled.</p>
+</li>
+</ul>
 <p>See <a href="http://www.cs.rice.edu/~scrosby/hash/">http://www.cs.rice.edu/~scrosby/hash/</a> for more information,
 and any computer science text book on the algorithmic complexity.</p>
 <p>

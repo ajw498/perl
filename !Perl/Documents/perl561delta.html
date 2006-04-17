@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perl561delta - what's new for perl v5.6.x</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -89,6 +91,7 @@
 		<li><a href="#new_variable___v_contains_perl_version_as_a_string">New variable $^V contains Perl version as a string</a></li>
 		<li><a href="#optional_y2k_warnings">Optional Y2K warnings</a></li>
 		<li><a href="#arrays_now_always_interpolate_into_doublequoted_strings">Arrays now always interpolate into double-quoted strings</a></li>
+		<li><a href="#__and____provide_starting_ending_offsets_of_regex_submatches">@- and @+ provide starting/ending offsets of regex submatches</a></li>
 	</ul>
 
 	<li><a href="#modules_and_pragmata">Modules and Pragmata</a></li>
@@ -229,26 +232,26 @@ See <a href="http://www.courtesan.com/sudo/">http://www.courtesan.com/sudo/</a> 
 <p>This is not an exhaustive list.  It is intended to cover only the
 significant user-visible changes.</p>
 <dl>
-<dt><strong><a name="item_isa"><code>UNIVERSAL::isa()</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_isa"><code>UNIVERSAL::isa()</code></a></strong>
+
 <dd>
-A bug in the caching mechanism used by <a href="#item_isa"><code>UNIVERSAL::isa()</code></a> that affected
+<p>A bug in the caching mechanism used by <a href="#item_isa"><code>UNIVERSAL::isa()</code></a> that affected
 base.pm has been fixed.  The bug has existed since the 5.005 releases,
-but wasn't tickled by base.pm in those releases.
+but wasn't tickled by base.pm in those releases.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_memory_leaks">Memory leaks</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_memory_leaks">Memory leaks</a></strong>
+
 <dd>
-Various cases of memory leaks and attempts to access uninitialized memory
-have been cured.  See <a href="#known_problems">Known Problems</a> below for further issues.
+<p>Various cases of memory leaks and attempts to access uninitialized memory
+have been cured.  See <a href="#known_problems">Known Problems</a> below for further issues.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_numeric_conversions">Numeric conversions</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_numeric_conversions">Numeric conversions</a></strong>
+
 <dd>
-Numeric conversions did not recognize changes in the string value
-properly in certain circumstances.
+<p>Numeric conversions did not recognize changes in the string value
+properly in certain circumstances.</p>
 </dd>
 <dd>
 <p>In other situations, large unsigned numbers (those above 2**31) could
@@ -269,26 +272,26 @@ previous versions didn't.</p>
 <dd>
 <p>Infinity is now recognized as a number.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_qw"><code>qw(a\\b)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_qw"><code>qw(a\\b)</code></a></strong>
+
 <dd>
-In Perl 5.6.0, <a href="#item_qw"><code>qw(a\\b)</code></a> produced a string with two backslashes instead
+<p>In Perl 5.6.0, <a href="#item_qw"><code>qw(a\\b)</code></a> produced a string with two backslashes instead
 of one, in a departure from the behavior in previous versions.  The
-older behavior has been reinstated.
+older behavior has been reinstated.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_caller"><code>caller()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_caller"><code>caller()</code></a></strong>
+
 <dd>
-<a href="#item_caller"><code>caller()</code></a> could cause core dumps in certain situations.  Carp was sometimes
-affected by this problem.
+<p><a href="#item_caller"><code>caller()</code></a> could cause core dumps in certain situations.  Carp was sometimes
+affected by this problem.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_bugs_in_regular_expressions">Bugs in regular expressions</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_bugs_in_regular_expressions">Bugs in regular expressions</a></strong>
+
 <dd>
-Pattern matches on overloaded values are now handled correctly.
+<p>Pattern matches on overloaded values are now handled correctly.</p>
 </dd>
 <dd>
 <p>Perl 5.6.0 parsed m/\x{ab}/ incorrectly, leading to spurious warnings.
@@ -319,26 +322,26 @@ etc.  These variables are now tracked correctly.</p>
 <p><code>pos()</code> did not return the correct value within s///ge in earlier
 versions.  This is now handled correctly.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__22slurp_22_mode">``slurp'' mode</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22slurp_22_mode">``slurp'' mode</a></strong>
+
 <dd>
-<code>readline()</code> on files opened in ``slurp'' mode could return an extra ``'' at
-the end in certain situations.  This has been corrected.
+<p><code>readline()</code> on files opened in ``slurp'' mode could return an extra ``'' at
+the end in certain situations.  This has been corrected.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_autovivification_of_symbolic_references_to_special">Autovivification of symbolic references to special variables</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_autovivification_of_symbolic_references_to_special">Autovivification of symbolic references to special variables</a></strong>
+
 <dd>
-Autovivification of symbolic references of special variables described
+<p>Autovivification of symbolic references of special variables described
 in <a href="perlvar.html">the perlvar manpage</a> (as in <code>${$num}</code>) was accidentally disabled.  This works
-again now.
+again now.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lexical_warnings">Lexical warnings</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lexical_warnings">Lexical warnings</a></strong>
+
 <dd>
-Lexical warnings now propagate correctly into <code>eval &quot;...&quot;</code>.
+<p>Lexical warnings now propagate correctly into <code>eval &quot;...&quot;</code>.</p>
 </dd>
 <dd>
 <p><a href="#item_qw"><code>use warnings qw(FATAL all)</code></a> did not work as intended.  This has been
@@ -352,12 +355,12 @@ This is now fixed.</p>
 <p>warnings::enabled() now reports the state of $^W correctly if the caller
 isn't using lexical warnings.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_spurious_warnings_and_errors">Spurious warnings and errors</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_spurious_warnings_and_errors">Spurious warnings and errors</a></strong>
+
 <dd>
-Perl 5.6.0 could emit spurious warnings about redefinition of <code>dl_error()</code>
-when statically building extensions into perl.  This has been corrected.
+<p>Perl 5.6.0 could emit spurious warnings about redefinition of <code>dl_error()</code>
+when statically building extensions into perl.  This has been corrected.</p>
 </dd>
 <dd>
 <p>``our'' variables could result in bogus ``Variable will not stay shared''
@@ -368,12 +371,12 @@ warnings.  This is now fixed.</p>
 resulted in bogus warnings about ``redeclaration'' of the variables.
 The problem has been corrected.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_glob"><code>glob()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_glob"><code>glob()</code></a></strong>
+
 <dd>
-Compatibility of the builtin <a href="#item_glob"><code>glob()</code></a> with old csh-based glob has been
-improved with the addition of GLOB_ALPHASORT option.  See <a href="#item_file_3a_3aglob"><code>File::Glob</code></a>.
+<p>Compatibility of the builtin <a href="#item_glob"><code>glob()</code></a> with old csh-based glob has been
+improved with the addition of GLOB_ALPHASORT option.  See <a href="#item_file_3a_3aglob"><code>File::Glob</code></a>.</p>
 </dd>
 <dd>
 <p>File::Glob::glob() has been renamed to File::Glob::bsd_glob()
@@ -384,56 +387,56 @@ name is still available for compatibility, but is deprecated.</p>
 <p>Spurious syntax errors generated in certain situations, when <a href="#item_glob"><code>glob()</code></a>
 caused File::Glob to be loaded for the first time, have been fixed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_tainting">Tainting</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_tainting">Tainting</a></strong>
+
 <dd>
-Some cases of inconsistent taint propagation (such as within hash
-values) have been fixed.
+<p>Some cases of inconsistent taint propagation (such as within hash
+values) have been fixed.</p>
 </dd>
 <dd>
 <p>The tainting behavior of <code>sprintf()</code> has been rationalized.  It does
 not taint the result of floating point formats anymore, making the
 behavior consistent with that of string interpolation.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_sort"><code>sort()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_sort"><code>sort()</code></a></strong>
+
 <dd>
-Arguments to <a href="#item_sort"><code>sort()</code></a> weren't being provided the right <code>wantarray()</code> context.
+<p>Arguments to <a href="#item_sort"><code>sort()</code></a> weren't being provided the right <code>wantarray()</code> context.
 The comparison block is now run in scalar context, and the arguments to
-be sorted are always provided list context.
+be sorted are always provided list context.</p>
 </dd>
 <dd>
 <p><a href="#item_sort"><code>sort()</code></a> is also fully reentrant, in the sense that the sort function
 can itself call sort().  This did not work reliably in previous releases.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__23line_directives">#line directives</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__23line_directives">#line directives</a></strong>
+
 <dd>
-#line directives now work correctly when they appear at the very
-beginning of <code>eval &quot;...&quot;</code>.
+<p>#line directives now work correctly when they appear at the very
+beginning of <code>eval &quot;...&quot;</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_subroutine_prototypes">Subroutine prototypes</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_subroutine_prototypes">Subroutine prototypes</a></strong>
+
 <dd>
-The (\&amp;) prototype now works properly.
+<p>The (\&amp;) prototype now works properly.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_map"><code>map()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_map"><code>map()</code></a></strong>
+
 <dd>
-<a href="#item_map"><code>map()</code></a> could get pathologically slow when the result list it generates
+<p><a href="#item_map"><code>map()</code></a> could get pathologically slow when the result list it generates
 is larger than the source list.  The performance has been improved for
-common scenarios.
+common scenarios.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_debugger">Debugger</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_debugger">Debugger</a></strong>
+
 <dd>
-Debugger exit code now reflects the script exit code.
+<p>Debugger exit code now reflects the script exit code.</p>
 </dd>
 <dd>
 <p>Condition <code>&quot;0&quot;</code> in breakpoints is now treated correctly.</p>
@@ -448,27 +451,27 @@ Debugger exit code now reflects the script exit code.
 <p>All debugger output now correctly goes to the socket if RemotePort
 is set.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl5opt">PERL5OPT</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl5opt">PERL5OPT</a></strong>
+
 <dd>
-PERL5OPT can be set to more than one switch group.  Previously,
-it used to be limited to one group of options only.
+<p>PERL5OPT can be set to more than one switch group.  Previously,
+it used to be limited to one group of options only.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_chop"><code>chop()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_chop"><code>chop()</code></a></strong>
+
 <dd>
-<a href="#item_chop"><code>chop(@list)</code></a> in list context returned the characters chopped in reverse
-order.  This has been reversed to be in the right order.
+<p><a href="#item_chop"><code>chop(@list)</code></a> in list context returned the characters chopped in reverse
+order.  This has been reversed to be in the right order.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_unicode_support">Unicode support</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unicode_support">Unicode support</a></strong>
+
 <dd>
-Unicode support has seen a large number of incremental improvements,
+<p>Unicode support has seen a large number of incremental improvements,
 but continues to be highly experimental.  It is not expected to be
-fully supported in the 5.6.x maintenance releases.
+fully supported in the 5.6.x maintenance releases.</p>
 </dd>
 <dd>
 <p>substr(), join(), repeat(), reverse(), <code>quotemeta()</code> and string
@@ -500,18 +503,18 @@ track, primarily to do backward compatibility issues.  Unicode support
 is also evolving rapidly on a daily basis in the development track--the
 maintenance track only reflects the most conservative of these changes.</p>
 </dd>
-<p></p>
-<li><strong><a name="item__2dbit_support">-bit support</a></strong><br />
 </li>
-Support for 64-bit platforms has been improved, but continues to be
-experimental.  The level of support varies greatly among platforms.
-<p></p>
-<dt><strong><a name="item_compiler">Compiler</a></strong><br />
-</dt>
+<li><strong><a name="item__2dbit_support">-bit support</a></strong>
+
+<p>Support for 64-bit platforms has been improved, but continues to be
+experimental.  The level of support varies greatly among platforms.</p>
+</li>
+<dt><strong><a name="item_compiler">Compiler</a></strong>
+
 <dd>
-The B Compiler and its various backends have had many incremental
+<p>The B Compiler and its various backends have had many incremental
 improvements, but they continue to remain highly experimental.  Use in
-production environments is discouraged.
+production environments is discouraged.</p>
 </dd>
 <dd>
 <p>The perlcc tool has been rewritten so that the user interface is much
@@ -520,48 +523,49 @@ more like that of a C compiler.</p>
 <dd>
 <p>The perlbc tools has been removed.  Use <code>perlcc -B</code> instead.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lvalue_subroutines">Lvalue subroutines</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lvalue_subroutines">Lvalue subroutines</a></strong>
+
 <dd>
-There have been various bugfixes to support lvalue subroutines better.
-However, the feature still remains experimental.
+<p>There have been various bugfixes to support lvalue subroutines better.
+However, the feature still remains experimental.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_io_3a_3asocket">IO::Socket</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_io_3a_3asocket">IO::Socket</a></strong>
+
 <dd>
-IO::Socket::INET failed to open the specified port if the service
+<p>IO::Socket::INET failed to open the specified port if the service
 name was not known.  It now correctly uses the supplied port number
-as is.
+as is.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_file_3a_3afind">File::Find</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_file_3a_3afind">File::Find</a></strong>
+
 <dd>
-File::Find now chdir()s correctly when chasing symbolic links.
+<p>File::Find now chdir()s correctly when chasing symbolic links.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_xsubpp">xsubpp</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_xsubpp">xsubpp</a></strong>
+
 <dd>
-xsubpp now tolerates embedded POD sections.
+<p>xsubpp now tolerates embedded POD sections.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_no_module_3b"><code>no Module;</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_no_module_3b"><code>no Module;</code></a></strong>
+
 <dd>
-<a href="#item_no_module_3b"><code>no Module;</code></a> does not produce an error even if Module does not have an
+<p><a href="#item_no_module_3b"><code>no Module;</code></a> does not produce an error even if Module does not have an
 <code>unimport()</code> method.  This parallels the behavior of <code>use</code> vis-a-vis
-<code>import</code>.
+<code>import</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_tests">Tests</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_tests">Tests</a></strong>
+
 <dd>
-A large number of tests have been added.
+<p>A large number of tests have been added.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="core_features">Core features</a></h2>
@@ -586,28 +590,29 @@ compatibility with earlier releases, you may be better off building perl
 with <code>Configure -Uusemymalloc ...</code> as discussed in the <em>INSTALL</em> file.</p>
 <p><code>Configure</code> has been enhanced in various ways:</p>
 <ul>
-<li></li>
-Minimizes use of temporary files.
-<p></p>
-<li></li>
-By default, does not link perl with libraries not used by it, such as
+<li>
+<p>Minimizes use of temporary files.</p>
+</li>
+<li>
+<p>By default, does not link perl with libraries not used by it, such as
 the various dbm libraries.  SunOS 4.x hints preserve behavior on that
-platform.
-<p></p>
-<li></li>
-Support for pdp11-style memory models has been removed due to obsolescence.
-<p></p>
-<li></li>
-Building outside the source tree is supported on systems that have
-symbolic links. This is done by running
+platform.</p>
+</li>
+<li>
+<p>Support for pdp11-style memory models has been removed due to obsolescence.</p>
+</li>
+<li>
+<p>Building outside the source tree is supported on systems that have
+symbolic links. This is done by running</p>
 <pre>
     sh /path/to/source/Configure -Dmksymlinks ...
     make all test install</pre>
 <p>in a directory other than the perl source directory.  See <em>INSTALL</em>.</p>
-<p></p>
-<li></li>
-<code>Configure -S</code> can be run non-interactively.
-<p></p></ul>
+</li>
+<li>
+<p><code>Configure -S</code> can be run non-interactively.</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="documentation">Documentation</a></h2>
@@ -634,162 +639,164 @@ See the file <code>AUTHORS</code>.</p>
 <h2><a name="bundled_modules">Bundled modules</a></h2>
 <p>The following modules have been added.</p>
 <dl>
-<dt><strong><a name="item_b_3a_3aconcise">B::Concise</a></strong><br />
-</dt>
+<dt><strong><a name="item_b_3a_3aconcise">B::Concise</a></strong>
+
 <dd>
-Walks Perl syntax tree, printing concise info about ops.  See <a href="../B/Concise.html">the B::Concise manpage</a>.
+<p>Walks Perl syntax tree, printing concise info about ops.  See <a href="../../B/Concise.html">the B::Concise manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_file_3a_3atemp">File::Temp</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_file_3a_3atemp">File::Temp</a></strong>
+
 <dd>
-Returns name and handle of a temporary file safely.  See <a href="../File/Temp.html">the File::Temp manpage</a>.
+<p>Returns name and handle of a temporary file safely.  See <a href="../../File/Temp.html">the File::Temp manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pod_3a_3alatex">Pod::LaTeX</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pod_3a_3alatex">Pod::LaTeX</a></strong>
+
 <dd>
-Converts Pod data to formatted LaTeX.  See <a href="../Pod/LaTeX.html">the Pod::LaTeX manpage</a>.
+<p>Converts Pod data to formatted LaTeX.  See <a href="../../Pod/LaTeX.html">the Pod::LaTeX manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pod_3a_3atext_3a_3aoverstrike">Pod::Text::Overstrike</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pod_3a_3atext_3a_3aoverstrike">Pod::Text::Overstrike</a></strong>
+
 <dd>
-Converts POD data to formatted overstrike text.  See <a href="../Pod/Text/Overstrike.html">the Pod::Text::Overstrike manpage</a>.
+<p>Converts POD data to formatted overstrike text.  See <a href="../../Pod/Text/Overstrike.html">the Pod::Text::Overstrike manpage</a>.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>The following modules have been upgraded.</p>
 <dl>
-<dt><strong><a name="item_cgi">CGI</a></strong><br />
-</dt>
+<dt><strong><a name="item_cgi">CGI</a></strong>
+
 <dd>
-CGI v2.752 is now included.
+<p>CGI v2.752 is now included.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_cpan">CPAN</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_cpan">CPAN</a></strong>
+
 <dd>
-CPAN v1.59_54 is now included.
+<p>CPAN v1.59_54 is now included.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_class_3a_3astruct">Class::Struct</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_class_3a_3astruct">Class::Struct</a></strong>
+
 <dd>
-Various bugfixes have been added.
+<p>Various bugfixes have been added.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_db_file">DB_File</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_db_file">DB_File</a></strong>
+
 <dd>
-DB_File v1.75 supports newer Berkeley DB versions, among other
-improvements.
+<p>DB_File v1.75 supports newer Berkeley DB versions, among other
+improvements.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_devel_3a_3apeek">Devel::Peek</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_devel_3a_3apeek">Devel::Peek</a></strong>
+
 <dd>
-Devel::Peek has been enhanced to support dumping of memory statistics,
-when perl is built with the included malloc().
+<p>Devel::Peek has been enhanced to support dumping of memory statistics,
+when perl is built with the included malloc().</p>
 </dd>
-<p></p>
-<dt><strong>File::Find</strong><br />
-</dt>
+</li>
+<dt><strong>File::Find</strong>
+
 <dd>
-File::Find now supports pre and post-processing of the files in order
-to <a href="#item_sort"><code>sort()</code></a> them, etc.
+<p>File::Find now supports pre and post-processing of the files in order
+to <a href="#item_sort"><code>sort()</code></a> them, etc.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_getopt_3a_3along">Getopt::Long</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_getopt_3a_3along">Getopt::Long</a></strong>
+
 <dd>
-Getopt::Long v2.25 is included.
+<p>Getopt::Long v2.25 is included.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_io_3a_3apoll">IO::Poll</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_io_3a_3apoll">IO::Poll</a></strong>
+
 <dd>
-Various bug fixes have been included.
+<p>Various bug fixes have been included.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_ipc_3a_3aopen3">IPC::Open3</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_ipc_3a_3aopen3">IPC::Open3</a></strong>
+
 <dd>
-IPC::Open3 allows use of numeric file descriptors.
+<p>IPC::Open3 allows use of numeric file descriptors.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_math_3a_3abigfloat">Math::BigFloat</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_math_3a_3abigfloat">Math::BigFloat</a></strong>
+
 <dd>
-The <code>fmod()</code> function supports modulus operations.  Various bug fixes
-have also been included.
+<p>The <code>fmod()</code> function supports modulus operations.  Various bug fixes
+have also been included.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_math_3a_3acomplex">Math::Complex</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_math_3a_3acomplex">Math::Complex</a></strong>
+
 <dd>
-Math::Complex handles inf, NaN etc., better.
+<p>Math::Complex handles inf, NaN etc., better.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_net_3a_3aping">Net::Ping</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_net_3a_3aping">Net::Ping</a></strong>
+
 <dd>
-<code>ping()</code> could fail on odd number of data bytes, and when the echo service
-isn't running.  This has been corrected.
+<p><code>ping()</code> could fail on odd number of data bytes, and when the echo service
+isn't running.  This has been corrected.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_opcode">Opcode</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_opcode">Opcode</a></strong>
+
 <dd>
-A memory leak has been fixed.
+<p>A memory leak has been fixed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pod_3a_3aparser">Pod::Parser</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pod_3a_3aparser">Pod::Parser</a></strong>
+
 <dd>
-Version 1.13 of the Pod::Parser suite is included.
+<p>Version 1.13 of the Pod::Parser suite is included.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pod_3a_3atext">Pod::Text</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pod_3a_3atext">Pod::Text</a></strong>
+
 <dd>
-Pod::Text and related modules have been upgraded to the versions
-in podlators suite v2.08.
+<p>Pod::Text and related modules have been upgraded to the versions
+in podlators suite v2.08.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_sdbm_file">SDBM_File</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_sdbm_file">SDBM_File</a></strong>
+
 <dd>
-On dosish platforms, some keys went missing because of lack of support for
-files with ``holes''.  A workaround for the problem has been added.
+<p>On dosish platforms, some keys went missing because of lack of support for
+files with ``holes''.  A workaround for the problem has been added.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_sys_3a_3asyslog">Sys::Syslog</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_sys_3a_3asyslog">Sys::Syslog</a></strong>
+
 <dd>
-Various bug fixes have been included.
+<p>Various bug fixes have been included.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_tie_3a_3arefhash">Tie::RefHash</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_tie_3a_3arefhash">Tie::RefHash</a></strong>
+
 <dd>
-Now supports Tie::RefHash::Nestable to automagically tie hashref values.
+<p>Now supports Tie::RefHash::Nestable to automagically tie hashref values.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_tie_3a_3asubstrhash">Tie::SubstrHash</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_tie_3a_3asubstrhash">Tie::SubstrHash</a></strong>
+
 <dd>
-Various bug fixes have been included.
+<p>Various bug fixes have been included.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="platformspecific_improvements">Platform-specific improvements</a></h2>
 <p>The following new ports are now available.</p>
 <dl>
-<dt><strong><a name="item_ncr_mp_2dras">NCR MP-RAS</a></strong><br />
-</dt>
-<dt><strong><a name="item_nonstop_2dux">NonStop-UX</a></strong><br />
-</dt>
+<dt><strong><a name="item_ncr_mp_2dras">NCR MP-RAS</a></strong>
+
+<dt><strong><a name="item_nonstop_2dux">NonStop-UX</a></strong>
+
 </dl>
 <p>Perl now builds under Amdahl UTS.</p>
 <p>Perl has also been verified to build under Amiga OS.</p>
@@ -810,65 +817,66 @@ better support for operators like backticks and system(), and better
 <p>Support for Stratus VOS has been improved.  See <code>vos/Changes</code> and README.vos.</p>
 <p>Support for Windows has been improved.</p>
 <ul>
-<li></li>
-<code>fork()</code> emulation has been improved in various ways, but still continues
-to be experimental.  See <a href="perlfork.html">the perlfork manpage</a> for known bugs and caveats.
-<p></p>
-<li></li>
-%SIG has been enabled under USE_ITHREADS, but its use is completely
-unsupported under all configurations.
-<p></p>
-<li></li>
-Borland C++ v5.5 is now a supported compiler that can build Perl.
+<li>
+<p><code>fork()</code> emulation has been improved in various ways, but still continues
+to be experimental.  See <a href="perlfork.html">the perlfork manpage</a> for known bugs and caveats.</p>
+</li>
+<li>
+<p>%SIG has been enabled under USE_ITHREADS, but its use is completely
+unsupported under all configurations.</p>
+</li>
+<li>
+<p>Borland C++ v5.5 is now a supported compiler that can build Perl.
 However, the generated binaries continue to be incompatible with those
-generated by the other supported compilers (GCC and Visual C++).
-<p></p>
-<li></li>
-Non-blocking waits for child processes (or pseudo-processes) are
-supported via <code>waitpid($pid, &amp;POSIX::WNOHANG)</code>.
-<p></p>
-<li></li>
-A memory leak in <code>accept()</code> has been fixed.
-<p></p>
-<li></li>
-wait(), <code>waitpid()</code> and backticks now return the correct exit status under
-Windows 9x.
-<p></p>
-<li></li>
-Trailing new %ENV entries weren't propagated to child processes.  This
-is now fixed.
-<p></p>
-<li></li>
-Current directory entries in %ENV are now correctly propagated to child
-processes.
-<p></p>
-<li></li>
-Duping socket handles with open(F, ``&gt;&amp;MYSOCK'') now works under Windows 9x.
-<p></p>
-<li></li>
-The makefiles now provide a single switch to bulk-enable all the features
-enabled in ActiveState ActivePerl (a popular binary distribution).
-<p></p>
-<li></li>
-Win32::GetCwd() correctly returns C:\ instead of C: when at the drive root.
-Other bugs in <code>chdir()</code> and Cwd::cwd() have also been fixed.
-<p></p>
-<li></li>
-<code>fork()</code> correctly returns undef and sets EAGAIN when it runs out of
-pseudo-process handles.
-<p></p>
-<li></li>
-ExtUtils::MakeMaker now uses $ENV{LIB} to search for libraries.
-<p></p>
-<li></li>
-UNC path handling is better when perl is built to support fork().
-<p></p>
-<li></li>
-A handle leak in socket handling has been fixed.
-<p></p>
-<li></li>
-<code>send()</code> works from within a pseudo-process.
-<p></p></ul>
+generated by the other supported compilers (GCC and Visual C++).</p>
+</li>
+<li>
+<p>Non-blocking waits for child processes (or pseudo-processes) are
+supported via <code>waitpid($pid, &amp;POSIX::WNOHANG)</code>.</p>
+</li>
+<li>
+<p>A memory leak in <code>accept()</code> has been fixed.</p>
+</li>
+<li>
+<p>wait(), <code>waitpid()</code> and backticks now return the correct exit status under
+Windows 9x.</p>
+</li>
+<li>
+<p>Trailing new %ENV entries weren't propagated to child processes.  This
+is now fixed.</p>
+</li>
+<li>
+<p>Current directory entries in %ENV are now correctly propagated to child
+processes.</p>
+</li>
+<li>
+<p>Duping socket handles with open(F, ``&gt;&amp;MYSOCK'') now works under Windows 9x.</p>
+</li>
+<li>
+<p>The makefiles now provide a single switch to bulk-enable all the features
+enabled in ActiveState ActivePerl (a popular binary distribution).</p>
+</li>
+<li>
+<p>Win32::GetCwd() correctly returns C:\ instead of C: when at the drive root.
+Other bugs in <code>chdir()</code> and Cwd::cwd() have also been fixed.</p>
+</li>
+<li>
+<p><code>fork()</code> correctly returns undef and sets EAGAIN when it runs out of
+pseudo-process handles.</p>
+</li>
+<li>
+<p>ExtUtils::MakeMaker now uses $ENV{LIB} to search for libraries.</p>
+</li>
+<li>
+<p>UNC path handling is better when perl is built to support fork().</p>
+</li>
+<li>
+<p>A handle leak in socket handling has been fixed.</p>
+</li>
+<li>
+<p><code>send()</code> works from within a pseudo-process.</p>
+</li>
+</ul>
 <p>Unless specifically qualified otherwise, the remainder of this document
 covers changes between the 5.005 and 5.6.0 releases.</p>
 <p>
@@ -917,14 +925,14 @@ support for running <strong>cloned</strong> interpreters concurrently.</p>
 </p>
 <h2><a name="lexically_scoped_warning_categories">Lexically scoped warning categories</a></h2>
 <p>You can now control the granularity of warnings emitted by perl at a finer
-level using the <code>use warnings</code> pragma.  <em>warnings</em> and <a href="perllexwarn.html">the perllexwarn manpage</a>
+level using the <code>use warnings</code> pragma.  <a href="../../warnings.html">the warnings manpage</a> and <a href="perllexwarn.html">the perllexwarn manpage</a>
 have copious documentation on this feature.</p>
 <p>
 </p>
 <h2><a name="unicode_and_utf8_support">Unicode and UTF-8 support</a></h2>
 <p>Perl now uses UTF-8 as its internal representation for character
 strings.  The <code>utf8</code> and <code>bytes</code> pragmas are used to control this support
-in the current lexical scope.  See <a href="perlunicode.html">the perlunicode manpage</a>, <em>utf8</em> and <em>bytes</em> for
+in the current lexical scope.  See <a href="perlunicode.html">the perlunicode manpage</a>, <a href="../../utf8.html">the utf8 manpage</a> and <a href="../../bytes.html">the bytes manpage</a> for
 more information.</p>
 <p>This feature is expected to evolve quickly to support some form of I/O
 disciplines that can be used to specify the kind of input and output data
@@ -1018,13 +1026,13 @@ as requiring an automatic <code>lock()</code> when it is entered, you had to dec
 that with a <code>use attrs</code> pragma in the body of the subroutine.
 That can now be accomplished with declaration syntax, like this:</p>
 <pre>
-    sub mymethod : locked method ;
+    sub mymethod : locked method;
     ...
     sub mymethod : locked method {
         ...
     }</pre>
 <pre>
-    sub othermethod :locked :method ;
+    sub othermethod :locked :method;
     ...
     sub othermethod :locked :method {
         ...
@@ -1032,7 +1040,7 @@ That can now be accomplished with declaration syntax, like this:</p>
 <p>(Note how only the first <code>:</code> is mandatory, and whitespace surrounding
 the <code>:</code> is optional.)</p>
 <p><em>AutoSplit.pm</em> and <em>SelfLoader.pm</em> have been updated to keep the attributes
-with the stubs they provide.  See <a href="#item_attributes">attributes</a>.</p>
+with the stubs they provide.  See <a href="../../attributes.html">the attributes manpage</a>.</p>
 <p>
 </p>
 <h2><a name="file_and_directory_handles_can_be_autovivified">File and directory handles can be autovivified</a></h2>
@@ -1074,32 +1082,33 @@ of the traditional two-argument form.  See <a href="perlfunc.html#open">open in 
         (3) using long long or int64_t</pre>
 <p>is able to use ``quads'' (64-bit integers) as follows:</p>
 <ul>
-<li></li>
-constants (decimal, hexadecimal, octal, binary) in the code
-<p></p>
-<li></li>
-arguments to <code>oct()</code> and <code>hex()</code>
-<p></p>
-<li></li>
-arguments to print(), <code>printf()</code> and <code>sprintf()</code> (flag prefixes ll, L, q)
-<p></p>
-<li></li>
-printed as such
-<p></p>
-<li></li>
-<code>pack()</code> and <code>unpack()</code> ``q'' and ``Q'' formats
-<p></p>
-<li></li>
-in basic arithmetics: + - * / % (NOTE: operating close to the limits
-of the integer values may produce surprising results)
-<p></p>
-<li></li>
-in bit arithmetics: &amp; | ^ ~ &lt;&lt; &gt;&gt; (NOTE: these used to be forced 
-to be 32 bits wide but now operate on the full native width.)
-<p></p>
-<li></li>
-<a href="#item_vec"><code>vec()</code></a>
-<p></p></ul>
+<li>
+<p>constants (decimal, hexadecimal, octal, binary) in the code</p>
+</li>
+<li>
+<p>arguments to <code>oct()</code> and <code>hex()</code></p>
+</li>
+<li>
+<p>arguments to print(), <code>printf()</code> and <code>sprintf()</code> (flag prefixes ll, L, q)</p>
+</li>
+<li>
+<p>printed as such</p>
+</li>
+<li>
+<p><code>pack()</code> and <code>unpack()</code> ``q'' and ``Q'' formats</p>
+</li>
+<li>
+<p>in basic arithmetics: + - * / % (NOTE: operating close to the limits
+of the integer values may produce surprising results)</p>
+</li>
+<li>
+<p>in bit arithmetics: &amp; | ^ ~ &lt;&lt; &gt;&gt; (NOTE: these used to be forced 
+to be 32 bits wide but now operate on the full native width.)</p>
+</li>
+<li>
+<p><a href="#item_vec"><code>vec()</code></a></p>
+</li>
+</ul>
 <p>Note that unless you have the case (a) you will have to configure
 and compile Perl using the -Duse64bitint Configure flag.</p>
 <pre>
@@ -1345,7 +1354,7 @@ themselves).  See <a href="perlref.html#pseudohashes__using_an_array_as_a_hash">
 at compile-time.</p>
 <p>List assignments to pseudo-hash slices are now supported.</p>
 <p>The <code>fields</code> pragma now provides ways to create pseudo-hashes, via
-fields::new() and fields::phash().  See <em>fields</em>.</p>
+fields::new() and fields::phash().  See <a href="../../fields.html">the fields manpage</a>.</p>
 <pre>
     NOTE: The pseudo-hash data type continues to be experimental.
     Limiting oneself to the interface elements provided by the
@@ -1387,7 +1396,7 @@ own, it now opens the <code>&lt;&gt;</code> files.</p>
 <p><code>binmode()</code> now accepts a second argument that specifies a discipline
 for the handle in question.  The two pseudo-disciplines ``:raw'' and
 ``:crlf'' are currently supported on DOS-derivative platforms.
-See <a href="perlfunc.html#binmode">binmode in the perlfunc manpage</a> and <a href="#item_open">open</a>.</p>
+See <a href="perlfunc.html#binmode">binmode in the perlfunc manpage</a> and <a href="../../open.html">the open manpage</a>.</p>
 <p>
 </p>
 <h2><a name="t_filetest_recognizes_utf8_encoded_files_as_text"><code>-T</code> filetest recognizes UTF-8 encoded files as ``text''</a></h2>
@@ -1581,27 +1590,33 @@ See <a href="http://www.plover.com/~mjd/perl/at-error.html">http://www.plover.co
 about the history here.</p>
 <p>
 </p>
+<h2><a name="__and____provide_starting_ending_offsets_of_regex_submatches">@- and @+ provide starting/ending offsets of regex submatches</a></h2>
+<p>The new magic variables @- and @+ provide the starting and ending
+offsets, respectively, of $&amp;, $1, $2, etc.  See <a href="perlvar.html">the perlvar manpage</a> for
+details.</p>
+<p>
+</p>
 <hr />
 <h1><a name="modules_and_pragmata">Modules and Pragmata</a></h1>
 <p>
 </p>
 <h2><a name="modules">Modules</a></h2>
 <dl>
-<dt><strong><a name="item_attributes">attributes</a></strong><br />
-</dt>
+<dt><strong><a name="item_attributes">attributes</a></strong>
+
 <dd>
-While used internally by Perl as a pragma, this module also
+<p>While used internally by Perl as a pragma, this module also
 provides a way to fetch subroutine and variable attributes.
-See <a href="#item_attributes">attributes</a>.
+See <a href="../../attributes.html">the attributes manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b">B</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b">B</a></strong>
+
 <dd>
-The Perl Compiler suite has been extensively reworked for this
+<p>The Perl Compiler suite has been extensively reworked for this
 release.  More of the standard Perl testsuite passes when run
 under the Compiler, but there is still a significant way to
-go to achieve production quality compiled executables.
+go to achieve production quality compiled executables.</p>
 </dd>
 <dd>
 <pre>
@@ -1609,12 +1624,12 @@ go to achieve production quality compiled executables.
     generated code may not be correct, even when it manages to execute
     without errors.</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_benchmark">Benchmark</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_benchmark">Benchmark</a></strong>
+
 <dd>
-Overall, Benchmark results exhibit lower average error and better timing
-accuracy.
+<p>Overall, Benchmark results exhibit lower average error and better timing
+accuracy.</p>
 </dd>
 <dd>
 <p>You can now run tests for <em>n</em> seconds instead of guessing the right
@@ -1662,20 +1677,20 @@ returned from a <code>timethese()</code> call.  For each possible pair of tests,
 percentage speed difference (iters/sec or seconds/iter) is shown.</p>
 </dd>
 <dd>
-<p>For other details, see <a href="#item_benchmark">Benchmark</a>.</p>
+<p>For other details, see <a href="../../Benchmark.html">the Benchmark manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_byteloader">ByteLoader</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_byteloader">ByteLoader</a></strong>
+
 <dd>
-The ByteLoader is a dedicated extension to generate and run
-Perl bytecode.  See <a href="#item_byteloader">ByteLoader</a>.
+<p>The ByteLoader is a dedicated extension to generate and run
+Perl bytecode.  See <a href="../../ByteLoader.html">the ByteLoader manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_constant">constant</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_constant">constant</a></strong>
+
 <dd>
-References can now be used.
+<p>References can now be used.</p>
 </dd>
 <dd>
 <p>The new version also allows a leading underscore in constant names, but
@@ -1687,20 +1702,20 @@ The ability to detect whether a constant had been set with a given name has
 been added.</p>
 </dd>
 <dd>
-<p>See <a href="#item_constant">constant</a>.</p>
+<p>See <a href="../../constant.html">the constant manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_charnames">charnames</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_charnames">charnames</a></strong>
+
 <dd>
-This pragma implements the <code>\N</code> string escape.  See <a href="#item_charnames">charnames</a>.
+<p>This pragma implements the <code>\N</code> string escape.  See <a href="../../charnames.html">the charnames manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_data_3a_3adumper">Data::Dumper</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_data_3a_3adumper">Data::Dumper</a></strong>
+
 <dd>
-A <code>Maxdepth</code> setting can be specified to avoid venturing
-too deeply into deep data structures.  See <a href="../Data/Dumper.html">the Data::Dumper manpage</a>.
+<p>A <code>Maxdepth</code> setting can be specified to avoid venturing
+too deeply into deep data structures.  See <a href="../../Data/Dumper.html">the Data::Dumper manpage</a>.</p>
 </dd>
 <dd>
 <p>The XSUB implementation of <code>Dump()</code> is now automatically called if the
@@ -1709,46 +1724,46 @@ too deeply into deep data structures.  See <a href="../Data/Dumper.html">the Dat
 <dd>
 <p>Dumping <code>qr//</code> objects works correctly.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_db">DB</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_db">DB</a></strong>
+
 <dd>
-<a href="#item_db"><code>DB</code></a> is an experimental module that exposes a clean abstraction
-to Perl's debugging API.
+<p><a href="#item_db"><code>DB</code></a> is an experimental module that exposes a clean abstraction
+to Perl's debugging API.</p>
 </dd>
-<p></p>
-<dt><strong>DB_File</strong><br />
-</dt>
+</li>
+<dt><strong>DB_File</strong>
+
 <dd>
-DB_File can now be built with Berkeley DB versions 1, 2 or 3.
-See <code>ext/DB_File/Changes</code>.
+<p>DB_File can now be built with Berkeley DB versions 1, 2 or 3.
+See <code>ext/DB_File/Changes</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_devel_3a_3adprof">Devel::DProf</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_devel_3a_3adprof">Devel::DProf</a></strong>
+
 <dd>
-Devel::DProf, a Perl source code profiler has been added.  See
-<a href="../Devel/DProf.html">the Devel::DProf manpage</a> and <a href="#dprofpp">the dprofpp manpage</a>.
+<p>Devel::DProf, a Perl source code profiler has been added.  See
+<a href="../../Devel/DProf.html">the Devel::DProf manpage</a> and <a href="#dprofpp">the dprofpp manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong>Devel::Peek</strong><br />
-</dt>
+</li>
+<dt><strong>Devel::Peek</strong>
+
 <dd>
-The Devel::Peek module provides access to the internal representation
-of Perl variables and data.  It is a data debugging tool for the XS programmer.
+<p>The Devel::Peek module provides access to the internal representation
+of Perl variables and data.  It is a data debugging tool for the XS programmer.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_dumpvalue">Dumpvalue</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_dumpvalue">Dumpvalue</a></strong>
+
 <dd>
-The Dumpvalue module provides screen dumps of Perl data.
+<p>The Dumpvalue module provides screen dumps of Perl data.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_dynaloader">DynaLoader</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_dynaloader">DynaLoader</a></strong>
+
 <dd>
-DynaLoader now supports a <code>dl_unload_file()</code> function on platforms that
-support unloading shared objects using dlclose().
+<p>DynaLoader now supports a <code>dl_unload_file()</code> function on platforms that
+support unloading shared objects using dlclose().</p>
 </dd>
 <dd>
 <p>Perl can also optionally arrange to unload all extension shared objects
@@ -1756,25 +1771,25 @@ loaded by Perl.  To enable this, build Perl with the Configure option
 <code>-Accflags=-DDL_UNLOAD_ALL_AT_EXIT</code>.  (This maybe useful if you are
 using Apache with mod_perl.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_english">English</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_english">English</a></strong>
+
 <dd>
-$PERL_VERSION now stands for <code>$^V</code> (a string value) rather than for <code>$]</code>
-(a numeric value).
+<p>$PERL_VERSION now stands for <code>$^V</code> (a string value) rather than for <code>$]</code>
+(a numeric value).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_env">Env</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_env">Env</a></strong>
+
 <dd>
-Env now supports accessing environment variables like PATH as array
-variables.
+<p>Env now supports accessing environment variables like PATH as array
+variables.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_fcntl">Fcntl</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_fcntl">Fcntl</a></strong>
+
 <dd>
-More Fcntl constants added: F_SETLK64, F_SETLKW64, O_LARGEFILE for
+<p>More Fcntl constants added: F_SETLK64, F_SETLKW64, O_LARGEFILE for
 large file (more than 4GB) access (NOTE: the O_LARGEFILE is
 automatically added to <code>sysopen()</code> flags if large file support has been
 configured, as is the default), Free/Net/OpenBSD locking behaviour
@@ -1782,21 +1797,21 @@ flags F_FLOCK, F_POSIX, Linux F_SHLCK, and O_ACCMODE: the combined
 mask of O_RDONLY, O_WRONLY, and O_RDWR.  The <code>seek()/sysseek()</code>
 constants SEEK_SET, SEEK_CUR, and SEEK_END are available via the
 <code>:seek</code> tag.  The <code>chmod()/stat()</code> S_IF* constants and S_IS* functions
-are available via the <code>:mode</code> tag.
+are available via the <code>:mode</code> tag.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_file_3a_3acompare">File::Compare</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_file_3a_3acompare">File::Compare</a></strong>
+
 <dd>
-A <code>compare_text()</code> function has been added, which allows custom
-comparison functions.  See <a href="../File/Compare.html">the File::Compare manpage</a>.
+<p>A <code>compare_text()</code> function has been added, which allows custom
+comparison functions.  See <a href="../../File/Compare.html">the File::Compare manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong>File::Find</strong><br />
-</dt>
+</li>
+<dt><strong>File::Find</strong>
+
 <dd>
-File::Find now works correctly when the <code>wanted()</code> function is either
-autoloaded or is a symbolic reference.
+<p>File::Find now works correctly when the <code>wanted()</code> function is either
+autoloaded or is a symbolic reference.</p>
 </dd>
 <dd>
 <p>A bug that caused File::Find to lose track of the working directory
@@ -1810,34 +1825,34 @@ changing the current directory when walking directories.  The <code>untaint</cod
 flag can be useful when running with taint checks enabled.</p>
 </dd>
 <dd>
-<p>See <a href="../File/Find.html">the File::Find manpage</a>.</p>
+<p>See <a href="../../File/Find.html">the File::Find manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_file_3a_3aglob">File::Glob</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_file_3a_3aglob">File::Glob</a></strong>
+
 <dd>
-This extension implements BSD-style file globbing.  By default,
+<p>This extension implements BSD-style file globbing.  By default,
 it will also be used for the internal implementation of the <a href="#item_glob"><code>glob()</code></a>
-operator.  See <a href="../File/Glob.html">the File::Glob manpage</a>.
+operator.  See <a href="../../File/Glob.html">the File::Glob manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_file_3a_3aspec">File::Spec</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_file_3a_3aspec">File::Spec</a></strong>
+
 <dd>
-New methods have been added to the File::Spec module: <code>devnull()</code> returns
+<p>New methods have been added to the File::Spec module: <code>devnull()</code> returns
 the name of the null device (/dev/null on Unix) and <code>tmpdir()</code> the name of
 the temp directory (normally /tmp on Unix).  There are now also methods
 to convert between absolute and relative filenames: <code>abs2rel()</code> and
 rel2abs().  For compatibility with operating systems that specify volume
 names in file paths, the splitpath(), splitdir(), and <code>catdir()</code> methods
-have been added.
+have been added.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_file_3a_3aspec_3a_3afunctions">File::Spec::Functions</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_file_3a_3aspec_3a_3afunctions">File::Spec::Functions</a></strong>
+
 <dd>
-The new File::Spec::Functions modules provides a function interface
-to the File::Spec module.  Allows shorthand
+<p>The new File::Spec::Functions modules provides a function interface
+to the File::Spec module.  Allows shorthand</p>
 </dd>
 <dd>
 <pre>
@@ -1850,13 +1865,13 @@ to the File::Spec module.  Allows shorthand
 <pre>
     $fullname = File::Spec-&gt;catfile($dir1, $dir2, $file);</pre>
 </dd>
-<p></p>
-<dt><strong>Getopt::Long</strong><br />
-</dt>
+</li>
+<dt><strong>Getopt::Long</strong>
+
 <dd>
-Getopt::Long licensing has changed to allow the Perl Artistic License
+<p>Getopt::Long licensing has changed to allow the Perl Artistic License
 as well as the GPL. It used to be GPL only, which got in the way of
-non-GPL applications that wanted to use Getopt::Long.
+non-GPL applications that wanted to use Getopt::Long.</p>
 </dd>
 <dd>
 <p>Getopt::Long encourages the use of Pod::Usage to produce help
@@ -1940,7 +1955,7 @@ messages. For example:</p>
     =cut</pre>
 </dd>
 <dd>
-<p>See <a href="../Pod/Usage.html">the Pod::Usage manpage</a> for details.</p>
+<p>See <a href="../../Pod/Usage.html">the Pod::Usage manpage</a> for details.</p>
 </dd>
 <dd>
 <p>A bug that prevented the non-option call-back &lt;&gt; from being
@@ -1950,12 +1965,12 @@ specified as the first argument has been fixed.</p>
 <p>To specify the characters &lt; and &gt; as option starters, use &gt;&lt;. Note,
 however, that changing option starters is strongly deprecated.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_io">IO</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_io">IO</a></strong>
+
 <dd>
-<code>write()</code> and <code>syswrite()</code> will now accept a single-argument
-form of the call, for consistency with Perl's syswrite().
+<p><code>write()</code> and <code>syswrite()</code> will now accept a single-argument
+form of the call, for consistency with Perl's syswrite().</p>
 </dd>
 <dd>
 <p>You can now create a TCP-based IO::Socket::INET without forcing
@@ -1978,33 +1993,33 @@ timeouts.</p>
 <p>IO::Socket::INET-&gt;new now sets $! correctly on failure. $@ is
 still set for backwards compatibility.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_jpl">JPL</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_jpl">JPL</a></strong>
+
 <dd>
-Java Perl Lingo is now distributed with Perl.  See jpl/README
-for more information.
+<p>Java Perl Lingo is now distributed with Perl.  See jpl/README
+for more information.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lib">lib</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lib">lib</a></strong>
+
 <dd>
-<code>use lib</code> now weeds out any trailing duplicate entries.
-<code>no lib</code> removes all named entries.
+<p><code>use lib</code> now weeds out any trailing duplicate entries.
+<code>no lib</code> removes all named entries.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_math_3a_3abigint">Math::BigInt</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_math_3a_3abigint">Math::BigInt</a></strong>
+
 <dd>
-The bitwise operations <code>&lt;&lt;</code>, <code>&gt;&gt;</code>, <code>&amp;</code>, <code>|</code>,
-and <code>~</code> are now supported on bigints.
+<p>The bitwise operations <code>&lt;&lt;</code>, <code>&gt;&gt;</code>, <code>&amp;</code>, <code>|</code>,
+and <code>~</code> are now supported on bigints.</p>
 </dd>
-<p></p>
-<dt><strong>Math::Complex</strong><br />
-</dt>
+</li>
+<dt><strong>Math::Complex</strong>
+
 <dd>
-The accessor methods Re, Im, arg, abs, rho, and theta can now also
-act as mutators (accessor $z-&gt;Re(), mutator $z-&gt;Re(3)).
+<p>The accessor methods Re, Im, arg, abs, rho, and theta can now also
+act as mutators (accessor $z-&gt;Re(), mutator $z-&gt;Re(3)).</p>
 </dd>
 <dd>
 <p>The class method <code>display_format</code> and the corresponding object method
@@ -2024,22 +2039,22 @@ polar complex number.</p>
 now <em>return the parameter hash</em>, instead of only the value of the
 <code>&quot;style&quot;</code> parameter.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_math_3a_3atrig">Math::Trig</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_math_3a_3atrig">Math::Trig</a></strong>
+
 <dd>
-A little bit of radial trigonometry (cylindrical and spherical),
-radial coordinate conversions, and the great circle distance were added.
+<p>A little bit of radial trigonometry (cylindrical and spherical),
+radial coordinate conversions, and the great circle distance were added.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pod_3a_3aparser_2c_pod_3a_3ainputobjects">Pod::Parser, Pod::InputObjects</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pod_3a_3aparser_2c_pod_3a_3ainputobjects">Pod::Parser, Pod::InputObjects</a></strong>
+
 <dd>
-Pod::Parser is a base class for parsing and selecting sections of
+<p>Pod::Parser is a base class for parsing and selecting sections of
 pod documentation from an input stream.  This module takes care of
 identifying pod paragraphs and commands in the input and hands off the
 parsed paragraphs and commands to user-defined methods which are free
-to interpret or translate them as they see fit.
+to interpret or translate them as they see fit.</p>
 </dd>
 <dd>
 <p>Pod::InputObjects defines some input objects needed by Pod::Parser, and
@@ -2055,49 +2070,49 @@ underway.  For any questions or comments about pod parsing and translating
 issues and utilities, please use the <a href="mailto:pod-people@perl.org">pod-people@perl.org</a> mailing list.</p>
 </dd>
 <dd>
-<p>For further information, please see <a href="../Pod/Parser.html">the Pod::Parser manpage</a> and <a href="../Pod/InputObjects.html">the Pod::InputObjects manpage</a>.</p>
+<p>For further information, please see <a href="../../Pod/Parser.html">the Pod::Parser manpage</a> and <a href="../../Pod/InputObjects.html">the Pod::InputObjects manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pod_3a_3achecker_2c_podchecker">Pod::Checker, podchecker</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pod_3a_3achecker_2c_podchecker">Pod::Checker, podchecker</a></strong>
+
 <dd>
-This utility checks pod files for correct syntax, according to
+<p>This utility checks pod files for correct syntax, according to
 <a href="perlpod.html">the perlpod manpage</a>.  Obvious errors are flagged as such, while warnings are
 printed for mistakes that can be handled gracefully.  The checklist is
-not complete yet.  See <a href="../Pod/Checker.html">the Pod::Checker manpage</a>.
+not complete yet.  See <a href="../../Pod/Checker.html">the Pod::Checker manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pod_3a_3aparseutils_2c_pod_3a_3afind">Pod::ParseUtils, Pod::Find</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pod_3a_3aparseutils_2c_pod_3a_3afind">Pod::ParseUtils, Pod::Find</a></strong>
+
 <dd>
-These modules provide a set of gizmos that are useful mainly for pod
-translators.  <a href="../Pod/Find.html">Pod::Find</a> traverses directory structures and
+<p>These modules provide a set of gizmos that are useful mainly for pod
+translators.  <a href="../../Pod/Find.html">Pod::Find</a> traverses directory structures and
 returns found pod files, along with their canonical names (like
-<code>File::Spec::Unix</code>).  <a href="../Pod/ParseUtils.html">Pod::ParseUtils</a> contains
+<code>File::Spec::Unix</code>).  <a href="../../Pod/ParseUtils.html">Pod::ParseUtils</a> contains
 <strong>Pod::List</strong> (useful for storing pod list information), <strong>Pod::Hyperlink</strong>
 (for parsing the contents of <code>L&lt;&gt;</code> sequences) and <strong>Pod::Cache</strong>
-(for caching information about pod files, e.g., link nodes).
+(for caching information about pod files, e.g., link nodes).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pod_3a_3aselect_2c_podselect">Pod::Select, podselect</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pod_3a_3aselect_2c_podselect">Pod::Select, podselect</a></strong>
+
 <dd>
-Pod::Select is a subclass of Pod::Parser which provides a function
+<p>Pod::Select is a subclass of Pod::Parser which provides a function
 named ``podselect()'' to filter out user-specified sections of raw pod
 documentation from an input stream. podselect is a script that provides
 access to Pod::Select from other scripts to be used as a filter.
-See <a href="../Pod/Select.html">the Pod::Select manpage</a>.
+See <a href="../../Pod/Select.html">the Pod::Select manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pod_3a_3ausage_2c_pod2usage">Pod::Usage, pod2usage</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pod_3a_3ausage_2c_pod2usage">Pod::Usage, pod2usage</a></strong>
+
 <dd>
-Pod::Usage provides the function ``pod2usage()'' to print usage messages for
+<p>Pod::Usage provides the function ``pod2usage()'' to print usage messages for
 a Perl script based on its embedded pod documentation.  The <code>pod2usage()</code>
 function is generally useful to all script authors since it lets them
 write and maintain a single source (the pods) for documentation, thus
 removing the need to create and maintain redundant usage message text
-consisting of information already in the pods.
+consisting of information already in the pods.</p>
 </dd>
 <dd>
 <p>There is also a pod2usage script which can be used from other kinds of
@@ -2105,19 +2120,19 @@ scripts to print usage messages from pods (even for non-Perl scripts
 with pods embedded in comments).</p>
 </dd>
 <dd>
-<p>For details and examples, please see <a href="../Pod/Usage.html">the Pod::Usage manpage</a>.</p>
+<p>For details and examples, please see <a href="../../Pod/Usage.html">the Pod::Usage manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pod_3a_3atext_and_pod_3a_3aman">Pod::Text and Pod::Man</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pod_3a_3atext_and_pod_3a_3aman">Pod::Text and Pod::Man</a></strong>
+
 <dd>
-Pod::Text has been rewritten to use Pod::Parser.  While <code>pod2text()</code> is
+<p>Pod::Text has been rewritten to use Pod::Parser.  While <code>pod2text()</code> is
 still available for backwards compatibility, the module now has a new
-preferred interface.  See <a href="../Pod/Text.html">the Pod::Text manpage</a> for the details.  The new Pod::Text
+preferred interface.  See <a href="../../Pod/Text.html">the Pod::Text manpage</a> for the details.  The new Pod::Text
 module is easily subclassed for tweaks to the output, and two such
 subclasses (Pod::Text::Termcap for man-page-style bold and underlining
 using termcap information, and Pod::Text::Color for markup with ANSI color
-sequences) are now standard.
+sequences) are now standard.</p>
 </dd>
 <dd>
 <p>pod2man has been turned into a module, Pod::Man, which also uses
@@ -2125,59 +2140,59 @@ Pod::Parser.  In the process, several outstanding bugs related to quotes
 in section headers, quoting of code escapes, and nested lists have been
 fixed.  pod2man is now a wrapper script around this module.</p>
 </dd>
-<p></p>
-<dt><strong>SDBM_File</strong><br />
-</dt>
+</li>
+<dt><strong>SDBM_File</strong>
+
 <dd>
-An EXISTS method has been added to this module (and <code>sdbm_exists()</code> has
+<p>An EXISTS method has been added to this module (and <code>sdbm_exists()</code> has
 been added to the underlying sdbm library), so one can now call exists
 on an SDBM_File tied hash and get the correct result, rather than a
-runtime error.
+runtime error.</p>
 </dd>
 <dd>
 <p>A bug that may have caused data loss when more than one disk block
 happens to be read from the database in a single <code>FETCH()</code> has been
 fixed.</p>
 </dd>
-<p></p>
-<dt><strong>Sys::Syslog</strong><br />
-</dt>
+</li>
+<dt><strong>Sys::Syslog</strong>
+
 <dd>
-Sys::Syslog now uses XSUBs to access facilities from syslog.h so it
-no longer requires syslog.ph to exist.
+<p>Sys::Syslog now uses XSUBs to access facilities from syslog.h so it
+no longer requires syslog.ph to exist.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_sys_3a_3ahostname">Sys::Hostname</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_sys_3a_3ahostname">Sys::Hostname</a></strong>
+
 <dd>
-Sys::Hostname now uses XSUBs to call the C library's <code>gethostname()</code> or
-<code>uname()</code> if they exist.
+<p>Sys::Hostname now uses XSUBs to call the C library's <code>gethostname()</code> or
+<code>uname()</code> if they exist.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_term_3a_3aansicolor">Term::ANSIColor</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_term_3a_3aansicolor">Term::ANSIColor</a></strong>
+
 <dd>
-Term::ANSIColor is a very simple module to provide easy and readable
+<p>Term::ANSIColor is a very simple module to provide easy and readable
 access to the ANSI color and highlighting escape sequences, supported by
-most ANSI terminal emulators.  It is now included standard.
+most ANSI terminal emulators.  It is now included standard.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_time_3a_3alocal">Time::Local</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_time_3a_3alocal">Time::Local</a></strong>
+
 <dd>
-The <code>timelocal()</code> and <code>timegm()</code> functions used to silently return bogus
+<p>The <code>timelocal()</code> and <code>timegm()</code> functions used to silently return bogus
 results when the date fell outside the machine's integer range.  They
-now consistently <code>croak()</code> if the date falls in an unsupported range.
+now consistently <code>croak()</code> if the date falls in an unsupported range.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_win32">Win32</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_win32">Win32</a></strong>
+
 <dd>
-The error return value in list context has been changed for all functions
+<p>The error return value in list context has been changed for all functions
 that return a list of values.  Previously these functions returned a list
 with a single element <code>undef</code> if an error occurred.  Now these functions
 return the empty list in these situations.  This applies to the following
-functions:
+functions:</p>
 </dd>
 <dd>
 <pre>
@@ -2196,22 +2211,22 @@ to the Win32::GetLastError() function.</p>
 <p>The new Win32::GetFullPathName(FILENAME) returns the full absolute
 pathname for FILENAME in scalar context.  In list context it returns
 a two-element list containing the fully qualified directory name and
-the filename.  See <a href="#item_win32">Win32</a>.</p>
+the filename.  See <a href="../../File/Spec/Win32.html">the Win32 manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_xsloader">XSLoader</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_xsloader">XSLoader</a></strong>
+
 <dd>
-The XSLoader extension is a simpler alternative to DynaLoader.
-See <a href="#item_xsloader">XSLoader</a>.
+<p>The XSLoader extension is a simpler alternative to DynaLoader.
+See <a href="../../XSLoader.html">the XSLoader manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_dbm_filters">DBM Filters</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_dbm_filters">DBM Filters</a></strong>
+
 <dd>
-A new feature called ``DBM Filters'' has been added to all the
+<p>A new feature called ``DBM Filters'' has been added to all the
 DBM modules--DB_File, GDBM_File, NDBM_File, ODBM_File, and SDBM_File.
-DBM Filters add four new methods to each DBM module:
+DBM Filters add four new methods to each DBM module:</p>
 </dd>
 <dd>
 <pre>
@@ -2225,13 +2240,14 @@ DBM Filters add four new methods to each DBM module:
 written to the database or just after they are read from the database.
 See <a href="perldbmfilter.html">the perldbmfilter manpage</a> for further information.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="pragmata">Pragmata</a></h2>
 <p><code>use attrs</code> is now obsolete, and is only provided for
 backward-compatibility.  It's been replaced by the <code>sub : attributes</code>
-syntax.  See <a href="perlsub.html#subroutine_attributes">Subroutine Attributes in the perlsub manpage</a> and <a href="#item_attributes">attributes</a>.</p>
+syntax.  See <a href="perlsub.html#subroutine_attributes">Subroutine Attributes in the perlsub manpage</a> and <a href="../../attributes.html">the attributes manpage</a>.</p>
 <p>Lexical warnings pragma, <code>use warnings;</code>, to control optional warnings.
 See <a href="perllexwarn.html">the perllexwarn manpage</a>.</p>
 <p><code>use filetest</code> to control the behaviour of filetests (<code>-r</code> <code>-w</code>
@@ -2300,118 +2316,119 @@ your system to avoid being bitten by this.</p>
 <p>Many of the platform-specific README files are now part of the perl
 installation.  See <a href="perl.html">the perl manpage</a> for the complete list.</p>
 <dl>
-<dt><strong><a name="item_perlapi_2epod">perlapi.pod</a></strong><br />
-</dt>
+<dt><strong><a name="item_perlapi_2epod">perlapi.pod</a></strong>
+
 <dd>
-The official list of public Perl API functions.
+<p>The official list of public Perl API functions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlboot_2epod">perlboot.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlboot_2epod">perlboot.pod</a></strong>
+
 <dd>
-A tutorial for beginners on object-oriented Perl.
+<p>A tutorial for beginners on object-oriented Perl.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlcompile_2epod">perlcompile.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlcompile_2epod">perlcompile.pod</a></strong>
+
 <dd>
-An introduction to using the Perl Compiler suite.
+<p>An introduction to using the Perl Compiler suite.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perldbmfilter_2epod">perldbmfilter.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perldbmfilter_2epod">perldbmfilter.pod</a></strong>
+
 <dd>
-A howto document on using the DBM filter facility.
+<p>A howto document on using the DBM filter facility.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perldebug_2epod">perldebug.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perldebug_2epod">perldebug.pod</a></strong>
+
 <dd>
-All material unrelated to running the Perl debugger, plus all
+<p>All material unrelated to running the Perl debugger, plus all
 low-level guts-like details that risked crushing the casual user
 of the debugger, have been relocated from the old manpage to the
-next entry below.
+next entry below.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perldebguts_2epod">perldebguts.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perldebguts_2epod">perldebguts.pod</a></strong>
+
 <dd>
-This new manpage contains excessively low-level material not related
+<p>This new manpage contains excessively low-level material not related
 to the Perl debugger, but slightly related to debugging Perl itself.
 It also contains some arcane internal details of how the debugging
 process works that may only be of interest to developers of Perl
-debuggers.
+debuggers.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlfork_2epod">perlfork.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlfork_2epod">perlfork.pod</a></strong>
+
 <dd>
-Notes on the <code>fork()</code> emulation currently available for the Windows platform.
+<p>Notes on the <code>fork()</code> emulation currently available for the Windows platform.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlfilter_2epod">perlfilter.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlfilter_2epod">perlfilter.pod</a></strong>
+
 <dd>
-An introduction to writing Perl source filters.
+<p>An introduction to writing Perl source filters.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlhack_2epod">perlhack.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlhack_2epod">perlhack.pod</a></strong>
+
 <dd>
-Some guidelines for hacking the Perl source code.
+<p>Some guidelines for hacking the Perl source code.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlintern_2epod">perlintern.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlintern_2epod">perlintern.pod</a></strong>
+
 <dd>
-A list of internal functions in the Perl source code.
-(List is currently empty.)
+<p>A list of internal functions in the Perl source code.
+(List is currently empty.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perllexwarn_2epod">perllexwarn.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perllexwarn_2epod">perllexwarn.pod</a></strong>
+
 <dd>
-Introduction and reference information about lexically scoped
-warning categories.
+<p>Introduction and reference information about lexically scoped
+warning categories.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlnumber_2epod">perlnumber.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlnumber_2epod">perlnumber.pod</a></strong>
+
 <dd>
-Detailed information about numbers as they are represented in Perl.
+<p>Detailed information about numbers as they are represented in Perl.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlopentut_2epod">perlopentut.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlopentut_2epod">perlopentut.pod</a></strong>
+
 <dd>
-A tutorial on using <a href="#item_open"><code>open()</code></a> effectively.
+<p>A tutorial on using <a href="#item_open"><code>open()</code></a> effectively.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlreftut_2epod">perlreftut.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlreftut_2epod">perlreftut.pod</a></strong>
+
 <dd>
-A tutorial that introduces the essentials of references.
+<p>A tutorial that introduces the essentials of references.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perltootc_2epod">perltootc.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perltootc_2epod">perltootc.pod</a></strong>
+
 <dd>
-A tutorial on managing class data for object modules.
+<p>A tutorial on managing class data for object modules.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perltodo_2epod">perltodo.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perltodo_2epod">perltodo.pod</a></strong>
+
 <dd>
-Discussion of the most often wanted features that may someday be
-supported in Perl.
+<p>Discussion of the most often wanted features that may someday be
+supported in Perl.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlunicode_2epod">perlunicode.pod</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlunicode_2epod">perlunicode.pod</a></strong>
+
 <dd>
-An introduction to Unicode support features in Perl.
+<p>An introduction to Unicode support features in Perl.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -2555,38 +2572,40 @@ to be the case and the 'cc' does not seem to be the GNU C compiler
 </p>
 <h2><a name="supported_platforms">Supported platforms</a></h2>
 <ul>
-<li></li>
-The Mach CThreads (NEXTSTEP, OPENSTEP) are now supported by the Thread
-extension.
-<p></p>
-<li></li>
-GNU/Hurd is now supported.
-<p></p>
-<li></li>
-Rhapsody/Darwin is now supported.
-<p></p>
-<li></li>
-EPOC is now supported (on Psion 5).
-<p></p>
-<li></li>
-The cygwin port (formerly cygwin32) has been greatly improved.
-<p></p></ul>
+<li>
+<p>The Mach CThreads (NEXTSTEP, OPENSTEP) are now supported by the Thread
+extension.</p>
+</li>
+<li>
+<p>GNU/Hurd is now supported.</p>
+</li>
+<li>
+<p>Rhapsody/Darwin is now supported.</p>
+</li>
+<li>
+<p>EPOC is now supported (on Psion 5).</p>
+</li>
+<li>
+<p>The cygwin port (formerly cygwin32) has been greatly improved.</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="dos">DOS</a></h2>
 <ul>
-<li></li>
-Perl now works with djgpp 2.02 (and 2.03 alpha).
-<p></p>
-<li></li>
-Environment variable names are not converted to uppercase any more.
-<p></p>
-<li></li>
-Incorrect exit codes from backticks have been fixed.
-<p></p>
-<li></li>
-This port continues to use its own builtin globbing (not File::Glob).
-<p></p></ul>
+<li>
+<p>Perl now works with djgpp 2.02 (and 2.03 alpha).</p>
+</li>
+<li>
+<p>Environment variable names are not converted to uppercase any more.</p>
+</li>
+<li>
+<p>Incorrect exit codes from backticks have been fixed.</p>
+</li>
+<li>
+<p>This port continues to use its own builtin globbing (not File::Glob).</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="os390__openedition_mvs_">OS390 (OpenEdition MVS)</a></h2>
@@ -2625,10 +2644,10 @@ time.  See <a href="perlfork.html">the perlfork manpage</a> for detailed informa
 <code>opendir()</code> and <code>stat()</code> now use the current working directory for the drive
 rather than the drive root.</p>
 <p>The builtin XSUB functions in the Win32:: namespace are documented.  See
-<a href="#item_win32">Win32</a>.</p>
+<a href="../../File/Spec/Win32.html">the Win32 manpage</a>.</p>
 <p>$^X now contains the full path name of the running executable.</p>
 <p>A Win32::GetLongPathName() function is provided to complement
-Win32::GetFullPathName() and Win32::GetShortPathName().  See <a href="#item_win32">Win32</a>.</p>
+Win32::GetFullPathName() and Win32::GetShortPathName().  See <a href="../../File/Spec/Win32.html">the Win32 manpage</a>.</p>
 <p>POSIX::uname() is supported.</p>
 <p><code>system(1,...)</code> now returns true process IDs rather than process
 handles.  <code>kill()</code> accepts any real process id, rather than strictly
@@ -2650,7 +2669,7 @@ of the <a href="#item_glob"><code>glob()</code></a> operator, but there may be c
 programs that relied on the older globbing syntax.  If you want to
 preserve compatibility with the older syntax, you might want to run
 perl with <code>-MFile::DosGlob</code>.  For details and compatibility information,
-see <a href="../File/Glob.html">the File::Glob manpage</a>.</p>
+see <a href="../../File/Glob.html">the File::Glob manpage</a>.</p>
 <p>
 </p>
 <hr />
@@ -2804,121 +2823,121 @@ See <a href="perldata.html">the perldata manpage</a>.</p>
 <hr />
 <h1><a name="new_or_changed_diagnostics">New or Changed Diagnostics</a></h1>
 <dl>
-<dt><strong><a name="item__22_25s_22_variable__25s_masks_earlier_declaration">``%s'' variable %s masks earlier declaration in same %s</a></strong><br />
-</dt>
+<dt><strong><a name="item__22_25s_22_variable__25s_masks_earlier_declaration">``%s'' variable %s masks earlier declaration in same %s</a></strong>
+
 <dd>
-(W misc) A ``my'' or ``our'' variable has been redeclared in the current scope or statement,
+<p>(W misc) A ``my'' or ``our'' variable has been redeclared in the current scope or statement,
 effectively eliminating all access to the previous instance.  This is almost
 always a typographical error.  Note that the earlier variable will still exist
 until the end of the scope or until all closure referents to it are
-destroyed.
+destroyed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__22my_sub_22_not_yet_implemented">``my sub'' not yet implemented</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22my_sub_22_not_yet_implemented">``my sub'' not yet implemented</a></strong>
+
 <dd>
-(F) Lexically scoped subroutines are not yet implemented.  Don't try that
-yet.
+<p>(F) Lexically scoped subroutines are not yet implemented.  Don't try that
+yet.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__22our_22_variable__25s_redeclared">``our'' variable %s redeclared</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22our_22_variable__25s_redeclared">``our'' variable %s redeclared</a></strong>
+
 <dd>
-(W misc) You seem to have already declared the same global once before in the
-current lexical scope.
+<p>(W misc) You seem to have already declared the same global once before in the
+current lexical scope.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__27_21_27_allowed_only_after_types__25s">'!' allowed only after types %s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__27_21_27_allowed_only_after_types__25s">'!' allowed only after types %s</a></strong>
+
 <dd>
-(F) The '!' is allowed in <code>pack()</code> and <code>unpack()</code> only after certain types.
-See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.
+<p>(F) The '!' is allowed in <code>pack()</code> and <code>unpack()</code> only after certain types.
+See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2f_cannot_take_a_count">/ cannot take a count</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2f_cannot_take_a_count">/ cannot take a count</a></strong>
+
 <dd>
-(F) You had an unpack template indicating a counted-length string,
+<p>(F) You had an unpack template indicating a counted-length string,
 but you have also specified an explicit size for the string.
-See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.
+See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2f_must_be_followed_by_a_2c_a_or_z">/ must be followed by a, A or Z</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2f_must_be_followed_by_a_2c_a_or_z">/ must be followed by a, A or Z</a></strong>
+
 <dd>
-(F) You had an unpack template indicating a counted-length string,
+<p>(F) You had an unpack template indicating a counted-length string,
 which must be followed by one of the letters a, A or Z
 to indicate what sort of string is to be unpacked.
-See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.
+See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2f_must_be_followed_by_a_2a_2c_a_2a_or_z_2a">/ must be followed by a*, A* or Z*</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2f_must_be_followed_by_a_2a_2c_a_2a_or_z_2a">/ must be followed by a*, A* or Z*</a></strong>
+
 <dd>
-(F) You had a pack template indicating a counted-length string,
+<p>(F) You had a pack template indicating a counted-length string,
 Currently the only things that can have their length counted are a*, A* or Z*.
-See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.
+See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2f_must_follow_a_numeric_type">/ must follow a numeric type</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2f_must_follow_a_numeric_type">/ must follow a numeric type</a></strong>
+
 <dd>
-(F) You had an unpack template that contained a '#',
+<p>(F) You had an unpack template that contained a '#',
 but this did not follow some numeric unpack specification.
-See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.
+See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2f_25s_2f_3a_unrecognized_escape__5c_5c_25c_passe">/%s/: Unrecognized escape \\%c passed through</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2f_25s_2f_3a_unrecognized_escape__5c_5c_25c_passe">/%s/: Unrecognized escape \\%c passed through</a></strong>
+
 <dd>
-(W regexp) You used a backslash-character combination which is not recognized
+<p>(W regexp) You used a backslash-character combination which is not recognized
 by Perl.  This combination appears in an interpolated variable or a
-<code>'</code>-delimited regular expression.  The character was understood literally.
+<code>'</code>-delimited regular expression.  The character was understood literally.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2f_25s_2f_3a_unrecognized_escape__5c_5c_25c_in_ch">/%s/: Unrecognized escape \\%c in character class passed through</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2f_25s_2f_3a_unrecognized_escape__5c_5c_25c_in_ch">/%s/: Unrecognized escape \\%c in character class passed through</a></strong>
+
 <dd>
-(W regexp) You used a backslash-character combination which is not recognized
-by Perl inside character classes.  The character was understood literally.
+<p>(W regexp) You used a backslash-character combination which is not recognized
+by Perl inside character classes.  The character was understood literally.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2f_25s_2f_should_probably_be_written_as__22_25s_2">/%s/ should probably be written as ``%s''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2f_25s_2f_should_probably_be_written_as__22_25s_2">/%s/ should probably be written as ``%s''</a></strong>
+
 <dd>
-(W syntax) You have used a pattern where Perl expected to find a string,
+<p>(W syntax) You have used a pattern where Perl expected to find a string,
 as in the first argument to <code>join</code>.  Perl will treat the true
 or false result of matching the pattern against $_ as the string,
-which is probably not what you had in mind.
+which is probably not what you had in mind.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s">%s() called too early to check prototype</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s">%s() called too early to check prototype</a></strong>
+
 <dd>
-(W prototype) You've called a function that has a prototype before the parser saw a
+<p>(W prototype) You've called a function that has a prototype before the parser saw a
 definition or declaration for it, and Perl could not check that the call
 conforms to the prototype.  You need to either add an early prototype
 declaration for the subroutine in question, or move the subroutine
 definition ahead of the call to get proper prototype checking.  Alternatively,
 if you are certain that you're calling the function correctly, you may put
-an ampersand before the name to avoid the warning.  See <a href="perlsub.html">the perlsub manpage</a>.
+an ampersand before the name to avoid the warning.  See <a href="perlsub.html">the perlsub manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__s">%s argument is not a HASH or ARRAY element</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__s">%s argument is not a HASH or ARRAY element</a></strong>
+
 <dd>
-(F) The argument to <code>exists()</code> must be a hash or array element, such as:
+<p>(F) The argument to <code>exists()</code> must be a hash or array element, such as:</p>
 </dd>
 <dd>
 <pre>
     $foo{$bar}
     $ref-&gt;{&quot;susie&quot;}[12]</pre>
 </dd>
-<p></p>
-<dt><strong>%s argument is not a HASH or ARRAY element or slice</strong><br />
-</dt>
+</li>
+<dt><strong>%s argument is not a HASH or ARRAY element or slice</strong>
+
 <dd>
-(F) The argument to <a href="#item_delete"><code>delete()</code></a> must be either a hash or array element, such as:
+<p>(F) The argument to <a href="#item_delete"><code>delete()</code></a> must be either a hash or array element, such as:</p>
 </dd>
 <dd>
 <pre>
@@ -2933,75 +2952,75 @@ an ampersand before the name to avoid the warning.  See <a href="perlsub.html">t
     @foo[$bar, $baz, $xyzzy]
     @{$ref-&gt;[12]}{&quot;susie&quot;, &quot;queue&quot;}</pre>
 </dd>
-<p></p>
-<dt><strong>%s argument is not a subroutine name</strong><br />
-</dt>
+</li>
+<dt><strong>%s argument is not a subroutine name</strong>
+
 <dd>
-(F) The argument to <code>exists()</code> for <code>exists &amp;sub</code> must be a subroutine
-name, and not a subroutine call.  <code>exists &amp;sub()</code> will generate this error.
+<p>(F) The argument to <code>exists()</code> for <code>exists &amp;sub</code> must be a subroutine
+name, and not a subroutine call.  <code>exists &amp;sub()</code> will generate this error.</p>
 </dd>
-<p></p>
-<dt><strong>%s package attribute may clash with future reserved word: %s</strong><br />
-</dt>
+</li>
+<dt><strong>%s package attribute may clash with future reserved word: %s</strong>
+
 <dd>
-(W reserved) A lowercase attribute name was used that had a package-specific handler.
+<p>(W reserved) A lowercase attribute name was used that had a package-specific handler.
 That name might have a meaning to Perl itself some day, even though it
 doesn't yet.  Perhaps you should use a mixed-case attribute name, instead.
-See <a href="#item_attributes">attributes</a>.
+See <a href="../../attributes.html">the attributes manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28in_cleanup_29__25s">(in cleanup) %s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28in_cleanup_29__25s">(in cleanup) %s</a></strong>
+
 <dd>
-(W misc) This prefix usually indicates that a <code>DESTROY()</code> method raised
+<p>(W misc) This prefix usually indicates that a <code>DESTROY()</code> method raised
 the indicated exception.  Since destructors are usually called by
 the system at arbitrary points during execution, and often a vast
 number of times, the warning is issued only once for any number
 of failures that would otherwise result in the same message being
-repeated.
+repeated.</p>
 </dd>
 <dd>
 <p>Failure of user callbacks dispatched using the <code>G_KEEPERR</code> flag
 could also result in this warning.  See <a href="perlcall.html#g_keeperr">G_KEEPERR in the perlcall manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3c_3e_should_be_quotes">&lt;&gt; should be quotes</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3c_3e_should_be_quotes">&lt;&gt; should be quotes</a></strong>
+
 <dd>
-(F) You wrote <code>require &lt;file&gt;</code> when you should have written
-<code>require 'file'</code>.
+<p>(F) You wrote <code>require &lt;file&gt;</code> when you should have written
+<code>require 'file'</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_attempt_to_join_self">Attempt to join self</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_attempt_to_join_self">Attempt to join self</a></strong>
+
 <dd>
-(F) You tried to join a thread from within itself, which is an
+<p>(F) You tried to join a thread from within itself, which is an
 impossible task.  You may be joining the wrong thread, or you may
-need to move the <code>join()</code> to some other thread.
+need to move the <code>join()</code> to some other thread.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_bad_evalled_substitution_pattern">Bad evalled substitution pattern</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_bad_evalled_substitution_pattern">Bad evalled substitution pattern</a></strong>
+
 <dd>
-(F) You've used the /e switch to evaluate the replacement for a
+<p>(F) You've used the /e switch to evaluate the replacement for a
 substitution, but perl found a syntax error in the code to evaluate,
-most likely an unexpected right brace '}'.
+most likely an unexpected right brace '}'.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_realloc">Bad <code>realloc()</code> ignored</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_realloc">Bad <code>realloc()</code> ignored</a></strong>
+
 <dd>
-(S) An internal routine called <a href="#item_realloc"><code>realloc()</code></a> on something that had never been
+<p>(S) An internal routine called <a href="#item_realloc"><code>realloc()</code></a> on something that had never been
 malloc()ed in the first place. Mandatory, but can be disabled by
-setting environment variable <code>PERL_BADFREE</code> to 1.
+setting environment variable <code>PERL_BADFREE</code> to 1.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_bareword_found_in_conditional">Bareword found in conditional</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_bareword_found_in_conditional">Bareword found in conditional</a></strong>
+
 <dd>
-(W bareword) The compiler found a bareword where it expected a conditional,
+<p>(W bareword) The compiler found a bareword where it expected a conditional,
 which often indicates that an || or &amp;&amp; was parsed as part of the
-last argument of the previous construct, for example:
+last argument of the previous construct, for example:</p>
 </dd>
 <dd>
 <pre>
@@ -3019,269 +3038,269 @@ as a bareword:</p>
 <dd>
 <p>The <code>strict</code> pragma is useful in avoiding such errors.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_binary_number__3e_0b111111111111111111111111111111">Binary number &gt; 0b11111111111111111111111111111111 non-portable</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_binary_number__3e_0b111111111111111111111111111111">Binary number &gt; 0b11111111111111111111111111111111 non-portable</a></strong>
+
 <dd>
-(W portable) The binary number you specified is larger than 2**32-1
+<p>(W portable) The binary number you specified is larger than 2**32-1
 (4294967295) and therefore non-portable between systems.  See
-<a href="perlport.html">the perlport manpage</a> for more on portability concerns.
+<a href="perlport.html">the perlport manpage</a> for more on portability concerns.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_bit_vector_size__3e_32_non_2dportable">Bit vector size &gt; 32 non-portable</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_bit_vector_size__3e_32_non_2dportable">Bit vector size &gt; 32 non-portable</a></strong>
+
 <dd>
-(W portable) Using bit vector sizes larger than 32 is non-portable.
+<p>(W portable) Using bit vector sizes larger than 32 is non-portable.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_buffer_overflow_in_prime_env_iter_3a__25s">Buffer overflow in prime_env_iter: %s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_buffer_overflow_in_prime_env_iter_3a__25s">Buffer overflow in prime_env_iter: %s</a></strong>
+
 <dd>
-(W internal) A warning peculiar to VMS.  While Perl was preparing to iterate over
+<p>(W internal) A warning peculiar to VMS.  While Perl was preparing to iterate over
 %ENV, it encountered a logical name or symbol definition which was too long,
-so it was truncated to the string shown.
+so it was truncated to the string shown.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_can_27t_check_filesystem_of_script__22_25s_22">Can't check filesystem of script ``%s''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_can_27t_check_filesystem_of_script__22_25s_22">Can't check filesystem of script ``%s''</a></strong>
+
 <dd>
-(P) For some reason you can't check the filesystem of the script for nosuid.
+<p>(P) For some reason you can't check the filesystem of the script for nosuid.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_can_27t_declare_class_for_non_2dscalar__25s_in__22">Can't declare class for non-scalar %s in ``%s''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_can_27t_declare_class_for_non_2dscalar__25s_in__22">Can't declare class for non-scalar %s in ``%s''</a></strong>
+
 <dd>
-(S) Currently, only scalar variables can declared with a specific class
+<p>(S) Currently, only scalar variables can declared with a specific class
 qualifier in a ``my'' or ``our'' declaration.  The semantics may be extended
-for other types of variables in future.
+for other types of variables in future.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_can_27t_declare__25s_in__22_25s_22">Can't declare %s in ``%s''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_can_27t_declare__25s_in__22_25s_22">Can't declare %s in ``%s''</a></strong>
+
 <dd>
-(F) Only scalar, array, and hash variables may be declared as ``my'' or
-``our'' variables.  They must have ordinary identifiers as names.
+<p>(F) Only scalar, array, and hash variables may be declared as ``my'' or
+``our'' variables.  They must have ordinary identifiers as names.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_can_27t_ignore_signal_chld_2c_forcing_to_default">Can't ignore signal CHLD, forcing to default</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_can_27t_ignore_signal_chld_2c_forcing_to_default">Can't ignore signal CHLD, forcing to default</a></strong>
+
 <dd>
-(W signal) Perl has detected that it is being run with the SIGCHLD signal
+<p>(W signal) Perl has detected that it is being run with the SIGCHLD signal
 (sometimes known as SIGCLD) disabled.  Since disabling this signal
 will interfere with proper determination of exit status of child
 processes, Perl has reset the signal to its default value.
 This situation typically indicates that the parent program under
-which Perl may be running (e.g., cron) is being very careless.
+which Perl may be running (e.g., cron) is being very careless.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_can_27t_modify_non_2dlvalue_subroutine_call">Can't modify non-lvalue subroutine call</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_can_27t_modify_non_2dlvalue_subroutine_call">Can't modify non-lvalue subroutine call</a></strong>
+
 <dd>
-(F) Subroutines meant to be used in lvalue context should be declared as
-such, see <a href="perlsub.html#lvalue_subroutines">Lvalue subroutines in the perlsub manpage</a>.
+<p>(F) Subroutines meant to be used in lvalue context should be declared as
+such, see <a href="perlsub.html#lvalue_subroutines">Lvalue subroutines in the perlsub manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_can_27t_read_crtl_environ">Can't read CRTL environ</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_can_27t_read_crtl_environ">Can't read CRTL environ</a></strong>
+
 <dd>
-(S) A warning peculiar to VMS.  Perl tried to read an element of %ENV
+<p>(S) A warning peculiar to VMS.  Perl tried to read an element of %ENV
 from the CRTL's internal environment array and discovered the array was
 missing.  You need to figure out where your CRTL misplaced its environ
-or define <em>PERL_ENV_TABLES</em> (see <a href="perlvms.html">the perlvms manpage</a>) so that environ is not searched.
+or define <em>PERL_ENV_TABLES</em> (see <a href="perlvms.html">the perlvms manpage</a>) so that environ is not searched.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_can_27t_remove__25s_3a__25s_2c_skipping_file">Can't remove %s: %s, skipping file</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_can_27t_remove__25s_3a__25s_2c_skipping_file">Can't remove %s: %s, skipping file</a></strong>
+
 <dd>
-(S) You requested an inplace edit without creating a backup file.  Perl
+<p>(S) You requested an inplace edit without creating a backup file.  Perl
 was unable to remove the original file to replace it with the modified
-file.  The file was left unmodified.
+file.  The file was left unmodified.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_can_27t_return__25s_from_lvalue_subroutine">Can't return %s from lvalue subroutine</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_can_27t_return__25s_from_lvalue_subroutine">Can't return %s from lvalue subroutine</a></strong>
+
 <dd>
-(F) Perl detected an attempt to return illegal lvalues (such
+<p>(F) Perl detected an attempt to return illegal lvalues (such
 as temporary or readonly values) from a subroutine used as an lvalue.
-This is not allowed.
+This is not allowed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_can_27t_weaken_a_nonreference">Can't weaken a nonreference</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_can_27t_weaken_a_nonreference">Can't weaken a nonreference</a></strong>
+
 <dd>
-(F) You attempted to weaken something that was not a reference.  Only
-references can be weakened.
+<p>(F) You attempted to weaken something that was not a reference.  Only
+references can be weakened.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_character_class__5b_3a_25s_3a_5d_unknown">Character class [:%s:] unknown</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_character_class__5b_3a_25s_3a_5d_unknown">Character class [:%s:] unknown</a></strong>
+
 <dd>
-(F) The class in the character class [: :] syntax is unknown.
-See <a href="perlre.html">the perlre manpage</a>.
+<p>(F) The class in the character class [: :] syntax is unknown.
+See <a href="perlre.html">the perlre manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_character_class_syntax__5b_25s_5d_belongs_inside_c">Character class syntax [%s] belongs inside character classes</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_character_class_syntax__5b_25s_5d_belongs_inside_c">Character class syntax [%s] belongs inside character classes</a></strong>
+
 <dd>
-(W unsafe) The character class constructs [: :], [= =], and [. .]  go
+<p>(W unsafe) The character class constructs [: :], [= =], and [. .]  go
 <em>inside</em> character classes, the [] are part of the construct,
 for example: /[012[:alpha:]345]/.  Note that [= =] and [. .]
 are not currently implemented; they are simply placeholders for
-future extensions.
+future extensions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_constant_is_not__25s_reference">Constant is not %s reference</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_constant_is_not__25s_reference">Constant is not %s reference</a></strong>
+
 <dd>
-(F) A constant value (perhaps declared using the <code>use constant</code> pragma)
+<p>(F) A constant value (perhaps declared using the <code>use constant</code> pragma)
 is being dereferenced, but it amounts to the wrong type of reference.  The
 message indicates the type of reference that was expected. This usually
 indicates a syntax error in dereferencing the constant value.
-See <a href="perlsub.html#constant_functions">Constant Functions in the perlsub manpage</a> and <a href="#item_constant">constant</a>.
+See <a href="perlsub.html#constant_functions">Constant Functions in the perlsub manpage</a> and <a href="../../constant.html">the constant manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong>constant(%s): %s</strong><br />
-</dt>
+</li>
+<dt><strong>constant(%s): %s</strong>
+
 <dd>
-(F) The parser found inconsistencies either while attempting to define an
+<p>(F) The parser found inconsistencies either while attempting to define an
 overloaded constant, or when trying to find the character name specified
 in the <code>\N{...}</code> escape.  Perhaps you forgot to load the corresponding
-<code>overload</code> or <a href="#item_charnames"><code>charnames</code></a> pragma?  See <a href="#item_charnames">charnames</a> and <em>overload</em>.
+<code>overload</code> or <a href="#item_charnames"><code>charnames</code></a> pragma?  See <a href="../../charnames.html">the charnames manpage</a> and <a href="../../overload.html">the overload manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_core_3a_3a_25s_is_not_a_keyword">CORE::%s is not a keyword</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_core_3a_3a_25s_is_not_a_keyword">CORE::%s is not a keyword</a></strong>
+
 <dd>
-(F) The CORE:: namespace is reserved for Perl keywords.
+<p>(F) The CORE:: namespace is reserved for Perl keywords.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_defined"><code>defined(@array)</code> is deprecated</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_defined"><code>defined(@array)</code> is deprecated</a></strong>
+
 <dd>
-(D) <a href="#item_defined"><code>defined()</code></a> is not usually useful on arrays because it checks for an
+<p>(D) <a href="#item_defined"><code>defined()</code></a> is not usually useful on arrays because it checks for an
 undefined <em>scalar</em> value.  If you want to see if the array is empty,
-just use <code>if (@array) { # not empty }</code> for example.
+just use <code>if (@array) { # not empty }</code> for example.</p>
 </dd>
-<p></p>
-<dt><strong><code>defined(%hash)</code> is deprecated</strong><br />
-</dt>
+</li>
+<dt><strong><code>defined(%hash)</code> is deprecated</strong>
+
 <dd>
-(D) <a href="#item_defined"><code>defined()</code></a> is not usually useful on hashes because it checks for an
+<p>(D) <a href="#item_defined"><code>defined()</code></a> is not usually useful on hashes because it checks for an
 undefined <em>scalar</em> value.  If you want to see if the hash is empty,
-just use <code>if (%hash) { # not empty }</code> for example.
+just use <code>if (%hash) { # not empty }</code> for example.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_did_not_produce_a_valid_header">Did not produce a valid header</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_did_not_produce_a_valid_header">Did not produce a valid header</a></strong>
+
 <dd>
-See Server error.
+<p>See Server error.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28did_you_mean__22local_22_instead_of__22our_22_3">(Did you mean ``local'' instead of ``our''?)</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28did_you_mean__22local_22_instead_of__22our_22_3">(Did you mean ``local'' instead of ``our''?)</a></strong>
+
 <dd>
-(W misc) Remember that ``our'' does not localize the declared global variable.
-You have declared it again in the same lexical scope, which seems superfluous.
+<p>(W misc) Remember that ``our'' does not localize the declared global variable.
+You have declared it again in the same lexical scope, which seems superfluous.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_document_contains_no_data">Document contains no data</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_document_contains_no_data">Document contains no data</a></strong>
+
 <dd>
-See Server error.
+<p>See Server error.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_entering_effective__25s_failed">entering effective %s failed</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_entering_effective__25s_failed">entering effective %s failed</a></strong>
+
 <dd>
-(F) While under the <code>use filetest</code> pragma, switching the real and
-effective uids or gids failed.
+<p>(F) While under the <code>use filetest</code> pragma, switching the real and
+effective uids or gids failed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_false__5b_5d_range__22_25s_22_in_regexp">false [] range ``%s'' in regexp</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_false__5b_5d_range__22_25s_22_in_regexp">false [] range ``%s'' in regexp</a></strong>
+
 <dd>
-(W regexp) A character class range must start and end at a literal character, not
+<p>(W regexp) A character class range must start and end at a literal character, not
 another character class like <code>\d</code> or <code>[:alpha:]</code>.  The ``-'' in your false
 range is interpreted as a literal ``-''.  Consider quoting the ``-'',  ``\-''.
-See <a href="perlre.html">the perlre manpage</a>.
+See <a href="perlre.html">the perlre manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_filehandle__25s_opened_only_for_output">Filehandle %s opened only for output</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_filehandle__25s_opened_only_for_output">Filehandle %s opened only for output</a></strong>
+
 <dd>
-(W io) You tried to read from a filehandle opened only for writing.  If you
+<p>(W io) You tried to read from a filehandle opened only for writing.  If you
 intended it to be a read/write filehandle, you needed to open it with
 ``+&lt;'' or ``+&gt;'' or ``+&gt;&gt;'' instead of with ``&lt;'' or nothing.  If
 you intended only to read from the file, use ``&lt;''.  See
-<a href="perlfunc.html#open">open in the perlfunc manpage</a>.
+<a href="perlfunc.html#open">open in the perlfunc manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_flock"><code>flock()</code> on closed filehandle %s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_flock"><code>flock()</code> on closed filehandle %s</a></strong>
+
 <dd>
-(W closed) The filehandle you're attempting to <a href="#item_flock"><code>flock()</code></a> got itself closed some
+<p>(W closed) The filehandle you're attempting to <a href="#item_flock"><code>flock()</code></a> got itself closed some
 time before now.  Check your logic flow.  <a href="#item_flock"><code>flock()</code></a> operates on filehandles.
-Are you attempting to call <a href="#item_flock"><code>flock()</code></a> on a dirhandle by the same name?
+Are you attempting to call <a href="#item_flock"><code>flock()</code></a> on a dirhandle by the same name?</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_global_symbol__22_25s_22_requires_explicit_package">Global symbol ``%s'' requires explicit package name</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_global_symbol__22_25s_22_requires_explicit_package">Global symbol ``%s'' requires explicit package name</a></strong>
+
 <dd>
-(F) You've said ``use strict vars'', which indicates that all variables
+<p>(F) You've said ``use strict vars'', which indicates that all variables
 must either be lexically scoped (using ``my''), declared beforehand using
 ``our'', or explicitly qualified to say which package the global variable
-is in (using ``::'').
+is in (using ``::'').</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_hexadecimal_number__3e_0xffffffff_non_2dportable">Hexadecimal number &gt; 0xffffffff non-portable</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_hexadecimal_number__3e_0xffffffff_non_2dportable">Hexadecimal number &gt; 0xffffffff non-portable</a></strong>
+
 <dd>
-(W portable) The hexadecimal number you specified is larger than 2**32-1
+<p>(W portable) The hexadecimal number you specified is larger than 2**32-1
 (4294967295) and therefore non-portable between systems.  See
-<a href="perlport.html">the perlport manpage</a> for more on portability concerns.
+<a href="perlport.html">the perlport manpage</a> for more on portability concerns.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_ill_2dformed_crtl_environ_value__22_25s_22">Ill-formed CRTL environ value ``%s''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_ill_2dformed_crtl_environ_value__22_25s_22">Ill-formed CRTL environ value ``%s''</a></strong>
+
 <dd>
-(W internal) A warning peculiar to VMS.  Perl tried to read the CRTL's internal
+<p>(W internal) A warning peculiar to VMS.  Perl tried to read the CRTL's internal
 environ array, and encountered an element without the <code>=</code> delimiter
-used to separate keys from values.  The element is ignored.
+used to separate keys from values.  The element is ignored.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_ill_2dformed_message_in_prime_env_iter_3a__7c_25s_">Ill-formed message in prime_env_iter: |%s|</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_ill_2dformed_message_in_prime_env_iter_3a__7c_25s_">Ill-formed message in prime_env_iter: |%s|</a></strong>
+
 <dd>
-(W internal) A warning peculiar to VMS.  Perl tried to read a logical name
+<p>(W internal) A warning peculiar to VMS.  Perl tried to read a logical name
 or CLI symbol definition when preparing to iterate over %ENV, and
 didn't see the expected delimiter between key and value, so the
-line was ignored.
+line was ignored.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_illegal_binary_digit__25s">Illegal binary digit %s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_illegal_binary_digit__25s">Illegal binary digit %s</a></strong>
+
 <dd>
-(F) You used a digit other than 0 or 1 in a binary number.
+<p>(F) You used a digit other than 0 or 1 in a binary number.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_illegal_binary_digit__25s_ignored">Illegal binary digit %s ignored</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_illegal_binary_digit__25s_ignored">Illegal binary digit %s ignored</a></strong>
+
 <dd>
-(W digit) You may have tried to use a digit other than 0 or 1 in a binary number.
-Interpretation of the binary number stopped before the offending digit.
+<p>(W digit) You may have tried to use a digit other than 0 or 1 in a binary number.
+Interpretation of the binary number stopped before the offending digit.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_illegal_number_of_bits_in_vec">Illegal number of bits in vec</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_illegal_number_of_bits_in_vec">Illegal number of bits in vec</a></strong>
+
 <dd>
-(F) The number of bits in <a href="#item_vec"><code>vec()</code></a> (the third argument) must be a power of
-two from 1 to 32 (or 64, if your platform supports that).
+<p>(F) The number of bits in <a href="#item_vec"><code>vec()</code></a> (the third argument) must be a power of
+two from 1 to 32 (or 64, if your platform supports that).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_integer_overflow_in__25s_number">Integer overflow in %s number</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_integer_overflow_in__25s_number">Integer overflow in %s number</a></strong>
+
 <dd>
-(W overflow) The hexadecimal, octal or binary number you have specified either
+<p>(W overflow) The hexadecimal, octal or binary number you have specified either
 as a literal or as an argument to <code>hex()</code> or <code>oct()</code> is too big for your
 architecture, and has been converted to a floating point number.  On a
 32-bit architecture the largest hexadecimal, octal or binary number
@@ -3289,156 +3308,156 @@ representable without overflow is 0xFFFFFFFF, 037777777777, or
 0b11111111111111111111111111111111 respectively.  Note that Perl
 transparently promotes all numbers to a floating point representation
 internally--subject to loss of precision errors in subsequent
-operations.
+operations.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_invalid__25s_attribute_3a__25s">Invalid %s attribute: %s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_invalid__25s_attribute_3a__25s">Invalid %s attribute: %s</a></strong>
+
 <dd>
-The indicated attribute for a subroutine or variable was not recognized
-by Perl or by a user-supplied handler.  See <a href="#item_attributes">attributes</a>.
+<p>The indicated attribute for a subroutine or variable was not recognized
+by Perl or by a user-supplied handler.  See <a href="../../attributes.html">the attributes manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_invalid__25s_attributes_3a__25s">Invalid %s attributes: %s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_invalid__25s_attributes_3a__25s">Invalid %s attributes: %s</a></strong>
+
 <dd>
-The indicated attributes for a subroutine or variable were not recognized
-by Perl or by a user-supplied handler.  See <a href="#item_attributes">attributes</a>.
+<p>The indicated attributes for a subroutine or variable were not recognized
+by Perl or by a user-supplied handler.  See <a href="../../attributes.html">the attributes manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_invalid__5b_5d_range__22_25s_22_in_regexp">invalid [] range ``%s'' in regexp</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_invalid__5b_5d_range__22_25s_22_in_regexp">invalid [] range ``%s'' in regexp</a></strong>
+
 <dd>
-The offending range is now explicitly displayed.
+<p>The offending range is now explicitly displayed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_invalid_separator_character__25s_in_attribute_list">Invalid separator character %s in attribute list</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_invalid_separator_character__25s_in_attribute_list">Invalid separator character %s in attribute list</a></strong>
+
 <dd>
-(F) Something other than a colon or whitespace was seen between the
+<p>(F) Something other than a colon or whitespace was seen between the
 elements of an attribute list.  If the previous attribute
 had a parenthesised parameter list, perhaps that list was terminated
-too soon.  See <a href="#item_attributes">attributes</a>.
+too soon.  See <a href="../../attributes.html">the attributes manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_invalid_separator_character__25s_in_subroutine_att">Invalid separator character %s in subroutine attribute list</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_invalid_separator_character__25s_in_subroutine_att">Invalid separator character %s in subroutine attribute list</a></strong>
+
 <dd>
-(F) Something other than a colon or whitespace was seen between the
+<p>(F) Something other than a colon or whitespace was seen between the
 elements of a subroutine attribute list.  If the previous attribute
 had a parenthesised parameter list, perhaps that list was terminated
-too soon.
+too soon.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_leaving_effective__25s_failed">leaving effective %s failed</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_leaving_effective__25s_failed">leaving effective %s failed</a></strong>
+
 <dd>
-(F) While under the <code>use filetest</code> pragma, switching the real and
-effective uids or gids failed.
+<p>(F) While under the <code>use filetest</code> pragma, switching the real and
+effective uids or gids failed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lvalue_subs_returning__25s_not_implemented_yet">Lvalue subs returning %s not implemented yet</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lvalue_subs_returning__25s_not_implemented_yet">Lvalue subs returning %s not implemented yet</a></strong>
+
 <dd>
-(F) Due to limitations in the current implementation, array and hash
+<p>(F) Due to limitations in the current implementation, array and hash
 values cannot be returned in subroutines used in lvalue context.
-See <a href="perlsub.html#lvalue_subroutines">Lvalue subroutines in the perlsub manpage</a>.
+See <a href="perlsub.html#lvalue_subroutines">Lvalue subroutines in the perlsub manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_method__25s_not_permitted">Method %s not permitted</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_method__25s_not_permitted">Method %s not permitted</a></strong>
+
 <dd>
-See Server error.
+<p>See Server error.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_missing__25sbrace_25s_on__5cn_7b_7d">Missing %sbrace%s on \N{}</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_missing__25sbrace_25s_on__5cn_7b_7d">Missing %sbrace%s on \N{}</a></strong>
+
 <dd>
-(F) Wrong syntax of character name literal <code>\N{charname}</code> within
-double-quotish context.
+<p>(F) Wrong syntax of character name literal <code>\N{charname}</code> within
+double-quotish context.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_missing_command_in_piped_open">Missing command in piped open</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_missing_command_in_piped_open">Missing command in piped open</a></strong>
+
 <dd>
-(W pipe) You used the <a href="#item_open"><code>open(FH, &quot;| command&quot;)</code></a> or <a href="#item_open"><code>open(FH, &quot;command |&quot;)</code></a>
-construction, but the command was missing or blank.
+<p>(W pipe) You used the <a href="#item_open"><code>open(FH, &quot;| command&quot;)</code></a> or <a href="#item_open"><code>open(FH, &quot;command |&quot;)</code></a>
+construction, but the command was missing or blank.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_missing_name_in__22my_sub_22">Missing name in ``my sub''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_missing_name_in__22my_sub_22">Missing name in ``my sub''</a></strong>
+
 <dd>
-(F) The reserved syntax for lexically scoped subroutines requires that they
-have a name with which they can be found.
+<p>(F) The reserved syntax for lexically scoped subroutines requires that they
+have a name with which they can be found.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_no__25s_specified_for__2d_25c">No %s specified for -%c</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_no__25s_specified_for__2d_25c">No %s specified for -%c</a></strong>
+
 <dd>
-(F) The indicated command line switch needs a mandatory argument, but
-you haven't specified one.
+<p>(F) The indicated command line switch needs a mandatory argument, but
+you haven't specified one.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_no_package_name_allowed_for_variable__25s_in__22ou">No package name allowed for variable %s in ``our''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_no_package_name_allowed_for_variable__25s_in__22ou">No package name allowed for variable %s in ``our''</a></strong>
+
 <dd>
-(F) Fully qualified variable names are not allowed in ``our'' declarations,
+<p>(F) Fully qualified variable names are not allowed in ``our'' declarations,
 because that doesn't make much sense under existing semantics.  Such
-syntax is reserved for future extensions.
+syntax is reserved for future extensions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_no_space_allowed_after__2d_25c">No space allowed after -%c</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_no_space_allowed_after__2d_25c">No space allowed after -%c</a></strong>
+
 <dd>
-(F) The argument to the indicated command line switch must follow immediately
-after the switch, without intervening spaces.
+<p>(F) The argument to the indicated command line switch must follow immediately
+after the switch, without intervening spaces.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_no_utc_offset_information_3b_assuming_local_time_i">no UTC offset information; assuming local time is UTC</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_no_utc_offset_information_3b_assuming_local_time_i">no UTC offset information; assuming local time is UTC</a></strong>
+
 <dd>
-(S) A warning peculiar to VMS.  Perl was unable to find the local
+<p>(S) A warning peculiar to VMS.  Perl was unable to find the local
 timezone offset, so it's assuming that local system time is equivalent
 to UTC.  If it's not, define the logical name <em>SYS$TIMEZONE_DIFFERENTIAL</em>
 to translate to the number of seconds which need to be added to UTC to
-get local time.
+get local time.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_octal_number__3e_037777777777_non_2dportable">Octal number &gt; 037777777777 non-portable</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_octal_number__3e_037777777777_non_2dportable">Octal number &gt; 037777777777 non-portable</a></strong>
+
 <dd>
-(W portable) The octal number you specified is larger than 2**32-1 (4294967295)
+<p>(W portable) The octal number you specified is larger than 2**32-1 (4294967295)
 and therefore non-portable between systems.  See <a href="perlport.html">the perlport manpage</a> for more
-on portability concerns.
+on portability concerns.</p>
 </dd>
 <dd>
 <p>See also <a href="perlport.html">the perlport manpage</a> for writing portable code.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_panic_3a_del_backref">panic: del_backref</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_panic_3a_del_backref">panic: del_backref</a></strong>
+
 <dd>
-(P) Failed an internal consistency check while trying to reset a weak
-reference.
+<p>(P) Failed an internal consistency check while trying to reset a weak
+reference.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_panic_3a_kid_popen_errno_read">panic: kid popen errno read</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_panic_3a_kid_popen_errno_read">panic: kid popen errno read</a></strong>
+
 <dd>
-(F) forked child returned an incomprehensible message about its errno.
+<p>(F) forked child returned an incomprehensible message about its errno.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_panic_3a_magic_killbackrefs">panic: magic_killbackrefs</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_panic_3a_magic_killbackrefs">panic: magic_killbackrefs</a></strong>
+
 <dd>
-(P) Failed an internal consistency check while trying to reset all weak
-references to an object.
+<p>(P) Failed an internal consistency check while trying to reset all weak
+references to an object.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_parentheses_missing_around__22_25s_22_list">Parentheses missing around ``%s'' list</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_parentheses_missing_around__22_25s_22_list">Parentheses missing around ``%s'' list</a></strong>
+
 <dd>
-(W parenthesis) You said something like
+<p>(W parenthesis) You said something like</p>
 </dd>
 <dd>
 <pre>
@@ -3454,14 +3473,14 @@ references to an object.
 <dd>
 <p>Remember that ``my'', ``our'', and ``local'' bind tighter than comma.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_possible_unintended_interpolation_of__25s_in_strin">Possible unintended interpolation of %s in string</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_possible_unintended_interpolation_of__25s_in_strin">Possible unintended interpolation of %s in string</a></strong>
+
 <dd>
-(W ambiguous) It used to be that Perl would try to guess whether you
+<p>(W ambiguous) It used to be that Perl would try to guess whether you
 wanted an array interpolated or a literal @.  It no longer does this;
 arrays are now <em>always</em> interpolated into strings.  This means that 
-if you try something like:
+if you try something like:</p>
 </dd>
 <dd>
 <pre>
@@ -3473,18 +3492,18 @@ if you try something like:
 <code>@</code> sign in a string, put a backslash before it, just as you would
 to get a literal <code>$</code> sign.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_possible_y2k_bug_3a__25s">Possible Y2K bug: %s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_possible_y2k_bug_3a__25s">Possible Y2K bug: %s</a></strong>
+
 <dd>
-(W y2k) You are concatenating the number 19 with another number, which
-could be a potential Year 2000 problem.
+<p>(W y2k) You are concatenating the number 19 with another number, which
+could be a potential Year 2000 problem.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pragma__22attrs_22_is_deprecated_2c_use__22sub_nam">pragma ``attrs'' is deprecated, use ``sub NAME : ATTRS'' instead</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pragma__22attrs_22_is_deprecated_2c_use__22sub_nam">pragma ``attrs'' is deprecated, use ``sub NAME : ATTRS'' instead</a></strong>
+
 <dd>
-(W deprecated) You have written something like this:
+<p>(W deprecated) You have written something like this:</p>
 </dd>
 <dd>
 <pre>
@@ -3506,242 +3525,244 @@ could be a potential Year 2000 problem.
 <p>The <code>use attrs</code> pragma is now obsolete, and is only provided for
 backward-compatibility. See <a href="perlsub.html#subroutine_attributes">Subroutine Attributes in the perlsub manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_premature_end_of_script_headers">Premature end of script headers</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_premature_end_of_script_headers">Premature end of script headers</a></strong>
+
 <dd>
-See Server error.
+<p>See Server error.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_repeat_count_in_pack_overflows">Repeat count in pack overflows</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_repeat_count_in_pack_overflows">Repeat count in pack overflows</a></strong>
+
 <dd>
-(F) You can't specify a repeat count so large that it overflows
-your signed integers.  See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.
+<p>(F) You can't specify a repeat count so large that it overflows
+your signed integers.  See <a href="perlfunc.html#pack">pack in the perlfunc manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_repeat_count_in_unpack_overflows">Repeat count in unpack overflows</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_repeat_count_in_unpack_overflows">Repeat count in unpack overflows</a></strong>
+
 <dd>
-(F) You can't specify a repeat count so large that it overflows
-your signed integers.  See <a href="perlfunc.html#unpack">unpack in the perlfunc manpage</a>.
+<p>(F) You can't specify a repeat count so large that it overflows
+your signed integers.  See <a href="perlfunc.html#unpack">unpack in the perlfunc manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><code>realloc()</code> of freed memory ignored</strong><br />
-</dt>
+</li>
+<dt><strong><code>realloc()</code> of freed memory ignored</strong>
+
 <dd>
-(S) An internal routine called <a href="#item_realloc"><code>realloc()</code></a> on something that had already
-been freed.
+<p>(S) An internal routine called <a href="#item_realloc"><code>realloc()</code></a> on something that had already
+been freed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_reference_is_already_weak">Reference is already weak</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_reference_is_already_weak">Reference is already weak</a></strong>
+
 <dd>
-(W misc) You have attempted to weaken a reference that is already weak.
-Doing so has no effect.
+<p>(W misc) You have attempted to weaken a reference that is already weak.
+Doing so has no effect.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_setpgrp_can_27t_take_arguments">setpgrp can't take arguments</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_setpgrp_can_27t_take_arguments">setpgrp can't take arguments</a></strong>
+
 <dd>
-(F) Your system has the <code>setpgrp()</code> from BSD 4.2, which takes no arguments,
-unlike POSIX setpgid(), which takes a process ID and process group ID.
+<p>(F) Your system has the <code>setpgrp()</code> from BSD 4.2, which takes no arguments,
+unlike POSIX setpgid(), which takes a process ID and process group ID.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_strange__2a_2b_3f_7b_7d_on_zero_2dlength_expressio">Strange *+?{} on zero-length expression</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_strange__2a_2b_3f_7b_7d_on_zero_2dlength_expressio">Strange *+?{} on zero-length expression</a></strong>
+
 <dd>
-(W regexp) You applied a regular expression quantifier in a place where it
+<p>(W regexp) You applied a regular expression quantifier in a place where it
 makes no sense, such as on a zero-width assertion.
 Try putting the quantifier inside the assertion instead.  For example,
 the way to match ``abc'' provided that it is followed by three
-repetitions of ``xyz'' is <code>/abc(?=(?:xyz){3})/</code>, not <code>/abc(?=xyz){3}/</code>.
+repetitions of ``xyz'' is <code>/abc(?=(?:xyz){3})/</code>, not <code>/abc(?=xyz){3}/</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_switching_effective__25s_is_not_implemented">switching effective %s is not implemented</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_switching_effective__25s_is_not_implemented">switching effective %s is not implemented</a></strong>
+
 <dd>
-(F) While under the <code>use filetest</code> pragma, we cannot switch the
-real and effective uids or gids.
+<p>(F) While under the <code>use filetest</code> pragma, we cannot switch the
+real and effective uids or gids.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_elements">This Perl can't reset CRTL environ elements (%s)</a></strong><br />
-</dt>
-<dt><strong>This Perl can't set CRTL environ elements (%s=%s)</strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_elements">This Perl can't reset CRTL environ elements (%s)</a></strong>
+
+<dt><strong>This Perl can't set CRTL environ elements (%s=%s)</strong>
+
 <dd>
-(W internal) Warnings peculiar to VMS.  You tried to change or delete an element
+<p>(W internal) Warnings peculiar to VMS.  You tried to change or delete an element
 of the CRTL's internal environ array, but your copy of Perl wasn't
 built with a CRTL that contained the <code>setenv()</code> function.  You'll need to
 rebuild Perl with a CRTL that does, or redefine <em>PERL_ENV_TABLES</em> (see
 <a href="perlvms.html">the perlvms manpage</a>) so that the environ array isn't the target of the change to
-%ENV which produced the warning.
+%ENV which produced the warning.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_too_late_to_run__25s_block">Too late to run %s block</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_too_late_to_run__25s_block">Too late to run %s block</a></strong>
+
 <dd>
-(W void) A CHECK or INIT block is being defined during run time proper,
+<p>(W void) A CHECK or INIT block is being defined during run time proper,
 when the opportunity to run them has already passed.  Perhaps you are
 loading a file with <code>require</code> or <code>do</code> when you should be using
 <code>use</code> instead.  Or perhaps you should put the <code>require</code> or <code>do</code>
-inside a BEGIN block.
+inside a BEGIN block.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_open">Unknown <code>open()</code> mode '%s'</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_open">Unknown <code>open()</code> mode '%s'</a></strong>
+
 <dd>
-(F) The second argument of 3-argument <a href="#item_open"><code>open()</code></a> is not among the list
+<p>(F) The second argument of 3-argument <a href="#item_open"><code>open()</code></a> is not among the list
 of valid modes: <code>&lt;</code>, <code>&gt;</code>, <code>&gt;&gt;</code>, <code>+&lt;</code>,
-<code>+&gt;</code>, <code>+&gt;&gt;</code>, <code>-|</code>, <code>|-</code>.
+<code>+&gt;</code>, <code>+&gt;&gt;</code>, <code>-|</code>, <code>|-</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_unknown_process__25x_sent_message_to_prime_env_ite">Unknown process %x sent message to prime_env_iter: %s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unknown_process__25x_sent_message_to_prime_env_ite">Unknown process %x sent message to prime_env_iter: %s</a></strong>
+
 <dd>
-(P) An error peculiar to VMS.  Perl was reading values for %ENV before
+<p>(P) An error peculiar to VMS.  Perl was reading values for %ENV before
 iterating over it, and someone else stuck a message in the stream of
 data Perl expected.  Someone's very confused, or perhaps trying to
-subvert Perl's population of %ENV for nefarious purposes.
+subvert Perl's population of %ENV for nefarious purposes.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_unrecognized_escape__5c_5c_25c_passed_through">Unrecognized escape \\%c passed through</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unrecognized_escape__5c_5c_25c_passed_through">Unrecognized escape \\%c passed through</a></strong>
+
 <dd>
-(W misc) You used a backslash-character combination which is not recognized
-by Perl.  The character was understood literally.
+<p>(W misc) You used a backslash-character combination which is not recognized
+by Perl.  The character was understood literally.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_unterminated_attribute_parameter_in_attribute_list">Unterminated attribute parameter in attribute list</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unterminated_attribute_parameter_in_attribute_list">Unterminated attribute parameter in attribute list</a></strong>
+
 <dd>
-(F) The lexer saw an opening (left) parenthesis character while parsing an
+<p>(F) The lexer saw an opening (left) parenthesis character while parsing an
 attribute list, but the matching closing (right) parenthesis
 character was not found.  You may need to add (or remove) a backslash
-character to get your parentheses to balance.  See <a href="#item_attributes">attributes</a>.
+character to get your parentheses to balance.  See <a href="../../attributes.html">the attributes manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_unterminated_attribute_list">Unterminated attribute list</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unterminated_attribute_list">Unterminated attribute list</a></strong>
+
 <dd>
-(F) The lexer found something other than a simple identifier at the start
+<p>(F) The lexer found something other than a simple identifier at the start
 of an attribute, and it wasn't a semicolon or the start of a
 block.  Perhaps you terminated the parameter list of the previous attribute
-too soon.  See <a href="#item_attributes">attributes</a>.
+too soon.  See <a href="../../attributes.html">the attributes manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_unterminated_attribute_parameter_in_subroutine_att">Unterminated attribute parameter in subroutine attribute list</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unterminated_attribute_parameter_in_subroutine_att">Unterminated attribute parameter in subroutine attribute list</a></strong>
+
 <dd>
-(F) The lexer saw an opening (left) parenthesis character while parsing a
+<p>(F) The lexer saw an opening (left) parenthesis character while parsing a
 subroutine attribute list, but the matching closing (right) parenthesis
 character was not found.  You may need to add (or remove) a backslash
-character to get your parentheses to balance.
+character to get your parentheses to balance.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_unterminated_subroutine_attribute_list">Unterminated subroutine attribute list</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unterminated_subroutine_attribute_list">Unterminated subroutine attribute list</a></strong>
+
 <dd>
-(F) The lexer found something other than a simple identifier at the start
+<p>(F) The lexer found something other than a simple identifier at the start
 of a subroutine attribute, and it wasn't a semicolon or the start of a
 block.  Perhaps you terminated the parameter list of the previous attribute
-too soon.
+too soon.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_value_of_cli_symbol__22_25s_22_too_long">Value of CLI symbol ``%s'' too long</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_value_of_cli_symbol__22_25s_22_too_long">Value of CLI symbol ``%s'' too long</a></strong>
+
 <dd>
-(W misc) A warning peculiar to VMS.  Perl tried to read the value of an %ENV
+<p>(W misc) A warning peculiar to VMS.  Perl tried to read the value of an %ENV
 element from a CLI symbol table, and found a resultant string longer
 than 1024 characters.  The return value has been truncated to 1024
-characters.
+characters.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_version_number_must_be_a_constant_number">Version number must be a constant number</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_version_number_must_be_a_constant_number">Version number must be a constant number</a></strong>
+
 <dd>
-(P) The attempt to translate a <code>use Module n.n LIST</code> statement into
+<p>(P) The attempt to translate a <code>use Module n.n LIST</code> statement into
 its equivalent <code>BEGIN</code> block found an internal inconsistency with
-the version number.
+the version number.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
 <h1><a name="new_tests">New tests</a></h1>
 <dl>
-<dt><strong><a name="item_lib_2fattrs">lib/attrs</a></strong><br />
-</dt>
+<dt><strong><a name="item_lib_2fattrs">lib/attrs</a></strong>
+
 <dd>
-Compatibility tests for <code>sub : attrs</code> vs the older <code>use attrs</code>.
+<p>Compatibility tests for <code>sub : attrs</code> vs the older <code>use attrs</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lib_2fenv">lib/env</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lib_2fenv">lib/env</a></strong>
+
 <dd>
-Tests for new environment scalar capability (e.g., <a href="#item_qw"><code>use Env qw($BAR);</code></a>).
+<p>Tests for new environment scalar capability (e.g., <a href="#item_qw"><code>use Env qw($BAR);</code></a>).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lib_2fenv_2darray">lib/env-array</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lib_2fenv_2darray">lib/env-array</a></strong>
+
 <dd>
-Tests for new environment array capability (e.g., <a href="#item_qw"><code>use Env qw(@PATH);</code></a>).
+<p>Tests for new environment array capability (e.g., <a href="#item_qw"><code>use Env qw(@PATH);</code></a>).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lib_2fio_const">lib/io_const</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lib_2fio_const">lib/io_const</a></strong>
+
 <dd>
-IO constants (SEEK_*, _IO*).
+<p>IO constants (SEEK_*, _IO*).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lib_2fio_dir">lib/io_dir</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lib_2fio_dir">lib/io_dir</a></strong>
+
 <dd>
-Directory-related IO methods (new, read, close, rewind, tied delete).
+<p>Directory-related IO methods (new, read, close, rewind, tied delete).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lib_2fio_multihomed">lib/io_multihomed</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lib_2fio_multihomed">lib/io_multihomed</a></strong>
+
 <dd>
-INET sockets with multi-homed hosts.
+<p>INET sockets with multi-homed hosts.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lib_2fio_poll">lib/io_poll</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lib_2fio_poll">lib/io_poll</a></strong>
+
 <dd>
-IO poll().
+<p>IO poll().</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lib_2fio_unix">lib/io_unix</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lib_2fio_unix">lib/io_unix</a></strong>
+
 <dd>
-UNIX sockets.
+<p>UNIX sockets.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_op_2fattrs">op/attrs</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_op_2fattrs">op/attrs</a></strong>
+
 <dd>
-Regression tests for <code>my ($x,@y,%z) : attrs</code> and &lt;sub : attrs&gt;.
+<p>Regression tests for <code>my ($x,@y,%z) : attrs</code> and &lt;sub : attrs&gt;.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_op_2ffiletest">op/filetest</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_op_2ffiletest">op/filetest</a></strong>
+
 <dd>
-File test operators.
+<p>File test operators.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_op_2flex_assign">op/lex_assign</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_op_2flex_assign">op/lex_assign</a></strong>
+
 <dd>
-Verify operations that access pad objects (lexicals and temporaries).
+<p>Verify operations that access pad objects (lexicals and temporaries).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_op_2fexists_sub">op/exists_sub</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_op_2fexists_sub">op/exists_sub</a></strong>
+
 <dd>
-Verify <code>exists &amp;sub</code> operations.
+<p>Verify <code>exists &amp;sub</code> operations.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -3755,40 +3776,40 @@ that have been enhanced are <strong>not</strong> considered incompatible changes
 switch or the <code>warnings</code> pragma, it is ultimately the programmer's
 responsibility to ensure that warnings are enabled judiciously.</p>
 <dl>
-<dt><strong><a name="item_check_is_a_new_keyword">CHECK is a new keyword</a></strong><br />
-</dt>
+<dt><strong><a name="item_check_is_a_new_keyword">CHECK is a new keyword</a></strong>
+
 <dd>
-All subroutine definitions named CHECK are now special.  See
-<code>/&quot;Support for CHECK blocks&quot;</code> for more information.
+<p>All subroutine definitions named CHECK are now special.  See
+<code>/&quot;Support for CHECK blocks&quot;</code> for more information.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_treatment_of_list_slices_of_undef_has_changed">Treatment of list slices of undef has changed</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_treatment_of_list_slices_of_undef_has_changed">Treatment of list slices of undef has changed</a></strong>
+
 <dd>
-There is a potential incompatibility in the behavior of list slices
+<p>There is a potential incompatibility in the behavior of list slices
 that are comprised entirely of undefined values.
-See <a href="#behavior_of_list_slices_is_more_consistent">Behavior of list slices is more consistent</a>.
+See <a href="#behavior_of_list_slices_is_more_consistent">Behavior of list slices is more consistent</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_format_of__24english_3a_3aperl_version_is_differen">Format of $English::PERL_VERSION is different</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_format_of__24english_3a_3aperl_version_is_differen">Format of $English::PERL_VERSION is different</a></strong>
+
 <dd>
-The English module now sets $PERL_VERSION to $^V (a string value) rather
+<p>The English module now sets $PERL_VERSION to $^V (a string value) rather
 than <code>$]</code> (a numeric value).  This is a potential incompatibility.
-Send us a report via perlbug if you are affected by this.
+Send us a report via perlbug if you are affected by this.</p>
 </dd>
 <dd>
 <p>See <a href="#improved_perl_version_numbering_system">Improved Perl version numbering system</a> for the reasons for
 this change.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_literals_of_the_form_1_2e2_2e3_parse_differently">Literals of the form <code>1.2.3</code> parse differently</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_literals_of_the_form_1_2e2_2e3_parse_differently">Literals of the form <code>1.2.3</code> parse differently</a></strong>
+
 <dd>
-Previously, numeric literals with more than one dot in them were
+<p>Previously, numeric literals with more than one dot in them were
 interpreted as a floating point number concatenated with one or more
 numbers.  Such ``numbers'' are now parsed as strings composed of the
-specified ordinals.
+specified ordinals.</p>
 </dd>
 <dd>
 <p>For example, <code>print 97.98.99</code> used to output <code>97.9899</code> in earlier
@@ -3797,66 +3818,66 @@ versions, but now prints <code>abc</code>.</p>
 <dd>
 <p>See <a href="#support_for_strings_represented_as_a_vector_of_ordinals">Support for strings represented as a vector of ordinals</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_possibly_changed_pseudo_2drandom_number_generator">Possibly changed pseudo-random number generator</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_possibly_changed_pseudo_2drandom_number_generator">Possibly changed pseudo-random number generator</a></strong>
+
 <dd>
-Perl programs that depend on reproducing a specific set of pseudo-random
+<p>Perl programs that depend on reproducing a specific set of pseudo-random
 numbers may now produce different output due to improvements made to the
 <code>rand()</code> builtin.  You can use <code>sh Configure -Drandfunc=rand</code> to obtain
-the old behavior.
+the old behavior.</p>
 </dd>
 <dd>
 <p>See <a href="#better_pseudorandom_number_generator">Better pseudo-random number generator</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_hashing_function_for_hash_keys_has_changed">Hashing function for hash keys has changed</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_hashing_function_for_hash_keys_has_changed">Hashing function for hash keys has changed</a></strong>
+
 <dd>
-Even though Perl hashes are not order preserving, the apparently
+<p>Even though Perl hashes are not order preserving, the apparently
 random order encountered when iterating on the contents of a hash
 is actually determined by the hashing algorithm used.  Improvements
 in the algorithm may yield a random order that is <strong>different</strong> from
-that of previous versions, especially when iterating on hashes.
+that of previous versions, especially when iterating on hashes.</p>
 </dd>
 <dd>
 <p>See <a href="#better_worstcase_behavior_of_hashes">Better worst-case behavior of hashes</a> for additional
 information.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_undef_fails_on_read_only_values"><code>undef</code> fails on read only values</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_undef_fails_on_read_only_values"><code>undef</code> fails on read only values</a></strong>
+
 <dd>
-Using the <code>undef</code> operator on a readonly value (such as $1) has
+<p>Using the <code>undef</code> operator on a readonly value (such as $1) has
 the same effect as assigning <code>undef</code> to the readonly value--it
-throws an exception.
+throws an exception.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_close_2don_2dexec_bit_may_be_set_on_pipe_and_socke">Close-on-exec bit may be set on pipe and socket handles</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_close_2don_2dexec_bit_may_be_set_on_pipe_and_socke">Close-on-exec bit may be set on pipe and socket handles</a></strong>
+
 <dd>
-Pipe and socket handles are also now subject to the close-on-exec
-behavior determined by the special variable $^F.
+<p>Pipe and socket handles are also now subject to the close-on-exec
+behavior determined by the special variable $^F.</p>
 </dd>
 <dd>
 <p>See <a href="#more_consistent_closeonexec_behavior">More consistent close-on-exec behavior</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_writing__22_24_241_22_to_mean__22_24_7b_24_7d1_22_">Writing <code>&quot;$$1&quot;</code> to mean <code>&quot;${$}1&quot;</code> is unsupported</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_writing__22_24_241_22_to_mean__22_24_7b_24_7d1_22_">Writing <code>&quot;$$1&quot;</code> to mean <code>&quot;${$}1&quot;</code> is unsupported</a></strong>
+
 <dd>
-Perl 5.004 deprecated the interpretation of <code>$$1</code> and
+<p>Perl 5.004 deprecated the interpretation of <code>$$1</code> and
 similar within interpolated strings to mean <code>$$ . &quot;1&quot;</code>,
-but still allowed it.
+but still allowed it.</p>
 </dd>
 <dd>
 <p>In Perl 5.6.0 and later, <code>&quot;$$1&quot;</code> always means <code>&quot;${$1}&quot;</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_delete">delete(), each(), <code>values()</code> and <code>\(%h)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_delete">delete(), each(), <code>values()</code> and <code>\(%h)</code></a></strong>
+
 <dd>
-operate on aliases to values, not copies
+<p>operate on aliases to values, not copies</p>
 </dd>
 <dd>
 <p>delete(), each(), <code>values()</code> and hashes (e.g. <code>\(%h)</code>)
@@ -3868,39 +3889,39 @@ creating references to the returned values.  Keys in the hash are still
 returned as copies when iterating on a hash.</p>
 </dd>
 <dd>
-<p>See also <a href="#delete____each____values___and_hash_iteration_are_faster">delete(), each(), values() and hash iteration are faster</a>.</p>
+<p>See also <a href="#item_delete">delete(), each(), values() and hash iteration are faster</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_vec"><code>vec(EXPR,OFFSET,BITS)</code> enforces powers-of-two BITS</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_vec"><code>vec(EXPR,OFFSET,BITS)</code> enforces powers-of-two BITS</a></strong>
+
 <dd>
-<a href="#item_vec"><code>vec()</code></a> generates a run-time error if the BITS argument is not
-a valid power-of-two integer.
+<p><a href="#item_vec"><code>vec()</code></a> generates a run-time error if the BITS argument is not
+a valid power-of-two integer.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_text_of_some_diagnostic_output_has_changed">Text of some diagnostic output has changed</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_text_of_some_diagnostic_output_has_changed">Text of some diagnostic output has changed</a></strong>
+
 <dd>
-Most references to internal Perl operations in diagnostics
+<p>Most references to internal Perl operations in diagnostics
 have been changed to be more descriptive.  This may be an
 issue for programs that may incorrectly rely on the exact
-text of diagnostics for proper functioning.
+text of diagnostics for proper functioning.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item___"><code>%@</code> has been removed</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item___"><code>%@</code> has been removed</a></strong>
+
 <dd>
-The undocumented special variable <a href="#item___"><code>%@</code></a> that used to accumulate
+<p>The undocumented special variable <a href="#item___"><code>%@</code></a> that used to accumulate
 ``background'' errors (such as those that happen in <code>DESTROY())</code>
 has been removed, because it could potentially result in memory
-leaks.
+leaks.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_not">Parenthesized <code>not()</code> behaves like a list operator</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_not">Parenthesized <code>not()</code> behaves like a list operator</a></strong>
+
 <dd>
-The <a href="#item_not"><code>not</code></a> operator now falls under the ``if it looks like a function,
-it behaves like a function'' rule.
+<p>The <a href="#item_not"><code>not</code></a> operator now falls under the ``if it looks like a function,
+it behaves like a function'' rule.</p>
 </dd>
 <dd>
 <p>As a result, the parenthesized form can be used with <code>grep</code> and <a href="#item_map"><code>map</code></a>.
@@ -3929,25 +3950,25 @@ work.  The following previously allowed construct:</p>
 <dd>
 <p>The behavior remains unaffected when <a href="#item_not"><code>not</code></a> is not followed by parentheses.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_prototype">Semantics of bareword prototype <code>(*)</code> have changed</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_prototype">Semantics of bareword prototype <code>(*)</code> have changed</a></strong>
+
 <dd>
-The semantics of the bareword prototype <code>*</code> have changed.  Perl 5.005
+<p>The semantics of the bareword prototype <code>*</code> have changed.  Perl 5.005
 always coerced simple scalar arguments to a typeglob, which wasn't useful
 in situations where the subroutine must distinguish between a simple
 scalar and a typeglob.  The new behavior is to not coerce bareword
 arguments to a typeglob.  The value will always be visible as either
-a simple scalar or as a reference to a typeglob.
+a simple scalar or as a reference to a typeglob.</p>
 </dd>
 <dd>
-<p>See <a href="#more_functional_bareword_prototype____">More functional bareword prototype (*)</a>.</p>
+<p>See <a href="#item_prototype">More functional bareword prototype (*)</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_semantics_of_bit_operators_may_have_changed_on_64_">Semantics of bit operators may have changed on 64-bit platforms</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_semantics_of_bit_operators_may_have_changed_on_64_">Semantics of bit operators may have changed on 64-bit platforms</a></strong>
+
 <dd>
-If your platform is either natively 64-bit or if Perl has been
+<p>If your platform is either natively 64-bit or if Perl has been
 configured to used 64-bit integers, i.e., $Config{ivsize} is 8, 
 there may be a potential incompatibility in the behavior of bitwise
 numeric operators (&amp; | ^ ~ &lt;&lt; &gt;&gt;).  These operators used to strictly
@@ -3955,53 +3976,54 @@ operate on the lower 32 bits of integers in previous versions, but now
 operate over the entire native integral width.  In particular, note
 that unary <code>~</code> will produce different results on platforms that have
 different $Config{ivsize}.  For portability, be sure to mask off
-the excess bits in the result of unary <code>~</code>, e.g., <code>~$x &amp; 0xffffffff</code>.
+the excess bits in the result of unary <code>~</code>, e.g., <code>~$x &amp; 0xffffffff</code>.</p>
 </dd>
 <dd>
 <p>See <a href="#bit_operators_support_full_native_integer_width">Bit operators support full native integer width</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_more_builtins_taint_their_results">More builtins taint their results</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_more_builtins_taint_their_results">More builtins taint their results</a></strong>
+
 <dd>
-As described in <a href="#improved_security_features">Improved security features</a>, there may be more
-sources of taint in a Perl program.
+<p>As described in <a href="#improved_security_features">Improved security features</a>, there may be more
+sources of taint in a Perl program.</p>
 </dd>
 <dd>
 <p>To avoid these new tainting behaviors, you can build Perl with the
 Configure option <code>-Accflags=-DINCOMPLETE_TAINTS</code>.  Beware that the
 ensuing perl binary may be insecure.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="c_source_incompatibilities">C Source Incompatibilities</a></h2>
 <dl>
-<dt><strong><a name="item_perl_pollute"><code>PERL_POLLUTE</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_perl_pollute"><code>PERL_POLLUTE</code></a></strong>
+
 <dd>
-Release 5.005 grandfathered old global symbol names by providing preprocessor
+<p>Release 5.005 grandfathered old global symbol names by providing preprocessor
 macros for extension source compatibility.  As of release 5.6.0, these
 preprocessor definitions are not available by default.  You need to explicitly
 compile perl with <code>-DPERL_POLLUTE</code> to get these definitions.  For
 extensions still using the old symbols, this option can be
-specified via MakeMaker:
+specified via MakeMaker:</p>
 </dd>
 <dd>
 <pre>
     perl Makefile.PL POLLUTE=1</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_implicit_context"><code>PERL_IMPLICIT_CONTEXT</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_implicit_context"><code>PERL_IMPLICIT_CONTEXT</code></a></strong>
+
 <dd>
-This new build option provides a set of macros for all API functions
+<p>This new build option provides a set of macros for all API functions
 such that an implicit interpreter/thread context argument is passed to
 every API function.  As a result of this, something like <code>sv_setsv(foo,bar)</code>
 amounts to a macro invocation that actually translates to something like
 <code>Perl_sv_setsv(my_perl,foo,bar)</code>.  While this is generally expected
 to not have any significant source compatibility issues, the difference
-between a macro and a real function call will need to be considered.
+between a macro and a real function call will need to be considered.</p>
 </dd>
 <dd>
 <p>This means that there <strong>is</strong> a source compatibility issue as a result of
@@ -4023,18 +4045,18 @@ ramifications of building Perl with this option.</p>
     with one of -Dusethreads, -Dusemultiplicity, or both.  It is not
     intended to be enabled by users at this time.</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_pollute_malloc"><code>PERL_POLLUTE_MALLOC</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_pollute_malloc"><code>PERL_POLLUTE_MALLOC</code></a></strong>
+
 <dd>
-Enabling Perl's malloc in release 5.005 and earlier caused the namespace of
+<p>Enabling Perl's malloc in release 5.005 and earlier caused the namespace of
 the system's malloc family of functions to be usurped by the Perl versions,
 since by default they used the same names.  Besides causing problems on
 platforms that do not allow these functions to be cleanly replaced, this
 also meant that the system versions could not be called in programs that
 used Perl's malloc.  Previous versions of Perl have allowed this behaviour
 to be suppressed with the HIDEMYMALLOC and EMBEDMYMALLOC preprocessor
-definitions.
+definitions.</p>
 </dd>
 <dd>
 <p>As of release 5.6.0, Perl's malloc family of functions have default names
@@ -4047,19 +4069,20 @@ the default.</p>
 <p>Note that these functions do <strong>not</strong> constitute Perl's memory allocation API.
 See <a href="perlguts.html#memory_allocation">Memory Allocation in the perlguts manpage</a> for further information about that.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="compatible_c_source_api_changes">Compatible C Source API Changes</a></h2>
 <dl>
-<dt><strong><a name="item_patchlevel_is_now_perl_version"><code>PATCHLEVEL</code> is now <code>PERL_VERSION</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_patchlevel_is_now_perl_version"><code>PATCHLEVEL</code> is now <code>PERL_VERSION</code></a></strong>
+
 <dd>
-The cpp macros <code>PERL_REVISION</code>, <code>PERL_VERSION</code>, and <code>PERL_SUBVERSION</code>
+<p>The cpp macros <code>PERL_REVISION</code>, <code>PERL_VERSION</code>, and <code>PERL_SUBVERSION</code>
 are now available by default from perl.h, and reflect the base revision,
 patchlevel, and subversion respectively.  <code>PERL_REVISION</code> had no
 prior equivalent, while <code>PERL_VERSION</code> and <code>PERL_SUBVERSION</code> were
-previously available as <code>PATCHLEVEL</code> and <code>SUBVERSION</code>.
+previously available as <code>PATCHLEVEL</code> and <code>SUBVERSION</code>.</p>
 </dd>
 <dd>
 <p>The new names cause less pollution of the <strong>cpp</strong> namespace and reflect what
@@ -4068,7 +4091,8 @@ the old names are still supported when <em>patchlevel.h</em> is explicitly
 included (as required before), so there is no source incompatibility
 from the change.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="binary_incompatibilities">Binary Incompatibilities</a></h2>
@@ -4106,8 +4130,8 @@ is executed:</p>
 </p>
 <h2><a name="known_test_failures">Known test failures</a></h2>
 <ul>
-<li></li>
-64-bit builds
+<li>
+<p>64-bit builds</p>
 <p>Subtest #15 of lib/b.t may fail under 64-bit builds on platforms such
 as HP-UX PA64 and Linux IA64.  The issue is still being investigated.</p>
 <p>The lib/io_multihomed test may hang in HP-UX if Perl has been
@@ -4116,27 +4140,28 @@ hang in this test, HP-UX is suspect.  All other tests pass
 in 64-bit HP-UX.  The test attempts to create and connect to
 ``multihomed'' sockets (sockets which have multiple IP addresses).</p>
 <p>Note that 64-bit support is still experimental.</p>
-<p></p>
-<li></li>
-Failure of Thread tests
+</li>
+<li>
+<p>Failure of Thread tests</p>
 <p>The subtests 19 and 20 of lib/thr5005.t test are known to fail due to
 fundamental problems in the 5.005 threading implementation.  These are
 not new failures--Perl 5.005_0x has the same bugs, but didn't have these
 tests.  (Note that support for 5.005-style threading remains experimental.)</p>
-<p></p>
-<li></li>
-NEXTSTEP 3.3 POSIX test failure
+</li>
+<li>
+<p>NEXTSTEP 3.3 POSIX test failure</p>
 <p>In NEXTSTEP 3.3p2 the implementation of the <code>strftime(3)</code> in the
 operating system libraries is buggy: the %j format numbers the days of
 a month starting from zero, which, while being logical to programmers,
 will cause the subtests 19 to 27 of the lib/posix test may fail.</p>
-<p></p>
-<li></li>
-Tru64 (aka Digital UNIX, aka DEC OSF/1) lib/sdbm test failure with gcc
+</li>
+<li>
+<p>Tru64 (aka Digital UNIX, aka DEC OSF/1) lib/sdbm test failure with gcc</p>
 <p>If compiled with gcc 2.95 the lib/sdbm test will fail (dump core).
 The cure is to use the vendor cc, it comes with the operating system
 and produces good code.</p>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="ebcdic_platforms_not_fully_supported">EBCDIC platforms not fully supported</a></h2>
@@ -4180,60 +4205,61 @@ implementation of these features are subject to change, and in extreme cases,
 even subject to removal in some future release of Perl.  These features
 include the following:</p>
 <dl>
-<dt><strong><a name="item_threads">Threads</a></strong><br />
-</dt>
-<dt><strong><a name="item_unicode">Unicode</a></strong><br />
-</dt>
-<li><strong>-bit support</strong><br />
-</li>
-<dt><strong>Lvalue subroutines</strong><br />
-</dt>
-<dt><strong><a name="item_weak_references">Weak references</a></strong><br />
-</dt>
-<dt><strong><a name="item_the_pseudo_2dhash_data_type">The pseudo-hash data type</a></strong><br />
-</dt>
-<dt><strong><a name="item_the_compiler_suite">The Compiler suite</a></strong><br />
-</dt>
-<dt><strong><a name="item_internal_implementation_of_file_globbing">Internal implementation of file globbing</a></strong><br />
-</dt>
-<dt><strong><a name="item_the_db_module">The DB module</a></strong><br />
-</dt>
-<dt><strong><a name="item_the_regular_expression_code_constructs_3a">The regular expression code constructs:</a></strong><br />
-</dt>
+<dt><strong><a name="item_threads">Threads</a></strong>
+
+<dt><strong><a name="item_unicode">Unicode</a></strong>
+
+<li><strong>-bit support</strong>
+
+<dt><strong>Lvalue subroutines</strong>
+
+<dt><strong><a name="item_weak_references">Weak references</a></strong>
+
+<dt><strong><a name="item_the_pseudo_2dhash_data_type">The pseudo-hash data type</a></strong>
+
+<dt><strong><a name="item_the_compiler_suite">The Compiler suite</a></strong>
+
+<dt><strong><a name="item_internal_implementation_of_file_globbing">Internal implementation of file globbing</a></strong>
+
+<dt><strong><a name="item_the_db_module">The DB module</a></strong>
+
+<dt><strong><a name="item_the_regular_expression_code_constructs_3a">The regular expression code constructs:</a></strong>
+
 <dd>
-<code>(?{ code })</code> and <code>(??{ code })</code>
+<p><code>(?{ code })</code> and <code>(??{ code })</code></p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
 <h1><a name="obsolete_diagnostics">Obsolete Diagnostics</a></h1>
 <dl>
-<dt><strong><a name="item_character_class_syntax__5b_3a__3a_5d_is_reserved_f">Character class syntax [: :] is reserved for future extensions</a></strong><br />
-</dt>
+<dt><strong><a name="item_character_class_syntax__5b_3a__3a_5d_is_reserved_f">Character class syntax [: :] is reserved for future extensions</a></strong>
+
 <dd>
-(W) Within regular expression character classes ([]) the syntax beginning
+<p>(W) Within regular expression character classes ([]) the syntax beginning
 with ``[:'' and ending with ``:]'' is reserved for future extensions.
 If you need to represent those character sequences inside a regular
 expression character class, just quote the square brackets with the
-backslash: ``\[:'' and ``:\]''.
+backslash: ``\[:'' and ``:\]''.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_ill_2dformed_logical_name__7c_25s_7c_in_prime_env_">Ill-formed logical name |%s| in prime_env_iter</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_ill_2dformed_logical_name__7c_25s_7c_in_prime_env_">Ill-formed logical name |%s| in prime_env_iter</a></strong>
+
 <dd>
-(W) A warning peculiar to VMS.  A logical name was encountered when preparing
+<p>(W) A warning peculiar to VMS.  A logical name was encountered when preparing
 to iterate over %ENV which violates the syntactic rules governing logical
 names.  Because it cannot be translated normally, it is skipped, and will not
 appear in %ENV.  This may be a benign occurrence, as some software packages
 might directly modify logical name tables and introduce nonstandard names,
-or it may indicate that a logical name table has been corrupted.
+or it may indicate that a logical name table has been corrupted.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_in_string_2c__40_25s_now_must_be_written_as__5c_40">In string, @%s now must be written as \@%s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_in_string_2c__40_25s_now_must_be_written_as__5c_40">In string, @%s now must be written as \@%s</a></strong>
+
 <dd>
-The description of this error used to say:
+<p>The description of this error used to say:</p>
 </dd>
 <dd>
 <pre>
@@ -4246,35 +4272,35 @@ replaced by a non-fatal warning instead.
 See <a href="#arrays_now_always_interpolate_into_doublequoted_strings">Arrays now always interpolate into double-quoted strings</a> for
 details.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_probable_precedence_problem_on__25s">Probable precedence problem on %s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_probable_precedence_problem_on__25s">Probable precedence problem on %s</a></strong>
+
 <dd>
-(W) The compiler found a bareword where it expected a conditional,
+<p>(W) The compiler found a bareword where it expected a conditional,
 which often indicates that an || or &amp;&amp; was parsed as part of the
-last argument of the previous construct, for example:
+last argument of the previous construct, for example:</p>
 </dd>
 <dd>
 <pre>
     open FOO || die;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_regexp_too_big">regexp too big</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_regexp_too_big">regexp too big</a></strong>
+
 <dd>
-(F) The current implementation of regular expressions uses shorts as
+<p>(F) The current implementation of regular expressions uses shorts as
 address offsets within a string.  Unfortunately this means that if
 the regular expression compiles to longer than 32767, it'll blow up.
 Usually when you want a regular expression this big, there is a better
-way to do it with multiple statements.  See <a href="perlre.html">the perlre manpage</a>.
+way to do it with multiple statements.  See <a href="perlre.html">the perlre manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_use_of__22_24_24_3cdigit_3e_22_to_mean__22_24_7b_2">Use of ``$$&lt;digit&gt;'' to mean ``${$}&lt;digit&gt;'' is deprecated</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_use_of__22_24_24_3cdigit_3e_22_to_mean__22_24_7b_2">Use of ``$$&lt;digit&gt;'' to mean ``${$}&lt;digit&gt;'' is deprecated</a></strong>
+
 <dd>
-(D) Perl versions before 5.004 misinterpreted any type marker followed
+<p>(D) Perl versions before 5.004 misinterpreted any type marker followed
 by ``$'' and a digit.  For example, ``$$0'' was incorrectly taken to mean
-``${$}0'' instead of ``${$0}''.  This bug is (mostly) fixed in Perl 5.004.
+``${$}0'' instead of ``${$0}''.  This bug is (mostly) fixed in Perl 5.004.</p>
 </dd>
 <dd>
 <p>However, the developers of Perl 5.004 could not fix this bug completely,
@@ -4283,7 +4309,8 @@ because at least two widely-used modules depend on the old meaning of
 old (broken) way inside strings; but it generates this message as a
 warning.  And in Perl 5.005, this special treatment will cease.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />

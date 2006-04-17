@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlpacktut - tutorial on C&lt;pack&gt; and C&lt;unpack&gt;</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -216,10 +218,11 @@ just say ``if there's anything left, take it''. As you might guess from
 regular expressions, that's what the <code>*</code> means: ``use everything
 remaining''.</p>
 <ul>
-<li></li>
-Be warned, though, that unlike regular expressions, if the <code>unpack</code>
-template doesn't match the incoming data, Perl will scream and die.
-<p></p></ul>
+<li>
+<p>Be warned, though, that unlike regular expressions, if the <code>unpack</code>
+template doesn't match the incoming data, Perl will scream and die.</p>
+</li>
+</ul>
 <p>Hence, putting it all together:</p>
 <pre>
     my($date,$description,$income,$expend) = unpack(&quot;A10xA27xA7xA*&quot;, $_);</pre>
@@ -286,29 +289,29 @@ can get <code>sprintf</code> to do it:</p>
 <p>So that's how we consume and produce fixed-width data. Let's recap what
 we've seen of <code>pack</code> and <code>unpack</code> so far:</p>
 <ul>
-<li></li>
-Use <code>pack</code> to go from several pieces of data to one fixed-width
+<li>
+<p>Use <code>pack</code> to go from several pieces of data to one fixed-width
 version; use <code>unpack</code> to turn a fixed-width-format string into several
-pieces of data.
-<p></p>
-<li></li>
-The pack format <code>A</code> means ``any character''; if you're <code>pack</code>ing and
+pieces of data.</p>
+</li>
+<li>
+<p>The pack format <code>A</code> means ``any character''; if you're <code>pack</code>ing and
 you've run out of things to pack, <code>pack</code> will fill the rest up with
-spaces.
-<p></p>
-<li></li>
-<code>x</code> means ``skip a byte'' when <code>unpack</code>ing; when <code>pack</code>ing, it means
+spaces.</p>
+</li>
+<li>
+<p><code>x</code> means ``skip a byte'' when <code>unpack</code>ing; when <code>pack</code>ing, it means
 ``introduce a null byte'' - that's probably not what you mean if you're
-dealing with plain text.
-<p></p>
-<li></li>
-You can follow the formats with numbers to say how many characters
+dealing with plain text.</p>
+</li>
+<li>
+<p>You can follow the formats with numbers to say how many characters
 should be affected by that format: <code>A12</code> means ``take 12 characters'';
-<code>x6</code> means ``skip 6 bytes'' or ``character 0, 6 times''.
-<p></p>
-<li></li>
-Instead of a number, you can use <code>*</code> to mean ``consume everything else
-left''.
+<code>x6</code> means ``skip 6 bytes'' or ``character 0, 6 times''.</p>
+</li>
+<li>
+<p>Instead of a number, you can use <code>*</code> to mean ``consume everything else
+left''.</p>
 <p><strong>Warning</strong>: when packing multiple pieces of data, <code>*</code> only means
 ``consume all of the current piece of data''. That's to say</p>
 <pre>
@@ -316,7 +319,8 @@ left''.
 <p>packs all of <code>$one</code> into the first <code>A*</code> and then all of <code>$two</code> into
 the second. This is a general principle: each format character
 corresponds to one piece of data to be <code>pack</code>ed.</p>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -333,16 +337,17 @@ Perl will do all the finicky labor for you.</p>
 aside for the moment, the salient properties of any such representation
 are:</p>
 <ul>
-<li></li>
-the number of bytes used for storing the integer,
-<p></p>
-<li></li>
-whether the contents are interpreted as a signed or unsigned number,
-<p></p>
-<li></li>
-the byte ordering: whether the first byte is the least or most
-significant byte (or: little-endian or big-endian, respectively).
-<p></p></ul>
+<li>
+<p>the number of bytes used for storing the integer,</p>
+</li>
+<li>
+<p>whether the contents are interpreted as a signed or unsigned number,</p>
+</li>
+<li>
+<p>the byte ordering: whether the first byte is the least or most
+significant byte (or: little-endian or big-endian, respectively).</p>
+</li>
+</ul>
 <p>So, for instance, to pack 20302 to a signed 16 bit integer in your
 computer's representation you write</p>
 <pre>
@@ -1001,22 +1006,23 @@ actually stored must be used with circumspection. Perl's internal machinery
 considers the relation between a variable and that address as its very own 
 private matter and doesn't really care that we have obtained a copy. Therefore:</p>
 <ul>
-<li></li>
-Do not use <code>pack</code> with <code>p</code> or <code>P</code> to obtain the address of variable
+<li>
+<p>Do not use <code>pack</code> with <code>p</code> or <code>P</code> to obtain the address of variable
 that's bound to go out of scope (and thereby freeing its memory) before you
-are done with using the memory at that address.
-<p></p>
-<li></li>
-Be very careful with Perl operations that change the value of the
+are done with using the memory at that address.</p>
+</li>
+<li>
+<p>Be very careful with Perl operations that change the value of the
 variable. Appending something to the variable, for instance, might require
-reallocation of its storage, leaving you with a pointer into no-man's land.
-<p></p>
-<li></li>
-Don't think that you can get the address of a Perl variable
+reallocation of its storage, leaving you with a pointer into no-man's land.</p>
+</li>
+<li>
+<p>Don't think that you can get the address of a Perl variable
 when it is stored as an integer or double number! <code>pack('P', $x)</code> will
 force the variable's internal representation to string, just as if you
-had written something like <code>$x .= ''</code>.
-<p></p></ul>
+had written something like <code>$x .= ''</code>.</p>
+</li>
+</ul>
 <p>It's safe, however, to P- or p-pack a string literal, because Perl simply
 allocates an anonymous variable.</p>
 <p>

@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlnumber - semantics of numbers and numeric operations in Perl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -54,7 +56,7 @@
 overloading allows user-defined behaviors for numbers, such as operations
 over arbitrarily large integers, floating points numbers with arbitrary
 precision, operations over ``exotic'' numbers such as modular arithmetic or
-p-adic arithmetic, and so on.  See <em>overload</em> for details.</p>
+p-adic arithmetic, and so on.  See <a href="../../overload.html">the overload manpage</a> for details.</p>
 <p>
 </p>
 <hr />
@@ -118,30 +120,31 @@ converted to the format understood by the operator.</p>
   decimal string        --&gt; native floating point       (*)</pre>
 <p>These conversions are governed by the following general rules:</p>
 <ul>
-<li></li>
-If the source number can be represented in the target form, that
-representation is used.
-<p></p>
-<li></li>
-If the source number is outside of the limits representable in the target form,
-a representation of the closest limit is used.  (<em>Loss of information</em>)
-<p></p>
-<li></li>
-If the source number is between two numbers representable in the target form,
-a representation of one of these numbers is used.  (<em>Loss of information</em>)
-<p></p>
-<li></li>
-In <code>native floating point --&gt; native integer</code> conversions the magnitude
+<li>
+<p>If the source number can be represented in the target form, that
+representation is used.</p>
+</li>
+<li>
+<p>If the source number is outside of the limits representable in the target form,
+a representation of the closest limit is used.  (<em>Loss of information</em>)</p>
+</li>
+<li>
+<p>If the source number is between two numbers representable in the target form,
+a representation of one of these numbers is used.  (<em>Loss of information</em>)</p>
+</li>
+<li>
+<p>In <code>native floating point --&gt; native integer</code> conversions the magnitude
 of the result is less than or equal to the magnitude of the source.
-(<em>``Rounding to zero''.</em>)
-<p></p>
-<li></li>
-If the <code>decimal string --&gt; native integer</code> conversion cannot be done
+(<em>``Rounding to zero''.</em>)</p>
+</li>
+<li>
+<p>If the <code>decimal string --&gt; native integer</code> conversion cannot be done
 without loss of information, the result is compatible with the conversion
 sequence <code>decimal_string --&gt; native_floating_point --&gt; native_integer</code>.
 In particular, rounding is strongly biased to 0, though a number like
-<code>&quot;0.99999999999999999999&quot;</code> has a chance of being rounded to 1.
-<p></p></ul>
+<code>&quot;0.99999999999999999999&quot;</code> has a chance of being rounded to 1.</p>
+</li>
+</ul>
 <p><strong>RESTRICTION</strong>: The conversions marked with <code>(*)</code> above involve steps
 performed by the C compiler.  In particular, bugs/features of the compiler
 used may lead to breakage of some of the above rules.</p>
@@ -159,70 +162,71 @@ argument as in modular arithmetic, e.g., <code>mod 2**32</code> on a 32-bit
 architecture.  <code>sprintf &quot;%u&quot;, -1</code> therefore provides the same result as
 <code>sprintf &quot;%u&quot;, ~0</code>.</p>
 <dl>
-<dt><strong><a name="item_arithmetic_operators">Arithmetic operators</a></strong><br />
-</dt>
+<dt><strong><a name="item_arithmetic_operators">Arithmetic operators</a></strong>
+
 <dd>
-The binary operators <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> <code>==</code> <code>!=</code> <code>&gt;</code> <code>&lt;</code>
+<p>The binary operators <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> <code>==</code> <code>!=</code> <code>&gt;</code> <code>&lt;</code>
 <code>&gt;=</code> <code>&lt;=</code> and the unary operators <code>-</code> <code>abs</code> and <code>--</code> will
 attempt to convert arguments to integers.  If both conversions are possible
 without loss of precision, and the operation can be performed without
 loss of precision then the integer result is used.  Otherwise arguments are
 converted to floating point format and the floating point result is used.
 The caching of conversions (as described above) means that the integer
-conversion does not throw away fractional parts on floating point numbers.
+conversion does not throw away fractional parts on floating point numbers.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2b_2b">++</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2b_2b">++</a></strong>
+
 <dd>
-<a href="#item__2b_2b"><code>++</code></a> behaves as the other operators above, except that if it is a string
+<p><a href="#item__2b_2b"><code>++</code></a> behaves as the other operators above, except that if it is a string
 matching the format <code>/^[a-zA-Z]*[0-9]*\z/</code> the string increment described
-in <a href="perlop.html">the perlop manpage</a> is used.
+in <a href="perlop.html">the perlop manpage</a> is used.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_arithmetic_operators_during_use_integer">Arithmetic operators during <code>use integer</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_arithmetic_operators_during_use_integer">Arithmetic operators during <code>use integer</code></a></strong>
+
 <dd>
-In scopes where <code>use integer;</code> is in force, nearly all the operators listed
+<p>In scopes where <code>use integer;</code> is in force, nearly all the operators listed
 above will force their <code>argument(s)</code> into integer format, and return an integer
 result.  The exceptions, <code>abs</code>, <a href="#item__2b_2b"><code>++</code></a> and <code>--</code>, do not change their
-behavior with <code>use integer;</code>
+behavior with <code>use integer;</code></p>
 </dd>
-<p></p>
-<dt><strong><a name="item_other_mathematical_operators">Other mathematical operators</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_other_mathematical_operators">Other mathematical operators</a></strong>
+
 <dd>
-Operators such as <code>**</code>, <code>sin</code> and <code>exp</code> force arguments to floating point
-format.
+<p>Operators such as <code>**</code>, <code>sin</code> and <code>exp</code> force arguments to floating point
+format.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_bitwise_operators">Bitwise operators</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_bitwise_operators">Bitwise operators</a></strong>
+
 <dd>
-Arguments are forced into the integer format if not strings.
+<p>Arguments are forced into the integer format if not strings.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_bitwise_operators_during_use_integer">Bitwise operators during <code>use integer</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_bitwise_operators_during_use_integer">Bitwise operators during <code>use integer</code></a></strong>
+
 <dd>
-forces arguments to integer format. Also shift operations internally use
-signed integers rather than the default unsigned.
+<p>forces arguments to integer format. Also shift operations internally use
+signed integers rather than the default unsigned.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_operators_which_expect_an_integer">Operators which expect an integer</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_operators_which_expect_an_integer">Operators which expect an integer</a></strong>
+
 <dd>
-force the argument into the integer format.  This is applicable
-to the third and fourth arguments of <code>sysread</code>, for example.
+<p>force the argument into the integer format.  This is applicable
+to the third and fourth arguments of <code>sysread</code>, for example.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_operators_which_expect_a_string">Operators which expect a string</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_operators_which_expect_a_string">Operators which expect a string</a></strong>
+
 <dd>
-force the argument into the string format.  For example, this is
-applicable to <code>printf &quot;%s&quot;, $value</code>.
+<p>force the argument into the string format.  For example, this is
+applicable to <code>printf &quot;%s&quot;, $value</code>.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Though forcing an argument into a particular form does not change the
 stored number, Perl remembers the result of such conversions.  In
 particular, though the first such conversion may be time-consuming,
@@ -238,7 +242,7 @@ repeated operations will not need to redo the conversion.</p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
-<p><em>overload</em>, <a href="perlop.html">the perlop manpage</a></p>
+<p><a href="../../overload.html">the overload manpage</a>, <a href="perlop.html">the perlop manpage</a></p>
 <table border="0" width="100%" cellspacing="0" cellpadding="3">
 <tr><td class="block" style="background-color: #cccccc" valign="middle">
 <big><strong><span class="block">&nbsp;perlnumber - semantics of numbers and numeric operations in Perl</span></strong></big>

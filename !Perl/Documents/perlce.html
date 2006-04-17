@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlce - Perl for WinCE</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -61,14 +63,14 @@ you may strip it at your wish and use only required parts.</p>
 <h2><a name="tools___sdk">Tools &amp; SDK</a></h2>
 <p>For compiling, you need following:</p>
 <ul>
-<li><strong><a name="item_microsoft_embedded_visual_tools">Microsoft Embedded Visual Tools</a></strong><br />
-</li>
-<li><strong><a name="item_microsoft_visual_c_2b_2b">Microsoft Visual C++</a></strong><br />
-</li>
-<li><strong><a name="item_rainer_keuchel_27s_celib_2dsources">Rainer Keuchel's celib-sources</a></strong><br />
-</li>
-<li><strong><a name="item_rainer_keuchel_27s_console_2dsources">Rainer Keuchel's console-sources</a></strong><br />
-</li>
+<li><strong><a name="item_microsoft_embedded_visual_tools">Microsoft Embedded Visual Tools</a></strong>
+
+<li><strong><a name="item_microsoft_visual_c_2b_2b">Microsoft Visual C++</a></strong>
+
+<li><strong><a name="item_rainer_keuchel_27s_celib_2dsources">Rainer Keuchel's celib-sources</a></strong>
+
+<li><strong><a name="item_rainer_keuchel_27s_console_2dsources">Rainer Keuchel's console-sources</a></strong>
+
 </ul>
 <p>Needed source files can be downloaded via:
 www.rainer-keuchel.de/wince/dirlist.html</p>
@@ -88,16 +90,16 @@ parameters and forwards them to ``nmake'' command as additional
 arguments. You should pass target this way.</p>
 <p>To prepare distribution you need to do following:</p>
 <ul>
-<li><strong><a name="item_go_to__2e_2fwince_subdirectory">go to ./wince subdirectory</a></strong><br />
-</li>
-<li><strong><a name="item_edit_file_compile_2ebat">edit file compile.bat</a></strong><br />
-</li>
+<li><strong><a name="item_go_to__2e_2fwince_subdirectory">go to ./wince subdirectory</a></strong>
+
+<li><strong><a name="item_edit_file_compile_2ebat">edit file compile.bat</a></strong>
+
 <li><strong><a name="item_run_compile_2ebat">run 
-  compile.bat</a></strong><br />
-</li>
+  compile.bat</a></strong>
+
 <li><strong><a name="item_run_compile_2ebat_dist">run 
-  compile.bat dist</a></strong><br />
-</li>
+  compile.bat dist</a></strong>
+
 </ul>
 <p>makefile.ce has CROSS_NAME macro, and it is used further to refer to
 your cross-compilation scheme. You could assign a name to it, but this

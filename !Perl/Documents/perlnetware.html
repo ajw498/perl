@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlnetware - Perl for NetWare</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -72,30 +74,31 @@ Microsoft Visual C++ version 4.2 or later is also required.</p>
 Once the Tools &amp; SDK are installed, the build environment has to
 be setup.  The following batch files setup the environment.</p>
 <dl>
-<dt><strong><a name="item_setnwbld_2ebat">SetNWBld.bat</a></strong><br />
-</dt>
+<dt><strong><a name="item_setnwbld_2ebat">SetNWBld.bat</a></strong>
+
 <dd>
-The Execution of this file takes 2 parameters as input. The first
+<p>The Execution of this file takes 2 parameters as input. The first
 being the NetWare SDK path, second being the path for CodeWarrior
 Compiler &amp; tools. Execution of this file sets these paths and also
-sets the build type to Release by default.
+sets the build type to Release by default.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_buildtype_2ebat">Buildtype.bat</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_buildtype_2ebat">Buildtype.bat</a></strong>
+
 <dd>
-This is used to set the build type to debug or release. Change the
-build type only after executing SetNWBld.bat
+<p>This is used to set the build type to debug or release. Change the
+build type only after executing SetNWBld.bat</p>
 </dd>
-<p></p>
-<li></li>
-Example:
+</li>
+<li>
+<p>Example:
   1. Typing ``buildtype d on'' at the command prompt causes the buildtype
      to be set to Debug type with D2 flag set. 
   2. Typing ``buildtype d off'' or ``buildtype d'' at the command prompt causes
      the buildtype to be set to Debug type with D1 flag set. 
-  2. Typing ``buildtype r'' at the command prompt sets it to Release Build type.
-<p></p></dl>
+  2. Typing ``buildtype r'' at the command prompt sets it to Release Build type.</p>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="make">Make</a></h2>
@@ -109,12 +112,13 @@ is created. Then run nmake from NetWare folder through WinNT command
 prompt.</p>
 <p>Currently the following two build types are tested on NetWare:</p>
 <ul>
-<li></li>
-USE_MULTI, USE_ITHREADS &amp; USE_IMP_SYS defined
-<p></p>
-<li></li>
-USE_MULTI &amp; USE_IMP_SYS defined and USE_ITHREADS not defined
-<p></p></ul>
+<li>
+<p>USE_MULTI, USE_ITHREADS &amp; USE_IMP_SYS defined</p>
+</li>
+<li>
+<p>USE_MULTI &amp; USE_IMP_SYS defined and USE_ITHREADS not defined</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="interpreter">Interpreter</a></h2>
@@ -158,11 +162,11 @@ not copied.  Thus one must first install Windows Perl, Then install
 NetWare Perl.</p>
 <p>Once this is done, do the following to build any extension:</p>
 <ul>
-<li></li>
-Change to the extension directory where its source files are present.
-<p></p>
-<li></li>
-Run the following command at the command prompt:
+<li>
+<p>Change to the extension directory where its source files are present.</p>
+</li>
+<li>
+<p>Run the following command at the command prompt:</p>
 <pre>
     perl -II&lt;path to NetWare lib dir&gt; -II&lt;path to lib&gt; Makefile.pl</pre>
 <p>Example:</p>
@@ -171,12 +175,12 @@ Run the following command at the command prompt:
 <p>or</p>
 <pre>
     perl -Ic:/perl/5.8.0/lib/NetWare-x86-multi-thread -Ic:\perl\5.8.0\lib MakeFile.pl</pre>
-<p></p>
-<li></li>
-nmake
-<p></p>
-<li></li>
-nmake install
+</li>
+<li>
+<p>nmake</p>
+</li>
+<li>
+<p>nmake install</p>
 <p>Install will copy the files into the Windows machine where NetWare
 Perl is installed and these files may have to be copied to the NetWare
 server manually. Alternatively, pass <em>INSTALLSITELIB=i:\perl\lib</em> as
@@ -191,13 +195,14 @@ typing <em>nmake install</em>, will copy the files onto the NetWare server.</p>
 <pre>
           perl -Ic:/perl/5.8.0/lib/NetWare-x86-multi-thread -Ic:\perl\5.8.0\lib MakeFile.pl
           INSTALLSITELIB=i:\perl\lib</pre>
-<p></p>
-<li></li>
-Note: Some modules downloaded from CPAN may require NetWare related
+</li>
+<li>
+<p>Note: Some modules downloaded from CPAN may require NetWare related
 API in order to build on NetWare.  Other modules may however build
 smoothly with or without minor changes depending on the type of
-module.
-<p></p></ul>
+module.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -216,18 +221,19 @@ Aditya C (<a href="mailto:caditya@novell.com">caditya@novell.com</a>)</p>
 <hr />
 <h1><a name="date">DATE</a></h1>
 <ul>
-<li></li>
-Created - 18 Jan 2001
-<p></p>
-<li></li>
-Modified - 25 June 2001
-<p></p>
-<li></li>
-Modified - 13 July 2001
-<p></p>
-<li></li>
-Modified - 28 May 2002
-<p></p></ul>
+<li>
+<p>Created - 18 Jan 2001</p>
+</li>
+<li>
+<p>Modified - 25 June 2001</p>
+</li>
+<li>
+<p>Modified - 13 July 2001</p>
+</li>
+<li>
+<p>Modified - 28 May 2002</p>
+</li>
+</ul>
 <table border="0" width="100%" cellspacing="0" cellpadding="3">
 <tr><td class="block" style="background-color: #cccccc" valign="middle">
 <big><strong><span class="block">&nbsp;perlnetware - Perl for NetWare</span></strong></big>

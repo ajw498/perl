@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlre - Perl regular expressions</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -39,7 +41,8 @@
 <hr />
 <p>
 </p>
-<h1><a name="name">NAME</a></h1>
+<h1><a name="name_x_regular_expression__x_regex__x_regexp_">NAME
+  </a></h1>
 <p>perlre - Perl regular expressions</p>
 <p>
 </p>
@@ -58,29 +61,34 @@ are listed below.  Modifiers that alter the way a regular expression
 is used by Perl are detailed in <a href="perlop.html#regexp_quotelike_operators">Regexp Quote-Like Operators in the perlop manpage</a> and 
 <a href="perlop.html#gory_details_of_parsing_quoted_constructs">Gory details of parsing quoted constructs in the perlop manpage</a>.</p>
 <dl>
-<dt><strong><a name="item_i">i</a></strong><br />
-</dt>
+<dt><strong><a name="item_i_x_3c_2fi_3e_x_3cregex_2c_case_2dinsensitive_3e_x">i
+  
+</a></strong>
+
 <dd>
-Do case-insensitive pattern matching.
+<p>Do case-insensitive pattern matching.</p>
 </dd>
 <dd>
 <p>If <code>use locale</code> is in effect, the case map is taken from the current
 locale.  See <a href="perllocale.html">the perllocale manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_m">m</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_m_x_3c_2fm_3e_x_3cregex_2c_multiline_3e_x_3cregexp">m
+   </a></strong>
+
 <dd>
-Treat string as multiple lines.  That is, change ``^'' and ``$'' from matching
+<p>Treat string as multiple lines.  That is, change ``^'' and ``$'' from matching
 the start or end of the string to matching the start or end of any
-line anywhere within the string.
+line anywhere within the string.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s">s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s_x_3c_2fs_3e_x_3cregex_2c_single_2dline_3e_x_3cre">s
+  
+</a></strong>
+
 <dd>
-Treat string as single line.  That is, change ``.'' to match any character
-whatsoever, even a newline, which normally it would not match.
+<p>Treat string as single line.  That is, change ``.'' to match any character
+whatsoever, even a newline, which normally it would not match.</p>
 </dd>
 <dd>
 <p>The <code>/s</code> and <code>/m</code> modifiers both override the <code>$*</code> setting.  That
@@ -91,13 +99,15 @@ Together, as /ms, they let the ``.'' match any character whatsoever,
 while still allowing ``^'' and ``$'' to match, respectively, just after
 and just before newlines within the string.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_x">x</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_x_x_3c_2fx_3e">x
+</a></strong>
+
 <dd>
-Extend your pattern's legibility by permitting whitespace and comments.
+<p>Extend your pattern's legibility by permitting whitespace and comments.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>These are usually written as ``the <code>/x</code> modifier'', even though the delimiter
 in question might not really be a slash.  Any of these
 modifiers may also be embedded within the regular expression itself using
@@ -115,7 +125,8 @@ these features go a long way towards making Perl's regular expressions
 more readable.  Note that you have to be careful not to include the
 pattern delimiter in the comment--perl has no way of knowing you did
 not intend to close the pattern early.  See the C-comment deletion code
-in <a href="perlop.html">the perlop manpage</a>.</p>
+in <a href="perlop.html">the perlop manpage</a>.
+</p>
 <p>
 </p>
 <h2><a name="regular_expressions">Regular Expressions</a></h2>
@@ -125,7 +136,9 @@ the Version 8 regex routines.  (The routines are derived
 of the V8 routines.)  See <a href="#version_8_regular_expressions">Version 8 Regular Expressions</a> for
 details.</p>
 <p>In particular the following metacharacters have their standard <em>egrep</em>-ish
-meanings:</p>
+meanings:
+
+        </p>
 <pre>
     \   Quote the next metacharacter
     ^   Match the beginning of the line
@@ -143,13 +156,16 @@ string as a multi-line buffer, such that the ``^'' will match after any
 newline within the string, and ``$'' will match before any newline.  At the
 cost of a little more overhead, you can do this by using the /m modifier
 on the pattern match operator.  (Older programs did this by setting <code>$*</code>,
-but this practice is now deprecated.)</p>
+but this practice is now deprecated.)
+  </p>
 <p>To simplify multi-line substitutions, the ``.'' character never matches a
 newline unless you use the <code>/s</code> modifier, which in effect tells Perl to pretend
 the string is a single line--even if it isn't.  The <code>/s</code> modifier also
 overrides the setting of <code>$*</code>, in case you have some (badly behaved) older
-code that sets it in another module.</p>
-<p>The following standard quantifiers are recognized:</p>
+code that sets it in another module.
+ </p>
+<p>The following standard quantifiers are recognized:
+       </p>
 <pre>
     *      Match 0 or more times
     +      Match 1 or more times
@@ -170,7 +186,9 @@ be seen in the error message generated by code such as this:</p>
 many times as possible (given a particular starting location) while still
 allowing the rest of the pattern to match.  If you want it to match the
 minimum number of times possible, follow the quantifier with a ``?''.  Note
-that the meanings don't change, just the ``greediness'':</p>
+that the meanings don't change, just the ``greediness'':
+  
+      </p>
 <pre>
     *?     Match 0 or more times
     +?     Match 1 or more times
@@ -179,7 +197,9 @@ that the meanings don't change, just the ``greediness'':</p>
     {n,}?  Match at least n times
     {n,m}? Match at least n but not more than m times</pre>
 <p>Because patterns are processed as double quoted strings, the following
-also work:</p>
+also work:
+          
+   </p>
 <pre>
     \t          tab                   (HT, TAB)
     \n          newline               (LF, NL)
@@ -200,12 +220,15 @@ also work:</p>
     \Q          quote (disable) pattern metacharacters till \E</pre>
 <p>If <code>use locale</code> is in effect, the case map used by <code>\l</code>, <code>\L</code>, <code>\u</code>
 and <code>\U</code> is taken from the current locale.  See <a href="perllocale.html">the perllocale manpage</a>.  For
-documentation of <code>\N{name}</code>, see <em>charnames</em>.</p>
+documentation of <code>\N{name}</code>, see <a href="../../charnames.html">the charnames manpage</a>.</p>
 <p>You cannot include a literal <code>$</code> or <code>@</code> within a <code>\Q</code> sequence.
 An unescaped <code>$</code> or <code>@</code> interpolates the corresponding variable,
 while escaping will cause the literal string <code>\$</code> to be matched.
 You'll need to write something like <code>m/\Quser\E\@\Qhost/</code>.</p>
-<p>In addition, Perl defines the following:</p>
+<p>In addition, Perl defines the following:
+
+         
+ </p>
 <pre>
     \w  Match a &quot;word&quot; character (alphanumeric plus &quot;_&quot;)
     \W  Match a non-&quot;word&quot; character
@@ -232,12 +255,17 @@ as endpoints of a range, that's not a range, the ``-'' is understood
 literally.  If Unicode is in effect, <code>\s</code> matches also ``\x{85}'',
 ``\x{2028}, and ''\x{2029}``, see <a href="perlunicode.html">the perlunicode manpage</a> for more details about
 <code>\pP</code>, <code>\PP</code>, and <code>\X</code>, and <a href="perluniintro.html">the perluniintro manpage</a> about Unicode in general.
-You can define your own <code>\p</code> and <code>\P</code> properties, see <a href="perlunicode.html">the perlunicode manpage</a>.</p>
-<p>The POSIX character class syntax</p>
+You can define your own <code>\p</code> and <code>\P</code> properties, see <a href="perlunicode.html">the perlunicode manpage</a>.
+  </p>
+<p>The POSIX character class syntax
+</p>
 <pre>
     [:class:]</pre>
 <p>is also available.  The available classes and their backslash
-equivalents (if available) are as follows:</p>
+equivalents (if available) are as follows:
+
+      
+      </p>
 <pre>
     alpha
     alnum
@@ -254,25 +282,26 @@ equivalents (if available) are as follows:</p>
     word        \w      [3]
     xdigit</pre>
 <dl>
-<dt><strong><a name="item__5b1_5d">[1]</a></strong><br />
-</dt>
+<dt><strong><a name="item__5b1_5d">[1]</a></strong>
+
 <dd>
-A GNU extension equivalent to <code>[ \t]</code>, `all horizontal whitespace'.
+<p>A GNU extension equivalent to <code>[ \t]</code>, ``all horizontal whitespace''.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__5b2_5d">[2]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__5b2_5d">[2]</a></strong>
+
 <dd>
-Not exactly equivalent to <code>\s</code> since the <code>[[:space:]]</code> includes
-also the (very rare) `vertical tabulator', ``\ck'', chr(11).
+<p>Not exactly equivalent to <code>\s</code> since the <code>[[:space:]]</code> includes
+also the (very rare) ``vertical tabulator'', ``\ck'', chr(11).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__5b3_5d">[3]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__5b3_5d">[3]</a></strong>
+
 <dd>
-A Perl extension, see above.
+<p>A Perl extension, see above.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>For example use <code>[:upper:]</code> to match all the uppercase characters.
 Note that the <code>[]</code> are part of the <code>[::]</code> construct, not part of the
 whole character class.  For example:</p>
@@ -280,7 +309,8 @@ whole character class.  For example:</p>
     [01[:alpha:]%]</pre>
 <p>matches zero, one, any alphabetic character, and the percentage sign.</p>
 <p>The following equivalences to Unicode \p{} constructs and equivalent
-backslash character classes (if available), will hold:</p>
+backslash character classes (if available), will hold:
+  </p>
 <pre>
     [:...:]     \p{...}         backslash</pre>
 <pre>
@@ -302,47 +332,54 @@ backslash character classes (if available), will hold:</p>
 <p>For example <code>[:lower:]</code> and <code>\p{IsLower}</code> are equivalent.</p>
 <p>If the <code>utf8</code> pragma is not used but the <code>locale</code> pragma is, the
 classes correlate with the usual <code>isalpha(3)</code> interface (except for
-`word' and `blank').</p>
+``word'' and ``blank'').</p>
 <p>The assumedly non-obviously named classes are:</p>
 <dl>
-<dt><strong><a name="item_cntrl">cntrl</a></strong><br />
-</dt>
+<dt><strong><a name="item_cntrl_x_3ccntrl_3e">cntrl
+</a></strong>
+
 <dd>
-Any control character.  Usually characters that don't produce output as
+<p>Any control character.  Usually characters that don't produce output as
 such but instead control the terminal somehow: for example newline and
 backspace are control characters.  All characters with <code>ord()</code> less than
 32 are most often classified as control characters (assuming ASCII,
 the ISO Latin character sets, and Unicode), as is the character with
-the <code>ord()</code> value of 127 (<code>DEL</code>).
+the <code>ord()</code> value of 127 (<code>DEL</code>).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_graph">graph</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_graph_x_3cgraph_3e">graph
+</a></strong>
+
 <dd>
-Any alphanumeric or punctuation (special) character.
+<p>Any alphanumeric or punctuation (special) character.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_print">print</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_print_x_3cprint_3e">print
+</a></strong>
+
 <dd>
-Any alphanumeric or punctuation (special) character or the space character.
+<p>Any alphanumeric or punctuation (special) character or the space character.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_punct">punct</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_punct_x_3cpunct_3e">punct
+</a></strong>
+
 <dd>
-Any punctuation (special) character.
+<p>Any punctuation (special) character.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_xdigit">xdigit</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_xdigit_x_3cxdigit_3e">xdigit
+</a></strong>
+
 <dd>
-Any hexadecimal digit.  Though this may feel silly ([0-9A-Fa-f] would
-work just fine) it is included for completeness.
+<p>Any hexadecimal digit.  Though this may feel silly ([0-9A-Fa-f] would
+work just fine) it is included for completeness.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>You can negate the [::] character classes by prefixing the class name
-with a '^'. This is a Perl extension.  For example:</p>
+with a '^'. This is a Perl extension.  For example:
+</p>
 <pre>
     POSIX       traditional Unicode</pre>
 <pre>
@@ -353,7 +390,11 @@ with a '^'. This is a Perl extension.  For example:</p>
 only supported within a character class.  The POSIX character classes
 [.cc.] and [=cc=] are recognized but <strong>not</strong> supported and trying to
 use them will cause an error.</p>
-<p>Perl defines the following zero-width assertions:</p>
+<p>Perl defines the following zero-width assertions:
+  
+
+
+     </p>
 <pre>
     \b  Match a word boundary
     \B  Match a non-(word boundary)
@@ -372,7 +413,8 @@ The <code>\A</code> and <code>\Z</code> are just like ``^'' and ``$'', except th
 won't match multiple times when the <code>/m</code> modifier is used, while
 ``^'' and ``$'' will match at every internal line boundary.  To match
 the actual end of the string and not ignore an optional trailing
-newline, use <code>\z</code>.</p>
+newline, use <code>\z</code>.
+    </p>
 <p>The <code>\G</code> assertion can be used to chain global matches (using
 <code>m//g</code>), as described in <a href="perlop.html#regexp_quotelike_operators">Regexp Quote-Like Operators in the perlop manpage</a>.
 It is also useful when writing <code>lex</code>-like scanners, when you have
@@ -383,14 +425,17 @@ an lvalue: see <a href="perlfunc.html#pos">pos in the perlfunc manpage</a>. Curr
 supported when anchored to the start of the pattern; while it
 is permitted to use it elsewhere, as in <code>/(?&lt;=\G..)./g</code>, some
 such uses (<code>/.\G/g</code>, for example) currently cause problems, and
-it is recommended that you avoid such usage for now.</p>
+it is recommended that you avoid such usage for now.
+</p>
 <p>The bracketing construct <code>( ... )</code> creates capture buffers.  To
 refer to the digit'th buffer use \&lt;digit&gt; within the
 match.  Outside the match use ``$'' instead of ``\''.  (The
 \&lt;digit&gt; notation works in certain circumstances outside 
 the match.  See the warning below about \1 vs $1 for details.)
 Referring back to another part of the match is called a
-<em>backreference</em>.</p>
+<em>backreference</em>.
+ 
+ </p>
 <p>There is no limit to the number of captured substrings that you may
 use.  However Perl also uses \10, \11, etc. as aliases for \010,
 \011, etc.  (Recall that 0 means octal, so \011 is the character at
@@ -422,13 +467,16 @@ everything before the matched string.  <code>$'</code> returns everything
 after the matched string. And <code>$^N</code> contains whatever was matched by
 the most-recently closed group (submatch). <code>$^N</code> can be used in
 extended patterns (see below), for example to assign a submatch to a
-variable.</p>
+variable. 
+    </p>
 <p>The numbered match variables ($1, $2, $3, etc.) and the related punctuation
 set (<code>$+</code>, <code>$&amp;</code>, <code>$`</code>, <code>$'</code>, and <code>$^N</code>) are all dynamically scoped
 until the end of the enclosing block or until the next successful
-match, whichever comes first.  (See <a href="perlsyn.html#compound_statements">Compound Statements in the perlsyn manpage</a>.)</p>
+match, whichever comes first.  (See <a href="perlsyn.html#compound_statements">Compound Statements in the perlsyn manpage</a>.)
+    
+        </p>
 <p><strong>NOTE</strong>: failed matches in Perl do not reset the match variables,
-which makes easier to write code that tests for a series of more
+which makes it easier to write code that tests for a series of more
 specific cases and remembers the best match.</p>
 <p><strong>WARNING</strong>: Once Perl sees that you need one of <code>$&amp;</code>, <code>$`</code>, or
 <code>$'</code> anywhere in the program, it has to provide them for every
@@ -442,7 +490,8 @@ parentheses will not be penalized.  So avoid <code>$&amp;</code>, <code>$'</code
 if you can, but if you can't (and some algorithms really appreciate
 them), once you've used them once, use them at will, because you've
 already paid the price.  As of 5.005, <code>$&amp;</code> is not so costly as the
-other two.</p>
+other two.
+  </p>
 <p>Backslashed metacharacters in Perl are alphanumeric, such as <code>\b</code>,
 <code>\w</code>, <code>\n</code>.  Unlike some other regular expression languages, there
 are no backslashed symbols that aren't alphanumeric.  So anything
@@ -482,26 +531,28 @@ construct because 1) question marks are rare in older regular
 expressions, and 2) whenever you see one, you should stop and
 ``question'' exactly what is going on.  That's psychology...</p>
 <dl>
-<dt><strong><a name="item__28_3f_23text_29"><code>(?#text)</code></a></strong><br />
-</dt>
+<dt><strong><a name="item__28_3f_23text_29_x_3c_28_3f_23_29_3e"><code>(?#text)</code>
+</a></strong>
+
 <dd>
-A comment.  The text is ignored.  If the <code>/x</code> modifier enables
+<p>A comment.  The text is ignored.  If the <code>/x</code> modifier enables
 whitespace formatting, a simple <code>#</code> will suffice.  Note that Perl closes
 the comment as soon as it sees a <code>)</code>, so there is no way to put a literal
-<code>)</code> in the comment.
+<code>)</code> in the comment.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3fimsx_2dimsx_29"><code>(?imsx-imsx)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3fimsx_2dimsx_29_x_3c_28_3f_29_3e"><code>(?imsx-imsx)</code>
+</a></strong>
+
 <dd>
-One or more embedded pattern-match modifiers, to be turned on (or
+<p>One or more embedded pattern-match modifiers, to be turned on (or
 turned off, if preceded by <code>-</code>) for the remainder of the pattern or
 the remainder of the enclosing pattern group (if any). This is
 particularly useful for dynamic patterns, such as those read in from a
 configuration file, read in as an argument, are specified in a table
 somewhere, etc.  Consider the case that some of which want to be case
 sensitive and some do not.  The case insensitive ones need to include
-merely <code>(?i)</code> at the front of the pattern.  For example:
+merely <code>(?i)</code> at the front of the pattern.  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -526,17 +577,18 @@ merely <code>(?i)</code> at the front of the pattern.  For example:
 </dd>
 <dd>
 <p>will match a repeated (<em>including the case</em>!) word <code>blah</code> in any
-case, assuming <a href="#item_x"><code>x</code></a> modifier, and no <a href="#item_i"><code>i</code></a> modifier outside this
+case, assuming <code>x</code> modifier, and no <code>i</code> modifier outside this
 group.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_3apattern_29"><code>(?:pattern)</code></a></strong><br />
-</dt>
-<dt><strong><a name="item__28_3fimsx_2dimsx_3apattern_29"><code>(?imsx-imsx:pattern)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_3apattern_29_x_3c_28_3f_3a_29_3e"><code>(?:pattern)</code>
+</a></strong>
+
+<dt><strong><a name="item__28_3fimsx_2dimsx_3apattern_29"><code>(?imsx-imsx:pattern)</code></a></strong>
+
 <dd>
-This is for clustering, not capturing; it groups subexpressions like
-``()'', but doesn't make backreferences as ``()'' does.  So
+<p>This is for clustering, not capturing; it groups subexpressions like
+``()'', but doesn't make backreferences as ``()'' does.  So</p>
 </dd>
 <dd>
 <pre>
@@ -555,7 +607,7 @@ characters if you don't need to.</p>
 </dd>
 <dd>
 <p>Any letters between <code>?</code> and <code>:</code> act as flags modifiers as with
-<a href="#item__28_3fimsx_2dimsx_29"><code>(?imsx-imsx)</code></a>.  For example,</p>
+<code>(?imsx-imsx)</code>.  For example,</p>
 </dd>
 <dd>
 <pre>
@@ -568,21 +620,23 @@ characters if you don't need to.</p>
 <pre>
     /(?:(?s-i)more.*than).*million/i</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_3dpattern_29"><code>(?=pattern)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_3dpattern_29_x_3c_28_3f_3d_29_3e_x_3clook_2"><code>(?=pattern)</code>
+  </a></strong>
+
 <dd>
-A zero-width positive look-ahead assertion.  For example, <code>/\w+(?=\t)/</code>
-matches a word followed by a tab, without including the tab in <code>$&amp;</code>.
+<p>A zero-width positive look-ahead assertion.  For example, <code>/\w+(?=\t)/</code>
+matches a word followed by a tab, without including the tab in <code>$&amp;</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_21pattern_29"><code>(?!pattern)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_21pattern_29_x_3c_28_3f_21_29_3e_x_3clook_2"><code>(?!pattern)</code>
+  </a></strong>
+
 <dd>
-A zero-width negative look-ahead assertion.  For example <code>/foo(?!bar)/</code>
+<p>A zero-width negative look-ahead assertion.  For example <code>/foo(?!bar)/</code>
 matches any occurrence of ``foo'' that isn't followed by ``bar''.  Note
 however that look-ahead and look-behind are NOT the same thing.  You cannot
-use this for look-behind.
+use this for look-behind.</p>
 </dd>
 <dd>
 <p>If you are looking for a ``bar'' that isn't preceded by a ``foo'', <code>/(?!foo)bar/</code>
@@ -600,28 +654,31 @@ Sometimes it's still easier just to say:</p>
 <dd>
 <p>For look-behind see below.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_3c_3dpattern_29"><code>(?&lt;=pattern)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_3c_3dpattern_29_x_3c_28_3f_3c_3d_29_3e_x_3c"><code>(?&lt;=pattern)</code>
+  </a></strong>
+
 <dd>
-A zero-width positive look-behind assertion.  For example, <code>/(?&lt;=\t)\w+/</code>
+<p>A zero-width positive look-behind assertion.  For example, <code>/(?&lt;=\t)\w+/</code>
 matches a word that follows a tab, without including the tab in <code>$&amp;</code>.
-Works only for fixed-width look-behind.
+Works only for fixed-width look-behind.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_3c_21pattern_29"><code>(?&lt;!pattern)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_3c_21pattern_29_x_3c_28_3f_3c_21_29_3e_x_3c"><code>(?&lt;!pattern)</code>
+  </a></strong>
+
 <dd>
-A zero-width negative look-behind assertion.  For example <code>/(?&lt;!bar)foo/</code>
+<p>A zero-width negative look-behind assertion.  For example <code>/(?&lt;!bar)foo/</code>
 matches any occurrence of ``foo'' that does not follow ``bar''.  Works
-only for fixed-width look-behind.
+only for fixed-width look-behind.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_7b_code__7d_29"><code>(?{ code })</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_7b_code__7d_29_x_3c_28_3f_7b_7d_29_3e_x_3cr"><code>(?{ code })</code>
+   </a></strong>
+
 <dd>
-<strong>WARNING</strong>: This extended regular expression feature is considered
-highly experimental, and may be changed or deleted without notice.
+<p><strong>WARNING</strong>: This extended regular expression feature is considered
+highly experimental, and may be changed or deleted without notice.</p>
 </dd>
 <dd>
 <p>This zero-width assertion evaluates any embedded Perl code.  It
@@ -674,7 +731,7 @@ are unwound.</p>
 <p>This assertion may be used as a <a href="#item__28_3f_28condition_29yes_2dpattern_7cno_2dpattern_"><code>(?(condition)yes-pattern|no-pattern)</code></a>
 switch.  If <em>not</em> used in this way, the result of evaluation of
 <code>code</code> is put into the special variable <code>$^R</code>.  This happens
-immediately, so <code>$^R</code> can be used from other <a href="#item__28_3f_7b_code__7d_29"><code>(?{ code })</code></a> assertions
+immediately, so <code>$^R</code> can be used from other <code>(?{ code })</code> assertions
 inside the same regular expression.</p>
 </dd>
 <dd>
@@ -685,7 +742,7 @@ value of <code>$^R</code> is restored if the assertion is backtracked; compare
 <dd>
 <p>For reasons of security, this construct is forbidden if the regular
 expression involves run-time interpolation of variables, unless the
-perilous <code>use re 'eval'</code> pragma has been used (see <em>re</em>), or the
+perilous <code>use re 'eval'</code> pragma has been used (see <a href="../../re.html">the re manpage</a>), or the
 variables contain results of <code>qr//</code> operator (see
 <a href="perlop.html#qr_string_imosx">qr/STRING/imosx in the perlop manpage</a>).</p>
 </dd>
@@ -708,14 +765,17 @@ so you should only do so if you are also using taint checking.
 Better yet, use the carefully constrained evaluation within a Safe
 compartment.  See <a href="perlsec.html">the perlsec manpage</a> for details about both these mechanisms.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_3f_7b_code__7d_29"><code>(??{ code })</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_3f_7b_code__7d_29_x_3c_28_3f_3f_7b_7d_29_3e"><code>(??{ code })</code>
+
+  
+  </a></strong>
+
 <dd>
-<strong>WARNING</strong>: This extended regular expression feature is considered
+<p><strong>WARNING</strong>: This extended regular expression feature is considered
 highly experimental, and may be changed or deleted without notice.
 A simplified version of the syntax may be introduced for commonly
-used idioms.
+used idioms.</p>
 </dd>
 <dd>
 <p>This is a ``postponed'' regular subexpression.  The <code>code</code> is evaluated
@@ -742,12 +802,13 @@ where the <code>code</code> ends are currently somewhat convoluted.</p>
              \)
           }x;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_3epattern_29"><code>(?&gt;pattern)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_3epattern_29_x_3cbacktrack_3e_x_3cbacktrack"><code>(?&gt;pattern)</code>
+ </a></strong>
+
 <dd>
-<strong>WARNING</strong>: This extended regular expression feature is considered
-highly experimental, and may be changed or deleted without notice.
+<p><strong>WARNING</strong>: This extended regular expression feature is considered
+highly experimental, and may be changed or deleted without notice.</p>
 </dd>
 <dd>
 <p>An ``independent'' subexpression, one which matches the substring
@@ -769,7 +830,7 @@ group <code>ab</code> (see <a href="#backtracking">Backtracking</a>).  In partic
 this makes the tail match.</p>
 </dd>
 <dd>
-<p>An effect similar to <a href="#item__28_3f_3epattern_29"><code>(?&gt;pattern)</code></a> may be achieved by writing
+<p>An effect similar to <code>(?&gt;pattern)</code> may be achieved by writing
 <code>(?=(pattern))\1</code>.  This matches the same substring as a standalone
 <code>a+</code>, and the following <code>\1</code> eats the matched string; it therefore
 makes a zero-length assertion into an analogue of <code>(?&gt;...)</code>.
@@ -855,14 +916,15 @@ one of these:</p>
 <p>Which one you pick depends on which of these expressions better reflects
 the above specification of comments.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_28condition_29yes_2dpattern_7cno_2dpattern_"><code>(?(condition)yes-pattern|no-pattern)</code></a></strong><br />
-</dt>
-<dt><strong><a name="item__28_3f_28condition_29yes_2dpattern_29"><code>(?(condition)yes-pattern)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_28condition_29yes_2dpattern_7cno_2dpattern_"><code>(?(condition)yes-pattern|no-pattern)</code>
+</a></strong>
+
+<dt><strong><a name="item__28_3f_28condition_29yes_2dpattern_29"><code>(?(condition)yes-pattern)</code></a></strong>
+
 <dd>
-<strong>WARNING</strong>: This extended regular expression feature is considered
-highly experimental, and may be changed or deleted without notice.
+<p><strong>WARNING</strong>: This extended regular expression feature is considered
+highly experimental, and may be changed or deleted without notice.</p>
 </dd>
 <dd>
 <p>Conditional expression.  <code>(condition)</code> should be either an integer in
@@ -883,10 +945,12 @@ matched), or look-ahead/look-behind/evaluate zero-width assertion.</p>
 <p>matches a chunk of non-parentheses, possibly included in parentheses
 themselves.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
-<h2><a name="backtracking">Backtracking</a></h2>
+<h2><a name="backtracking_x_backtrack__x_backtracking_">Backtracking
+ </a></h2>
 <p>NOTE: This section presents an abstract approximation of regular
 expression behavior.  For a more rigorous (and complicated) view of
 the rules involved in selecting a match among possible alternatives,
@@ -997,14 +1061,14 @@ followed by ``123''.  You might try to write that as</p>
 claims that there is no 123 in the string.  Here's a clearer picture of
 why that pattern matches, contrary to popular expectations:</p>
 <pre>
-    $x = 'ABC123' ;
-    $y = 'ABC445' ;</pre>
+    $x = 'ABC123';
+    $y = 'ABC445';</pre>
 <pre>
-    print &quot;1: got $1\n&quot; if $x =~ /^(ABC)(?!123)/ ;
-    print &quot;2: got $1\n&quot; if $y =~ /^(ABC)(?!123)/ ;</pre>
+    print &quot;1: got $1\n&quot; if $x =~ /^(ABC)(?!123)/;
+    print &quot;2: got $1\n&quot; if $y =~ /^(ABC)(?!123)/;</pre>
 <pre>
-    print &quot;3: got $1\n&quot; if $x =~ /^(\D*)(?!123)/ ;
-    print &quot;4: got $1\n&quot; if $y =~ /^(\D*)(?!123)/ ;</pre>
+    print &quot;3: got $1\n&quot; if $x =~ /^(\D*)(?!123)/;
+    print &quot;4: got $1\n&quot; if $y =~ /^(\D*)(?!123)/;</pre>
 <p>This prints</p>
 <pre>
     2: got ABC
@@ -1034,8 +1098,8 @@ are zero-width expressions--they only look, but don't consume any
 of the string in their match.  So rewriting this way produces what
 you'd expect; that is, case 5 will fail, but case 6 succeeds:</p>
 <pre>
-    print &quot;5: got $1\n&quot; if $x =~ /^(\D*)(?=\d)(?!123)/ ;
-    print &quot;6: got $1\n&quot; if $y =~ /^(\D*)(?=\d)(?!123)/ ;</pre>
+    print &quot;5: got $1\n&quot; if $x =~ /^(\D*)(?=\d)(?!123)/;
+    print &quot;6: got $1\n&quot; if $y =~ /^(\D*)(?=\d)(?!123)/;</pre>
 <pre>
     6: got ABC</pre>
 <p>In other words, the two zero-width assertions next to each other work as though
@@ -1069,7 +1133,8 @@ where side-effects of look-ahead <em>might</em> have influenced the
 following match, see <code>&lt; (?&gt;pattern) &gt;</code>.</p>
 <p>
 </p>
-<h2><a name="version_8_regular_expressions">Version 8 Regular Expressions</a></h2>
+<h2><a name="version_8_regular_expressions_x_regular_expression__version_8__x_regex__version_8__x_regexp__version_8_">Version 8 Regular Expressions
+  </a></h2>
 <p>In case you're not familiar with the ``regular'' Version 8 regex
 routines, here are the pattern-matching rules not described above.</p>
 <p>Any single character matches itself, unless it is a <em>metacharacter</em>
@@ -1245,12 +1310,12 @@ one match at a given position is possible.  This section describes the
 notion of better/worse for combining operators.  In the description
 below <a href="#item_s"><code>S</code></a> and <code>T</code> are regular subexpressions.</p>
 <dl>
-<dt><strong><a name="item_st"><code>ST</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_st"><code>ST</code></a></strong>
+
 <dd>
-Consider two possible matches, <code>AB</code> and <code>A'B'</code>, <code>A</code> and <code>A'</code> are
+<p>Consider two possible matches, <code>AB</code> and <code>A'B'</code>, <code>A</code> and <code>A'</code> are
 substrings which can be matched by <a href="#item_s"><code>S</code></a>, <code>B</code> and <code>B'</code> are substrings
-which can be matched by <code>T</code>.
+which can be matched by <code>T</code>.</p>
 </dd>
 <dd>
 <p>If <code>A</code> is better match for <a href="#item_s"><code>S</code></a> than <code>A'</code>, <code>AB</code> is a better
@@ -1260,83 +1325,84 @@ match than <code>A'B'</code>.</p>
 <p>If <code>A</code> and <code>A'</code> coincide: <code>AB</code> is a better match than <code>AB'</code> if
 <code>B</code> is better match for <code>T</code> than <code>B'</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s_7ct"><code>S|T</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s_7ct"><code>S|T</code></a></strong>
+
 <dd>
-When <a href="#item_s"><code>S</code></a> can match, it is a better match than when only <code>T</code> can match.
+<p>When <a href="#item_s"><code>S</code></a> can match, it is a better match than when only <code>T</code> can match.</p>
 </dd>
 <dd>
 <p>Ordering of two matches for <a href="#item_s"><code>S</code></a> is the same as for <a href="#item_s"><code>S</code></a>.  Similar for
 two matches for <code>T</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s"><code>S{REPEAT_COUNT}</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s"><code>S{REPEAT_COUNT}</code></a></strong>
+
 <dd>
-Matches as <code>SSS...S</code> (repeated as many times as necessary).
+<p>Matches as <code>SSS...S</code> (repeated as many times as necessary).</p>
 </dd>
-<p></p>
-<dt><strong><code>S{min,max}</code></strong><br />
-</dt>
+</li>
+<dt><strong><code>S{min,max}</code></strong>
+
 <dd>
-Matches as <a href="#item_s"><code>S{max}|S{max-1}|...|S{min+1}|S{min}</code></a>.
+<p>Matches as <a href="#item_s"><code>S{max}|S{max-1}|...|S{min+1}|S{min}</code></a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s_7bmin_2cmax_7d_3f"><code>S{min,max}?</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s_7bmin_2cmax_7d_3f"><code>S{min,max}?</code></a></strong>
+
 <dd>
-Matches as <a href="#item_s"><code>S{min}|S{min+1}|...|S{max-1}|S{max}</code></a>.
+<p>Matches as <a href="#item_s"><code>S{min}|S{min+1}|...|S{max-1}|S{max}</code></a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s_3f_2c_s_2a_2c_s_2b"><code>S?</code>, <code>S*</code>, <code>S+</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s_3f_2c_s_2a_2c_s_2b"><code>S?</code>, <code>S*</code>, <code>S+</code></a></strong>
+
 <dd>
-Same as <a href="#item_s"><code>S{0,1}</code></a>, <a href="#item_s"><code>S{0,BIG_NUMBER}</code></a>, <a href="#item_s"><code>S{1,BIG_NUMBER}</code></a> respectively.
+<p>Same as <a href="#item_s"><code>S{0,1}</code></a>, <a href="#item_s"><code>S{0,BIG_NUMBER}</code></a>, <a href="#item_s"><code>S{1,BIG_NUMBER}</code></a> respectively.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s_3f_3f_2c_s_2a_3f_2c_s_2b_3f"><code>S??</code>, <code>S*?</code>, <code>S+?</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s_3f_3f_2c_s_2a_3f_2c_s_2b_3f"><code>S??</code>, <code>S*?</code>, <code>S+?</code></a></strong>
+
 <dd>
-Same as <code>S{0,1}?</code>, <code>S{0,BIG_NUMBER}?</code>, <code>S{1,BIG_NUMBER}?</code> respectively.
+<p>Same as <code>S{0,1}?</code>, <code>S{0,BIG_NUMBER}?</code>, <code>S{1,BIG_NUMBER}?</code> respectively.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_3es_29"><code>(?&gt;S)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_3es_29"><code>(?&gt;S)</code></a></strong>
+
 <dd>
-Matches the best match for <a href="#item_s"><code>S</code></a> and only that.
+<p>Matches the best match for <a href="#item_s"><code>S</code></a> and only that.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_3ds_29_2c__28_3f_3c_3ds_29"><code>(?=S)</code>, <code>(?&lt;=S)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_3ds_29_2c__28_3f_3c_3ds_29"><code>(?=S)</code>, <code>(?&lt;=S)</code></a></strong>
+
 <dd>
-Only the best match for <a href="#item_s"><code>S</code></a> is considered.  (This is important only if
+<p>Only the best match for <a href="#item_s"><code>S</code></a> is considered.  (This is important only if
 <a href="#item_s"><code>S</code></a> has capturing parentheses, and backreferences are used somewhere
-else in the whole regular expression.)
+else in the whole regular expression.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_21s_29_2c__28_3f_3c_21s_29"><code>(?!S)</code>, <code>(?&lt;!S)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_21s_29_2c__28_3f_3c_21s_29"><code>(?!S)</code>, <code>(?&lt;!S)</code></a></strong>
+
 <dd>
-For this grouping operator there is no need to describe the ordering, since
-only whether or not <a href="#item_s"><code>S</code></a> can match is important.
+<p>For this grouping operator there is no need to describe the ordering, since
+only whether or not <a href="#item_s"><code>S</code></a> can match is important.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28_3f_3f_7b_expr__7d_29"><code>(??{ EXPR })</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28_3f_3f_7b_expr__7d_29"><code>(??{ EXPR })</code></a></strong>
+
 <dd>
-The ordering is the same as for the regular expression which is
-the result of EXPR.
+<p>The ordering is the same as for the regular expression which is
+the result of EXPR.</p>
 </dd>
-<p></p>
-<dt><strong><code>(?(condition)yes-pattern|no-pattern)</code></strong><br />
-</dt>
+</li>
+<dt><strong><code>(?(condition)yes-pattern|no-pattern)</code></strong>
+
 <dd>
-Recall that which of <code>yes-pattern</code> or <code>no-pattern</code> actually matches is
+<p>Recall that which of <code>yes-pattern</code> or <code>no-pattern</code> actually matches is
 already determined.  The ordering of the matches is the same as for the
-chosen subexpression.
+chosen subexpression.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>The above recipes describe the ordering of matches <em>at a given position</em>.
 One more rule is needed to understand how a match is determined for the
 whole regular expression: a match at an earlier position is always better
@@ -1344,10 +1410,10 @@ than a match at a later position.</p>
 <p>
 </p>
 <h2><a name="creating_custom_re_engines">Creating custom RE engines</a></h2>
-<p>Overloaded constants (see <em>overload</em>) provide a simple way to extend
+<p>Overloaded constants (see <a href="../../overload.html">the overload manpage</a>) provide a simple way to extend
 the functionality of the RE engine.</p>
 <p>Suppose that we want to enable a new RE escape-sequence <code>\Y|</code> which
-matches at boundary between white-space characters and non-whitespace
+matches at boundary between whitespace characters and non-whitespace
 characters.  Note that <code>(?=\S)(?&lt;!\S)|(?!\S)(?&lt;=\S)</code> matches exactly
 at these positions, so we want to have each <code>\Y|</code> in the place of the
 more complicated version.  We can create a module <code>customre</code> to do
@@ -1364,7 +1430,9 @@ this:</p>
 <pre>
     sub invalid { die &quot;/$_[0]/: invalid escape '\\$_[1]'&quot;}</pre>
 <pre>
-    my %rules = ( '\\' =&gt; '\\', 
+    # We must also take care of not escaping the legitimate \\Y|
+    # sequence, hence the presence of '\\' in the conversion rules.
+    my %rules = ( '\\' =&gt; '\\\\', 
                   'Y|' =&gt; qr/(?=\S)(?&lt;!\S)|(?!\S)(?&lt;=\S)/ );
     sub convert {
       my $re = shift;
@@ -1376,7 +1444,7 @@ this:</p>
     }</pre>
 <p>Now <code>use customre</code> enables the new escape in constant regular
 expressions, i.e., those without any runtime variable interpolations.
-As documented in <em>overload</em>, this conversion will work only over
+As documented in <a href="../../overload.html">the overload manpage</a>, this conversion will work only over
 literal parts of regular expressions.  For <code>\Y|$re\Y|</code> the variable
 part of this regular expression needs to be converted explicitly
 (but only if the special meaning of <code>\Y|</code> should be enabled inside $re):</p>

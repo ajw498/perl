@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlclib - Internal replacements for standard C library functions</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -57,30 +59,31 @@ they ought to use instead of the more normal C functions.</p>
 <h2><a name="conventions">Conventions</a></h2>
 <p>In the following tables:</p>
 <dl>
-<dt><strong><a name="item_t"><code>t</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_t"><code>t</code></a></strong>
+
 <dd>
-is a type.
+<p>is a type.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_p"><code>p</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_p"><code>p</code></a></strong>
+
 <dd>
-is a pointer.
+<p>is a pointer.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_n"><code>n</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_n"><code>n</code></a></strong>
+
 <dd>
-is a number.
+<p>is a number.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s"><code>s</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s"><code>s</code></a></strong>
+
 <dd>
-is a string.
+<p>is a string.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p><code>sv</code>, <code>av</code>, <code>hv</code>, etc. represent variables of their respective types.</p>
 <p>
 </p>
@@ -143,8 +146,8 @@ different from their C library counterparts:</p>
 <pre>
     Instead Of:                         Use:</pre>
 <pre>
-    t* p = malloc(n)                    New(id, p, n, t)
-    t* p = calloc(n, s)                 Newz(id, p, n, t)
+    t* p = malloc(n)                    Newx(id, p, n, t)
+    t* p = calloc(n, s)                 Newxz(id, p, n, t)
     p = realloc(p, n)                   Renew(p, n, t)
     memcpy(dst, src, n)                 Copy(src, dst, n, t)
     memmove(dst, src, n)                Move(src, dst, n, t)
@@ -172,7 +175,7 @@ instead of raw <code>char *</code> strings:</p>
     sprintf(s, fmt, ...)        sv_setpvf(sv, fmt, ...)</pre>
 <p>Note also the existence of <code>sv_catpvf</code> and <code>sv_vcatpvfn</code>, combining
 concatenation with formatting.</p>
-<p>Sometimes instead of zeroing the allocated heap by using <code>Newz()</code> you
+<p>Sometimes instead of zeroing the allocated heap by using <code>Newxz()</code> you
 should consider ``poisoning'' the data.  This means writing a bit
 pattern into it that should be illegal as pointers (and floating point
 numbers), and also hopefully surprising enough as integers, so that

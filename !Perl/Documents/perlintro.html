@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlintro -- a brief introduction and overview of Perl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -140,10 +142,10 @@ occasionally to clarify issues of precedence.</p>
 <h2><a name="perl_variable_types">Perl variable types</a></h2>
 <p>Perl has three main variable types: scalars, arrays, and hashes.</p>
 <dl>
-<dt><strong><a name="item_scalars">Scalars</a></strong><br />
-</dt>
+<dt><strong><a name="item_scalars">Scalars</a></strong>
+
 <dd>
-A scalar represents a single value:
+<p>A scalar represents a single value:</p>
 </dd>
 <dd>
 <pre>
@@ -176,11 +178,11 @@ it's set implicitly by certain looping constructs.</p>
 <pre>
     print;          # prints contents of $_ by default</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_arrays">Arrays</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_arrays">Arrays</a></strong>
+
 <dd>
-An array represents a list of values:
+<p>An array represents a list of values:</p>
 </dd>
 <dd>
 <pre>
@@ -244,11 +246,11 @@ you get a scalar.</p>
 line arguments to your script) and <code>@_</code> (the arguments passed to a
 subroutine).  These are documented in <a href="perlvar.html">the perlvar manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_hashes">Hashes</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_hashes">Hashes</a></strong>
+
 <dd>
-A hash represents a set of key/value pairs:
+<p>A hash represents a set of key/value pairs:</p>
 </dd>
 <dd>
 <pre>
@@ -291,7 +293,8 @@ The most well known of these is <code>%ENV</code> which contains environment
 variables.  Read all about it (and other special variables) in
 <a href="perlvar.html">the perlvar manpage</a>.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Scalars, arrays and hashes are documented more fully in <a href="perldata.html">the perldata manpage</a>.</p>
 <p>More complex data types can be constructed using references, which allow
 you to build lists and hashes within lists and hashes.</p>
@@ -358,8 +361,8 @@ information about modules and CPAN).</p>
 the next section for information on comparison and boolean logic operators, 
 which are commonly used in conditional statements.</p>
 <dl>
-<dt><strong><a name="item_if">if</a></strong><br />
-</dt>
+<dt><strong><a name="item_if">if</a></strong>
+
 <dd>
 <pre>
     if ( condition ) {
@@ -400,8 +403,8 @@ conditional blocks more English like:</p>
     print &quot;Yow!&quot; if $zippy;
     print &quot;We have no bananas&quot; unless $bananas;</pre>
 </dd>
-<dt><strong><a name="item_while">while</a></strong><br />
-</dt>
+<dt><strong><a name="item_while">while</a></strong>
+
 <dd>
 <pre>
     while ( condition ) {
@@ -424,10 +427,10 @@ conditional blocks more English like:</p>
 <pre>
     print &quot;LA LA LA\n&quot; while 1;          # loops forever</pre>
 </dd>
-<dt><strong><a name="item_for">for</a></strong><br />
-</dt>
+<dt><strong><a name="item_for">for</a></strong>
+
 <dd>
-Exactly like C:
+<p>Exactly like C:</p>
 </dd>
 <dd>
 <pre>
@@ -439,9 +442,9 @@ Exactly like C:
 <p>The C style for loop is rarely needed in Perl since Perl provides
 the more friendly list scanning <a href="#item_foreach"><code>foreach</code></a> loop.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_foreach">foreach</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_foreach">foreach</a></strong>
+
 <dd>
 <pre>
     foreach (@array) {
@@ -468,8 +471,8 @@ about any given function by using <code>perldoc -f functionname</code>.</p>
 <p>Perl operators are documented in full in <a href="perlop.html">the perlop manpage</a>, but here are a few
 of the most common ones:</p>
 <dl>
-<dt><strong><a name="item_arithmetic">Arithmetic</a></strong><br />
-</dt>
+<dt><strong><a name="item_arithmetic">Arithmetic</a></strong>
+
 <dd>
 <pre>
     +   addition
@@ -477,8 +480,8 @@ of the most common ones:</p>
     *   multiplication
     /   division</pre>
 </dd>
-<dt><strong><a name="item_numeric_comparison">Numeric comparison</a></strong><br />
-</dt>
+<dt><strong><a name="item_numeric_comparison">Numeric comparison</a></strong>
+
 <dd>
 <pre>
     ==  equality
@@ -488,8 +491,8 @@ of the most common ones:</p>
     &lt;=  less than or equal
     &gt;=  greater than or equal</pre>
 </dd>
-<dt><strong><a name="item_string_comparison">String comparison</a></strong><br />
-</dt>
+<dt><strong><a name="item_string_comparison">String comparison</a></strong>
+
 <dd>
 <pre>
     eq  equality
@@ -505,8 +508,8 @@ have special variable types, and Perl needs to know whether to sort
 numerically (where 99 is less than 100) or alphabetically (where 100 comes
 before 99).</p>
 </dd>
-<dt><strong><a name="item_boolean_logic">Boolean logic</a></strong><br />
-</dt>
+<dt><strong><a name="item_boolean_logic">Boolean logic</a></strong>
+
 <dd>
 <pre>
     &amp;&amp;  and
@@ -520,8 +523,8 @@ right.  They're more readable than the C-style operators, but have
 different precedence to <code>&amp;&amp;</code> and friends.  Check <a href="perlop.html">the perlop manpage</a> for more 
 detail.)</p>
 </dd>
-<dt><strong><a name="item_miscellaneous">Miscellaneous</a></strong><br />
-</dt>
+<dt><strong><a name="item_miscellaneous">Miscellaneous</a></strong>
+
 <dd>
 <pre>
     =   assignment
@@ -578,8 +581,8 @@ which filehandle to print to:</p>
 subject of lengthy documentation in <a href="perlrequick.html">the perlrequick manpage</a>, <a href="perlretut.html">the perlretut manpage</a>, and
 elsewhere.  However, in short:</p>
 <dl>
-<dt><strong><a name="item_simple_matching">Simple matching</a></strong><br />
-</dt>
+<dt><strong><a name="item_simple_matching">Simple matching</a></strong>
+
 <dd>
 <pre>
     if (/foo/)       { ... }  # true if $_ contains &quot;foo&quot;
@@ -590,8 +593,8 @@ elsewhere.  However, in short:</p>
 <code>$_</code> by default, or can be bound to another variable using the <code>=~</code>
 binding operator (also documented in <a href="perlop.html">the perlop manpage</a>).</p>
 </dd>
-<dt><strong><a name="item_simple_substitution">Simple substitution</a></strong><br />
-</dt>
+<dt><strong><a name="item_simple_substitution">Simple substitution</a></strong>
+
 <dd>
 <pre>
     s/foo/bar/;               # replaces foo with bar in $_
@@ -601,13 +604,13 @@ binding operator (also documented in <a href="perlop.html">the perlop manpage</a
 <dd>
 <p>The <code>s///</code> substitution operator is documented in <a href="perlop.html">the perlop manpage</a>.</p>
 </dd>
-<dt><strong><a name="item_more_complex_regular_expressions">More complex regular expressions</a></strong><br />
-</dt>
+<dt><strong><a name="item_more_complex_regular_expressions">More complex regular expressions</a></strong>
+
 <dd>
-You don't just have to match on fixed strings.  In fact, you can match
+<p>You don't just have to match on fixed strings.  In fact, you can match
 on just about anything you could dream of by using more complex regular
 expressions.  These are documented at great length in <a href="perlre.html">the perlre manpage</a>, but for
-the meantime, here's a quick cheat sheet:
+the meantime, here's a quick cheat sheet:</p>
 </dd>
 <dd>
 <pre>
@@ -662,13 +665,13 @@ metacharacters in parentheses.</p>
         print;
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_parentheses_for_capturing">Parentheses for capturing</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_parentheses_for_capturing">Parentheses for capturing</a></strong>
+
 <dd>
-As well as grouping, parentheses serve a second purpose.  They can be 
+<p>As well as grouping, parentheses serve a second purpose.  They can be 
 used to capture the results of parts of the regexp match for later use.
-The results end up in <code>$1</code>, <code>$2</code> and so on.
+The results end up in <code>$1</code>, <code>$2</code> and so on.</p>
 </dd>
 <dd>
 <pre>
@@ -681,15 +684,16 @@ The results end up in <code>$1</code>, <code>$2</code> and so on.
         print &quot;Hostname is $2\n&quot;;
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_other_regexp_features">Other regexp features</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_other_regexp_features">Other regexp features</a></strong>
+
 <dd>
-Perl regexps also support backreferences, lookaheads, and all kinds of
+<p>Perl regexps also support backreferences, lookaheads, and all kinds of
 other complex details.  Read all about them in <a href="perlrequick.html">the perlrequick manpage</a>,
-<a href="perlretut.html">the perlretut manpage</a>, and <a href="perlre.html">the perlre manpage</a>.
+<a href="perlretut.html">the perlretut manpage</a>, and <a href="perlre.html">the perlre manpage</a>.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="writing_subroutines">Writing subroutines</a></h2>

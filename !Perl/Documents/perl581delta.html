@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perl581delta - what is new for perl v5.8.1</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -290,7 +292,7 @@ PERL_SIGNALS to <code>unsafe</code>, and the old immediate (and unsafe)
 signal handling behaviour returns.  See <a href="perlrun.html#perl_signals">PERL_SIGNALS in the perlrun manpage</a>
 and <a href="perlipc.html#deferred_signals__safe_signals_">Deferred Signals (Safe Signals) in the perlipc manpage</a>.</p>
 <p>In completely unrelated news, you can now use safe signals with
-POSIX::SigAction.  See <em>POSIX/POSIX::SigAction</em>.</p>
+POSIX::SigAction.  See <a href="../../auto/POSIX/posix__sigaction.html">POSIX::SigAction in the POSIX manpage</a>.</p>
 <p>
 </p>
 <h2><a name="tied_arrays_with_negative_array_indices">Tied Arrays with Negative Array Indices</a></h2>
@@ -333,7 +335,7 @@ If you really want to continue using pseudo-hashes but not to see the
 deprecation warnings, use:</p>
 <pre>
     no warnings 'deprecated';</pre>
-<p>Or you can continue to use the <a href="#item_fields">fields</a> pragma, but please don't
+<p>Or you can continue to use the <a href="../../fields.html">the fields manpage</a> pragma, but please don't
 expect the data structures to be pseudohashes any more.</p>
 <p>
 </p>
@@ -381,71 +383,71 @@ a scalar is encoded internally in UTF-8 (Unicode).</p>
 <h2><a name="updated_modules_and_pragmata">Updated Modules And Pragmata</a></h2>
 <p>The following modules and pragmata have been updated since Perl 5.8.0:</p>
 <dl>
-<dt><strong><a name="item_base">base</a></strong><br />
-</dt>
-<dt><strong><a name="item_b_3a_3abytecode">B::Bytecode</a></strong><br />
-</dt>
+<dt><strong><a name="item_base">base</a></strong>
+
+<dt><strong><a name="item_b_3a_3abytecode">B::Bytecode</a></strong>
+
 <dd>
-In much better shape than it used to be.  Still far from perfect, but
-maybe worth a try.
+<p>In much better shape than it used to be.  Still far from perfect, but
+maybe worth a try.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b_3a_3aconcise">B::Concise</a></strong><br />
-</dt>
-<dt><strong><a name="item_b_3a_3adeparse">B::Deparse</a></strong><br />
-</dt>
-<dt><strong><a name="item_benchmark">Benchmark</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b_3a_3aconcise">B::Concise</a></strong>
+
+<dt><strong><a name="item_b_3a_3adeparse">B::Deparse</a></strong>
+
+<dt><strong><a name="item_benchmark">Benchmark</a></strong>
+
 <dd>
-An optional feature, <code>:hireswallclock</code>, now allows for high
-resolution wall clock times (uses Time::HiRes).
+<p>An optional feature, <code>:hireswallclock</code>, now allows for high
+resolution wall clock times (uses Time::HiRes).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_byteloader">ByteLoader</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_byteloader">ByteLoader</a></strong>
+
 <dd>
-See B::Bytecode.
+<p>See B::Bytecode.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_bytes">bytes</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_bytes">bytes</a></strong>
+
 <dd>
-Now has bytes::substr.
+<p>Now has bytes::substr.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_cgi">CGI</a></strong><br />
-</dt>
-<dt><strong><a name="item_charnames">charnames</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_cgi">CGI</a></strong>
+
+<dt><strong><a name="item_charnames">charnames</a></strong>
+
 <dd>
-One can now have custom character name aliases.
+<p>One can now have custom character name aliases.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_cpan">CPAN</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_cpan">CPAN</a></strong>
+
 <dd>
-There is now a simple command line frontend to the CPAN.pm
-module called <em>cpan</em>.
+<p>There is now a simple command line frontend to the CPAN.pm
+module called <em>cpan</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_data_3a_3adumper">Data::Dumper</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_data_3a_3adumper">Data::Dumper</a></strong>
+
 <dd>
-A new option, Pair, allows choosing the separator between hash keys
-and values.
+<p>A new option, Pair, allows choosing the separator between hash keys
+and values.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_db_file">DB_File</a></strong><br />
-</dt>
-<dt><strong><a name="item_devel_3a_3appport">Devel::PPPort</a></strong><br />
-</dt>
-<dt><strong><a name="item_digest_3a_3amd5">Digest::MD5</a></strong><br />
-</dt>
-<dt><strong><a name="item_encode">Encode</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_db_file">DB_File</a></strong>
+
+<dt><strong><a name="item_devel_3a_3appport">Devel::PPPort</a></strong>
+
+<dt><strong><a name="item_digest_3a_3amd5">Digest::MD5</a></strong>
+
+<dt><strong><a name="item_encode">Encode</a></strong>
+
 <dd>
-Significant updates on the encoding pragma functionality
-(tr/// and the DATA filehandle, formats).
+<p>Significant updates on the encoding pragma functionality
+(tr/// and the DATA filehandle, formats).</p>
 </dd>
 <dd>
 <p>If a filehandle has been marked as to have an encoding, unmappable
@@ -459,17 +461,17 @@ GSM 03.38 conversion did not handle escape sequences correctly.  The
 UTF-7 encoding has been added (making Encode feature-complete with
 Unicode::String).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_fields">fields</a></strong><br />
-</dt>
-<dt><strong><a name="item_libnet">libnet</a></strong><br />
-</dt>
-<dt><strong><a name="item_math_3a_3abigint">Math::BigInt</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_fields">fields</a></strong>
+
+<dt><strong><a name="item_libnet">libnet</a></strong>
+
+<dt><strong><a name="item_math_3a_3abigint">Math::BigInt</a></strong>
+
 <dd>
-A lot of bugs have been fixed since v1.60, the version included in Perl
+<p>A lot of bugs have been fixed since v1.60, the version included in Perl
 v5.8.0. Especially noteworthy are the bug in Calc that caused div and mod to
-fail for some large values, and the fixes to the handling of bad inputs.
+fail for some large values, and the fixes to the handling of bad inputs.</p>
 </dd>
 <dd>
 <p>Some new features were added, e.g. the <code>broot()</code> method, you can now pass
@@ -482,55 +484,55 @@ faster. In some cases, quite a lot faster, actually. Especially alternative
 libraries like Math::BigInt::GMP benefit from this. In addition, a lot of the
 quite clunky routines like <code>fsqrt()</code> and <code>flog()</code> are now much much faster.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_mime_3a_3abase64">MIME::Base64</a></strong><br />
-</dt>
-<dt><strong><a name="item_next">NEXT</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_mime_3a_3abase64">MIME::Base64</a></strong>
+
+<dt><strong><a name="item_next">NEXT</a></strong>
+
 <dd>
-Diamond inheritance now works.
+<p>Diamond inheritance now works.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_net_3a_3aping">Net::Ping</a></strong><br />
-</dt>
-<dt><strong><a name="item_perlio_3a_3ascalar">PerlIO::scalar</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_net_3a_3aping">Net::Ping</a></strong>
+
+<dt><strong><a name="item_perlio_3a_3ascalar">PerlIO::scalar</a></strong>
+
 <dd>
-Reading from non-string scalars (like the special variables, see
-<a href="perlvar.html">the perlvar manpage</a>) now works.
+<p>Reading from non-string scalars (like the special variables, see
+<a href="perlvar.html">the perlvar manpage</a>) now works.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_podlators">podlators</a></strong><br />
-</dt>
-<dt><strong><a name="item_pod_3a_3alatex">Pod::LaTeX</a></strong><br />
-</dt>
-<dt><strong><a name="item_podparsers">PodParsers</a></strong><br />
-</dt>
-<dt><strong><a name="item_pod_3a_3aperldoc">Pod::Perldoc</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_podlators">podlators</a></strong>
+
+<dt><strong><a name="item_pod_3a_3alatex">Pod::LaTeX</a></strong>
+
+<dt><strong><a name="item_podparsers">PodParsers</a></strong>
+
+<dt><strong><a name="item_pod_3a_3aperldoc">Pod::Perldoc</a></strong>
+
 <dd>
-Complete rewrite.  As a side-effect, no longer refuses to startup when
-run by root.
+<p>Complete rewrite.  As a side-effect, no longer refuses to startup when
+run by root.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_scalar_3a_3autil">Scalar::Util</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_scalar_3a_3autil">Scalar::Util</a></strong>
+
 <dd>
-New utilities: refaddr, isvstring, looks_like_number, set_prototype.
+<p>New utilities: refaddr, isvstring, looks_like_number, set_prototype.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_storable">Storable</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_storable">Storable</a></strong>
+
 <dd>
-Can now store code references (via B::Deparse, so not foolproof).
+<p>Can now store code references (via B::Deparse, so not foolproof).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_strict">strict</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_strict">strict</a></strong>
+
 <dd>
-Earlier versions of the strict pragma did not check the parameters
+<p>Earlier versions of the strict pragma did not check the parameters
 implicitly passed to its ``import'' (use) and ``unimport'' (no) routine.
-This caused the false idiom such as:
+This caused the false idiom such as:</p>
 </dd>
 <dd>
 <pre>
@@ -569,54 +571,55 @@ This happens because</p>
         use vars qw(@ISA);
         @ISA = qw(Foo);</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_term_3a_3aansicolor">Term::ANSIcolor</a></strong><br />
-</dt>
-<dt><strong><a name="item_test_3a_3aharness">Test::Harness</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_term_3a_3aansicolor">Term::ANSIcolor</a></strong>
+
+<dt><strong><a name="item_test_3a_3aharness">Test::Harness</a></strong>
+
 <dd>
-Now much more picky about extra or missing output from test scripts.
+<p>Now much more picky about extra or missing output from test scripts.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_test_3a_3amore">Test::More</a></strong><br />
-</dt>
-<dt><strong><a name="item_test_3a_3asimple">Test::Simple</a></strong><br />
-</dt>
-<dt><strong><a name="item_text_3a_3abalanced">Text::Balanced</a></strong><br />
-</dt>
-<dt><strong><a name="item_time_3a_3ahires">Time::HiRes</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_test_3a_3amore">Test::More</a></strong>
+
+<dt><strong><a name="item_test_3a_3asimple">Test::Simple</a></strong>
+
+<dt><strong><a name="item_text_3a_3abalanced">Text::Balanced</a></strong>
+
+<dt><strong><a name="item_time_3a_3ahires">Time::HiRes</a></strong>
+
 <dd>
-Use of nanosleep(), if available, allows mixing subsecond sleeps with
-alarms.
+<p>Use of nanosleep(), if available, allows mixing subsecond sleeps with
+alarms.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_threads">threads</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_threads">threads</a></strong>
+
 <dd>
-Several fixes, for example for <code>join()</code> problems and memory
+<p>Several fixes, for example for <code>join()</code> problems and memory
 leaks.  In some platforms (like Linux) that use glibc the minimum memory
-footprint of one ithread has been reduced by several hundred kilobytes.
+footprint of one ithread has been reduced by several hundred kilobytes.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_threads_3a_3ashared">threads::shared</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_threads_3a_3ashared">threads::shared</a></strong>
+
 <dd>
-Many memory leaks have been fixed.
+<p>Many memory leaks have been fixed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_unicode_3a_3acollate">Unicode::Collate</a></strong><br />
-</dt>
-<dt><strong><a name="item_unicode_3a_3anormalize">Unicode::Normalize</a></strong><br />
-</dt>
-<dt><strong><a name="item_win32_3a_3agetfolderpath">Win32::GetFolderPath</a></strong><br />
-</dt>
-<dt><strong><a name="item_win32_3a_3agetosversion">Win32::GetOSVersion</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unicode_3a_3acollate">Unicode::Collate</a></strong>
+
+<dt><strong><a name="item_unicode_3a_3anormalize">Unicode::Normalize</a></strong>
+
+<dt><strong><a name="item_win32_3a_3agetfolderpath">Win32::GetFolderPath</a></strong>
+
+<dt><strong><a name="item_win32_3a_3agetosversion">Win32::GetOSVersion</a></strong>
+
 <dd>
-Now returns extra information.
+<p>Now returns extra information.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -758,30 +761,32 @@ from generated code.  Now linenumbers can go all the way to
 <h2><a name="platformspecific_fixes">Platform-specific fixes</a></h2>
 <p>Linux</p>
 <ul>
-<li></li>
-Setting $0 works again (with certain limitations that
-Perl cannot do much about: see <a href="perlvar.html#_0">$0 in the perlvar manpage</a>)
-<p></p></ul>
+<li>
+<p>Setting $0 works again (with certain limitations that
+Perl cannot do much about: see <a href="perlvar.html#_0">$0 in the perlvar manpage</a>)</p>
+</li>
+</ul>
 <p>HP-UX</p>
 <ul>
-<li></li>
-Setting $0 now works.
-<p></p></ul>
+<li>
+<p>Setting $0 now works.</p>
+</li>
+</ul>
 <p>VMS</p>
 <ul>
-<li></li>
-Configuration now tests for the presence of <code>poll()</code>, and IO::Poll
-now uses the vendor-supplied function if detected.
-<p></p>
-<li></li>
-A rare access violation at Perl start-up could occur if the Perl image was
+<li>
+<p>Configuration now tests for the presence of <code>poll()</code>, and IO::Poll
+now uses the vendor-supplied function if detected.</p>
+</li>
+<li>
+<p>A rare access violation at Perl start-up could occur if the Perl image was
 installed with privileges or if there was an identifier with the
 subsystem attribute set in the process's rightslist.  Either of these
 circumstances triggered tainting code that contained a pointer bug. 
-The faulty pointer arithmetic has been fixed.
-<p></p>
-<li></li>
-The length limit on values (not keys) in the %ENV hash has been raised
+The faulty pointer arithmetic has been fixed.</p>
+</li>
+<li>
+<p>The length limit on values (not keys) in the %ENV hash has been raised
 from 255 bytes to 32640 bytes (except when the PERL_ENV_TABLES setting
 overrides the default use of logical names for %ENV).  If it is
 necessary to access these long values from outside Perl, be aware that
@@ -791,45 +796,47 @@ element in the search list. When doing a lookup in %ENV from within
 Perl, the elements are combined into a single value.  The existing
 VMS-specific ability to access individual elements of a search list
 logical name via the $ENV{'foo;N'} syntax (where N is the search list
-index) is unimpaired.
-<p></p>
-<li></li>
-The piping implementation now uses local rather than global DCL
-symbols for inter-process communication.
-<p></p>
-<li></li>
-File::Find could become confused when navigating to a relative
+index) is unimpaired.</p>
+</li>
+<li>
+<p>The piping implementation now uses local rather than global DCL
+symbols for inter-process communication.</p>
+</li>
+<li>
+<p>File::Find could become confused when navigating to a relative
 directory whose name collided with a logical name.  This problem has
 been corrected by adding directory syntax to relative path names, thus
-preventing logical name translation.
-<p></p></ul>
+preventing logical name translation.</p>
+</li>
+</ul>
 <p>Win32</p>
 <ul>
-<li></li>
-A memory leak in the <code>fork()</code> emulation has been fixed.
-<p></p>
-<li></li>
-The return value of the <code>ioctl()</code> built-in function was accidentally
-broken in 5.8.0.  This has been corrected.
-<p></p>
-<li></li>
-The internal message loop executed by perl during blocking operations
+<li>
+<p>A memory leak in the <code>fork()</code> emulation has been fixed.</p>
+</li>
+<li>
+<p>The return value of the <code>ioctl()</code> built-in function was accidentally
+broken in 5.8.0.  This has been corrected.</p>
+</li>
+<li>
+<p>The internal message loop executed by perl during blocking operations
 sometimes interfered with messages that were external to Perl.
 This often resulted in blocking operations terminating prematurely or
 returning incorrect results, when Perl was executing under environments
-that could generate Windows messages.  This has been corrected.
-<p></p>
-<li></li>
-Pipes and sockets are now automatically in binary mode.
-<p></p>
-<li></li>
-The four-argument form of <code>select()</code> did not preserve $! (errno) properly
-when there were errors in the underlying call.  This is now fixed.
-<p></p>
-<li></li>
-The ``CR CR LF'' problem of has been fixed, binmode(FH, ``:crlf'')
-is now effectively a no-op.
-<p></p></ul>
+that could generate Windows messages.  This has been corrected.</p>
+</li>
+<li>
+<p>Pipes and sockets are now automatically in binary mode.</p>
+</li>
+<li>
+<p>The four-argument form of <code>select()</code> did not preserve $! (errno) properly
+when there were errors in the underlying call.  This is now fixed.</p>
+</li>
+<li>
+<p>The ``CR CR LF'' problem of has been fixed, binmode(FH, ``:crlf'')
+is now effectively a no-op.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -1076,20 +1083,20 @@ available releases having these characteristics will be the developer
 releases Perl 5.9.x, culminating in the Perl 5.10.0 release.  These
 are our best guesses at the moment: we reserve the right to rethink.</p>
 <ul>
-<li></li>
-PerlIO will become The Default.  Currently (in Perl 5.8.x) the stdio
+<li>
+<p>PerlIO will become The Default.  Currently (in Perl 5.8.x) the stdio
 library is still used if Perl thinks it can use certain tricks to
 make stdio go <strong>really</strong> fast.  For future releases our goal is to
-make PerlIO go even faster.
-<p></p>
-<li></li>
-A new feature called <em>assertions</em> will be available.  This means that
+make PerlIO go even faster.</p>
+</li>
+<li>
+<p>A new feature called <em>assertions</em> will be available.  This means that
 one can have code called assertions sprinkled in the code: usually
-they are optimised away, but they can be enabled with the <code>-A</code> option.
-<p></p>
-<li></li>
-A new operator <code>//</code> (defined-or) will be available.  This means that
-one will be able to say
+they are optimised away, but they can be enabled with the <code>-A</code> option.</p>
+</li>
+<li>
+<p>A new operator <code>//</code> (defined-or) will be available.  This means that
+one will be able to say</p>
 <pre>
     $a // $b</pre>
 <p>instead of</p>
@@ -1104,43 +1111,44 @@ one will be able to say
 <p>The operator will have the same precedence and associativity as <code>||</code>.
 A source code patch against the Perl 5.8.1 sources will be available
 in CPAN as <em>authors/id/H/HM/HMBRAND/dor-5.8.1.diff</em>.</p>
-<p></p>
-<li></li>
-<code>unpack()</code> will default to unpacking the <code>$_</code>.
-<p></p>
-<li></li>
-Various Copy-On-Write techniques will be investigated in hopes
-of speeding up Perl.
-<p></p>
-<li></li>
-CPANPLUS, Inline, and Module::Build will become core modules.
-<p></p>
-<li></li>
-The ability to write true lexically scoped pragmas will be introduced.
-<p></p>
-<li></li>
-Work will continue on the bytecompiler and byteloader.
-<p></p>
-<li></li>
-v-strings as they currently exist are scheduled to be deprecated.  The
+</li>
+<li>
+<p><code>unpack()</code> will default to unpacking the <code>$_</code>.</p>
+</li>
+<li>
+<p>Various Copy-On-Write techniques will be investigated in hopes
+of speeding up Perl.</p>
+</li>
+<li>
+<p>CPANPLUS, Inline, and Module::Build will become core modules.</p>
+</li>
+<li>
+<p>The ability to write true lexically scoped pragmas will be introduced.</p>
+</li>
+<li>
+<p>Work will continue on the bytecompiler and byteloader.</p>
+</li>
+<li>
+<p>v-strings as they currently exist are scheduled to be deprecated.  The
 v-less form (1.2.3) will become a ``version object'' when used with <code>use</code>,
 <code>require</code>, and <code>$VERSION</code>.  $^V will also be a ``version object'' so the
 <code>printf(``%vd'',...)</code> construct will no longer be needed.  The v-ful version
 (v1.2.3) will become obsolete.  The equivalence of strings and v-strings (e.g.
 that currently 5.8.0 is equal to ``\5\8\0'') will go away.  <strong>There may be no
 deprecation warning for v-strings</strong>, though: it is quite hard to detect when
-v-strings are being used safely, and when they are not.
-<p></p>
-<li></li>
-5.005 Threads Will Be Removed
-<p></p>
-<li></li>
-The <code>$*</code> Variable Will Be Removed
-(it was deprecated a long time ago)
-<p></p>
-<li></li>
-Pseudohashes Will Be Removed
-<p></p></ul>
+v-strings are being used safely, and when they are not.</p>
+</li>
+<li>
+<p>5.005 Threads Will Be Removed</p>
+</li>
+<li>
+<p>The <code>$*</code> Variable Will Be Removed
+(it was deprecated a long time ago)</p>
+</li>
+<li>
+<p>Pseudohashes Will Be Removed</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />

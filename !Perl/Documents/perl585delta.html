@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perl585delta - what is new for perl v5.8.5</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -68,64 +70,64 @@ classes.</p>
 </p>
 <hr />
 <h1><a name="modules_and_pragmata">Modules and Pragmata</a></h1>
-<p>FIXME test 12 in ext/List/Util/t/lln.t at RC1 time</p>
 <ul>
-<li></li>
-Carp improved to work nicely with Safe. Carp's message reporting should now
-be anomaly free - it will always print out line number information.
-<p></p>
-<li></li>
-CGI upgraded to version 3.05
-<p></p>
-<li></li>
-charnames now avoids clobbering $_
-<p></p>
-<li></li>
-Digest upgraded to version 1.08
-<p></p>
-<li></li>
-Encode upgraded to version 2.01
-<p></p>
-<li></li>
-FileCache upgraded to version 1.04
-<p></p>
-<li></li>
-libnet upgraded to version 1.19
-<p></p>
-<li></li>
-Pod::Parser upgraded to version 1.28
-<p></p>
-<li></li>
-Pod::Perldoc upgraded to version 3.13
-<p></p>
-<li></li>
-Pod::LaTeX upgraded to version 0.57
-<p></p>
-<li></li>
-Safe now works properly with Carp
-<p></p>
-<li></li>
-Scalar-List-Utils upgraded to version 1.14
-<p></p>
-<li></li>
-Shell's documentation has been re-written, and its historical partial
-auto-quoting of command arguments can now be disabled.
-<p></p>
-<li></li>
-Test upgraded to version 1.25
-<p></p>
-<li></li>
-Test::Harness upgraded to version 2.42
-<p></p>
-<li></li>
-Time::Local upgraded to version 1.10
-<p></p>
-<li></li>
-Unicode::Collate upgraded to version 0.40
-<p></p>
-<li></li>
-Unicode::Normalize upgraded to version 0.30
-<p></p></ul>
+<li>
+<p>Carp improved to work nicely with Safe. Carp's message reporting should now
+be anomaly free - it will always print out line number information.</p>
+</li>
+<li>
+<p>CGI upgraded to version 3.05</p>
+</li>
+<li>
+<p>charnames now avoids clobbering $_</p>
+</li>
+<li>
+<p>Digest upgraded to version 1.08</p>
+</li>
+<li>
+<p>Encode upgraded to version 2.01</p>
+</li>
+<li>
+<p>FileCache upgraded to version 1.04</p>
+</li>
+<li>
+<p>libnet upgraded to version 1.19</p>
+</li>
+<li>
+<p>Pod::Parser upgraded to version 1.28</p>
+</li>
+<li>
+<p>Pod::Perldoc upgraded to version 3.13</p>
+</li>
+<li>
+<p>Pod::LaTeX upgraded to version 0.57</p>
+</li>
+<li>
+<p>Safe now works properly with Carp</p>
+</li>
+<li>
+<p>Scalar-List-Utils upgraded to version 1.14</p>
+</li>
+<li>
+<p>Shell's documentation has been re-written, and its historical partial
+auto-quoting of command arguments can now be disabled.</p>
+</li>
+<li>
+<p>Test upgraded to version 1.25</p>
+</li>
+<li>
+<p>Test::Harness upgraded to version 2.42</p>
+</li>
+<li>
+<p>Time::Local upgraded to version 1.10</p>
+</li>
+<li>
+<p>Unicode::Collate upgraded to version 0.40</p>
+</li>
+<li>
+<p>Unicode::Normalize upgraded to version 0.30</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -153,76 +155,79 @@ documentation, <em>you may need to dicker with the files produced</em>.</p>
 <hr />
 <h1><a name="selected_bug_fixes">Selected Bug Fixes</a></h1>
 <ul>
-<li></li>
-The in-place sort optimisation introduced in 5.8.4 had a bug. For example,
-in code such as
+<li>
+<p>The in-place sort optimisation introduced in 5.8.4 had a bug. For example,
+in code such as</p>
 <pre>
     @a = sort ($b, @a)</pre>
 <p>the result would omit the value $b. This is now fixed.</p>
-<p></p>
-<li></li>
-The optimisation for unnecessary assignments introduced in 5.8.4 could give
-spurious warnings. This has been fixed.
-<p></p>
-<li></li>
-Perl should now correctly detect and read BOM-marked and (BOMless) UTF-16
-scripts of either endianness.
-<p></p>
-<li></li>
-Creating a new thread when weak references exist was buggy, and would often
-cause warnings at interpreter destruction time. The known bug is now fixed.
-<p></p>
-<li></li>
-Several obscure bugs involving manipulating Unicode strings with <code>substr</code> have
-been fixed.
-<p></p>
-<li></li>
-Previously if Perl's file globbing function encountered a directory that it
+</li>
+<li>
+<p>The optimisation for unnecessary assignments introduced in 5.8.4 could give
+spurious warnings. This has been fixed.</p>
+</li>
+<li>
+<p>Perl should now correctly detect and read BOM-marked and (BOMless) UTF-16
+scripts of either endianness.</p>
+</li>
+<li>
+<p>Creating a new thread when weak references exist was buggy, and would often
+cause warnings at interpreter destruction time. The known bug is now fixed.</p>
+</li>
+<li>
+<p>Several obscure bugs involving manipulating Unicode strings with <code>substr</code> have
+been fixed.</p>
+</li>
+<li>
+<p>Previously if Perl's file globbing function encountered a directory that it
 did not have permission to open it would return immediately, leading to
 unexpected truncation of the list of results. This has been fixed, to be
-consistent with Unix shells' globbing behaviour.
-<p></p>
-<li></li>
-Thread creation time could vary wildly between identical runs. This was caused
+consistent with Unix shells' globbing behaviour.</p>
+</li>
+<li>
+<p>Thread creation time could vary wildly between identical runs. This was caused
 by a poor hashing algorithm in the thread cloning routines, which has now
-been fixed.
-<p></p>
-<li></li>
-The internals of the ithreads implementation were not checking if OS-level
+been fixed.</p>
+</li>
+<li>
+<p>The internals of the ithreads implementation were not checking if OS-level
 thread creation had failed. threads-&gt;<code>create()</code> now returns <code>undef</code> in if
-thread creation fails instead of crashing perl.
-<p></p></ul>
+thread creation fails instead of crashing perl.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
 <h1><a name="new_or_changed_diagnostics">New or Changed Diagnostics</a></h1>
 <ul>
-<li></li>
-Perl -V has several improvements
+<li>
+<p>Perl -V has several improvements</p>
 <ul>
-<li></li>
-correctly outputs local patch names that contain embedded code snippets
-or other characters that used to confuse it.
-<p></p>
-<li></li>
-arguments to -V that look like regexps will give multiple lines of output.
-<p></p>
-<li></li>
-a trailing colon suppresses the linefeed and ';'  terminator, allowing
-embedding of queries into shell commands.
-<p></p>
-<li></li>
-a leading colon removes the 'name=' part of the response, allowing mapping to
-any name.
-<p></p></ul>
-<li></li>
-When perl fails to find the specified script, it now outputs a second line
-suggesting that the user use the <code>-S</code> flag:
+<li>
+<p>correctly outputs local patch names that contain embedded code snippets
+or other characters that used to confuse it.</p>
+</li>
+<li>
+<p>arguments to -V that look like regexps will give multiple lines of output.</p>
+</li>
+<li>
+<p>a trailing colon suppresses the linefeed and ';'  terminator, allowing
+embedding of queries into shell commands.</p>
+</li>
+<li>
+<p>a leading colon removes the 'name=' part of the response, allowing mapping to
+any name.</p>
+</li>
+</ul>
+<li>
+<p>When perl fails to find the specified script, it now outputs a second line
+suggesting that the user use the <code>-S</code> flag:</p>
 <pre>
     $ perl5.8.5 missing.pl
     Can't open perl script &quot;missing.pl&quot;: No such file or directory.
     Use -S to search $PATH for it.</pre>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <hr />

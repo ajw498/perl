@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perldos - Perl under DOS, W31, W95.</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -72,12 +74,12 @@ INSTALLING MODULES'.</p>
 </p>
 <h2><a name="prerequisites_for_compiling_perl_on_dos">Prerequisites for Compiling Perl on DOS</a></h2>
 <dl>
-<dt><strong><a name="item_djgpp">DJGPP</a></strong><br />
-</dt>
+<dt><strong><a name="item_djgpp">DJGPP</a></strong>
+
 <dd>
-DJGPP is a port of GNU C/C++ compiler and development tools to 32-bit,
+<p>DJGPP is a port of GNU C/C++ compiler and development tools to 32-bit,
 protected-mode environment on Intel 32-bit CPUs running MS-DOS and compatible
-operating systems, by DJ Delorie &lt;<a href="mailto:dj@delorie.com">dj@delorie.com</a>&gt; and friends.
+operating systems, by DJ Delorie &lt;<a href="mailto:dj@delorie.com">dj@delorie.com</a>&gt; and friends.</p>
 </dd>
 <dd>
 <p>For more details (FAQ), check out the home of DJGPP at:</p>
@@ -120,47 +122,49 @@ the world. Like:</p>
 <dd>
 <p>or possibly any newer version.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pthreads">Pthreads</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pthreads">Pthreads</a></strong>
+
 <dd>
-Thread support is not tested in this version of the djgpp perl.
+<p>Thread support is not tested in this version of the djgpp perl.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="shortcomings_of_perl_under_dos">Shortcomings of Perl under DOS</a></h2>
 <p>Perl under DOS lacks some features of perl under UNIX because of
 deficiencies in the UNIX-emulation, most notably:</p>
 <ul>
-<li></li>
-<code>fork()</code> and <code>pipe()</code>
-<p></p>
-<li></li>
-some features of the UNIX filesystem regarding link count and file dates
-<p></p>
-<li></li>
-in-place operation is a little bit broken with short filenames
-<p></p>
-<li></li>
-sockets
-<p></p></ul>
+<li>
+<p><code>fork()</code> and <code>pipe()</code></p>
+</li>
+<li>
+<p>some features of the UNIX filesystem regarding link count and file dates</p>
+</li>
+<li>
+<p>in-place operation is a little bit broken with short filenames</p>
+</li>
+<li>
+<p>sockets</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="building_perl_on_dos">Building Perl on DOS</a></h2>
 <ul>
-<li></li>
-Unpack the source package <em>perl5.8*.tar.gz</em> with djtarx. If you want
+<li>
+<p>Unpack the source package <em>perl5.8*.tar.gz</em> with djtarx. If you want
 to use long file names under w95 and also to get Perl to pass all its
-tests, don't forget to use
+tests, don't forget to use</p>
 <pre>
         set LFN=y
         set FNCASE=y</pre>
 <p>before unpacking the archive.</p>
-<p></p>
-<li></li>
-Create a ``symlink'' or copy your bash.exe to sh.exe in your <code>($DJDIR)/bin</code>
-directory.
+</li>
+<li>
+<p>Create a ``symlink'' or copy your bash.exe to sh.exe in your <code>($DJDIR)/bin</code>
+directory.</p>
 <pre>
         ln -s bash.exe sh.exe</pre>
 <p>[If you have the recommended version of bash for DJGPP, this is already
@@ -172,19 +176,19 @@ done for you.]</p>
 definition:</p>
 <pre>
         +SHELL=%DJDIR%/bin/sh.exe</pre>
-<p></p>
-<li></li>
-If you have <em>split.exe</em> and <em>gsplit.exe</em> in your path, then rename 
+</li>
+<li>
+<p>If you have <em>split.exe</em> and <em>gsplit.exe</em> in your path, then rename 
 <em>split.exe</em> to <em>djsplit.exe</em>, and <em>gsplit.exe</em> to <em>split.exe</em>.
 Copy or link <em>gecho.exe</em> to <em>echo.exe</em> if you don't have <em>echo.exe</em>.
-Copy or link <em>gawk.exe</em> to <em>awk.exe</em> if you don't have <em>awk.exe</em>.
+Copy or link <em>gawk.exe</em> to <em>awk.exe</em> if you don't have <em>awk.exe</em>.</p>
 <p>[If you have the recommended versions of djdev, shell utilities and
 gawk, all these are already done for you, and you will not need to do
 anything.]</p>
-<p></p>
-<li></li>
-Chdir to the djgpp subdirectory of perl toplevel and type the following
-commands:
+</li>
+<li>
+<p>Chdir to the djgpp subdirectory of perl toplevel and type the following
+commands:</p>
 <pre>
         set FNCASE=y
         configure.bat</pre>
@@ -224,12 +228,13 @@ generated <em>config.sh</em> file, then run</p>
 environment variable before running the script:</p>
 <pre>
         set CONFIG=</pre>
-<p></p>
-<li></li>
-Now you can compile Perl. Type:
+</li>
+<li>
+<p>Now you can compile Perl. Type:</p>
 <pre>
         make</pre>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="testing_perl_on_dos">Testing Perl on DOS</a></h2>

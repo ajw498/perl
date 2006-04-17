@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlpod - the Plain Old Documentation format</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -39,7 +41,8 @@
 <p>
 </p>
 <hr />
-<h1><a name="name">NAME</a></h1>
+<h1><a name="name_x_pod__x_plain_old_documentation_">NAME
+ </a></h1>
 <p>perlpod - the Plain Old Documentation format</p>
 <p>
 </p>
@@ -55,7 +58,8 @@ like plain text, HTML, man pages, and more.</p>
 <a href="#command_paragraph">command</a>.</p>
 <p>
 </p>
-<h2><a name="ordinary_paragraph">Ordinary Paragraph</a></h2>
+<h2><a name="ordinary_paragraph_x_pod__ordinary_paragraph_">Ordinary Paragraph
+</a></h2>
 <p>Most paragraphs in your documentation will be ordinary blocks
 of text, like this one.  You can simply type in your text without
 any markup whatsoever, and with just a blank line before and
@@ -68,7 +72,8 @@ codes are explained in the ``<a href="#formatting_codes">Formatting Codes</a>''
 section, below.</p>
 <p>
 </p>
-<h2><a name="verbatim_paragraph">Verbatim Paragraph</a></h2>
+<h2><a name="verbatim_paragraph_x_pod__verbatim_paragraph__x_verbatim_">Verbatim Paragraph
+ </a></h2>
 <p>Verbatim paragraphs are usually used for presenting a codeblock or
 other text which does not require any special parsing or formatting,
 and which shouldn't be wrapped.</p>
@@ -80,7 +85,8 @@ so you can't italicize or anything like that.  A \ means \, and
 nothing else.</p>
 <p>
 </p>
-<h2><a name="command_paragraph">Command Paragraph</a></h2>
+<h2><a name="command_paragraph_x_pod__command_">Command Paragraph
+</a></h2>
 <p>A command paragraph is used for special treatment of whole chunks
 of text, usually as headings or parts of lists.</p>
 <p>All command paragraphs (which are typically only one line long) start
@@ -88,6 +94,7 @@ with ``='', followed by an identifier, followed by arbitrary text that
 the command can use however it pleases.  Currently recognized commands
 are</p>
 <pre>
+    =pod
     =head1 Heading Text
     =head2 Heading Text
     =head3 Heading Text
@@ -95,25 +102,27 @@ are</p>
     =over indentlevel
     =item stuff
     =back
-    =cut
-    =pod
     =begin format
     =end format
-    =for format text...</pre>
+    =for format text...
+    =encoding type
+    =cut</pre>
 <p>To explain them each in detail:</p>
 <dl>
-<dt><strong><a name="item__3dhead1_heading_text"><code>=head1 Heading Text</code></a></strong><br />
-</dt>
-<dt><strong><a name="item__3dhead2_heading_text"><code>=head2 Heading Text</code></a></strong><br />
-</dt>
-<dt><strong><a name="item__3dhead3_heading_text"><code>=head3 Heading Text</code></a></strong><br />
-</dt>
-<dt><strong><a name="item__3dhead4_heading_text"><code>=head4 Heading Text</code></a></strong><br />
-</dt>
+<dt><strong><a name="item__3dhead1_heading_text_x_3c_3dhead1_3e_x_3c_3dhead2"><code>=head1 Heading Text</code>
+   
+   </a></strong>
+
+<dt><strong><a name="item__3dhead2_heading_text"><code>=head2 Heading Text</code></a></strong>
+
+<dt><strong><a name="item__3dhead3_heading_text"><code>=head3 Heading Text</code></a></strong>
+
+<dt><strong><a name="item__3dhead4_heading_text"><code>=head4 Heading Text</code></a></strong>
+
 <dd>
-Head1 through head4 produce headings, head1 being the highest
+<p>Head1 through head4 produce headings, head1 being the highest
 level.  The text in the rest of this paragraph is the content of the
-heading.  For example:
+heading.  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -133,15 +142,16 @@ formatting codes, as seen here:</p>
 <p>Such commands are explained in the
 ``<a href="#formatting_codes">Formatting Codes</a>'' section, below.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3dover_indentlevel"><code>=over indentlevel</code></a></strong><br />
-</dt>
-<dt><strong><a name="item__3ditem_stuff_2e_2e_2e"><code>=item stuff...</code></a></strong><br />
-</dt>
-<dt><strong><a name="item__3dback"><code>=back</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3dover_indentlevel_x_3c_3dover_3e_x_3c_3ditem_3e_"><code>=over indentlevel</code>
+     </a></strong>
+
+<dt><strong><a name="item__3ditem_stuff_2e_2e_2e"><code>=item stuff...</code></a></strong>
+
+<dt><strong><a name="item__3dback"><code>=back</code></a></strong>
+
 <dd>
-Item, over, and back require a little more explanation:  ``=over'' starts
+<p>Item, over, and back require a little more explanation:  ``=over'' starts
 a region specifically for the generation of a list using ``=item''
 commands, or for indenting (groups of) normal paragraphs.  At the end
 of your list, use ``=back'' to end it.  The <em>indentlevel</em> option to
@@ -150,7 +160,7 @@ one em is the width of an ``M'' in the document's base font) or roughly
 comparable units; if there is no <em>indentlevel</em> option, it defaults
 to four.  (And some formatters may just ignore whatever <em>indentlevel</em>
 you provide.)  In the <em>stuff</em> in <a href="#item__3ditem_stuff_2e_2e_2e"><code>=item stuff...</code></a>, you may
-use formatting codes, as seen here:
+use formatting codes, as seen here:</p>
 </dd>
 <dd>
 <pre>
@@ -165,45 +175,48 @@ use formatting codes, as seen here:
 ``=back'' regions:</p>
 </dd>
 <ul>
-<li></li>
-Don't use ``=item''s outside of an ``=over'' ... ``=back'' region.
-<p></p>
-<li></li>
-The first thing after the ``=over'' command should be an ``=item'', unless
+<li>
+<p>Don't use ``=item''s outside of an ``=over'' ... ``=back'' region.</p>
+</li>
+<li>
+<p>The first thing after the ``=over'' command should be an ``=item'', unless
 there aren't going to be any items at all in this ``=over'' ... ``=back''
-region.
-<p></p>
-<li></li>
-Don't put ``=head<em>n</em>'' commands inside an ``=over'' ... ``=back'' region.
-<p></p>
-<li></li>
-And perhaps most importantly, keep the items consistent: either use
+region.</p>
+</li>
+<li>
+<p>Don't put ``=head<em>n</em>'' commands inside an ``=over'' ... ``=back'' region.</p>
+</li>
+<li>
+<p>And perhaps most importantly, keep the items consistent: either use
 ``=item *'' for all of them, to produce bullets; or use ``=item 1.'',
 ``=item 2.'', etc., to produce numbered lists; or use ``=item foo'',
 ``=item bar'', etc. -- namely, things that look nothing like bullets or
-numbers.
+numbers.</p>
 <p>If you start with bullets or numbers, stick with them, as
 formatters use the first ``=item'' type to decide how to format the
 list.</p>
-<p></p></ul>
-<dt><strong><a name="item__3dcut"><code>=cut</code></a></strong><br />
-</dt>
+</li>
+</ul>
+<dt><strong><a name="item__3dcut_x_3c_3dcut_3e_x_3ccut_3e"><code>=cut</code>
+ </a></strong>
+
 <dd>
-To end a Pod block, use a blank line,
+<p>To end a Pod block, use a blank line,
 then a line beginning with ``=cut'', and a blank
 line after it.  This lets Perl (and the Pod formatter) know that
 this is where Perl code is resuming.  (The blank line before the ``=cut''
-is not technically necessary, but many older Pod processors require it.)
+is not technically necessary, but many older Pod processors require it.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3dpod"><code>=pod</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3dpod_x_3c_3dpod_3e_x_3cpod_3e"><code>=pod</code>
+ </a></strong>
+
 <dd>
-The ``=pod'' command by itself doesn't do much of anything, but it
+<p>The ``=pod'' command by itself doesn't do much of anything, but it
 signals to Perl (and Pod formatters) that a Pod block starts here.  A
 Pod block starts with <em>any</em> command paragraph, so a ``=pod'' command is
 usually used just when you want to start a Pod block with an ordinary
-paragraph or a verbatim paragraph.  For example:
+paragraph or a verbatim paragraph.  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -239,19 +252,20 @@ paragraph or a verbatim paragraph.  For example:
 <pre>
   =cut</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__3dbegin_formatname"><code>=begin formatname</code></a></strong><br />
-</dt>
-<dt><strong><a name="item__3dend_formatname"><code>=end formatname</code></a></strong><br />
-</dt>
-<dt><strong><a name="item__3dfor_formatname_text_2e_2e_2e"><code>=for formatname text...</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3dbegin_formatname_x_3c_3dbegin_3e_x_3c_3dend_3e_"><code>=begin formatname</code>
+     </a></strong>
+
+<dt><strong><a name="item__3dend_formatname"><code>=end formatname</code></a></strong>
+
+<dt><strong><a name="item__3dfor_formatname_text_2e_2e_2e"><code>=for formatname text...</code></a></strong>
+
 <dd>
-For, begin, and end will let you have regions of text/code/data that
+<p>For, begin, and end will let you have regions of text/code/data that
 are not generally interpreted as normal Pod text, but are passed
 directly to particular formatters, or are otherwise special.  A
 formatter that can use that format will use the region, otherwise it
-will be completely ignored.
+will be completely ignored.</p>
 </dd>
 <dd>
 <p>A command ``=begin <em>formatname</em>'', some paragraphs, and a
@@ -352,16 +366,17 @@ to signal that the text is not raw data, but instead <em>is</em> Pod text
 normal formatting (e.g., may not be a normal-use paragraph, but might
 be for formatting as a footnote).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3dencoding_encodingname"><code>=encoding encodingname</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3dencoding_encodingname_x_3c_3dencoding_3e_x_3cen"><code>=encoding encodingname</code>
+ </a></strong>
+
 <dd>
-This command is used for declaring the encoding of a document.  Most
+<p>This command is used for declaring the encoding of a document.  Most
 users won't need this; but if your encoding isn't US-ASCII or Latin-1,
-then put a <a href="#item__3dencoding_encodingname"><code>=encoding encodingname</code></a> command early in the document so
+then put a <code>=encoding encodingname</code> command early in the document so
 that pod formatters will know how to decode the document.  For
-<em>encodingname</em>, use a name recognized by the <a href="../Encode/Supported.html">the Encode::Supported manpage</a>
-module.  Examples:
+<em>encodingname</em>, use a name recognized by the <a href="../../Encode/Supported.html">the Encode::Supported manpage</a>
+module.  Examples:</p>
 </dd>
 <dd>
 <pre>
@@ -375,7 +390,8 @@ module.  Examples:
   
   =encoding big5</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>And don't forget, when using any command, that the command lasts up
 until the end of its <em>paragraph</em>, not its line.  So in the
 examples below, you can see that every command needs the blank
@@ -407,59 +423,66 @@ line after it, to end its paragraph.</p>
   =back</pre>
 <p>
 </p>
-<h2><a name="formatting_codes">Formatting Codes</a></h2>
+<h2><a name="formatting_codes_x_pod__formatting_code__x_formatting_code__x_pod__interior_sequence__x_interior_sequence_">Formatting Codes
+ 
+ </a></h2>
 <p>In ordinary paragraphs and in some command paragraphs, various
 formatting codes (a.k.a. ``interior sequences'') can be used:</p>
 <dl>
-<dt><strong><a name="item_i_3ctext_3e__2d_2d_italic_text"><code>I&lt;text&gt;</code> -- italic text</a></strong><br />
-</dt>
+<dt><strong><a name="item_i_3ctext_3e__2d_2d_italic_text_x_3ci_3e_x_3c_3c_iz"><code>I&lt;text&gt;</code> -- italic text
+ &lt;&gt; &gt;&gt;  </a></strong>
+
 <dd>
-Used for emphasis (``<code>be I&lt;careful!&gt;</code>'') and parameters
-(``<code>redo I&lt;LABEL&gt;</code>'')
+<p>Used for emphasis (``<code>be I&lt;careful!&gt;</code>'') and parameters
+(``<code>redo I&lt;LABEL&gt;</code>'')</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b_3ctext_3e__2d_2d_bold_text"><code>B&lt;text&gt;</code> -- bold text</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b_3ctext_3e__2d_2d_bold_text_x_3cb_3e_x_3c_3c_bz_3"><code>B&lt;text&gt;</code> -- bold text
+ &lt;&gt; &gt;&gt;  </a></strong>
+
 <dd>
-Used for switches (``<code>perl's B&lt;-n&gt; switch</code>''), programs
+<p>Used for switches (``<code>perl's B&lt;-n&gt; switch</code>''), programs
 (``<code>some systems provide a B&lt;chfn&gt; for that</code>''),
 emphasis (``<code>be B&lt;careful!&gt;</code>''), and so on
-(``<code>and that feature is known as B&lt;autovivification&gt;</code>'').
+(``<code>and that feature is known as B&lt;autovivification&gt;</code>'').</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_c_3ccode_3e__2d_2d_code_text"><code>C&lt;code&gt;</code> -- code text</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_c_3ccode_3e__2d_2d_code_text_x_3cc_3e_x_3c_3c_cz_3"><code>C&lt;code&gt;</code> -- code text
+ &lt;&gt; &gt;&gt;  </a></strong>
+
 <dd>
-Renders code in a typewriter font, or gives some other indication that
+<p>Renders code in a typewriter font, or gives some other indication that
 this represents program text (``<code>C&lt;gmtime($^T)&gt;</code>'') or some other
-form of computerese (``<code>C&lt;drwxr-xr-x&gt;</code>'').
+form of computerese (``<code>C&lt;drwxr-xr-x&gt;</code>'').</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_l_3cname_3e__2d_2d_a_hyperlink"><code>L&lt;name&gt;</code> -- a hyperlink</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_l_3cname_3e__2d_2d_a_hyperlink_x_3cl_3e_x_3c_3c_lz"><code>L&lt;name&gt;</code> -- a hyperlink
+ &lt;&gt; &gt;&gt;  </a></strong>
+
 <dd>
-There are various syntaxes, listed below.  In the syntaxes given,
+<p>There are various syntaxes, listed below.  In the syntaxes given,
 <code>text</code>, <code>name</code>, and <code>section</code> cannot contain the characters
-'/' and '|'; and any '&lt;' or '&gt;' should be matched.
+'/' and '|'; and any '&lt;' or '&gt;' should be matched.</p>
 </dd>
 <ul>
-<li></li>
-<code>L&lt;name&gt;</code>
+<li>
+<p><code>L&lt;name&gt;</code></p>
 <p>Link to a Perl manual page (e.g., <code>L&lt;Net::Ping&gt;</code>).  Note
 that <code>name</code> should not contain spaces.  This syntax
 is also occasionally used for references to UNIX man pages, as in
 <code>L&lt;crontab(5)&gt;</code>.</p>
-<p></p>
-<li></li>
-<code>L&lt;name/&quot;sec&quot;&gt;</code> or <code>L&lt;name/sec&gt;</code>
+</li>
+<li>
+<p><code>L&lt;name/&quot;sec&quot;&gt;</code> or <code>L&lt;name/sec&gt;</code></p>
 <p>Link to a section in other manual page.  E.g.,
 <code>L&lt;perlsyn/&quot;For Loops&quot;&gt;</code></p>
-<p></p>
-<li></li>
-<code>L&lt;/&quot;sec&quot;&gt;</code> or <code>L&lt;/sec&gt;</code> or <code>L&lt;&quot;sec&quot;&gt;</code>
+</li>
+<li>
+<p><code>L&lt;/&quot;sec&quot;&gt;</code> or <code>L&lt;/sec&gt;</code> or <code>L&lt;&quot;sec&quot;&gt;</code></p>
 <p>Link to a section in this manual page.  E.g.,
 <code>L&lt;/&quot;Object Methods&quot;&gt;</code></p>
-<p></p></ul>
+</li>
+</ul>
 <p>A section is started by the named heading or item.  For
 example, <code>L&lt;perlvar/$.&gt;</code> or <code>L&lt;perlvar/&quot;$.&quot;&gt;</code> both
 link to the section started by ``<code>=item $.</code>'' in perlvar.  And
@@ -469,61 +492,64 @@ in perlsyn.</p>
 <p>To control what text is used for display, you
 use ``<code>L&lt;text|...&gt;</code>'', as in:</p>
 <ul>
-<li></li>
-<code>L&lt;text|name&gt;</code>
+<li>
+<p><code>L&lt;text|name&gt;</code></p>
 <p>Link this text to that manual page.  E.g.,
 <code>L&lt;Perl Error Messages|perldiag&gt;</code></p>
-<p></p>
-<li></li>
-<code>L&lt;text|name/&quot;sec&quot;&gt;</code> or <code>L&lt;text|name/sec&gt;</code>
+</li>
+<li>
+<p><code>L&lt;text|name/&quot;sec&quot;&gt;</code> or <code>L&lt;text|name/sec&gt;</code></p>
 <p>Link this text to that section in that manual page.  E.g.,
 <code>L&lt;SWITCH statements|perlsyn/&quot;Basic BLOCKs and Switch
 Statements&quot;E&lt;gt&gt;</code></p>
-<p></p>
-<li></li>
-<code>L&lt;text|/&quot;sec&quot;&gt;</code> or <code>L&lt;text|/sec&gt;</code>
-or <code>L&lt;text|&quot;sec&quot;&gt;</code>
+</li>
+<li>
+<p><code>L&lt;text|/&quot;sec&quot;&gt;</code> or <code>L&lt;text|/sec&gt;</code>
+or <code>L&lt;text|&quot;sec&quot;&gt;</code></p>
 <p>Link this text to that section in this manual page.  E.g.,
 <code>L&lt;the various attributes|/&quot;Member Data&quot;&gt;</code></p>
-<p></p></ul>
+</li>
+</ul>
 <p>Or you can link to a web page:</p>
 <ul>
-<li></li>
-<code>L&lt;scheme:...&gt;</code>
+<li>
+<p><code>L&lt;scheme:...&gt;</code></p>
 <p>Links to an absolute URL.  For example,
 <code>L&lt;http://www.perl.org/&gt;</code>.  But note
 that there is no corresponding <code>L&lt;text|scheme:...&gt;</code> syntax, for
 various reasons.</p>
-<p></p></ul>
-<dt><strong><a name="item_e_3cescape_3e__2d_2d_a_character_escape"><code>E&lt;escape&gt;</code> -- a character escape</a></strong><br />
-</dt>
+</li>
+</ul>
+<dt><strong><a name="item_e_3cescape_3e__2d_2d_a_character_escape_x_3ce_3e_x"><code>E&lt;escape&gt;</code> -- a character escape
+ &lt;&gt; &gt;&gt;  </a></strong>
+
 <dd>
-Very similar to HTML/XML <code>&amp;foo;</code> ``entity references'':
+<p>Very similar to HTML/XML <code>&amp;foo;</code> ``entity references'':</p>
 </dd>
 <ul>
-<li></li>
-<code>E&lt;lt&gt;</code> -- a literal &lt; (less than)
-<p></p>
-<li></li>
-<code>E&lt;gt&gt;</code> -- a literal &gt; (greater than)
-<p></p>
-<li></li>
-<code>E&lt;verbar&gt;</code> -- a literal | (<em>ver</em>tical <em>bar</em>)
-<p></p>
-<li></li>
-<code>E&lt;sol&gt;</code> = a literal / (<em>sol</em>idus)
+<li>
+<p><code>E&lt;lt&gt;</code> -- a literal &lt; (less than)</p>
+</li>
+<li>
+<p><code>E&lt;gt&gt;</code> -- a literal &gt; (greater than)</p>
+</li>
+<li>
+<p><code>E&lt;verbar&gt;</code> -- a literal | (<em>ver</em>tical <em>bar</em>)</p>
+</li>
+<li>
+<p><code>E&lt;sol&gt;</code> = a literal / (<em>sol</em>idus)</p>
 <p>The above four are optional except in other formatting codes,
 notably <code>L&lt;...&gt;</code>, and when preceded by a
 capital letter.</p>
-<p></p>
-<li></li>
-<code>E&lt;htmlname&gt;</code>
+</li>
+<li>
+<p><code>E&lt;htmlname&gt;</code></p>
 <p>Some non-numeric HTML entity name, such as <code>E&lt;eacute&gt;</code>,
 meaning the same thing as <code>&amp;eacute;</code> in HTML -- i.e., a lowercase
 e with an acute (/-shaped) accent.</p>
-<p></p>
-<li></li>
-<code>E&lt;number&gt;</code>
+</li>
+<li>
+<p><code>E&lt;number&gt;</code></p>
 <p>The ASCII/Latin-1/Unicode character with that number.  A
 leading ``0x'' means that <em>number</em> is hex, as in
 <code>E&lt;0x201E&gt;</code>.  A leading ``0'' means that <em>number</em> is octal,
@@ -534,39 +560,46 @@ hex numeric escapes, and that many formatters cannot reliably
 render characters above 255.  (Some formatters may even have
 to use compromised renderings of Latin-1 characters, like
 rendering <code>E&lt;eacute&gt;</code> as just a plain ``e''.)</p>
-<p></p></ul>
-<dt><strong><a name="item_f_3cfilename_3e__2d_2d_used_for_filenames"><code>F&lt;filename&gt;</code> -- used for filenames</a></strong><br />
-</dt>
+</li>
+</ul>
+<dt><strong><a name="item_f_3cfilename_3e__2d_2d_used_for_filenames_x_3cf_3e"><code>F&lt;filename&gt;</code> -- used for filenames
+ &lt;&gt; &gt;&gt;  </a></strong>
+
 <dd>
-Typically displayed in italics.  Example: ``<code>F&lt;.cshrc&gt;</code>''
+<p>Typically displayed in italics.  Example: ``<code>F&lt;.cshrc&gt;</code>''</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s_3ctext_3e__2d_2d_text_contains_non_2dbreaking_sp"><code>S&lt;text&gt;</code> -- text contains non-breaking spaces</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s_3ctext_3e__2d_2d_text_contains_non_2dbreaking_sp"><code>S&lt;text&gt;</code> -- text contains non-breaking spaces
+ &lt;&gt; &gt;&gt;  
+</a></strong>
+
 <dd>
-This means that the words in <em>text</em> should not be broken
-across lines.  Example: <code>S&lt;$x&nbsp;?&nbsp;$y&nbsp;:&nbsp;$z&gt;</code>.
+<p>This means that the words in <em>text</em> should not be broken
+across lines.  Example: <code>S&lt;$x&nbsp;?&nbsp;$y&nbsp;:&nbsp;$z&gt;</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_x_3ctopic_name_3e__2d_2d_an_index_entry"><code>X&lt;topic name&gt;</code> -- an index entry</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_x_3ctopic_name_3e__2d_2d_an_index_entry_x_3cx_3e_x"><code>X&lt;topic name&gt;</code> -- an index entry
+ &lt;&gt; &gt;&gt;  </a></strong>
+
 <dd>
-This is ignored by most formatters, but some may use it for building
+<p>This is ignored by most formatters, but some may use it for building
 indexes.  It always renders as empty-string.
-Example: <code>X&lt;absolutizing relative URLs&gt;</code>
+Example: <code>X&lt;absolutizing relative URLs&gt;</code></p>
 </dd>
-<p></p>
-<dt><strong><a name="item_null"><code>Z&lt;&gt;</code> -- a null (zero-effect) formatting code</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_null"><code>Z&lt;&gt;</code> -- a null (zero-effect) formatting code
+ &lt;&gt; &gt;&gt;  </a></strong>
+
 <dd>
-This is rarely used.  It's one way to get around using an
+<p>This is rarely used.  It's one way to get around using an
 E&lt;...&gt; code sometimes.  For example, instead of
 ``<code>NE&lt;lt&gt;3</code>'' (for ``N&lt;3'') you could write
 ``<code>NZ&lt;&gt;&lt;3</code>'' (the ``Z&lt;&gt;'' breaks up the ``N'' and
 the ``&lt;'' so they can't be considered
-the part of a (fictitious) ``N&lt;...&gt;'' code.
+the part of a (fictitious) ``N&lt;...&gt;'' code.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Most of the time, you will need only a single set of angle brackets to
 delimit the beginning and end of formatting codes.  However,
 sometimes you will want to put a real right angle bracket (a
@@ -584,7 +617,8 @@ the Pod formatters that are standard starting with perl5.5.660, doubled
 angle brackets (``&lt;&lt;'' and ``&gt;&gt;'') may be used <em>if and only if there is
 whitespace right after the opening delimiter and whitespace right
 before the closing delimiter!</em>  For example, the following will
-do the trick:</p>
+do the trick:
+</p>
 <pre>
     C&lt;&lt; $a &lt;=&gt; $b &gt;&gt;</pre>
 <p>In fact, you can use as many repeated angle-brackets as you like so
@@ -592,7 +626,8 @@ long as you have the same number of them in the opening and closing
 delimiters, and make sure that whitespace immediately follows the last
 '&lt;' of the opening delimiter, and immediately precedes the first '&gt;'
 of the closing delimiter.  (The whitespace is ignored.)  So the
-following will also work:</p>
+following will also work:
+</p>
 <pre>
     C&lt;&lt;&lt; $a &lt;=&gt; $b &gt;&gt;&gt;
     C&lt;&lt;&lt;&lt;  $a &lt;=&gt; $b     &gt;&gt;&gt;&gt;</pre>
@@ -617,7 +652,8 @@ and any other pod2xxx or Pod::Xxxx translators that use
 Pod::Parser 1.093 or later, or Pod::Tree 1.02 or later.</p>
 <p>
 </p>
-<h2><a name="the_intent">The Intent</a></h2>
+<h2><a name="the_intent_x_pod__intent_of_">The Intent
+</a></h2>
 <p>The intent is simplicity of use, not power of expression.  Paragraphs
 look like paragraphs (block format), so that they stand out
 visually, and so that I could run them through <code>fmt</code> easily to reformat
@@ -634,7 +670,8 @@ documentation.  Translators exist for <strong>pod2text</strong>, <strong>pod2htm
 <strong>pod2fm</strong>.  Various others are available in CPAN.</p>
 <p>
 </p>
-<h2><a name="embedding_pods_in_perl_modules">Embedding Pods in Perl Modules</a></h2>
+<h2><a name="embedding_pods_in_perl_modules_x_pod__embedding_">Embedding Pods in Perl Modules
+</a></h2>
 <p>You can embed Pod documentation in your Perl modules and scripts.
 Start your documentation with an empty line, a ``=head1'' command at the
 beginning, and end it with a ``=cut'' command and an empty line.  Perl
@@ -654,26 +691,27 @@ have recognized the ``=head1'' as starting a Pod block.</p>
 </p>
 <h2><a name="hints_for_writing_pod">Hints for Writing Pod</a></h2>
 <ul>
-<li></li>
-The <strong>podchecker</strong> command is provided for checking Pod syntax for errors
+<li><strong><a name="item_x_3cpodchecker_3e_x_3cpod_2c_validating_3e"> </a></strong>
+
+<p>The <strong>podchecker</strong> command is provided for checking Pod syntax for errors
 and warnings.  For example, it checks for completely blank lines in
 Pod blocks and for unknown commands and formatting codes.  You should
 still also pass your document through one or more translators and proofread
 the result, or print out the result and proofread that.  Some of the
 problems found may be bugs in the translators, which you may or may not
-wish to work around.
-<p></p>
-<li></li>
-If you're more familiar with writing in HTML than with writing in Pod, you
+wish to work around.</p>
+</li>
+<li>
+<p>If you're more familiar with writing in HTML than with writing in Pod, you
 can try your hand at writing documentation in simple HTML, and converting
-it to Pod with the experimental <a href="../Pod/HTML2Pod.html">Pod::HTML2Pod</a> module,
+it to Pod with the experimental <a href="../../Pod/HTML2Pod.html">Pod::HTML2Pod</a> module,
 (available in CPAN), and looking at the resulting code.  The experimental
-<a href="../Pod/PXML.html">Pod::PXML</a> module in CPAN might also be useful.
-<p></p>
-<li></li>
-Many older Pod translators require the lines before every Pod
+<a href="../../Pod/PXML.html">Pod::PXML</a> module in CPAN might also be useful.</p>
+</li>
+<li>
+<p>Many older Pod translators require the lines before every Pod
 command and after every Pod command (including ``=cut''!) to be a blank
-line.  Having something like this:
+line.  Having something like this:</p>
 <pre>
  # - - - - - - - - - - - -
  =item $firecracker-&gt;boom()</pre>
@@ -696,33 +734,34 @@ at all.</p>
 <pre>
  sub boom {
  ...</pre>
-<p></p>
-<li></li>
-Some older Pod translators require paragraphs (including command
+</li>
+<li>
+<p>Some older Pod translators require paragraphs (including command
 paragraphs like ``=head2 Functions'') to be separated by <em>completely</em>
 empty lines.  If you have an apparently empty line with some spaces
 on it, this might not count as a separator for those translators, and
-that could cause odd formatting.
-<p></p>
-<li></li>
-Older translators might add wording around an L&lt;&gt; link, so that
+that could cause odd formatting.</p>
+</li>
+<li>
+<p>Older translators might add wording around an L&lt;&gt; link, so that
 <code>L&lt;Foo::Bar&gt;</code> may become ``the Foo::Bar manpage'', for example.
 So you shouldn't write things like <code>the L&lt;foo&gt;
 documentation</code>, if you want the translated document to read sensibly
 -- instead write <code>the L&lt;Foo::Bar|Foo::Bar&gt; documentation</code> or
 <code>L&lt;the Foo::Bar documentation|Foo::Bar&gt;</code>, to control how the
-link comes out.
-<p></p>
-<li></li>
-Going past the 70th column in a verbatim block might be ungracefully
-wrapped by some formatters.
-<p></p></ul>
+link comes out.</p>
+</li>
+<li>
+<p>Going past the 70th column in a verbatim block might be ungracefully
+wrapped by some formatters.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
 <p><a href="perlpodspec.html">the perlpodspec manpage</a>, <a href="perlsyn.html#pods__embedded_documentation">PODs: Embedded Documentation in the perlsyn manpage</a>,
-<a href="perlnewmod.html">the perlnewmod manpage</a>, <a href="perldoc.html">the perldoc manpage</a>, <em>pod2html</em>, <em>pod2man</em>, <em>podchecker</em>.</p>
+<a href="perlnewmod.html">the perlnewmod manpage</a>, <a href="perldoc.html">the perldoc manpage</a>, <a href="pod2html.html">the pod2html manpage</a>, <a href="pod2man.html">the pod2man manpage</a>, <a href="podchecker.html">the podchecker manpage</a>.</p>
 <p>
 </p>
 <hr />

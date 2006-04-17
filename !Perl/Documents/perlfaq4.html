@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlfaq4 - Data Manipulation</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -133,7 +135,7 @@
 <p>
 </p>
 <h1><a name="name">NAME</a></h1>
-<p>perlfaq4 - Data Manipulation ($Revision: 1.56 $, $Date: 2004/11/03 22:47:56 $)</p>
+<p>perlfaq4 - Data Manipulation ($Revision: 1.73 $, $Date: 2005/12/31 00:54:37 $)</p>
 <p>
 </p>
 <hr />
@@ -255,10 +257,10 @@ functions is that it works with numbers of ANY size, that it is
 optimized for speed on some operations, and for at least some
 programmers the notation might be familiar.</p>
 <dl>
-<dt><strong><a name="item_how_do_i_convert_hexadecimal_into_decimal">How do I convert hexadecimal into decimal</a></strong><br />
-</dt>
+<dt><strong><a name="item_how_do_i_convert_hexadecimal_into_decimal">How do I convert hexadecimal into decimal</a></strong>
+
 <dd>
-Using perl's built in conversion of 0x notation:
+<p>Using perl's built in conversion of 0x notation:</p>
 </dd>
 <dd>
 <pre>
@@ -287,11 +289,11 @@ Using perl's built in conversion of 0x notation:
     $vec = Bit::Vector-&gt;new_Hex(32, &quot;DEADBEEF&quot;);
     $dec = $vec-&gt;to_Dec();</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_how_do_i_convert_from_decimal_to_hexadecimal">How do I convert from decimal to hexadecimal</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_how_do_i_convert_from_decimal_to_hexadecimal">How do I convert from decimal to hexadecimal</a></strong>
+
 <dd>
-Using sprintf:
+<p>Using sprintf:</p>
 </dd>
 <dd>
 <pre>
@@ -324,11 +326,11 @@ Using sprintf:
     $vec-&gt;Resize(32); # suppress leading 0 if unwanted
     $hex = $vec-&gt;to_Hex();</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_how_do_i_convert_from_octal_to_decimal">How do I convert from octal to decimal</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_how_do_i_convert_from_octal_to_decimal">How do I convert from octal to decimal</a></strong>
+
 <dd>
-Using Perl's built in conversion of numbers with leading zeros:
+<p>Using Perl's built in conversion of numbers with leading zeros:</p>
 </dd>
 <dd>
 <pre>
@@ -351,11 +353,11 @@ Using Perl's built in conversion of numbers with leading zeros:
     $vec-&gt;Chunk_List_Store(3, split(//, reverse &quot;33653337357&quot;));
     $dec = $vec-&gt;to_Dec();</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_how_do_i_convert_from_decimal_to_octal">How do I convert from decimal to octal</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_how_do_i_convert_from_decimal_to_octal">How do I convert from decimal to octal</a></strong>
+
 <dd>
-Using sprintf:
+<p>Using sprintf:</p>
 </dd>
 <dd>
 <pre>
@@ -370,12 +372,12 @@ Using sprintf:
     $vec = Bit::Vector-&gt;new_Dec(32, -559038737);
     $oct = reverse join('', $vec-&gt;Chunk_List_Read(3));</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_how_do_i_convert_from_binary_to_decimal">How do I convert from binary to decimal</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_how_do_i_convert_from_binary_to_decimal">How do I convert from binary to decimal</a></strong>
+
 <dd>
-Perl 5.6 lets you write binary numbers directly with
-the 0b notation:
+<p>Perl 5.6 lets you write binary numbers directly with
+the 0b notation:</p>
 </dd>
 <dd>
 <pre>
@@ -417,11 +419,11 @@ the 0b notation:
     $vec = Bit::Vector-&gt;new_Bin(32, &quot;11011110101011011011111011101111&quot;);
     $dec = $vec-&gt;to_Dec();</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_how_do_i_convert_from_decimal_to_binary">How do I convert from decimal to binary</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_how_do_i_convert_from_decimal_to_binary">How do I convert from decimal to binary</a></strong>
+
 <dd>
-Using sprintf (perl 5.6+):
+<p>Using sprintf (perl 5.6+):</p>
 </dd>
 <dd>
 <pre>
@@ -447,7 +449,8 @@ Using sprintf (perl 5.6+):
 <p>The remaining transformations (e.g. hex -&gt; oct, bin -&gt; hex, etc.)
 are left as an exercise to the inclined reader.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="why_doesn_t___work_the_way_i_want_it_to">Why doesn't &amp; work the way I want it to?</a></h2>
@@ -568,10 +571,10 @@ integers (inclusive), For example: <code>random_int_in(50,120)</code>.</p>
 <p>
 </p>
 <h2><a name="how_do_i_find_the_day_or_week_of_the_year">How do I find the day or week of the year?</a></h2>
-<p>The localtime function returns the day of the week.  Without an
+<p>The localtime function returns the day of the year.  Without an
 argument localtime uses the current time.</p>
 <pre>
-    $day_of_year = (localtime)[7];</pre>
+        $day_of_year = (localtime)[7];</pre>
 <p>The POSIX module can also format a date as the day of the year or
 week of the year.</p>
 <pre>
@@ -583,9 +586,9 @@ a time in epoch seconds for the argument to localtime.</p>
 <pre>
         use POSIX qw/strftime/;
         use Time::Local;
-        my $week_of_year = strftime &quot;%W&quot;, 
+        my $week_of_year = strftime &quot;%W&quot;,
                 localtime( timelocal( 0, 0, 0, 18, 11, 1987 ) );</pre>
-<p>The Date::Calc module provides two functions for to calculate these.</p>
+<p>The Date::Calc module provides two functions to calculate these.</p>
 <pre>
         use Date::Calc;
         my $day_of_year  = Day_of_Year(  1987, 12, 18 );
@@ -597,7 +600,8 @@ a time in epoch seconds for the argument to localtime.</p>
 <pre>
     sub get_century    {
         return int((((localtime(shift || time))[5] + 1999))/100);
-    }
+    }</pre>
+<pre>
     sub get_millennium {
         return 1+int((((localtime(shift || time))[5] + 1899))/1000);
     }</pre>
@@ -610,15 +614,10 @@ reliably determine the current century or millennium.</p>
 <p>
 </p>
 <h2><a name="how_can_i_compare_two_dates_and_find_the_difference">How can I compare two dates and find the difference?</a></h2>
-<p>If you're storing your dates as epoch seconds then simply subtract one
-from the other.  If you've got a structured date (distinct year, day,
-month, hour, minute, seconds values), then for reasons of accessibility,
-simplicity, and efficiency, merely use either timelocal or timegm (from
-the Time::Local module in the standard distribution) to reduce structured
-dates to epoch seconds.  However, if you don't know the precise format of
-your dates, then you should probably use either of the Date::Manip and
-Date::Calc modules from CPAN before you go hacking up your own parsing
-routine to handle arbitrary date formats.</p>
+<p>(contributed by brian d foy)</p>
+<p>You could just store all your dates as a number and then subtract. Life
+isn't always that simple though. If you want to work with formatted
+dates, the Date::Manip, Date::Calc, or DateTime modules can help you.</p>
 <p>
 </p>
 <h2><a name="how_can_i_take_a_string_and_turn_it_into_epoch_seconds">How can I take a string and turn it into epoch seconds?</a></h2>
@@ -629,73 +628,49 @@ and Date::Manip modules from CPAN.</p>
 <p>
 </p>
 <h2><a name="how_can_i_find_the_julian_day">How can I find the Julian Day?</a></h2>
-<p>Use the Time::JulianDay module (part of the Time-modules bundle
-available from CPAN.)</p>
-<p>Before you immerse yourself too deeply in this, be sure to verify that
-it is the <em>Julian</em> Day you really want.  Are you interested in a way
-of getting serial days so that you just can tell how many days they
-are apart or so that you can do also other date arithmetic?  If you
-are interested in performing date arithmetic, this can be done using
-modules Date::Manip or Date::Calc.</p>
-<p>There is too many details and much confusion on this issue to cover in
-this FAQ, but the term is applied (correctly) to a calendar now
-supplanted by the Gregorian Calendar, with the Julian Calendar failing
-to adjust properly for leap years on centennial years (among other
-annoyances).  The term is also used (incorrectly) to mean: [1] days in
-the Gregorian Calendar; and [2] days since a particular starting time
-or `epoch', usually 1970 in the Unix world and 1980 in the
-MS-DOS/Windows world.  If you find that it is not the first meaning
-that you really want, then check out the Date::Manip and Date::Calc
-modules.  (Thanks to David Cassell for most of this text.)</p>
+<p>(contributed by brian d foy and Dave Cross)</p>
+<p>You can use the Time::JulianDay module available on CPAN.  Ensure that
+you really want to find a Julian day, though, as many people have
+different ideas about Julian days.  See
+<a href="http://www.hermetic.ch/cal_stud/jdn.htm">http://www.hermetic.ch/cal_stud/jdn.htm</a> for instance.</p>
+<p>You can also try the DateTime module, which can convert a date/time
+to a Julian Day.</p>
+<pre>
+  $ perl -MDateTime -le'print DateTime-&gt;today-&gt;jd'
+  2453401.5</pre>
+<p>Or the modified Julian Day</p>
+<pre>
+  $ perl -MDateTime -le'print DateTime-&gt;today-&gt;mjd'
+  53401</pre>
+<p>Or even the day of the year (which is what some people think of as a
+Julian day)</p>
+<pre>
+  $ perl -MDateTime -le'print DateTime-&gt;today-&gt;doy'
+  31</pre>
 <p>
 </p>
 <h2><a name="how_do_i_find_yesterday_s_date">How do I find yesterday's date?</a></h2>
-<p>If you only need to find the date (and not the same time), you
-can use the Date::Calc module.</p>
+<p>(contributed by brian d foy)</p>
+<p>Use one of the Date modules. The <code>DateTime</code> module makes it simple, and
+give you the same time of day, only the day before.</p>
 <pre>
-        use Date::Calc qw(Today Add_Delta_Days);</pre>
+        use DateTime;</pre>
 <pre>
-        my @date = Add_Delta_Days( Today(), -1 );</pre>
+        my $yesterday = DateTime-&gt;now-&gt;subtract( days =&gt; 1 );</pre>
+<pre>
+        print &quot;Yesterday was $yesterday\n&quot;;</pre>
+<p>You can also use the <code>Date::Calc</code> module using its Today_and_Now
+function.</p>
+<pre>
+        use Date::Calc qw( Today_and_Now Add_Delta_DHMS );</pre>
+<pre>
+        my @date_time = Add_Delta_DHMS( Today_and_Now(), -1, 0, 0, 0 );</pre>
 <pre>
         print &quot;@date\n&quot;;</pre>
-<p>Most people try to use the time rather than the calendar to
-figure out dates, but that assumes that your days are
-twenty-four hours each.  For most people, there are two days
-a year when they aren't: the switch to and from summer time
-throws this off. Russ Allbery offers this solution.</p>
-<pre>
-    sub yesterday {
-                my $now  = defined $_[0] ? $_[0] : time;
-                my $then = $now - 60 * 60 * 24;
-                my $ndst = (localtime $now)[8] &gt; 0;
-                my $tdst = (localtime $then)[8] &gt; 0;
-                $then - ($tdst - $ndst) * 60 * 60;
-                }</pre>
-<p>Should give you ``this time yesterday'' in seconds since epoch relative to
-the first argument or the current time if no argument is given and
-suitable for passing to localtime or whatever else you need to do with
-it.  $ndst is whether we're currently in daylight savings time; $tdst is
-whether the point 24 hours ago was in daylight savings time.  If $tdst
-and $ndst are the same, a boundary wasn't crossed, and the correction
-will subtract 0.  If $tdst is 1 and $ndst is 0, subtract an hour more
-from yesterday's time since we gained an extra hour while going off
-daylight savings time.  If $tdst is 0 and $ndst is 1, subtract a
-negative hour (add an hour) to yesterday's time since we lost an hour.</p>
-<p>All of this is because during those days when one switches off or onto
-DST, a ``day'' isn't 24 hours long; it's either 23 or 25.</p>
-<p>The explicit settings of $ndst and $tdst are necessary because localtime
-only says it returns the system tm struct, and the system tm struct at
-least on Solaris doesn't guarantee any particular positive value (like,
-say, 1) for isdst, just a positive value.  And that value can
-potentially be negative, if DST information isn't available (this sub
-just treats those cases like no DST).</p>
-<p>Note that between 2am and 3am on the day after the time zone switches
-off daylight savings time, the exact hour of ``yesterday'' corresponding
-to the current hour is not clearly defined.  Note also that if used
-between 2am and 3am the day after the change to daylight savings time,
-the result will be between 3am and 4am of the previous day; it's
-arguable whether this is correct.</p>
-<p>This sub does not attempt to deal with leap seconds (most things don't).</p>
+<p>Most people try to use the time rather than the calendar to figure out
+dates, but that assumes that days are twenty-four hours each.  For
+most people, there are two days a year when they aren't: the switch to
+and from summer time throws this off. Let the modules do the work.</p>
 <p>
 </p>
 <h2><a name="does_perl_have_a_year_2000_problem_is_perl_y2k_compliant">Does Perl have a Year 2000 problem?  Is Perl Y2K compliant?</a></h2>
@@ -729,9 +704,14 @@ a longer exposition.</p>
 <p>
 </p>
 <h2><a name="how_do_i_validate_input">How do I validate input?</a></h2>
-<p>The answer to this question is usually a regular expression, perhaps
-with auxiliary logic.  See the more specific questions (numbers, mail
-addresses, etc.) for details.</p>
+<p>(contributed by brian d foy)</p>
+<p>There are many ways to ensure that values are what you expect or
+want to accept. Besides the specific examples that we cover in the
+perlfaq, you can also look at the modules with ``Assert'' and ``Validate''
+in their names, along with other modules such as <code>Regexp::Common</code>.</p>
+<p>Some modules have validation for particular types of input, such
+as <code>Business::ISBN</code>, <code>Business::CreditCard</code>, <code>Email::Valid</code>,
+and <code>Data::Validate::IP</code>.</p>
 <p>
 </p>
 <h2><a name="how_do_i_unescape_a_string">How do I unescape a string?</a></h2>
@@ -744,22 +724,62 @@ character are removed with</p>
 <p>
 </p>
 <h2><a name="how_do_i_remove_consecutive_pairs_of_characters">How do I remove consecutive pairs of characters?</a></h2>
-<p>To turn <code>&quot;abbcccd&quot;</code> into <code>&quot;abccd&quot;</code>:</p>
+<p>(contributed by brian d foy)</p>
+<p>You can use the substitution operator to find pairs of characters (or
+runs of characters) and replace them with a single instance. In this
+substitution, we find a character in <code>(.)</code>. The memory parentheses
+store the matched character in the back-reference <code>\1</code> and we use
+that to require that the same thing immediately follow it. We replace
+that part of the string with the character in <code>$1</code>.</p>
 <pre>
-    s/(.)\1/$1/g;       # add /s to include newlines</pre>
-<p>Here's a solution that turns ``abbcccd'' to ``abcd'':</p>
+    s/(.)\1/$1/g;</pre>
+<p>We can also use the transliteration operator, <code>tr///</code>. In this
+example, the search list side of our <code>tr///</code> contains nothing, but
+the <code>c</code> option complements that so it contains everything. The
+replacement list also contains nothing, so the transliteration is
+almost a no-op since it won't do any replacements (or more exactly,
+replace the character with itself). However, the <code>s</code> option squashes
+duplicated and consecutive characters in the string so a character
+does not show up next to itself</p>
 <pre>
-    y///cs;     # y == tr, but shorter :-)</pre>
+        my $str = 'Haarlem';   # in the Netherlands
+    $str =~ tr///cs;       # Now Harlem, like in New York</pre>
 <p>
 </p>
 <h2><a name="how_do_i_expand_function_calls_in_a_string">How do I expand function calls in a string?</a></h2>
-<p>This is documented in <a href="perlref.html">the perlref manpage</a>.  In general, this is fraught with
-quoting and readability problems, but it is possible.  To interpolate
-a subroutine call (in list context) into a string:</p>
+<p>(contributed by brian d foy)</p>
+<p>This is documented in <a href="perlref.html">the perlref manpage</a>, and although it's not the easiest
+thing to read, it does work. In each of these examples, we call the
+function inside the braces used to dereference a reference. If we
+have a more than one return value, we can construct and dereference an
+anonymous array. In this case, we call the function in list context.</p>
 <pre>
-    print &quot;My sub returned @{[mysub(1,2,3)]} that time.\n&quot;;</pre>
-<p>See also ``How can I expand variables in text strings?'' in this
-section of the FAQ.</p>
+        print &quot;The time values are @{ [localtime] }.\n&quot;;</pre>
+<p>If we want to call the function in scalar context, we have to do a bit
+more work. We can really have any code we like inside the braces, so
+we simply have to end with the scalar reference, although how you do
+that is up to you, and you can use code inside the braces.</p>
+<pre>
+        print &quot;The time is ${\(scalar localtime)}.\n&quot;</pre>
+<pre>
+        print &quot;The time is ${ my $x = localtime; \$x }.\n&quot;;</pre>
+<p>If your function already returns a reference, you don't need to create
+the reference yourself.</p>
+<pre>
+        sub timestamp { my $t = localtime; \$t }</pre>
+<pre>
+        print &quot;The time is ${ timestamp() }.\n&quot;;</pre>
+<p>The <code>Interpolation</code> module can also do a lot of magic for you. You can
+specify a variable name, in this case <code>E</code>, to set up a tied hash that
+does the interpolation for you. It has several other methods to do this
+as well.</p>
+<pre>
+        use Interpolation E =&gt; 'eval';
+        print &quot;The time values are $E{localtime()}.\n&quot;;</pre>
+<p>In most cases, it is probably easier to simply use string concatenation,
+which also forces scalar context.</p>
+<pre>
+        print &quot;The time is &quot; . localtime . &quot;.\n&quot;;</pre>
 <p>
 </p>
 <h2><a name="how_do_i_find_matching_nesting_anything">How do I find matching/nesting anything?</a></h2>
@@ -768,14 +788,15 @@ matter how complicated.  To find something between two single
 characters, a pattern like <code>/x([^x]*)x/</code> will get the intervening
 bits in $1. For multiple ones, then something more like
 <code>/alpha(.*?)omega/</code> would be needed.  But none of these deals with
-nested patterns.  For balanced expressions using <code>(</code>, <code>{</code>, <code>[</code>
-or <code>&lt;</code> as delimiters, use the CPAN module Regexp::Common, or see
-<a href="perlre.html#___code___">(??{ code }) in the perlre manpage</a>.  For other cases, you'll have to write a parser.</p>
+nested patterns.  For balanced expressions using <code>(</code>, <code>{</code>, <code>[</code> or
+<code>&lt;</code> as delimiters, use the CPAN module Regexp::Common, or see
+<a href="perlre.html#___code___">(??{ code }) in the perlre manpage</a>.  For other cases, you'll have to write a
+parser.</p>
 <p>If you are serious about writing a parser, there are a number of
 modules or oddities that will make your life a lot easier.  There are
 the CPAN modules Parse::RecDescent, Parse::Yapp, and Text::Balanced;
-and the byacc program.   Starting from perl 5.8 the Text::Balanced
-is part of the standard distribution.</p>
+and the byacc program.   Starting from perl 5.8 the Text::Balanced is
+part of the standard distribution.</p>
 <p>One simple destructive, inside-out approach that you might try is to
 pull out the smallest nesting parts one at a time:</p>
 <pre>
@@ -928,7 +949,7 @@ See <a href="perllocale.html">the perllocale manpage</a> for endless details on 
 case'', but that's not quite accurate.  Consider the proper
 capitalization of the movie <em>Dr. Strangelove or: How I Learned to
 Stop Worrying and Love the Bomb</em>, for example.</p>
-<p>Damian Conway's <a href="../Text/Autoformat.html">the Text::Autoformat manpage</a> module provides some smart
+<p>Damian Conway's <a href="../../Text/Autoformat.html">the Text::Autoformat manpage</a> module provides some smart
 case transformations:</p>
 <pre>
     use Text::Autoformat;
@@ -944,7 +965,7 @@ case transformations:</p>
 </p>
 <h2><a name="how_can_i_split_a__character__delimited_string_except_when_inside__character_">How can I split a [character] delimited string except when inside [character]?</a></h2>
 <p>Several modules can handle this sort of pasing---Text::Balanced,
-Text::CVS, Text::CVS_XS, and Text::ParseWords, among others.</p>
+Text::CSV, Text::CSV_XS, and Text::ParseWords, among others.</p>
 <p>Take the example case of trying to split a string that is
 comma-separated into its different fields. You can't use <code>split(/,/)</code>
 because you shouldn't split if the comma is inside quotes.  For
@@ -975,31 +996,47 @@ distribution) lets you say:</p>
 <p>
 </p>
 <h2><a name="how_do_i_strip_blank_space_from_the_beginning_end_of_a_string">How do I strip blank space from the beginning/end of a string?</a></h2>
-<p>Although the simplest approach would seem to be</p>
+<p>(contributed by brian d foy)</p>
+<p>A substitution can do this for you. For a single line, you want to
+replace all the leading or trailing whitespace with nothing. You
+can do that with a pair of substitutions.</p>
 <pre>
-    $string =~ s/^\s*(.*?)\s*$/$1/;</pre>
-<p>not only is this unnecessarily slow and destructive, it also fails with
-embedded newlines.  It is much faster to do this operation in two steps:</p>
-<pre>
-    $string =~ s/^\s+//;
-    $string =~ s/\s+$//;</pre>
-<p>Or more nicely written as:</p>
-<pre>
-    for ($string) {
         s/^\s+//;
-        s/\s+$//;
-    }</pre>
-<p>This idiom takes advantage of the <code>foreach</code> loop's aliasing
-behavior to factor out common code.  You can do this
-on several strings at once, or arrays, or even the
-values of a hash if you use a slice:</p>
+        s/\s+$//;</pre>
+<p>You can also write that as a single substitution, although it turns
+out the combined statement is slower than the separate ones. That
+might not matter to you, though.</p>
 <pre>
-    # trim whitespace in the scalar, the array,
-    # and all the values in the hash
-    foreach ($scalar, @array, @hash{keys %hash}) {
-        s/^\s+//;
-        s/\s+$//;
-    }</pre>
+        s/^\s+|\s+$//g;</pre>
+<p>In this regular expression, the alternation matches either at the
+beginning or the end of the string since the anchors have a lower
+precedence than the alternation. With the <code>/g</code> flag, the substitution
+makes all possible matches, so it gets both. Remember, the trailing
+newline matches the <code>\s+</code>, and  the <code>$</code> anchor can match to the
+physical end of the string, so the newline disappears too. Just add
+the newline to the output, which has the added benefit of preserving
+``blank'' (consisting entirely of whitespace) lines which the <code>^\s+</code>
+would remove all by itself.</p>
+<pre>
+        while( &lt;&gt; )
+                {
+                s/^\s+|\s+$//g;
+                print &quot;$_\n&quot;;
+                }</pre>
+<p>For a multi-line string, you can apply the regular expression
+to each logical line in the string by adding the <code>/m</code> flag (for
+``multi-line''). With the <code>/m</code> flag, the <code>$</code> matches <em>before</em> an
+embedded newline, so it doesn't remove it. It still removes the
+newline at the end of the string.</p>
+<pre>
+    $string =~ s/^\s+|\s+$//gm;</pre>
+<p>Remember that lines consisting entirely of whitespace will disappear,
+since the first part of the alternation can match the entire string
+and replace it with nothing. If need to keep embedded blank lines,
+you have to do a little more work. Instead of matching any whitespace
+(since that includes a newline), just match the other whitespace.</p>
+<pre>
+        $string =~ s/^[\t\f ]+|[\t\f ]+$//mg;</pre>
 <p>
 </p>
 <h2><a name="how_do_i_pad_a_string_with_blanks_or_pad_a_number_with_zeroes">How do I pad a string with blanks or pad a number with zeroes?</a></h2>
@@ -1066,29 +1103,25 @@ you can use this kind of thing:</p>
 <p>
 </p>
 <h2><a name="how_do_i_find_the_soundex_value_of_a_string">How do I find the soundex value of a string?</a></h2>
-<p>Use the standard Text::Soundex module distributed with Perl.
-Before you do so, you may want to determine whether `soundex' is in
-fact what you think it is.  Knuth's soundex algorithm compresses words
-into a small space, and so it does not necessarily distinguish between
-two words which you might want to appear separately.  For example, the
-last names `Knuth' and `Kant' are both mapped to the soundex code K530.
-If Text::Soundex does not do what you are looking for, you might want
-to consider the String::Approx module available at CPAN.</p>
+<p>(contributed by brian d foy)</p>
+<p>You can use the Text::Soundex module. If you want to do fuzzy or close
+matching, you might also try the String::Approx, and Text::Metaphone,
+and Text::DoubleMetaphone modules.</p>
 <p>
 </p>
 <h2><a name="how_can_i_expand_variables_in_text_strings">How can I expand variables in text strings?</a></h2>
-<p>Let's assume that you have a string like:</p>
+<p>Let's assume that you have a string that contains placeholder
+variables.</p>
 <pre>
     $text = 'this has a $foo in it and a $bar';</pre>
-<p>If those were both global variables, then this would
-suffice:</p>
+<p>You can use a substitution with a double evaluation.  The
+first /e turns <code>$1</code> into <code>$foo</code>, and the second /e turns
+<code>$foo</code> into its value.  You may want to wrap this in an
+<code>eval</code>: if you try to get the value of an undeclared variable
+while running under <code>use strict</code>, you get a fatal error.</p>
 <pre>
-    $text =~ s/\$(\w+)/${$1}/g;  # no /e needed</pre>
-<p>But since they are probably lexicals, or at least, they could
-be, you'd have to do this:</p>
-<pre>
-    $text =~ s/(\$\w+)/$1/eeg;
-    die if $@;                  # needed /ee, not /e</pre>
+    eval { $text =~ s/(\$\w+)/$1/eeg };
+    die if $@;</pre>
 <p>It's probably better in the general case to treat those
 variables as entries in some special hash.  For example:</p>
 <pre>
@@ -1097,8 +1130,6 @@ variables as entries in some special hash.  For example:</p>
         bar  =&gt; 19,
     );
     $text =~ s/\$(\w+)/$user_defs{$1}/g;</pre>
-<p>See also ``How do I expand function calls in a string?'' in this section
-of the FAQ.</p>
 <p>
 </p>
 <h2><a name="what_s_wrong_with_always_quoting__vars">What's wrong with always quoting ``$vars''?</a></h2>
@@ -1141,12 +1172,12 @@ number, such as the magical <code>++</code> autoincrement operator or the
 <h2><a name="why_don_t_my___here_documents_work">Why don't my &lt;&lt;HERE documents work?</a></h2>
 <p>Check for these three things:</p>
 <dl>
-<dt><strong><a name="item_there_must_be_no_space_after_the__3c_3c_part_2e">There must be no space after the &lt;&lt; part.</a></strong><br />
-</dt>
-<dt><strong><a name="item_there">There (probably) should be a semicolon at the end.</a></strong><br />
-</dt>
-<dt><strong><a name="item_t">You can't (easily) have any space in front of the tag.</a></strong><br />
-</dt>
+<dt><strong><a name="item_there_must_be_no_space_after_the__3c_3c_part_2e">There must be no space after the &lt;&lt; part.</a></strong>
+
+<dt><strong><a name="item_there">There (probably) should be a semicolon at the end.</a></strong>
+
+<dt><strong><a name="item_t">You can't (easily) have any space in front of the tag.</a></strong>
+
 </dl>
 <p>If you want to indent the text in the here document, you
 can do this:</p>
@@ -1251,76 +1282,46 @@ matters.</p>
 <p>
 </p>
 <h2><a name="how_can_i_remove_duplicate_elements_from_a_list_or_array">How can I remove duplicate elements from a list or array?</a></h2>
-<p>There are several possible ways, depending on whether the array is
-ordered and whether you wish to preserve the ordering.</p>
-<dl>
-<dt><strong><a name="item_a_29">a)</a></strong><br />
-</dt>
-<dd>
-If @in is sorted, and you want @out to be sorted:
-(this assumes all true values in the array)
-</dd>
-<dd>
+<p>(contributed by brian d foy)</p>
+<p>Use a hash. When you think the words ``unique'' or ``duplicated'', think
+``hash keys''.</p>
+<p>If you don't care about the order of the elements, you could just
+create the hash then extract the keys. It's not important how you
+create that hash: just that you use <code>keys</code> to get the unique
+elements.</p>
 <pre>
-    $prev = &quot;not equal to $in[0]&quot;;
-    @out = grep($_ ne $prev &amp;&amp; ($prev = $_, 1), @in);</pre>
-</dd>
-<dd>
-<p>This is nice in that it doesn't use much extra memory, simulating
-uniq(1)'s behavior of removing only adjacent duplicates.  The ``, 1''
-guarantees that the expression is true (so that grep picks it up)
-even if the $_ is 0, ``'', or undef.</p>
-</dd>
-<p></p>
-<dt><strong><a name="item_b_29">b)</a></strong><br />
-</dt>
-<dd>
-If you don't know whether @in is sorted:
-</dd>
-<dd>
+   my %hash   = map { $_, 1 } @array;
+   # or a hash slice: @hash{ @array } = ();
+   # or a foreach: $hash{$_} = 1 foreach ( @array );</pre>
 <pre>
-    undef %saw;
-    @out = grep(!$saw{$_}++, @in);</pre>
-</dd>
-<p></p>
-<dt><strong><a name="item_c_29">c)</a></strong><br />
-</dt>
-<dd>
-Like (b), but @in contains only small integers:
-</dd>
-<dd>
+   my @unique = keys %hash;</pre>
+<p>You can also go through each element and skip the ones you've seen
+before. Use a hash to keep track. The first time the loop sees an
+element, that element has no key in <code>%Seen</code>. The <code>next</code> statement
+creates the key and immediately uses its value, which is <code>undef</code>, so
+the loop continues to the <code>push</code> and increments the value for that
+key. The next time the loop sees that same element, its key exists in
+the hash <em>and</em> the value for that key is true (since it's not 0 or
+undef), so the next skips that iteration and the loop goes to the next
+element.</p>
 <pre>
-    @out = grep(!$saw[$_]++, @in);</pre>
-</dd>
-<p></p>
-<dt><strong><a name="item_d_29">d)</a></strong><br />
-</dt>
-<dd>
-A way to do (b) without any loops or greps:
-</dd>
-<dd>
+        my @unique = ();
+        my %seen   = ();</pre>
 <pre>
-    undef %saw;
-    @saw{@in} = ();
-    @out = sort keys %saw;  # remove sort if undesired</pre>
-</dd>
-<p></p>
-<dt><strong><a name="item_e_29">e)</a></strong><br />
-</dt>
-<dd>
-Like (d), but @in contains only small positive integers:
-</dd>
-<dd>
+        foreach my $elem ( @array )
+                {
+                next if $seen{ $elem }++;
+                push @unique, $elem;
+                }</pre>
+<p>You can write this more briefly using a grep, which does the
+same thing.</p>
 <pre>
-    undef @ary;
-    @ary[@in] = @in;
-    @out = grep {defined} @ary;</pre>
-</dd>
-<p></p></dl>
-<p>But perhaps you should have been using a hash all along, eh?</p>
+   my %seen = ();
+   my @unique = grep { ! $seen{ $_ }++ } @array;</pre>
 <p>
 </p>
 <h2><a name="how_can_i_tell_whether_a_certain_element_is_contained_in_a_list_or_array">How can I tell whether a certain element is contained in a list or array?</a></h2>
+<p>(portions of this answer contributed by Anno Siegel)</p>
 <p>Hearing the word ``in'' is an <em>in</em>dication that you probably should have
 used a hash, not a list or array, to store your data.  Hashes are
 designed to answer this question quickly and efficiently.  Arrays aren't.</p>
@@ -1349,25 +1350,31 @@ quite a lot of space by using bit strings instead:</p>
     undef $read;
     for (@articles) { vec($read,$_,1) = 1 }</pre>
 <p>Now check whether <code>vec($read,$n,1)</code> is true for some <code>$n</code>.</p>
-<p>Please do not use</p>
+<p>These methods guarantee fast individual tests but require a re-organization
+of the original list or array.  They only pay off if you have to test
+multiple values against the same array.</p>
+<p>If you are testing only once, the standard module List::Util exports
+the function <code>first</code> for this purpose.  It works by stopping once it
+finds the element. It's written in C for speed, and its Perl equivalant
+looks like this subroutine:</p>
 <pre>
-    ($is_there) = grep $_ eq $whatever, @array;</pre>
-<p>or worse yet</p>
+        sub first (&amp;@) {
+                my $code = shift;
+                foreach (@_) {
+                        return $_ if &amp;{$code}();
+                }
+                undef;
+        }</pre>
+<p>If speed is of little concern, the common idiom uses grep in scalar context
+(which returns the number of items that passed its condition) to traverse the
+entire list. This does have the benefit of telling you how many matches it
+found, though.</p>
 <pre>
-    ($is_there) = grep /$whatever/, @array;</pre>
-<p>These are slow (checks every element even if the first matches),
-inefficient (same reason), and potentially buggy (what if there are
-regex characters in $whatever?).  If you're only testing once, then
-use:</p>
+        my $is_there = grep $_ eq $whatever, @array;</pre>
+<p>If you want to actually extract the matching elements, simply use grep in
+list context.</p>
 <pre>
-    $is_there = 0;
-    foreach $elt (@array) {
-        if ($elt eq $elt_to_find) {
-            $is_there = 1;
-            last;
-        }
-    }
-    if ($is_there) { ... }</pre>
+        my @matches = grep $_ eq $whatever, @array;</pre>
 <p>
 </p>
 <h2><a name="how_do_i_compute_the_difference_of_two_arrays_how_do_i_compute_the_intersection_of_two_arrays">How do I compute the difference of two arrays?  How do I compute the intersection of two arrays?</a></h2>
@@ -1442,24 +1449,24 @@ Perl 5.8.  This example finds the first element that contains ``Perl''.</p>
 same thing.  Once you find the element, you stop the loop with last.</p>
 <pre>
         my $found;
-        foreach my $element ( @array )
+        foreach ( @array )
                 {
-                if( /Perl/ ) { $found = $element; last }
+                if( /Perl/ ) { $found = $_; last }
                 }</pre>
 <p>If you want the array index, you can iterate through the indices
 and check the array element at each index until you find one
 that satisfies the condition.</p>
 <pre>
         my( $found, $index ) = ( undef, -1 );
-    for( $i = 0; $i &lt; @array; $i++ )
-        {
-        if( $array[$i] =~ /Perl/ )
+        for( $i = 0; $i &lt; @array; $i++ )
                 {
-                $found = $array[$i];
-                $index = $i;
-                last;
-                }
-        }</pre>
+                if( $array[$i] =~ /Perl/ )
+                        {
+                        $found = $array[$i];
+                        $index = $i;
+                        last;
+                        }
+                }</pre>
 <p>
 </p>
 <h2><a name="how_do_i_handle_linked_lists">How do I handle linked lists?</a></h2>
@@ -1527,7 +1534,7 @@ Scalar-List-Utils 1.03 or later installed, you can say:</p>
     sub fisher_yates_shuffle {
         my $deck = shift;  # $deck is a reference to an array
         my $i = @$deck;
-        while ($i--) {
+        while (--$i) {
             my $j = int rand ($i+1);
             @$deck[$i,$j] = @$deck[$j,$i];
         }
@@ -1560,14 +1567,14 @@ this until you have rather largish arrays.</p>
 <p>Use <code>for</code>/<code>foreach</code>:</p>
 <pre>
     for (@lines) {
-        s/foo/bar/;     # change that word
-        y/XZ/ZX/;       # swap those letters
+                s/foo/bar/;     # change that word
+                tr/XZ/ZX/;      # swap those letters
     }</pre>
 <p>Here's another; let's compute spherical volumes:</p>
 <pre>
     for (@volumes = @radii) {   # @volumes has changed parts
-        $_ **= 3;
-        $_ *= (4/3) * 3.14159;  # this will be constant folded
+                $_ **= 3;
+                $_ *= (4/3) * 3.14159;  # this will be constant folded
     }</pre>
 <p>which can also be done with <code>map()</code> which is made to transform
 one list into another:</p>
@@ -1579,7 +1586,7 @@ the values are not copied, so if you modify $orbit (in this
 case), you modify the value.</p>
 <pre>
     for $orbit ( values %orbits ) {
-        ($orbit **= 3) *= (4/3) * 3.14159;
+                ($orbit **= 3) *= (4/3) * 3.14159;
     }</pre>
 <p>Prior to perl 5.6 <code>values</code> returned copies of the values,
 so older perl code often contains constructions such as
@@ -1837,26 +1844,44 @@ such as each().</p>
 <p>
 </p>
 <h2><a name="how_do_i_sort_a_hash__optionally_by_value_instead_of_key_">How do I sort a hash (optionally by value instead of key)?</a></h2>
-<p>Internally, hashes are stored in a way that prevents you from imposing
-an order on key-value pairs.  Instead, you have to sort a list of the
-keys or values:</p>
+<p>(contributed by brian d foy)</p>
+<p>To sort a hash, start with the keys. In this example, we give the list of
+keys to the sort function which then compares them ASCIIbetically (which
+might be affected by your locale settings). The output list has the keys
+in ASCIIbetical order. Once we have the keys, we can go through them to
+create a report which lists the keys in ASCIIbetical order.</p>
 <pre>
-    @keys = sort keys %hash;    # sorted by key
-    @keys = sort {
-                    $hash{$a} cmp $hash{$b}
-            } keys %hash;       # and by value</pre>
-<p>Here we'll do a reverse numeric sort by value, and if two keys are
-identical, sort by length of key, or if that fails, by straight ASCII
-comparison of the keys (well, possibly modified by your locale--see
-<a href="perllocale.html">the perllocale manpage</a>).</p>
+        my @keys = sort { $a cmp $b } keys %hash;</pre>
 <pre>
-    @keys = sort {
-                $hash{$b} &lt;=&gt; $hash{$a}
-                          ||
-                length($b) &lt;=&gt; length($a)
-                          ||
-                      $a cmp $b
-    } keys %hash;</pre>
+        foreach my $key ( @keys )
+                {
+                printf &quot;%-20s %6d\n&quot;, $key, $hash{$value};
+                }</pre>
+<p>We could get more fancy in the <code>sort()</code> block though. Instead of
+comparing the keys, we can compute a value with them and use that
+value as the comparison.</p>
+<p>For instance, to make our report order case-insensitive, we use
+the <code>\L</code> sequence in a double-quoted string to make everything
+lowercase. The <code>sort()</code> block then compares the lowercased
+values to determine in which order to put the keys.</p>
+<pre>
+        my @keys = sort { &quot;\L$a&quot; cmp &quot;\L$b&quot; } keys %hash;</pre>
+<p>Note: if the computation is expensive or the hash has many elements,
+you may want to look at the Schwartzian Transform to cache the
+computation results.</p>
+<p>If we want to sort by the hash value instead, we use the hash key
+to look it up. We still get out a list of keys, but this time they
+are ordered by their value.</p>
+<pre>
+        my @keys = sort { $hash{$a} &lt;=&gt; $hash{$b} } keys %hash;</pre>
+<p>From there we can get more complex. If the hash values are the same,
+we can provide a secondary sort on the hash key.</p>
+<pre>
+        my @keys = sort {
+                $hash{$a} &lt;=&gt; $hash{$b}
+                        or
+                &quot;\L$a&quot; cmp &quot;\L$b&quot;
+                } keys %hash;</pre>
 <p>
 </p>
 <h2><a name="how_can_i_always_keep_my_hash_sorted">How can I always keep my hash sorted?</a></h2>
@@ -2024,8 +2049,16 @@ in <a href="perltoot.html">the perltoot manpage</a>.</p>
 <p>
 </p>
 <h2><a name="how_can_i_use_a_reference_as_a_hash_key">How can I use a reference as a hash key?</a></h2>
-<p>You can't do this directly, but you could use the standard Tie::RefHash
-module distributed with Perl.</p>
+<p>(contributed by brian d foy)</p>
+<p>Hash keys are strings, so you can't really use a reference as the key.
+When you try to do that, perl turns the reference into its stringified
+form (for instance, <code>HASH(0xDEADBEEF)</code>). From there you can't get back
+the reference from the stringified form, at least without doing some
+extra work on your own. Also remember that hash keys must be unique, but
+two different variables can store the same reference (and those variables
+can change later).</p>
+<p>The Tie::RefHash module, which is distributed with perl, might be what
+you want. It handles that extra work.</p>
 <p>
 </p>
 <hr />
@@ -2060,9 +2093,9 @@ some gotchas.  See the section on Regular Expressions.</p>
    if (/^([+-]?)(?=\d|\.\d)\d*(\.\d*)?([Ee]([+-]?\d+))?$/)
                         { print &quot;a C float\n&quot; }</pre>
 <p>There are also some commonly used modules for the task.
-<a href="../Scalar/Util.html">the Scalar::Util manpage</a> (distributed with 5.8) provides access to perl's
+<a href="../../Scalar/Util.html">the Scalar::Util manpage</a> (distributed with 5.8) provides access to perl's
 internal function <code>looks_like_number</code> for determining
-whether a variable looks like a number.  <a href="../Data/Types.html">the Data::Types manpage</a>
+whether a variable looks like a number.  <a href="../../Data/Types.html">the Data::Types manpage</a>
 exports functions that validate data types using both the
 above and other regular expressions. Thirdly, there is
 <code>Regexp::Common</code> which has regular expressions to match
@@ -2090,7 +2123,7 @@ if you just want to say, ``Is this a float?''</p>
     }</pre>
 <pre>
     sub is_numeric { defined getnum($_[0]) }</pre>
-<p>Or you could check out the <a href="../String/Scanf.html">the String::Scanf manpage</a> module on the CPAN
+<p>Or you could check out the <a href="../../String/Scanf.html">the String::Scanf manpage</a> module on the CPAN
 instead. The POSIX module (part of the standard Perl distribution) provides
 the <code>strtod</code> and <code>strtol</code> for converting strings to double and longs,
 respectively.</p>
@@ -2098,7 +2131,7 @@ respectively.</p>
 </p>
 <h2><a name="how_do_i_keep_persistent_data_across_program_calls">How do I keep persistent data across program calls?</a></h2>
 <p>For some specific applications, you can use one of the DBM modules.
-See <em>AnyDBM_File</em>.  More generically, you should consult the FreezeThaw
+See <a href="../../AnyDBM_File.html">the AnyDBM_File manpage</a>.  More generically, you should consult the FreezeThaw
 or Storable modules from CPAN.  Starting from Perl 5.8 Storable is part
 of the standard distribution.  Here's one example using Storable's <code>store</code>
 and <code>retrieve</code> functions:</p>
@@ -2128,7 +2161,7 @@ you wanted to copy.</p>
 <p>
 </p>
 <h2><a name="how_do_i_define_methods_for_every_class_object">How do I define methods for every class/object?</a></h2>
-<p>Use the UNIVERSAL class (see <em>UNIVERSAL</em>).</p>
+<p>Use the UNIVERSAL class (see <a href="../../UNIVERSAL.html">the UNIVERSAL manpage</a>).</p>
 <p>
 </p>
 <h2><a name="how_do_i_verify_a_credit_card_checksum">How do I verify a credit card checksum?</a></h2>
@@ -2143,8 +2176,8 @@ the PDL module from CPAN instead--it makes number-crunching easy.</p>
 </p>
 <hr />
 <h1><a name="author_and_copyright">AUTHOR AND COPYRIGHT</a></h1>
-<p>Copyright (c) 1997-2002 Tom Christiansen and Nathan Torkington.
-All rights reserved.</p>
+<p>Copyright (c) 1997-2006 Tom Christiansen, Nathan Torkington, and
+other authors as noted. All rights reserved.</p>
 <p>This documentation is free; you can redistribute it and/or modify it
 under the same terms as Perl itself.</p>
 <p>Irrespective of its distribution, all code examples in this file

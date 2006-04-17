@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlfaq1 - General Questions About Perl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -24,7 +26,7 @@
 		<li><a href="#what_is_perl">What is Perl?</a></li>
 		<li><a href="#who_supports_perl_who_develops_it_why_is_it_free">Who supports Perl?  Who develops it?  Why is it free?</a></li>
 		<li><a href="#which_version_of_perl_should_i_use">Which version of Perl should I use?</a></li>
-		<li><a href="#what_are_perl4_and_perl5">What are perl4 and perl5?</a></li>
+		<li><a href="#what_are_perl4__perl5__or_perl6">What are perl4, perl5, or perl6?</a></li>
 		<li><a href="#what_is_ponie">What is Ponie?</a></li>
 		<li><a href="#what_is_perl6">What is perl6?</a></li>
 		<li><a href="#how_stable_is_perl">How stable is Perl?</a></li>
@@ -47,7 +49,7 @@
 <p>
 </p>
 <h1><a name="name">NAME</a></h1>
-<p>perlfaq1 - General Questions About Perl ($Revision: 1.15 $, $Date: 2004/10/11 05:06:29 $)</p>
+<p>perlfaq1 - General Questions About Perl ($Revision: 1.19 $, $Date: 2005/12/31 00:54:37 $)</p>
 <p>
 </p>
 <hr />
@@ -101,37 +103,82 @@ users the informal support will more than suffice.  See the answer to
 <p>
 </p>
 <h2><a name="which_version_of_perl_should_i_use">Which version of Perl should I use?</a></h2>
-<p>You should definitely use version 5.  Version 4 is old, limited, and
-no longer maintained; its last patch (4.036) was in 1992, long ago and
-far away.  Sure, it's stable, but so is anything that's dead; in fact,
-perl4 had been called a dead, flea-bitten camel carcass.  The most
-recent production release is 5.8.2 (although 5.005_03 and 5.6.2 are
-still supported). The most cutting-edge development release is 5.9.
-Further references to the Perl language in this document refer to the
-production release unless otherwise specified.  There may be one or
-more official bug fixes by the time you read this, and also perhaps
-some experimental versions on the way to the next release.
-All releases prior to 5.004 were subject to buffer overruns, a grave
-security issue.</p>
+<p>(contributed by brian d foy)</p>
+<p>There is often a matter of opinion and taste, and there isn't any
+one answer that fits anyone.  In general, you want to use either
+the current stable release, or the stable release immediately prior
+to that one.  Currently, those are perl5.8.x and perl5.6.x, respectively.</p>
+<p>Beyond that, you have to consider several things and decide which
+is best for you.</p>
+<ul>
+<li>
+<p>If things aren't broken, upgrading perl may break
+them (or at least issue new warnings).</p>
+</li>
+<li>
+<p>The latest versions of perl have more bug fixes.</p>
+</li>
+<li>
+<p>The Perl community is geared toward supporting the most
+recent releases, so you'll have an easier time finding help for
+those.</p>
+</li>
+<li>
+<p>Versions prior to perl5.004 had serious security problems with
+buffer overflows, and in some cases have CERT advisories (for
+instance, <a href="http://www.cert.org/advisories/CA-1997-17.html">http://www.cert.org/advisories/CA-1997-17.html</a> ).</p>
+</li>
+<li>
+<p>The latest versions are probably the least deployed and
+widely tested, so you may want to wait a few months after their
+release and see what problems others have if you are risk averse.</p>
+</li>
+<li>
+<p>The immediate, previous releases (i.e. perl5.6.x ) are usually
+maintained for a while, although not at the same level as the
+current releases.</p>
+</li>
+<li>
+<p>No one is actively supporting perl4.x.  Five years ago it was
+a dead camel carcass (according to this document).  Now it's barely
+a skeleton as its whitewashed bones have fractured or eroded.</p>
+</li>
+<li>
+<p>There is no perl6.x for the next couple of years.  Stay tuned,
+but don't worry that you'll have to change major versions of Perl
+soon (i.e. before 2006).</p>
+</li>
+<li>
+<p>There are really two tracks of perl development: a
+maintenance version and an experimental version.  The
+maintenance versions are stable, and have an even number
+as the minor release (i.e. perl5.8.x, where 8 is the minor
+release).  The experimental versions may include features that
+don't make it into the stable versions, and have an odd number
+as the minor release (i.e. perl5.9.x, where 9 is the minor release).</p>
+</li>
+</ul>
 <p>
 </p>
-<h2><a name="what_are_perl4_and_perl5">What are perl4 and perl5?</a></h2>
-<p>Perl4 and perl5 are informal names for different versions of the Perl
-programming language.  It's easier to say ``perl5'' than it is to say
-``the <code>5(.004)</code> release of Perl'', but some people have interpreted this
-to mean there's a language called ``perl5'', which isn't the case.
-Perl5 is merely the popular name for the fifth major release (October 1994),
-while perl4 was the fourth major release (March 1991).  There was also a
-perl1 (in January 1988), a perl2 (June 1988), and a perl3 (October 1989).</p>
-<p>The 5.0 release is, essentially, a ground-up rewrite of the original
-perl source code from releases 1 through 4.  It has been modularized,
-object-oriented, tweaked, trimmed, and optimized until it almost doesn't
-look like the old code.  However, the interface is mostly the same, and
-compatibility with previous releases is very high.
-See <a href="perltrap.html#perl4_to_perl5_traps">Perl4 to Perl5 Traps in the perltrap manpage</a>.</p>
-<p>To avoid the ``what language is perl5?'' confusion, some people prefer to
-simply use ``perl'' to refer to the latest version of perl and avoid using
-``perl5'' altogether.  It's not really that big a deal, though.</p>
+<h2><a name="what_are_perl4__perl5__or_perl6">What are perl4, perl5, or perl6?</a></h2>
+<p>(contributed by brian d foy)</p>
+<p>In short, perl4 is the past, perl5 is the present, and perl6 is the
+future.</p>
+<p>The number after perl (i.e. the 5 after perl5) is the major release
+of the perl interpreter as well as the version of the language.  Each
+major version has significant differences that earlier versions cannot
+support.</p>
+<p>The current major release of Perl is perl5, and was released in 1994.
+It can run scripts from the previous major release, perl4 (March 1991),
+but has significant differences. It introduced the concept of references,
+complex data structures, and modules.  The perl5 interpreter was a
+complete re-write of the previous perl sources.</p>
+<p>Perl6 is the next major version of Perl, but it's still in development
+in both its syntax and design.  The work started in 2002 and is still
+ongoing.  Many of the most interesting features have shown up in the
+latest versions of perl5, and some perl5 modules allow you to use some
+perl6 syntax in your programs.  You can learn more about perl6 at
+<a href="http://dev.perl.org/perl6/">http://dev.perl.org/perl6/</a> .</p>
 <p>See <a href="perlhist.html">the perlhist manpage</a> for a history of Perl revisions.</p>
 <p>
 </p>
@@ -353,8 +400,8 @@ but the most recommendable way is to upgrade to at least Perl 5.6.1.</p>
 </p>
 <hr />
 <h1><a name="author_and_copyright">AUTHOR AND COPYRIGHT</a></h1>
-<p>Copyright (c) 1997, 1998, 1999, 2000, 2001 Tom Christiansen and Nathan
-Torkington.  All rights reserved.</p>
+<p>Copyright (c) 1997-2006 Tom Christiansen, Nathan Torkington, and
+other authors as noted. All rights reserved.</p>
 <p>This documentation is free; you can redistribute it and/or modify it
 under the same terms as Perl itself.</p>
 <p>Irrespective of its distribution, all code examples here are in the public

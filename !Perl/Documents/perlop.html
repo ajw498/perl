@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlop - Perl operators and precedence</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -21,7 +23,7 @@
 	<li><a href="#description">DESCRIPTION</a></li>
 	<ul>
 
-		<li><a href="#operator_precedence_and_associativity">Operator Precedence and Associativity</a></li>
+		<li><a href="#operator_precedence_and_associativity">Operator Precedence and Associativity </a></li>
 		<li><a href="#terms_and_list_operators__leftward_">Terms and List Operators (Leftward)</a></li>
 		<li><a href="#the_arrow_operator">The Arrow Operator</a></li>
 		<li><a href="#autoincrement_and_autodecrement">Auto-increment and Auto-decrement</a></li>
@@ -65,7 +67,8 @@
 <hr />
 <p>
 </p>
-<h1><a name="name">NAME</a></h1>
+<h1><a name="name_x_operator_">NAME
+</a></h1>
 <p>perlop - Perl operators and precedence</p>
 <p>
 </p>
@@ -73,7 +76,8 @@
 <h1><a name="description">DESCRIPTION</a></h1>
 <p>
 </p>
-<h2><a name="operator_precedence_and_associativity">Operator Precedence and Associativity</a></h2>
+<h2><a name="operator_precedence_and_associativity_x_operator__precedence__x_precedence__x_associativity_">Operator Precedence and Associativity 
+  </a></h2>
 <p>Operator precedence and associativity work in Perl more or less like
 they do in mathematics.</p>
 <p><em>Operator precedence</em> means some operators are evaluated before
@@ -118,10 +122,11 @@ values only, not array values.</p>
     left        and
     left        or xor</pre>
 <p>In the following sections, these operators are covered in precedence order.</p>
-<p>Many operators can be overloaded for objects.  See <em>overload</em>.</p>
+<p>Many operators can be overloaded for objects.  See <a href="../../overload.html">the overload manpage</a>.</p>
 <p>
 </p>
-<h2><a name="terms_and_list_operators__leftward_">Terms and List Operators (Leftward)</a></h2>
+<h2><a name="terms_and_list_operators__leftward__x_list_operator__x_operator__list__x_term_">Terms and List Operators (Leftward)
+  </a></h2>
 <p>A TERM has the highest precedence in Perl.  They include variables,
 quote and quote-like operators, any expression in parentheses,
 and any function whose arguments are parenthesized.  Actually, there
@@ -173,7 +178,8 @@ constructors <code>[]</code> and <code>{}</code>.</p>
 as well as <a href="#i_o_operators">I/O Operators</a>.</p>
 <p>
 </p>
-<h2><a name="the_arrow_operator">The Arrow Operator</a></h2>
+<h2><a name="the_arrow_operator_x_arrow__x_dereference__x_______">The Arrow Operator
+   &gt;&gt;</a></h2>
 <p>``<code>-&gt;</code>'' is an infix dereference operator, just as it is in C
 and C++.  If the right side is either a <code>[...]</code>, <code>{...}</code>, or a
 <code>(...)</code> subscript, then the left side must be either a hard or
@@ -187,7 +193,8 @@ and the left side must be either an object (a blessed reference)
 or a class name (that is, a package name).  See <a href="perlobj.html">the perlobj manpage</a>.</p>
 <p>
 </p>
-<h2><a name="autoincrement_and_autodecrement">Auto-increment and Auto-decrement</a></h2>
+<h2><a name="autoincrement_and_autodecrement_x_increment__x_autoincrement__x_____x_decrement__x_autodecrement__x__">Auto-increment and Auto-decrement
+     </a></h2>
 <p>``++'' and ``--'' work as in C.  That is, if placed before a variable,
 they increment or decrement the variable by one before returning the
 value, and if placed after, increment or decrement after returning the
@@ -223,39 +230,51 @@ will return <code>0</code> rather than <code>undef</code>).</p>
 <p>The auto-decrement operator is not magical.</p>
 <p>
 </p>
-<h2><a name="exponentiation">Exponentiation</a></h2>
+<h2><a name="exponentiation_x_____x_exponentiation__x_power_">Exponentiation
+  </a></h2>
 <p>Binary ``**'' is the exponentiation operator.  It binds even more
 tightly than unary minus, so -2**4 is -(2**4), not (-2)**4. (This is
 implemented using C's <code>pow(3)</code> function, which actually works on doubles
 internally.)</p>
 <p>
 </p>
-<h2><a name="symbolic_unary_operators">Symbolic Unary Operators</a></h2>
+<h2><a name="symbolic_unary_operators_x_unary_operator__x_operator__unary_">Symbolic Unary Operators
+ </a></h2>
 <p>Unary ``!'' performs logical negation, i.e., ``not''.  See also <code>not</code> for a lower
-precedence version of this.</p>
+precedence version of this.
+</p>
 <p>Unary ``-'' performs arithmetic negation if the operand is numeric.  If
 the operand is an identifier, a string consisting of a minus sign
 concatenated with the identifier is returned.  Otherwise, if the string
 starts with a plus or minus, a string starting with the opposite sign
 is returned.  One effect of these rules is that -bareword is equivalent
-to ``-bareword''.</p>
+to the string ``-bareword''.  If, however, the string begins with a
+non-alphabetic character (exluding ``+'' or ``-''), Perl will attempt to convert
+the string to a numeric and the arithmetic negation is performed. If the
+string cannot be cleanly converted to a numeric, Perl will give the warning
+<strong>Argument ``the string'' isn't numeric in negation (-) at ...</strong>.
+ </p>
 <p>Unary ``~'' performs bitwise negation, i.e., 1's complement.  For
 example, <code>0666 &amp; ~027</code> is 0640.  (See also <a href="#integer_arithmetic">Integer Arithmetic</a> and
 <a href="#bitwise_string_operators">Bitwise String Operators</a>.)  Note that the width of the result is
 platform-dependent: ~0 is 32 bits wide on a 32-bit platform, but 64
 bits wide on a 64-bit platform, so if you are expecting a certain bit
-width, remember to use the &amp; operator to mask off the excess bits.</p>
+width, remember to use the &amp; operator to mask off the excess bits.
+ </p>
 <p>Unary ``+'' has no effect whatsoever, even on strings.  It is useful
 syntactically for separating a function name from a parenthesized expression
 that would otherwise be interpreted as the complete list of function
-arguments.  (See examples above under <a href="#terms_and_list_operators__leftward_">Terms and List Operators (Leftward)</a>.)</p>
+arguments.  (See examples above under <a href="#terms_and_list_operators__leftward_">Terms and List Operators (Leftward)</a>.)
+</p>
 <p>Unary ``\'' creates a reference to whatever follows it.  See <a href="perlreftut.html">the perlreftut manpage</a>
 and <a href="perlref.html">the perlref manpage</a>.  Do not confuse this behavior with the behavior of
 backslash within a string, although both forms do convey the notion
-of protecting the next thing from interpolation.</p>
+of protecting the next thing from interpolation.
+  </p>
 <p>
 </p>
-<h2><a name="binding_operators">Binding Operators</a></h2>
+<h2><a name="binding_operators_x_binding__x_operator__binding__x_____x____">Binding Operators
+   </a></h2>
 <p>Binary ``=~'' binds a scalar expression to a pattern match.  Certain operations
 search or modify the string $_ by default.  This operator makes that kind
 of operation work on some other string.  The right argument is a search
@@ -272,9 +291,12 @@ time.</p>
 the logical sense.</p>
 <p>
 </p>
-<h2><a name="multiplicative_operators">Multiplicative Operators</a></h2>
-<p>Binary ``*'' multiplies two numbers.</p>
-<p>Binary ``/'' divides two numbers.</p>
+<h2><a name="multiplicative_operators_x_operator__multiplicative_">Multiplicative Operators
+</a></h2>
+<p>Binary ``*'' multiplies two numbers.
+</p>
+<p>Binary ``/'' divides two numbers.
+ </p>
 <p>Binary ``%'' computes the modulus of two numbers.  Given integer
 operands <code>$a</code> and <code>$b</code>: If <code>$b</code> is positive, then <code>$a % $b</code> is
 <code>$a</code> minus the largest multiple of <code>$b</code> that is not greater than
@@ -284,14 +306,16 @@ result will be less than or equal to zero).
 Note that when <code>use integer</code> is in scope, ``%'' gives you direct access
 to the modulus operator as implemented by your C compiler.  This
 operator is not as well defined for negative operands, but it will
-execute faster.</p>
+execute faster.
+   </p>
 <p>Binary ``x'' is the repetition operator.  In scalar context or if the left
 operand is not enclosed in parentheses, it returns a string consisting
 of the left operand repeated the number of times specified by the right
 operand.  In list context, if the left operand is enclosed in
-parentheses, it repeats the list.  If the right operand is zero or
-negative, it returns an empty string or an empty list, depending on the
-context.</p>
+parentheses or is a list formed by <code>qw/STRING/</code>, it repeats the list.
+If the right operand is zero or negative, it returns an empty string
+or an empty list, depending on the context.
+</p>
 <pre>
     print '-' x 80;             # print row of dashes</pre>
 <pre>
@@ -301,13 +325,21 @@ context.</p>
     @ones = (5) x @ones;        # set all elements to 5</pre>
 <p>
 </p>
-<h2><a name="additive_operators">Additive Operators</a></h2>
-<p>Binary ``+'' returns the sum of two numbers.</p>
-<p>Binary ``-'' returns the difference of two numbers.</p>
-<p>Binary ``.'' concatenates two strings.</p>
+<h2><a name="additive_operators_x_operator__additive_">Additive Operators
+</a></h2>
+<p>Binary ``+'' returns the sum of two numbers.
+</p>
+<p>Binary ``-'' returns the difference of two numbers.
+</p>
+<p>Binary ``.'' concatenates two strings.
+ 
+   </p>
 <p>
 </p>
-<h2><a name="shift_operators">Shift Operators</a></h2>
+<h2><a name="shift_operators_x_shift_operator__x_operator__shift__x___________x___________x_right_shift__x_left_shift__x_bitwise_shift__x_shl__x_shr__x_shift__right__x_shift__left_">Shift Operators
+  &gt;&gt;
+&gt; &gt;&gt;&gt;   
+   </a></h2>
 <p>Binary ``&lt;&lt;'' returns the value of its left argument shifted left by the
 number of bits specified by the right argument.  Arguments should be
 integers.  (See also <a href="#integer_arithmetic">Integer Arithmetic</a>.)</p>
@@ -326,7 +358,8 @@ integers, <code>1 &lt;&lt; 32</code> is undefined.  Shifting by a negative numbe
 of bits is also undefined.</p>
 <p>
 </p>
-<h2><a name="named_unary_operators">Named Unary Operators</a></h2>
+<h2><a name="named_unary_operators_x_operator__named_unary_">Named Unary Operators
+</a></h2>
 <p>The various named unary operators are treated as functions with one
 argument, with optional parentheses.</p>
 <p>If any list operator (print(), etc.) or any unary operator (chdir(), etc.)
@@ -353,56 +386,74 @@ because named unary operators are higher precedence than ||:</p>
 <p>Regarding precedence, the filetest operators, like <code>-f</code>, <code>-M</code>, etc. are
 treated like named unary operators, but they don't follow this functional
 parenthesis rule.  That means, for example, that <code>-f($file).&quot;.bak&quot;</code> is
-equivalent to <code>-f &quot;$file.bak&quot;</code>.</p>
+equivalent to <code>-f &quot;$file.bak&quot;</code>.
+  </p>
 <p>See also <a href="#terms_and_list_operators__leftward_">Terms and List Operators (Leftward)</a>.</p>
 <p>
 </p>
-<h2><a name="relational_operators">Relational Operators</a></h2>
+<h2><a name="relational_operators_x_relational_operator__x_operator__relational_">Relational Operators
+ </a></h2>
 <p>Binary ``&lt;'' returns true if the left argument is numerically less than
-the right argument.</p>
+the right argument.
+&gt;</p>
 <p>Binary ``&gt;'' returns true if the left argument is numerically greater
-than the right argument.</p>
+than the right argument.
+ &gt;&gt;</p>
 <p>Binary ``&lt;='' returns true if the left argument is numerically less than
-or equal to the right argument.</p>
+or equal to the right argument.
+&gt;</p>
 <p>Binary ``&gt;='' returns true if the left argument is numerically greater
-than or equal to the right argument.</p>
+than or equal to the right argument.
+= &gt;&gt;</p>
 <p>Binary ``lt'' returns true if the left argument is stringwise less than
-the right argument.</p>
+the right argument.
+&gt;</p>
 <p>Binary ``gt'' returns true if the left argument is stringwise greater
-than the right argument.</p>
+than the right argument.
+&gt;</p>
 <p>Binary ``le'' returns true if the left argument is stringwise less than
-or equal to the right argument.</p>
+or equal to the right argument.
+&gt;</p>
 <p>Binary ``ge'' returns true if the left argument is stringwise greater
-than or equal to the right argument.</p>
+than or equal to the right argument.
+&gt;</p>
 <p>
 </p>
-<h2><a name="equality_operators">Equality Operators</a></h2>
+<h2><a name="equality_operators_x_equality__x_equal__x_equals__x_operator__equality_">Equality Operators
+   </a></h2>
 <p>Binary ``=='' returns true if the left argument is numerically equal to
-the right argument.</p>
+the right argument.
+</p>
 <p>Binary ``!='' returns true if the left argument is numerically not equal
-to the right argument.</p>
+to the right argument.
+</p>
 <p>Binary ``&lt;=&gt;'' returns -1, 0, or 1 depending on whether the left
 argument is numerically less than, equal to, or greater than the right
 argument.  If your platform supports NaNs (not-a-numbers) as numeric
 values, using them with ``&lt;=&gt;'' returns undef.  NaN is not ``&lt;'', ``=='', ``&gt;'',
 ``&lt;='' or ``&gt;='' anything (even NaN), so those 5 return false. NaN != NaN
 returns true, as does NaN != anything else. If your platform doesn't
-support NaNs then NaN is just a string with numeric value 0.</p>
+support NaNs then NaN is just a string with numeric value 0.
+ &gt;&gt; </p>
 <pre>
-    perl -le '$a = NaN; print &quot;No NaN support here&quot; if $a == $a'
-    perl -le '$a = NaN; print &quot;NaN support here&quot; if $a != $a'</pre>
+    perl -le '$a = &quot;NaN&quot;; print &quot;No NaN support here&quot; if $a == $a'
+    perl -le '$a = &quot;NaN&quot;; print &quot;NaN support here&quot; if $a != $a'</pre>
 <p>Binary ``eq'' returns true if the left argument is stringwise equal to
-the right argument.</p>
+the right argument.
+</p>
 <p>Binary ``ne'' returns true if the left argument is stringwise not equal
-to the right argument.</p>
+to the right argument.
+</p>
 <p>Binary ``cmp'' returns -1, 0, or 1 depending on whether the left
 argument is stringwise less than, equal to, or greater than the right
-argument.</p>
+argument.
+</p>
 <p>``lt'', ``le'', ``ge'', ``gt'' and ``cmp'' use the collation (sort) order specified
 by the current locale if <code>use locale</code> is in effect.  See <a href="perllocale.html">the perllocale manpage</a>.</p>
 <p>
 </p>
-<h2><a name="bitwise_and">Bitwise And</a></h2>
+<h2><a name="bitwise_and_x_operator__bitwise__and__x_bitwise_and__x___">Bitwise And
+  </a></h2>
 <p>Binary ``&amp;'' returns its operands ANDed together bit by bit.
 (See also <a href="#integer_arithmetic">Integer Arithmetic</a> and <a href="#bitwise_string_operators">Bitwise String Operators</a>.)</p>
 <p>Note that ``&amp;'' has lower priority than relational operators, so for example
@@ -411,7 +462,9 @@ the brackets are essential in a test like</p>
         print &quot;Even\n&quot; if ($x &amp; 1) == 0;</pre>
 <p>
 </p>
-<h2><a name="bitwise_or_and_exclusive_or">Bitwise Or and Exclusive Or</a></h2>
+<h2><a name="bitwise_or_and_exclusive_or_x_operator__bitwise__or__x_bitwise_or__x____x_operator__bitwise__xor__x_bitwise_xor__x___">Bitwise Or and Exclusive Or
+   
+ </a></h2>
 <p>Binary ``|'' returns its operands ORed together bit by bit.
 (See also <a href="#integer_arithmetic">Integer Arithmetic</a> and <a href="#bitwise_string_operators">Bitwise String Operators</a>.)</p>
 <p>Binary ``^'' returns its operands XORed together bit by bit.
@@ -422,14 +475,16 @@ for example the brackets are essential in a test like</p>
         print &quot;false\n&quot; if (8 | 2) != 10;</pre>
 <p>
 </p>
-<h2><a name="cstyle_logical_and">C-style Logical And</a></h2>
+<h2><a name="cstyle_logical_and_x_____x_logical_and__x_operator__logical__and_">C-style Logical And
+  </a></h2>
 <p>Binary ``&amp;&amp;'' performs a short-circuit logical AND operation.  That is,
 if the left operand is false, the right operand is not even evaluated.
 Scalar or list context propagates down to the right operand if it
 is evaluated.</p>
 <p>
 </p>
-<h2><a name="cstyle_logical_or">C-style Logical Or</a></h2>
+<h2><a name="cstyle_logical_or_x_____x_operator__logical__or_">C-style Logical Or
+ </a></h2>
 <p>Binary ``||'' performs a short-circuit logical OR operation.  That is,
 if the left operand is true, the right operand is not even evaluated.
 Scalar or list context propagates down to the right operand if it
@@ -461,7 +516,8 @@ list operator without the need for parentheses:</p>
 <p>Using ``or'' for assignment is unlikely to do what you want; see below.</p>
 <p>
 </p>
-<h2><a name="range_operators">Range Operators</a></h2>
+<h2><a name="range_operators_x_operator__range__x_range__x_____x_____">Range Operators
+   </a></h2>
 <p>Binary ``..'' is the range operator, which is really two different
 operators depending on the context.  In list context, it returns a
 list of values counting (up by ones) from the left value to the right
@@ -516,10 +572,13 @@ using their integer representation.</p>
 <p>As a scalar operator:</p>
 <pre>
     if (101 .. 200) { print; } # print 2nd hundred lines, short for
-                               #   if ($. == 101 .. $. == 200) ...
-    next line if (1 .. /^$/);  # skip header lines, short for
+                               #   if ($. == 101 .. $. == 200) ...</pre>
+<pre>
+    next LINE if (1 .. /^$/);  # skip header lines, short for
                                #   ... if ($. == 1 .. /^$/);
-    s/^/&gt; / if (/^$/ .. eof()); # quote body</pre>
+                               # (typically in a loop labeled LINE)</pre>
+<pre>
+    s/^/&gt; / if (/^$/ .. eof());  # quote body</pre>
 <pre>
     # parse mail messages
     while (&lt;&gt;) {
@@ -541,15 +600,13 @@ the two range operators:</p>
               &quot;1  - Baz&quot;,
               &quot;   - Quux&quot;);</pre>
 <pre>
-    foreach(@lines)
-    {
-        if (/0/ .. /1/)
-        {
+    foreach (@lines) {
+        if (/0/ .. /1/) {
             print &quot;$_\n&quot;;
         }
     }</pre>
-<p>This program will print only the line containing ``Bar''. If 
-the range operator is changed to <code>...</code>, it will also print the 
+<p>This program will print only the line containing ``Bar''. If
+the range operator is changed to <code>...</code>, it will also print the
 ``Baz'' line.</p>
 <p>And now some examples as a list operator:</p>
 <pre>
@@ -577,7 +634,8 @@ return two elements in list context.</p>
     @list = (2.18 .. 3.14); # same as @list = (2 .. 3);</pre>
 <p>
 </p>
-<h2><a name="conditional_operator">Conditional Operator</a></h2>
+<h2><a name="conditional_operator_x_operator__conditional__x_operator__ternary__x_ternary__x___">Conditional Operator
+   </a></h2>
 <p>Ternary ``?:'' is the conditional operator, just as in C.  It works much
 like an if-then-else.  If the argument before the ? is true, the
 argument before the : is returned, otherwise the argument after the :
@@ -610,7 +668,10 @@ without parentheses will get you in trouble.  For example, this:</p>
     $a += ($a % 2) ? 10 : 2;</pre>
 <p>
 </p>
-<h2><a name="assignment_operators">Assignment Operators</a></h2>
+<h2><a name="assignment_operators_x_assignment__x_operator__assignment__x____x______x_____x_____x_____x____________x______x____x_____x_____x____________x______x_____x_____x_____x_x__">Assignment Operators
+      
+&gt;&gt;     &gt;= &gt;&gt;&gt;  
+  </a></h2>
 <p>``='' is the ordinary assignment operator.</p>
 <p>Assignment operators work as in C.  That is,</p>
 <pre>
@@ -647,19 +708,38 @@ the number of elements produced by the expression on the right hand
 side of the assignment.</p>
 <p>
 </p>
-<h2><a name="comma_operator">Comma Operator</a></h2>
+<h2><a name="comma_operator_x_comma__x_operator__comma__x___">Comma Operator
+  </a></h2>
 <p>Binary ``,'' is the comma operator.  In scalar context it evaluates
 its left argument, throws that value away, then evaluates its right
 argument and returns that value.  This is just like C's comma operator.</p>
 <p>In list context, it's just the list argument separator, and inserts
 both its arguments into the list.</p>
 <p>The <code>=&gt;</code> operator is a synonym for the comma, but forces any word
-to its left to be interpreted as a string (as of 5.001). It is helpful
-in documenting the correspondence between keys and values in hashes,
-and other paired elements in lists.</p>
+(consisting entirely of word characters) to its left to be interpreted
+as a string (as of 5.001).  This includes words that might otherwise be
+considered a constant or function call.</p>
+<pre>
+    use constant FOO =&gt; &quot;something&quot;;</pre>
+<pre>
+    my %h = ( FOO =&gt; 23 );</pre>
+<p>is equivalent to:</p>
+<pre>
+    my %h = (&quot;FOO&quot;, 23);</pre>
+<p>It is <em>NOT</em>:</p>
+<pre>
+    my %h = (&quot;something&quot;, 23);</pre>
+<p>If the argument on the left is not a word, it is first interpreted as
+an expression, and then the string value of that is used.</p>
+<p>The <code>=&gt;</code> operator is helpful in documenting the correspondence
+between keys and values in hashes, and other paired elements in lists.</p>
+<pre>
+        %hash = ( $key =&gt; $value );
+        login( $username =&gt; $password );</pre>
 <p>
 </p>
-<h2><a name="list_operators__rightward_">List Operators (Rightward)</a></h2>
+<h2><a name="list_operators__rightward__x_operator__list__rightward__x_list_operator_">List Operators (Rightward)
+ </a></h2>
 <p>On the right side of a list operator, it has very low precedence,
 such that it controls all comma-separated expressions found there.
 The only operators with lower precedence are the logical operators
@@ -671,19 +751,24 @@ operators without the need for extra parentheses:</p>
 <p>See also discussion of list operators in <a href="#terms_and_list_operators__leftward_">Terms and List Operators (Leftward)</a>.</p>
 <p>
 </p>
-<h2><a name="logical_not">Logical Not</a></h2>
+<h2><a name="logical_not_x_operator__logical__not__x_not_">Logical Not
+ </a></h2>
 <p>Unary ``not'' returns the logical negation of the expression to its right.
 It's the equivalent of ``!'' except for the very low precedence.</p>
 <p>
 </p>
-<h2><a name="logical_and">Logical And</a></h2>
+<h2><a name="logical_and_x_operator__logical__and__x_and_">Logical And
+ </a></h2>
 <p>Binary ``and'' returns the logical conjunction of the two surrounding
 expressions.  It's equivalent to &amp;&amp; except for the very low
 precedence.  This means that it short-circuits: i.e., the right
 expression is evaluated only if the left expression is true.</p>
 <p>
 </p>
-<h2><a name="logical_or_and_exclusive_or">Logical or and Exclusive Or</a></h2>
+<h2><a name="logical_or_and_exclusive_or_x_operator__logical__or__x_operator__logical__xor__x_operator__logical__err__x_operator__logical__defined_or__x_operator__logical__exclusive_or__x_or__x_xor__x_err_">Logical or and Exclusive Or
+  
+ 
+  </a></h2>
 <p>Binary ``or'' returns the logical disjunction of the two surrounding
 expressions.  It's equivalent to || except for the very low precedence.
 This makes it useful for control flow</p>
@@ -707,31 +792,37 @@ takes higher precedence.</p>
 It cannot short circuit, of course.</p>
 <p>
 </p>
-<h2><a name="c_operators_missing_from_perl">C Operators Missing From Perl</a></h2>
+<h2><a name="c_operators_missing_from_perl_x_operator__missing_from_perl__x____x____x_typecasting__x__type__">C Operators Missing From Perl
+  
+ </a></h2>
 <p>Here is what C has that Perl doesn't:</p>
 <dl>
-<dt><strong><a name="item_unary">unary &amp;</a></strong><br />
-</dt>
+<dt><strong><a name="item_unary">unary &amp;</a></strong>
+
 <dd>
-Address-of operator.  (But see the ``\'' operator for taking a reference.)
+<p>Address-of operator.  (But see the ``\'' operator for taking a reference.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_unary__2a">unary *</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unary__2a">unary *</a></strong>
+
 <dd>
-Dereference-address operator. (Perl's prefix dereferencing
-operators are typed: $, @, %, and &amp;.)
+<p>Dereference-address operator. (Perl's prefix dereferencing
+operators are typed: $, @, %, and &amp;.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__28type_29">(TYPE)</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__28type_29">(TYPE)</a></strong>
+
 <dd>
-Type-casting operator.
+<p>Type-casting operator.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
-<h2><a name="quote_and_quotelike_operators">Quote and Quote-like Operators</a></h2>
+<h2><a name="quote_and_quotelike_operators_x_operator__quote__x_operator__quotelike__x_q__x_qq__x_qx__x_qw__x_m__x_qr__x_s__x_tr__x____x_____x___x___x_____x____x_____x___________x_escape_sequence__x_escape_">Quote and Quote-like Operators
+       
+          &gt;&gt;
+ </a></h2>
 <p>While we usually think of quotes as literal values, in Perl they
 function as operators, providing various kinds of interpolating and
 pattern matching capabilities.  Perl provides customary quote characters
@@ -774,7 +865,8 @@ from the next line.  This allows you to write:</p>
     s {foo}  # Replace foo
       {bar}  # with bar.</pre>
 <p>The following escape sequences are available in constructs that interpolate
-and in transliterations.</p>
+and in transliterations.
+          </p>
 <pre>
     \t          tab             (HT, TAB)
     \n          newline         (NL)
@@ -791,7 +883,8 @@ and in transliterations.</p>
 <p><strong>NOTE</strong>: Unlike C and other languages, Perl has no \v escape sequence for
 the vertical tab (VT - ASCII 11).</p>
 <p>The following escape sequences are available in constructs that interpolate
-but not in transliterations.</p>
+but not in transliterations.
+     </p>
 <pre>
     \l          lowercase next char
     \u          uppercase next char
@@ -804,7 +897,7 @@ but not in transliterations.</p>
 If Unicode (for example, <code>\N{}</code> or wide hex characters of 0x100 or
 beyond) is being used, the case map used by <code>\l</code>, <code>\L</code>, <code>\u</code> and
 <code>\U</code> is as defined by Unicode.  For documentation of <code>\N{name}</code>,
-see <em>charnames</em>.</p>
+see <a href="../../charnames.html">the charnames manpage</a>.</p>
 <p>All systems use the virtual <code>&quot;\n&quot;</code> to represent a line terminator,
 called a ``newline''.  There is no such thing as an unvarying, physical
 newline character.  It is only an illusion that the operating system,
@@ -817,7 +910,9 @@ need an exact character.  For example, most networking protocols expect
 and prefer a CR+LF (<code>&quot;\015\012&quot;</code> or <code>&quot;\cM\cJ&quot;</code>) for line terminators,
 and although they often accept just <code>&quot;\012&quot;</code>, they seldom tolerate just
 <code>&quot;\015&quot;</code>.  If you get in the habit of using <code>&quot;\n&quot;</code> for networking,
-you may be burned some day.</p>
+you may be burned some day.
+   
+  </p>
 <p>For constructs that do interpolate, variables beginning with ``<code>$</code>''
 or ``<code>@</code>'' are interpolated.  Subscripted variables such as <code>$a[3]</code> or
 <code>$href-&gt;{key}[0]</code> are also interpolated, as are array and hash slices.
@@ -829,7 +924,7 @@ interpolated if the name is enclosed in braces <code>@{+}</code>.</p>
 <p>You cannot include a literal <code>$</code> or <code>@</code> within a <code>\Q</code> sequence. 
 An unescaped <code>$</code> or <code>@</code> interpolates the corresponding variable, 
 while escaping will cause the literal string <code>\$</code> to be inserted.
-You'll need to write something like <a href="#item_m_"><code>m/\Quser\E\@\Qhost/</code></a>.</p>
+You'll need to write something like <code>m/\Quser\E\@\Qhost/</code>.</p>
 <p>Patterns are subject to an additional level of interpretation as a
 regular expression.  This is done as a second pass, after variables are
 interpolated, so that regular expressions may be incorporated into the
@@ -842,18 +937,20 @@ within double quotes, nor do single quotes impede evaluation of
 variables when used within double quotes.</p>
 <p>
 </p>
-<h2><a name="regexp_quotelike_operators">Regexp Quote-Like Operators</a></h2>
+<h2><a name="regexp_quotelike_operators_x_operator__regexp_">Regexp Quote-Like Operators
+</a></h2>
 <p>Here are the quote-like operators that apply to pattern
 matching and related activities.</p>
 <dl>
-<dt><strong><a name="item__3fpattern_3f">?PATTERN?</a></strong><br />
-</dt>
+<dt><strong><a name="item__3fpattern_3f_x_3c_3f_3e">?PATTERN?
+</a></strong>
+
 <dd>
-This is just like the <code>/pattern/</code> search, except that it matches only
+<p>This is just like the <code>/pattern/</code> search, except that it matches only
 once between calls to the <code>reset()</code> operator.  This is a useful
 optimization when you want to see only the first occurrence of
 something in each file of a set of files, for instance.  Only <code>??</code>
-patterns local to the current package are reset.
+patterns local to the current package are reset.</p>
 </dd>
 <dd>
 <pre>
@@ -870,20 +967,23 @@ patterns local to the current package are reset.
 be removed in some distant future version of Perl, perhaps somewhere
 around the year 2168.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_m_">m/PATTERN/cgimosx</a></strong><br />
-</dt>
-<dt><strong><a name="item__2fpattern_2fcgimosx">/PATTERN/cgimosx</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_m_2fpattern_2fcgimosx_x_3cm_3e_x_3coperator_2c_mat">m/PATTERN/cgimosx
+  
+    
+     </a></strong>
+
+<dt><strong><a name="item__2fpattern_2fcgimosx">/PATTERN/cgimosx</a></strong>
+
 <dd>
-Searches a string for a pattern match, and in scalar context returns
+<p>Searches a string for a pattern match, and in scalar context returns
 true if it succeeds, false if it fails.  If no string is specified
 via the <code>=~</code> or <code>!~</code> operator, the $_ string is searched.  (The
 string specified with <code>=~</code> need not be an lvalue--it may be the
 result of an expression evaluation, but remember the <code>=~</code> binds
 rather tightly.)  See also <a href="perlre.html">the perlre manpage</a>.  See <a href="perllocale.html">the perllocale manpage</a> for
 discussion of additional considerations that apply when <code>use locale</code>
-is in effect.
+is in effect.</p>
 </dd>
 <dd>
 <p>Options are:</p>
@@ -903,7 +1003,7 @@ is in effect.
 you can use any pair of non-alphanumeric, non-whitespace characters 
 as delimiters.  This is particularly useful for matching path names
 that contain ``/'', to avoid LTS (leaning toothpick syndrome).  If ``?'' is
-the delimiter, then the match-only-once rule of <a href="#item__3fpattern_3f"><code>?PATTERN?</code></a> applies.
+the delimiter, then the match-only-once rule of <code>?PATTERN?</code> applies.
 If ``''' is the delimiter, no interpolation is performed on the PATTERN.</p>
 </dd>
 <dd>
@@ -927,7 +1027,7 @@ previously succeeded, this will (silently) act instead as a genuine
 empty pattern (which will always match).</p>
 </dd>
 <dd>
-<p>If the <code>/g</code> option is not used, <a href="#item_m_"><code>m//</code></a> in list context returns a
+<p>If the <code>/g</code> option is not used, <code>m//</code> in list context returns a
 list consisting of the subexpressions matched by the parentheses in the
 pattern, i.e., (<code>$1</code>, <code>$2</code>, <code>$3</code>...).  (Note that here <code>$1</code> etc. are
 also set, and that this differs from Perl 4's behavior.)  When there are
@@ -979,18 +1079,18 @@ the matched strings, as if there were parentheses around the whole
 pattern.</p>
 </dd>
 <dd>
-<p>In scalar context, each execution of <a href="#item_m_"><code>m//g</code></a> finds the next match,
+<p>In scalar context, each execution of <code>m//g</code> finds the next match,
 returning true if it matches, and false if there is no further match.
 The position after the last match can be read or set using the <code>pos()</code>
 function; see <a href="perlfunc.html#pos">pos in the perlfunc manpage</a>.   A failed match normally resets the
 search position to the beginning of the string, but you can avoid that
-by adding the <code>/c</code> modifier (e.g. <a href="#item_m_"><code>m//gc</code></a>).  Modifying the target
+by adding the <code>/c</code> modifier (e.g. <code>m//gc</code>).  Modifying the target
 string also resets the search position.</p>
 </dd>
 <dd>
-<p>You can intermix <a href="#item_m_"><code>m//g</code></a> matches with <a href="#item_m_"><code>m/\G.../g</code></a>, where <code>\G</code> is a
+<p>You can intermix <code>m//g</code> matches with <code>m/\G.../g</code>, where <code>\G</code> is a
 zero-width assertion that matches the exact position where the previous
-<a href="#item_m_"><code>m//g</code></a>, if any, left off.  Without the <code>/g</code> modifier, the <code>\G</code> assertion
+<code>m//g</code>, if any, left off.  Without the <code>/g</code> modifier, the <code>\G</code> assertion
 still anchors at pos(), but the match is of course only attempted once.
 Using <code>\G</code> without <code>/g</code> on a target string that has not previously had a
 <code>/g</code> match applied to it is the same as using the <code>\A</code> assertion to match
@@ -1083,15 +1183,16 @@ regexp tries to match where the previous one leaves off.</p>
  lowercase lowercase line-noise lowercase lowercase line-noise
  MiXeD line-noise. That's all!</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_q_">q/STRING/</a></strong><br />
-</dt>
-<dt><strong><a name="item__27string_27"><code>'STRING'</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_q_2fstring_2f_x_3cq_3e_x_3cquote_2c_double_3e_x_3c">q/STRING/
+   </a></strong>
+
+<dt><strong><a name="item__27string_27"><code>'STRING'</code></a></strong>
+
 <dd>
-A single-quoted, literal string.  A backslash represents a backslash
+<p>A single-quoted, literal string.  A backslash represents a backslash
 unless followed by the delimiter or another backslash, in which case
-the delimiter or backslash is interpolated.
+the delimiter or backslash is interpolated.</p>
 </dd>
 <dd>
 <pre>
@@ -1099,13 +1200,14 @@ the delimiter or backslash is interpolated.
     $bar = q('This is it.');
     $baz = '\n';                # a two-character string</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_qq_">qq/STRING/</a></strong><br />
-</dt>
-<dt><strong><a name="item__22string_22">``STRING''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_qq_2fstring_2f_x_3cqq_3e_x_3cquote_2c_double_3e_x_">qq/STRING/
+   </a></strong>
+
+<dt><strong><a name="item__22string_22">``STRING''</a></strong>
+
 <dd>
-A double-quoted, interpolated string.
+<p>A double-quoted, interpolated string.</p>
 </dd>
 <dd>
 <pre>
@@ -1114,15 +1216,16 @@ A double-quoted, interpolated string.
                 if /\b(tcl|java|python)\b/i;      # :-)
     $baz = &quot;\n&quot;;                # a one-character string</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_qr_">qr/STRING/imosx</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_qr_2fstring_2fimosx_x_3cqr_3e_x_3c_2fi_3e_x_3c_2fm">qr/STRING/imosx
+     </a></strong>
+
 <dd>
-This operator quotes (and possibly compiles) its <em>STRING</em> as a regular
+<p>This operator quotes (and possibly compiles) its <em>STRING</em> as a regular
 expression.  <em>STRING</em> is interpolated the same way as <em>PATTERN</em>
-in <a href="#item_m_"><code>m/PATTERN/</code></a>.  If ``''' is used as the delimiter, no interpolation
+in <code>m/PATTERN/</code>.  If ``''' is used as the delimiter, no interpolation
 is done.  Returns a Perl value which may be used instead of the
-corresponding <code>/STRING/imosx</code> expression.
+corresponding <code>/STRING/imosx</code> expression.</p>
 </dd>
 <dd>
 <p>For example,</p>
@@ -1190,20 +1293,21 @@ we did not use <code>qr()</code> operator.)</p>
 <p>See <a href="perlre.html">the perlre manpage</a> for additional information on valid syntax for STRING, and
 for a detailed look at the semantics of regular expressions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_qx_">qx/STRING/</a></strong><br />
-</dt>
-<dt><strong><a name="item__60string_60">`STRING`</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_qx_2fstring_2f_x_3cqx_3e_x_3c_60_3e_x_3c_60_60_3e_">qx/STRING/
+   </a></strong>
+
+<dt><strong><a name="item__60string_60">`STRING`</a></strong>
+
 <dd>
-A string which is (possibly) interpolated and then executed as a
+<p>A string which is (possibly) interpolated and then executed as a
 system command with <code>/bin/sh</code> or its equivalent.  Shell wildcards,
 pipes, and redirections will be honored.  The collected standard
 output of the command is returned; standard error is unaffected.  In
 scalar context, it comes back as a single (potentially multi-line)
 string, or undef if the command failed.  In list context, returns a
 list of lines (however you've defined lines with $/ or
-$INPUT_RECORD_SEPARATOR), or an empty list if the command failed.
+$INPUT_RECORD_SEPARATOR), or an empty list if the command failed.</p>
 </dd>
 <dd>
 <p>Because backticks do not affect standard error, use shell file descriptor
@@ -1297,13 +1401,14 @@ Just understand what you're getting yourself into.</p>
 <dd>
 <p>See <a href="#i_o_operators">I/O Operators</a> for more discussion.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_qw_">qw/STRING/</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_qw_2fstring_2f_x_3cqw_3e_x_3cquote_2c_list_3e_x_3c">qw/STRING/
+  </a></strong>
+
 <dd>
-Evaluates to a list of the words extracted out of STRING, using embedded
+<p>Evaluates to a list of the words extracted out of STRING, using embedded
 whitespace as the word delimiters.  It can be understood as being roughly
-equivalent to:
+equivalent to:</p>
 </dd>
 <dd>
 <pre>
@@ -1339,13 +1444,15 @@ put comments into a multi-line <code>qw</code>-string.  For this reason, the
 <code>use warnings</code> pragma and the <strong>-w</strong> switch (that is, the <code>$^W</code> variable) 
 produces warnings if the STRING contains the ``,'' or the ``#'' character.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s_">s/PATTERN/REPLACEMENT/egimosx</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s_2fpattern_2freplacement_2fegimosx_x_3csubstitute">s/PATTERN/REPLACEMENT/egimosx
+   
+       </a></strong>
+
 <dd>
-Searches a string for a pattern, and if found, replaces that pattern
+<p>Searches a string for a pattern, and if found, replaces that pattern
 with the replacement text and returns the number of substitutions
-made.  Otherwise it returns false (specifically, the empty string).
+made.  Otherwise it returns false (specifically, the empty string).</p>
 </dd>
 <dd>
 <p>If no string is specified via the <code>=~</code> or <code>!~</code> operator, the <code>$_</code>
@@ -1457,11 +1564,11 @@ to be <code>eval</code>ed before being run as a Perl expression.</p>
 </dd>
 <dd>
 <pre>
-    s/^\s*(.*?)\s*$/$1/;        # trim white space in $_, expensively</pre>
+    s/^\s*(.*?)\s*$/$1/;        # trim whitespace in $_, expensively</pre>
 </dd>
 <dd>
 <pre>
-    for ($variable) {           # trim white space in $variable, cheap
+    for ($variable) {           # trim whitespace in $variable, cheap
         s/^\s+//;
         s/\s+$//;
     }</pre>
@@ -1489,22 +1596,23 @@ to occur that you might want.  Here are two common cases:</p>
     # expand tabs to 8-column spacing
     1 while s/\t+/' ' x (length($&amp;)*8 - length($`)%8)/e;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_tr_">tr/SEARCHLIST/REPLACEMENTLIST/cds</a></strong><br />
-</dt>
-<dt><strong><a name="item_y_">y/SEARCHLIST/REPLACEMENTLIST/cds</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_tr_2fsearchlist_2freplacementlist_2fcds_x_3ctr_3e_">tr/SEARCHLIST/REPLACEMENTLIST/cds
+     </a></strong>
+
+<dt><strong><a name="item_y_">y/SEARCHLIST/REPLACEMENTLIST/cds</a></strong>
+
 <dd>
-Transliterates all occurrences of the characters found in the search list
+<p>Transliterates all occurrences of the characters found in the search list
 with the corresponding character in the replacement list.  It returns
 the number of characters replaced or deleted.  If no string is
 specified via the =~ or !~ operator, the $_ string is transliterated.  (The
 string specified with =~ must be a scalar variable, an array element, a
-hash element, or an assignment to one of those, i.e., an lvalue.)
+hash element, or an assignment to one of those, i.e., an lvalue.)</p>
 </dd>
 <dd>
-<p>A character range may be specified with a hyphen, so <a href="#item_tr_"><code>tr/A-J/0-9/</code></a> 
-does the same replacement as <a href="#item_tr_"><code>tr/ACEGIBDFHJ/0246813579/</code></a>.
+<p>A character range may be specified with a hyphen, so <code>tr/A-J/0-9/</code> 
+does the same replacement as <code>tr/ACEGIBDFHJ/0246813579/</code>.
 For <strong>sed</strong> devotees, <code>y</code> is provided as a synonym for <code>tr</code>.  If the
 SEARCHLIST is delimited by bracketing quotes, the REPLACEMENTLIST has
 its own pair of quotes, which may or may not be bracketing quotes,
@@ -1614,11 +1722,12 @@ must use an eval():</p>
 <pre>
     eval &quot;tr/$oldlist/$newlist/, 1&quot; or die $@;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__3c_3ceof">&lt;&lt;EOF</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3c_3ceof_x_3chere_2ddoc_3e_x_3cheredoc_3e_x_3cher">&lt;&lt;EOF
+   &gt;&gt;</a></strong>
+
 <dd>
-A line-oriented form of quoting is based on the shell ``here-document''
+<p>A line-oriented form of quoting is based on the shell ``here-document''
 syntax.  Following a <code>&lt;&lt;</code> you specify a string to terminate
 the quoted material, and all lines following the current line down to
 the terminating string are the value of the item.  The terminating
@@ -1629,7 +1738,7 @@ double quotes.  There must be no space between the <code>&lt;&lt;</code> and
 the identifier, unless the identifier is quoted.  (If you put a space it
 will be treated as a null identifier, which is valid, and matches the first
 empty line.)  The terminating string must appear by itself (unquoted and
-with no surrounding whitespace) on the terminating line.
+with no surrounding whitespace) on the terminating line.</p>
 </dd>
 <dd>
 <pre>
@@ -1692,7 +1801,7 @@ from each line manually:</p>
     FINIS</pre>
 </dd>
 <dd>
-<p>If you use a here-doc within a delimited construct, such as in <a href="#item_s_"><code>s///eg</code></a>,
+<p>If you use a here-doc within a delimited construct, such as in <code>s///eg</code>,
 the quoted material must come on the lines following the final delimiter.
 So instead of</p>
 </dd>
@@ -1735,10 +1844,12 @@ the quoting character:</p>
 that the identifier must be a string literal.  Stick with that, and you
 should be safe.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
-<h2><a name="gory_details_of_parsing_quoted_constructs">Gory details of parsing quoted constructs</a></h2>
+<h2><a name="gory_details_of_parsing_quoted_constructs_x_quote__gory_details_">Gory details of parsing quoted constructs
+</a></h2>
 <p>When presented with something that might have several different
 interpretations, Perl uses the <strong>DWIM</strong> (that's ``Do What I Mean'')
 principle to pick the most probable interpretation.  This strategy
@@ -1760,14 +1871,14 @@ their results are the same, we consider them individually.  For different
 quoting constructs, Perl performs different numbers of passes, from
 one to five, but these passes are always performed in the same order.</p>
 <dl>
-<dt><strong><a name="item_finding_the_end">Finding the end</a></strong><br />
-</dt>
+<dt><strong><a name="item_finding_the_end">Finding the end</a></strong>
+
 <dd>
-The first pass is finding the end of the quoted construct, whether
-it be a multicharacter delimiter <code>&quot;\nEOF\n&quot;</code> in the <a href="#item__3c_3ceof"><code>&lt;&lt;EOF</code></a>
-construct, a <code>/</code> that terminates a <a href="#item_qq_"><code>qq//</code></a> construct, a <code>]</code> which
+<p>The first pass is finding the end of the quoted construct, whether
+it be a multicharacter delimiter <code>&quot;\nEOF\n&quot;</code> in the <code>&lt;&lt;EOF</code>
+construct, a <code>/</code> that terminates a <code>qq//</code> construct, a <code>]</code> which
 terminates <code>qq[]</code> construct, or a <code>&gt;</code> which terminates a
-fileglob started with <code>&lt;</code>.
+fileglob started with <code>&lt;</code>.</p>
 </dd>
 <dd>
 <p>When searching for single-character non-pairing delimiters, such
@@ -1778,8 +1889,8 @@ combinations of <code>\\</code>, <code>\]</code>, and <code>\[</code> are all sk
 delimiters, nothing is skipped.</p>
 </dd>
 <dd>
-<p>For constructs with three-part delimiters (<a href="#item_s_"><code>s///</code></a>, <a href="#item_y_"><code>y///</code></a>, and
-<a href="#item_tr_"><code>tr///</code></a>), the search is repeated once more.</p>
+<p>For constructs with three-part delimiters (<code>s///</code>, <a href="#item_y_"><code>y///</code></a>, and
+<code>tr///</code>), the search is repeated once more.</p>
 </dd>
 <dd>
 <p>During this search no attention is paid to the semantics of the construct.
@@ -1801,52 +1912,59 @@ Thus:</p>
 <dd>
 <p>do not form legal quoted expressions.   The quoted part ends on the
 first <code>&quot;</code> and <code>/</code>, and the rest happens to be a syntax error.
-Because the slash that terminated <a href="#item_m_"><code>m//</code></a> was followed by a <code>SPACE</code>,
-the example above is not <a href="#item_m_"><code>m//x</code></a>, but rather <a href="#item_m_"><code>m//</code></a> with no <code>/x</code>
+Because the slash that terminated <code>m//</code> was followed by a <code>SPACE</code>,
+the example above is not <code>m//x</code>, but rather <code>m//</code> with no <code>/x</code>
 modifier.  So the embedded <code>#</code> is interpreted as a literal <code>#</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_removal_of_backslashes_before_delimiters">Removal of backslashes before delimiters</a></strong><br />
-</dt>
 <dd>
-During the second pass, text between the starting and ending
+<p>Also no attention is paid to <code>\c\</code> during this search.
+Thus the second <code>\</code> in <code>qq/\c\/</code> is interpreted as a part of <code>\/</code>,
+and the following <code>/</code> is not recognized as a delimiter.
+Instead, use <code>\034</code> or <code>\x1c</code> at the end of quoted constructs.</p>
+</dd>
+</li>
+<dt><strong><a name="item_removal_of_backslashes_before_delimiters">Removal of backslashes before delimiters</a></strong>
+
+<dd>
+<p>During the second pass, text between the starting and ending
 delimiters is copied to a safe location, and the <code>\</code> is removed
 from combinations consisting of <code>\</code> and delimiter--or delimiters,
 meaning both starting and ending delimiters will should these differ.
 This removal does not happen for multi-character delimiters.
-Note that the combination <code>\\</code> is left intact, just as it was.
+Note that the combination <code>\\</code> is left intact, just as it was.</p>
 </dd>
 <dd>
 <p>Starting from this step no information about the delimiters is
 used in parsing.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_interpolation">Interpolation</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_interpolation_x_3cinterpolation_3e">Interpolation
+</a></strong>
+
 <dd>
-The next step is interpolation in the text obtained, which is now
-delimiter-independent.  There are four different cases.
+<p>The next step is interpolation in the text obtained, which is now
+delimiter-independent.  There are four different cases.</p>
 </dd>
 <dl>
-<dt><strong><a name="item__3c_3c_27eof_27_2c_m_27_27_2c_s_27_27_27_2c_tr_2f_"><code>&lt;&lt;'EOF'</code>, <code>m''</code>, <code>s'''</code>, <a href="#item_tr_"><code>tr///</code></a>, <a href="#item_y_"><code>y///</code></a></a></strong><br />
-</dt>
+<dt><strong><a name="item__3c_3c_27eof_27_2c_m_27_27_2c_s_27_27_27_2c_tr_2f_"><code>&lt;&lt;'EOF'</code>, <code>m''</code>, <code>s'''</code>, <code>tr///</code>, <a href="#item_y_"><code>y///</code></a></a></strong>
+
 <dd>
-No interpolation is performed.
+<p>No interpolation is performed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__27_27_2c_q_2f_2f"><code>''</code>, <a href="#item_q_"><code>q//</code></a></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__27_27_2c_q_2f_2f"><code>''</code>, <code>q//</code></a></strong>
+
 <dd>
-The only interpolation is removal of <code>\</code> from pairs <code>\\</code>.
+<p>The only interpolation is removal of <code>\</code> from pairs <code>\\</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__22_22_2c__60_60_2c_qq_2f_2f_2c_qx_2f_2f_2c__3cfil"><code>&quot;&quot;</code>, <code>``</code>, <a href="#item_qq_"><code>qq//</code></a>, <a href="#item_qx_"><code>qx//</code></a>, <code>&lt;file*glob&gt;</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22_22_2c__60_60_2c_qq_2f_2f_2c_qx_2f_2f_2c__3cfil"><code>&quot;&quot;</code>, <code>``</code>, <code>qq//</code>, <code>qx//</code>, <code>&lt;file*glob&gt;</code></a></strong>
+
 <dd>
-<code>\Q</code>, <code>\U</code>, <code>\u</code>, <code>\L</code>, <code>\l</code> (possibly paired with <code>\E</code>) are
+<p><code>\Q</code>, <code>\U</code>, <code>\u</code>, <code>\L</code>, <code>\l</code> (possibly paired with <code>\E</code>) are
 converted to corresponding Perl constructs.  Thus, <code>&quot;$foo\Qbaz$bar&quot;</code>
 is converted to <code>$foo . (quotemeta(&quot;baz&quot; . $bar))</code> internally.
-The other combinations are replaced with appropriate expansions.
+The other combinations are replaced with appropriate expansions.</p>
 </dd>
 <dd>
 <p>Let it be stressed that <em>whatever falls between <code>\Q</code> and <code>\E</code></em>
@@ -1906,17 +2024,17 @@ brackets.  because the outcome may be determined by voting based
 on heuristic estimators, the result is not strictly predictable.
 Fortunately, it's usually correct for ambiguous cases.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3fre_3f_2c__2fre_2f_2c_m_2fre_2f_2c_s_2fre_2ffoo_"><code>?RE?</code>, <code>/RE/</code>, <a href="#item_m_"><code>m/RE/</code></a>, <a href="#item_s_"><code>s/RE/foo/</code></a>,</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3fre_3f_2c__2fre_2f_2c_m_2fre_2f_2c_s_2fre_2ffoo_"><code>?RE?</code>, <code>/RE/</code>, <code>m/RE/</code>, <code>s/RE/foo/</code>,</a></strong>
+
 <dd>
-Processing of <code>\Q</code>, <code>\U</code>, <code>\u</code>, <code>\L</code>, <code>\l</code>, and interpolation
-happens (almost) as with <a href="#item_qq_"><code>qq//</code></a> constructs, but the substitution
+<p>Processing of <code>\Q</code>, <code>\U</code>, <code>\u</code>, <code>\L</code>, <code>\l</code>, and interpolation
+happens (almost) as with <code>qq//</code> constructs, but the substitution
 of <code>\</code> followed by RE-special chars (including <code>\</code>) is not
 performed.  Moreover, inside <code>(?{BLOCK})</code>, <code>(?# comment )</code>, and
 a <code>#</code>-comment in a <code>//x</code>-regular expression, no processing is
 performed whatsoever.  This is the first step at which the presence
-of the <code>//x</code> modifier is relevant.
+of the <code>//x</code> modifier is relevant.</p>
 </dd>
 <dd>
 <p>Interpolation has several quirks: <code>$|</code>, <code>$(</code>, and <code>$)</code> are not
@@ -1931,7 +2049,7 @@ the result is not predictable.</p>
 </dd>
 <dd>
 <p>It is at this step that <code>\1</code> is begrudgingly converted to <code>$1</code> in
-the replacement text of <a href="#item_s_"><code>s///</code></a> to correct the incorrigible
+the replacement text of <code>s///</code> to correct the incorrigible
 <em>sed</em> hackers who haven't picked up the saner idiom yet.  A warning
 is emitted if the <code>use warnings</code> pragma or the <strong>-w</strong> command-line flag
 (that is, the <code>$^W</code> variable) was set.</p>
@@ -1954,22 +2072,24 @@ alphanumeric char, as in:</p>
 <dd>
 <p>In the RE above, which is intentionally obfuscated for illustration, the
 delimiter is <code>m</code>, the modifier is <code>mx</code>, and after backslash-removal the
-RE is the same as for <a href="#item_m_"><code>m/ ^ a \s* b /mx</code></a>.  There's more than one 
+RE is the same as for <code>m/ ^ a \s* b /mx</code>.  There's more than one 
 reason you're encouraged to restrict your delimiters to non-alphanumeric,
 non-whitespace choices.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>This step is the last one for all constructs except regular expressions,
 which are processed further.</p>
-<dt><strong><a name="item_interpolation_of_regular_expressions">Interpolation of regular expressions</a></strong><br />
-</dt>
+<dt><strong><a name="item_interpolation_of_regular_expressions_x_3cregexp_2c">Interpolation of regular expressions
+</a></strong>
+
 <dd>
-Previous steps were performed during the compilation of Perl code,
+<p>Previous steps were performed during the compilation of Perl code,
 but this one happens at run time--although it may be optimized to
 be calculated at compile time if appropriate.  After preprocessing
 described above, and possibly after evaluation if catenation,
 joining, casing translation, or metaquoting are involved, the
-resulting <em>string</em> is passed to the RE engine for compilation.
+resulting <em>string</em> is passed to the RE engine for compilation.</p>
 </dd>
 <dd>
 <p>Whatever happens in the RE engine might be better discussed in <a href="perlre.html">the perlre manpage</a>,
@@ -2005,23 +2125,27 @@ resulting finite automaton.  See the arguments <code>debug</code>/<code>debugcol
 in the <code>use re</code> pragma, as well as Perl's <strong>-Dr</strong> command-line
 switch documented in <a href="perlrun.html#command_switches">Command Switches in the perlrun manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_optimization_of_regular_expressions">Optimization of regular expressions</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_optimization_of_regular_expressions_x_3cregexp_2c_">Optimization of regular expressions
+</a></strong>
+
 <dd>
-This step is listed for completeness only.  Since it does not change
+<p>This step is listed for completeness only.  Since it does not change
 semantics, details of this step are not documented and are subject
 to change without notice.  This step is performed over the finite
-automaton that was generated during the previous pass.
+automaton that was generated during the previous pass.</p>
 </dd>
 <dd>
 <p>It is at this stage that <code>split()</code> silently optimizes <code>/^/</code> to
 mean <code>/^/m</code>.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
-<h2><a name="i_o_operators">I/O Operators</a></h2>
+<h2><a name="i_o_operators_x_operator__i_o__x_operator__io__x_io__x_while__x_filehandle__x_________x__argv_">I/O Operators
+    
+ &gt;&gt; </a></h2>
 <p>There are several I/O operators you should know about.</p>
 <p>A string enclosed by backticks (grave accents) first undergoes
 double-quote interpolation.  It is then interpreted as an external
@@ -2036,9 +2160,10 @@ Unlike in <strong>csh</strong>, no translation is done on the return data--newli
 remain newlines.  Unlike in any of the shells, single quotes do not
 hide variable names in the command from interpretation.  To pass a
 literal dollar-sign through to the shell you need to hide it with a
-backslash.  The generalized form of backticks is <a href="#item_qx_"><code>qx//</code></a>.  (Because
+backslash.  The generalized form of backticks is <code>qx//</code>.  (Because
 backticks always undergo shell expansion as well, see <a href="perlsec.html">the perlsec manpage</a> for
-security concerns.)</p>
+security concerns.)
+    </p>
 <p>In scalar context, evaluating a filehandle in angle brackets yields
 the next line from that file (the newline, if any, included), or
 <code>undef</code> at end-of-file or on error.  When <code>$/</code> is set to <code>undef</code>
@@ -2084,7 +2209,8 @@ filehandles <code>stdin</code>, <code>stdout</code>, and <code>stderr</code> wil
 in packages, where they would be interpreted as local identifiers
 rather than global.)  Additional filehandles may be created with
 the <code>open()</code> function, amongst others.  See <a href="perlopentut.html">the perlopentut manpage</a> and
-<a href="perlfunc.html#open">open in the perlfunc manpage</a> for details on this.</p>
+<a href="perlfunc.html#open">open in the perlfunc manpage</a> for details on this.
+  </p>
 <p>If a &lt;FILEHANDLE&gt; is used in a context that is looking for
 a list, a list comprising all input lines is returned, one line per
 list element.  It's easy to grow to a rather large data space this
@@ -2161,7 +2287,8 @@ depending on context.  This distinction is determined on syntactic
 grounds alone.  That means <code>&lt;$x&gt;</code> is always a <code>readline()</code> from
 an indirect handle, but <code>&lt;$hash{key}&gt;</code> is always a glob().
 That's because $x is a simple scalar variable, but <code>$hash{key}</code> is
-not--it's a hash element.</p>
+not--it's a hash element.  Even <code>&lt;$x &gt;</code> (note the extra space)
+is treated as <code>glob(&quot;$x &quot;)</code>, not <code>readline($x)</code>.</p>
 <p>One level of double-quote interpretation is done first, but you can't
 say <code>&lt;$foo&gt;</code> because that's an indirect filehandle as explained
 in the previous paragraph.  (In older versions of Perl, programmers
@@ -2210,7 +2337,8 @@ to become confused with the indirect filehandle notation.</p>
     @files = glob($files[$i]);</pre>
 <p>
 </p>
-<h2><a name="constant_folding">Constant Folding</a></h2>
+<h2><a name="constant_folding_x_constant_folding__x_folding_">Constant Folding
+ </a></h2>
 <p>Like C, Perl does a certain amount of expression evaluation at
 compile time whenever it determines that all arguments to an
 operator are static and have no side effects.  In particular, string
@@ -2230,7 +2358,8 @@ you say</p>
 represents so that the interpreter won't have to.</p>
 <p>
 </p>
-<h2><a name="noops">No-ops</a></h2>
+<h2><a name="noops_x_noop__x_nop_">No-ops
+ </a></h2>
 <p>Perl doesn't officially have a no-op operator, but the bare constants
 <code>0</code> and <code>1</code> are special-cased to not produce a warning in a void
 context, so you can for example safely do</p>
@@ -2238,7 +2367,8 @@ context, so you can for example safely do</p>
     1 while foo();</pre>
 <p>
 </p>
-<h2><a name="bitwise_string_operators">Bitwise String Operators</a></h2>
+<h2><a name="bitwise_string_operators_x_operator__bitwise__string_">Bitwise String Operators
+</a></h2>
 <p>Bitstrings of any size may be manipulated by the bitwise operators
 (<code>~ | &amp; ^</code>).</p>
 <p>If the operands to a binary bitwise op are strings of different
@@ -2258,8 +2388,8 @@ you're supplying bitstrings: If an operand is a number, that will imply
 a <strong>numeric</strong> bitwise operation.  You may explicitly show which type of
 operation you intend by using <code>&quot;&quot;</code> or <code>0+</code>, as in the examples below.</p>
 <pre>
-    $foo =  150  |  105 ;       # yields 255  (0x96 | 0x69 is 0xFF)
-    $foo = '150' |  105 ;       # yields 255
+    $foo =  150  |  105;        # yields 255  (0x96 | 0x69 is 0xFF)
+    $foo = '150' |  105;        # yields 255
     $foo =  150  | '105';       # yields 255
     $foo = '150' | '105';       # yields string '155' (under ASCII)</pre>
 <pre>
@@ -2269,7 +2399,8 @@ operation you intend by using <code>&quot;&quot;</code> or <code>0+</code>, as i
 in a bit vector.</p>
 <p>
 </p>
-<h2><a name="integer_arithmetic">Integer Arithmetic</a></h2>
+<h2><a name="integer_arithmetic_x_integer_">Integer Arithmetic
+</a></h2>
 <p>By default, Perl assumes that it must do most of its arithmetic in
 floating point.  But by saying</p>
 <pre>
@@ -2294,7 +2425,8 @@ integral value.  However, <code>use integer; ~0</code> is <code>-1</code> on two
 machines.</p>
 <p>
 </p>
-<h2><a name="floatingpoint_arithmetic">Floating-point Arithmetic</a></h2>
+<h2><a name="floatingpoint_arithmetic_x_floatingpoint__x_floating_point__x_float__x_real_">Floating-point Arithmetic
+   </a></h2>
 <p>While <code>use integer</code> provides integer-only arithmetic, there is no
 analogous mechanism to provide automatic rounding or truncation to a
 certain number of decimal places.  For rounding to a certain number
@@ -2332,7 +2464,8 @@ being used by Perl, but to instead implement the rounding function you
 need yourself.</p>
 <p>
 </p>
-<h2><a name="bigger_numbers">Bigger Numbers</a></h2>
+<h2><a name="bigger_numbers_x_number__arbitrary_precision_">Bigger Numbers
+</a></h2>
 <p>The standard Math::BigInt and Math::BigFloat modules provide
 variable-precision arithmetic and overloaded operators, although
 they're currently pretty slow. At the cost of some space and

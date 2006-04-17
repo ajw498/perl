@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perllocale - Perl locale handling</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -109,13 +111,13 @@ The one exception is that <code>write()</code> now <strong>always</strong> uses 
 correctly according a locale of your choice, <strong>all</strong> of the following
 must be true:</p>
 <ul>
-<li></li>
-<strong>Your operating system must support the locale system</strong>.  If it does,
+<li>
+<p><strong>Your operating system must support the locale system</strong>.  If it does,
 you should find that the <code>setlocale()</code> function is a documented part of
-its C library.
-<p></p>
-<li></li>
-<strong>Definitions for locales that you use must be installed</strong>.  You, or
+its C library.</p>
+</li>
+<li>
+<p><strong>Definitions for locales that you use must be installed</strong>.  You, or
 your system administrator, must make sure that this is the case. The
 available locales, the location in which they are kept, and the manner
 in which they are installed all vary from system to system.  Some systems
@@ -124,27 +126,29 @@ added.  Others allow you to add ``canned'' locales provided by the system
 supplier.  Still others allow you or the system administrator to define
 and add arbitrary locales.  (You may have to ask your supplier to
 provide canned locales that are not delivered with your operating
-system.)  Read your system documentation for further illumination.
-<p></p>
-<li></li>
-<strong>Perl must believe that the locale system is supported</strong>.  If it does,
+system.)  Read your system documentation for further illumination.</p>
+</li>
+<li>
+<p><strong>Perl must believe that the locale system is supported</strong>.  If it does,
 <code>perl -V:d_setlocale</code> will say that the value for <code>d_setlocale</code> is
-<code>define</code>.
-<p></p></ul>
+<code>define</code>.</p>
+</li>
+</ul>
 <p>If you want a Perl application to process and present your data
 according to a particular locale, the application code should include
 the <code>use&nbsp;locale</code> pragma (see <a href="#the_use_locale_pragma">The use locale pragma</a>) where
 appropriate, and <strong>at least one</strong> of the following must be true:</p>
 <ul>
-<li></li>
-<strong>The locale-determining environment variables (see <a href="#environment">ENVIRONMENT</a>)
+<li>
+<p><strong>The locale-determining environment variables (see <a href="#environment">ENVIRONMENT</a>)
 must be correctly set up</strong> at the time the application is started, either
-by yourself or by whoever set up your system account.
-<p></p>
-<li></li>
-<strong>The application must set its own locale</strong> using the method described in
-<a href="#the_setlocale_function">The setlocale function</a>.
-<p></p></ul>
+by yourself or by whoever set up your system account.</p>
+</li>
+<li>
+<p><strong>The application must set its own locale</strong> using the method described in
+<a href="#the_setlocale_function">The setlocale function</a>.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -155,11 +159,11 @@ by yourself or by whoever set up your system account.
 <p>By default, Perl ignores the current locale.  The <code>use&nbsp;locale</code>
 pragma tells Perl to use the current locale for some operations:</p>
 <ul>
-<li></li>
-<strong>The comparison operators</strong> (<code>lt</code>, <code>le</code>, <code>cmp</code>, <code>ge</code>, and <code>gt</code>) and
+<li>
+<p><strong>The comparison operators</strong> (<code>lt</code>, <code>le</code>, <code>cmp</code>, <code>ge</code>, and <code>gt</code>) and
 the POSIX string collation functions <code>strcoll()</code> and <code>strxfrm()</code> use
 <a href="#item_lc_collate"><code>LC_COLLATE</code></a>.  <code>sort()</code> is also affected if used without an
-explicit comparison function, because it uses <code>cmp</code> by default.
+explicit comparison function, because it uses <code>cmp</code> by default.</p>
 <p><strong>Note:</strong> <code>eq</code> and <code>ne</code> are unaffected by locale: they always
 perform a char-by-char comparison of their scalar operands.  What's
 more, if <code>cmp</code> finds that its operands are equal according to the
@@ -169,18 +173,19 @@ operands are char-for-char identical.  If you really want to know whether
 two strings--which <code>eq</code> and <code>cmp</code> may consider different--are equal
 as far as collation in the locale is concerned, see the discussion in
 <a href="#category_lc_collate__collation">Category LC_COLLATE: Collation</a>.</p>
-<p></p>
-<li></li>
-<strong>Regular expressions and case-modification functions</strong> (uc(), lc(),
-ucfirst(), and <code>lcfirst())</code> use <a href="#item_lc_ctype"><code>LC_CTYPE</code></a>
-<p></p>
-<li></li>
-<strong>The formatting functions</strong> (printf(), <code>sprintf()</code> and <code>write())</code> use
-<a href="#item_lc_numeric"><code>LC_NUMERIC</code></a>
-<p></p>
-<li></li>
-<strong>The POSIX date formatting function</strong> (strftime()) uses <a href="#item_lc_time"><code>LC_TIME</code></a>.
-<p></p></ul>
+</li>
+<li>
+<p><strong>Regular expressions and case-modification functions</strong> (uc(), lc(),
+ucfirst(), and <code>lcfirst())</code> use <a href="#item_lc_ctype"><code>LC_CTYPE</code></a></p>
+</li>
+<li>
+<p><strong>The formatting functions</strong> (printf(), <code>sprintf()</code> and <code>write())</code> use
+<a href="#item_lc_numeric"><code>LC_NUMERIC</code></a></p>
+</li>
+<li>
+<p><strong>The POSIX date formatting function</strong> (strftime()) uses <a href="#item_lc_time"><code>LC_TIME</code></a>.</p>
+</li>
+</ul>
 <p><a href="#item_lc_collate"><code>LC_COLLATE</code></a>, <a href="#item_lc_ctype"><code>LC_CTYPE</code></a>, and so on, are discussed further in 
 <a href="#locale_categories">LOCALE CATEGORIES</a>.</p>
 <p>The default behavior is restored with the <code>no&nbsp;locale</code> pragma, or
@@ -334,7 +339,7 @@ programs you run see the changes.  See <em>ENVIRONMENT</em> for
 the full list of relevant environment variables and <a href="#using_locales">USING LOCALES</a>
 for their effects in Perl.  Effects in other programs are 
 easily deducible.  For example, the variable LC_COLLATE may well affect
-your <strong>sort</strong> program (or whatever the program that arranges `records'
+your <strong>sort</strong> program (or whatever the program that arranges ``records''
 alphabetically in your system is called).</p>
 <p>You can test out changing these variables temporarily, and if the
 new settings seem to help, put those settings into your shell startup
@@ -418,7 +423,7 @@ with a single parameter--see <a href="#the_setlocale_function">The setlocale fun
 <p><code>localeconv()</code> takes no arguments, and returns <strong>a reference to</strong> a hash.
 The keys of this hash are variable names for formatting, such as
 <code>decimal_point</code> and <code>thousands_sep</code>.  The values are the
-corresponding, er, values.  See <em>POSIX/localeconv</em> for a longer
+corresponding, er, values.  See <a href="../../auto/POSIX/localeconv.html">localeconv in the POSIX manpage</a> for a longer
 example listing the categories an implementation might be expected to
 provide; some provide more and others fewer.  You don't need an
 explicit <code>use locale</code>, because <code>localeconv()</code> always observes the
@@ -483,7 +488,7 @@ answers for a yes/no question in the current locale.</p>
 print something like:</p>
 <pre>
     Sun? [yes/no]</pre>
-<p>See <a href="../I18N/Langinfo.html">the I18N::Langinfo manpage</a> for more information.</p>
+<p>See <a href="../../I18N/Langinfo.html">the I18N::Langinfo manpage</a> for more information.</p>
 <p>
 </p>
 <hr />
@@ -619,7 +624,7 @@ string formats:</p>
 <pre>
         print &quot;DECIMAL POINT IS COMMA\n&quot;
             if $n == (strtod(&quot;2,5&quot;))[0]; # Locale-dependent conversion</pre>
-<p>See also <a href="../I18N/Langinfo.html">the I18N::Langinfo manpage</a> and <code>RADIXCHAR</code>.</p>
+<p>See also <a href="../../I18N/Langinfo.html">the I18N::Langinfo manpage</a> and <code>RADIXCHAR</code>.</p>
 <p>
 </p>
 <h2><a name="category_lc_monetary__formatting_of_monetary_amounts">Category LC_MONETARY: Formatting of monetary amounts</a></h2>
@@ -633,7 +638,7 @@ application's own formatting of currency amounts.  However, you may well
 find that the information, voluminous and complex though it may be, still 
 does not quite meet your requirements: currency formatting is a hard nut 
 to crack.</p>
-<p>See also <a href="../I18N/Langinfo.html">the I18N::Langinfo manpage</a> and <code>CRNCYSTR</code>.</p>
+<p>See also <a href="../../I18N/Langinfo.html">the I18N::Langinfo manpage</a> and <code>CRNCYSTR</code>.</p>
 <p>
 </p>
 <h2><a name="lc_time">LC_TIME</a></h2>
@@ -652,7 +657,7 @@ current locale:</p>
 <p>Note: <code>use locale</code> isn't needed in this example: as a function that
 exists only to generate locale-dependent results, <code>strftime()</code> always
 obeys the current <a href="#item_lc_time"><code>LC_TIME</code></a> locale.</p>
-<p>See also <a href="../I18N/Langinfo.html">the I18N::Langinfo manpage</a> and <code>ABDAY_1</code>..<code>ABDAY_7</code>, <code>DAY_1</code>..<code>DAY_7</code>,
+<p>See also <a href="../../I18N/Langinfo.html">the I18N::Langinfo manpage</a> and <code>ABDAY_1</code>..<code>ABDAY_7</code>, <code>DAY_1</code>..<code>DAY_7</code>,
 <code>ABMON_1</code>..<code>ABMON_12</code>, and <code>ABMON_1</code>..<code>ABMON_12</code>.</p>
 <p>
 </p>
@@ -664,7 +669,7 @@ called by extensions outside the standard Perl distribution and by the
 operating system and its utilities.  Note especially that the string
 value of <code>$!</code> and the error messages given by external utilities may
 be changed by <code>LC_MESSAGES</code>.  If you want to have portable error
-codes, use <code>%!</code>.  See <em>Errno</em>.</p>
+codes, use <code>%!</code>.  See <a href="../../Errno.html">the Errno manpage</a>.</p>
 <p>
 </p>
 <hr />
@@ -677,32 +682,33 @@ build their own locales--are untrustworthy.  A malicious (or just plain
 broken) locale can make a locale-aware application give unexpected
 results.  Here are a few possibilities:</p>
 <ul>
-<li></li>
-Regular expression checks for safe file names or mail addresses using
+<li>
+<p>Regular expression checks for safe file names or mail addresses using
 <code>\w</code> may be spoofed by an <a href="#item_lc_ctype"><code>LC_CTYPE</code></a> locale that claims that
-characters such as ``&gt;'' and ``|'' are alphanumeric.
-<p></p>
-<li></li>
-String interpolation with case-mapping, as in, say, <code>$dest =
+characters such as ``&gt;'' and ``|'' are alphanumeric.</p>
+</li>
+<li>
+<p>String interpolation with case-mapping, as in, say, <code>$dest =
 &quot;C:\U$name.$ext&quot;</code>, may produce dangerous results if a bogus LC_CTYPE
-case-mapping table is in effect.
-<p></p>
-<li></li>
-A sneaky <a href="#item_lc_collate"><code>LC_COLLATE</code></a> locale could result in the names of students with
-``D'' grades appearing ahead of those with ``A''s.
-<p></p>
-<li></li>
-An application that takes the trouble to use information in
+case-mapping table is in effect.</p>
+</li>
+<li>
+<p>A sneaky <a href="#item_lc_collate"><code>LC_COLLATE</code></a> locale could result in the names of students with
+``D'' grades appearing ahead of those with ``A''s.</p>
+</li>
+<li>
+<p>An application that takes the trouble to use information in
 <a href="#item_lc_monetary"><code>LC_MONETARY</code></a> may format debits as if they were credits and vice versa
 if that locale has been subverted.  Or it might make payments in US
-dollars instead of Hong Kong dollars.
-<p></p>
-<li></li>
-The date and day names in dates formatted by <code>strftime()</code> could be
+dollars instead of Hong Kong dollars.</p>
+</li>
+<li>
+<p>The date and day names in dates formatted by <code>strftime()</code> could be
 manipulated to advantage by a malicious user able to subvert the
 <code>LC_DATE</code> locale.  (``Look--it says I wasn't in the building on
-Sunday.'')
-<p></p></ul>
+Sunday.'')</p>
+</li>
+</ul>
 <p>Such dangers are not peculiar to the locale system: any aspect of an
 application's environment which may be modified maliciously presents
 similar challenges.  Similarly, they are not specific to Perl: any
@@ -716,56 +722,57 @@ which may be untrustworthy in consequence.  Here is a summary of the
 tainting behavior of operators and functions that may be affected by
 the locale:</p>
 <ul>
-<li></li>
-<strong>Comparison operators</strong> (<code>lt</code>, <code>le</code>, <code>ge</code>, <code>gt</code> and <code>cmp</code>):
+<li>
+<p><strong>Comparison operators</strong> (<code>lt</code>, <code>le</code>, <code>ge</code>, <code>gt</code> and <code>cmp</code>):</p>
 <p>Scalar true/false (or less/equal/greater) result is never tainted.</p>
-<p></p>
-<li></li>
-<strong>Case-mapping interpolation</strong> (with <code>\l</code>, <code>\L</code>, <code>\u</code> or <code>\U</code>)
+</li>
+<li>
+<p><strong>Case-mapping interpolation</strong> (with <code>\l</code>, <code>\L</code>, <code>\u</code> or <code>\U</code>)</p>
 <p>Result string containing interpolated material is tainted if
 <code>use locale</code> is in effect.</p>
-<p></p>
-<li></li>
-<strong>Matching operator</strong> (<code>m//</code>):
+</li>
+<li>
+<p><strong>Matching operator</strong> (<code>m//</code>):</p>
 <p>Scalar true/false result never tainted.</p>
 <p>Subpatterns, either delivered as a list-context result or as $1 etc.
 are tainted if <code>use locale</code> is in effect, and the subpattern regular
 expression contains <code>\w</code> (to match an alphanumeric character), <code>\W</code>
-(non-alphanumeric character), <code>\s</code> (white-space character), or <code>\S</code>
-(non white-space character).  The matched-pattern variable, $&amp;, $`
+(non-alphanumeric character), <code>\s</code> (whitespace character), or <code>\S</code>
+(non whitespace character).  The matched-pattern variable, $&amp;, $`
 (pre-match), $' (post-match), and $+ (last match) are also tainted if
 <code>use locale</code> is in effect and the regular expression contains <code>\w</code>,
 <code>\W</code>, <code>\s</code>, or <code>\S</code>.</p>
-<p></p>
-<li></li>
-<strong>Substitution operator</strong> (<code>s///</code>):
+</li>
+<li>
+<p><strong>Substitution operator</strong> (<code>s///</code>):</p>
 <p>Has the same behavior as the match operator.  Also, the left
 operand of <code>=~</code> becomes tainted when <code>use locale</code> in effect
 if modified as a result of a substitution based on a regular
 expression match involving <code>\w</code>, <code>\W</code>, <code>\s</code>, or <code>\S</code>; or of
 case-mapping with <code>\l</code>, <code>\L</code>,<code>\u</code> or <code>\U</code>.</p>
-<p></p>
-<li></li>
-<strong>Output formatting functions</strong> (printf() and write()):
+</li>
+<li>
+<p><strong>Output formatting functions</strong> (printf() and write()):</p>
 <p>Results are never tainted because otherwise even output from print,
 for example <code>print(1/7)</code>, should be tainted if <code>use locale</code> is in
 effect.</p>
-<p></p>
-<li></li>
-<strong>Case-mapping functions</strong> (lc(), lcfirst(), uc(), ucfirst()):
+</li>
+<li>
+<p><strong>Case-mapping functions</strong> (lc(), lcfirst(), uc(), ucfirst()):</p>
 <p>Results are tainted if <code>use locale</code> is in effect.</p>
-<p></p>
-<li></li>
-<strong>POSIX locale-dependent functions</strong> (localeconv(), strcoll(),
-strftime(), strxfrm()):
+</li>
+<li>
+<p><strong>POSIX locale-dependent functions</strong> (localeconv(), strcoll(),
+strftime(), strxfrm()):</p>
 <p>Results are never tainted.</p>
-<p></p>
-<li></li>
-<strong>POSIX character class tests</strong> (isalnum(), isalpha(), isdigit(),
+</li>
+<li>
+<p><strong>POSIX character class tests</strong> (isalnum(), isalpha(), isdigit(),
 isgraph(), islower(), isprint(), ispunct(), isspace(), isupper(),
-isxdigit()):
+isxdigit()):</p>
 <p>True/false results are never tainted.</p>
-<p></p></ul>
+</li>
+</ul>
 <p>Three examples illustrate locale-dependent tainting.
 The first program, which ignores its locale, won't run: a value taken
 directly from the command line may not be used to name an output file
@@ -810,41 +817,42 @@ of a match involving <code>\w</code> while <code>use locale</code> is in effect.
 <hr />
 <h1><a name="environment">ENVIRONMENT</a></h1>
 <dl>
-<dt><strong><a name="item_perl_badlang">PERL_BADLANG</a></strong><br />
-</dt>
+<dt><strong><a name="item_perl_badlang">PERL_BADLANG</a></strong>
+
 <dd>
-A string that can suppress Perl's warning about failed locale settings
+<p>A string that can suppress Perl's warning about failed locale settings
 at startup.  Failure can occur if the locale support in the operating
 system is lacking (broken) in some way--or if you mistyped the name of
 a locale when you set up your environment.  If this environment
 variable is absent, or has a value that does not evaluate to integer
 zero--that is, ``0'' or ``''-- Perl will complain about locale setting
-failures.
+failures.</p>
 </dd>
 <dd>
 <p><strong>NOTE</strong>: PERL_BADLANG only gives you a way to hide the warning message.
 The message tells about some problem in your system's locale support,
 and you should investigate what the problem is.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>The following environment variables are not specific to Perl: They are
 part of the standardized (ISO C, XPG4, POSIX 1.c) <code>setlocale()</code> method
 for controlling an application's opinion on data.</p>
 <dl>
-<dt><strong><a name="item_lc_all">LC_ALL</a></strong><br />
-</dt>
+<dt><strong><a name="item_lc_all">LC_ALL</a></strong>
+
 <dd>
-<a href="#item_lc_all"><code>LC_ALL</code></a> is the ``override-all'' locale environment variable. If
-set, it overrides all the rest of the locale environment variables.
+<p><a href="#item_lc_all"><code>LC_ALL</code></a> is the ``override-all'' locale environment variable. If
+set, it overrides all the rest of the locale environment variables.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_language">LANGUAGE</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_language">LANGUAGE</a></strong>
+
 <dd>
-<strong>NOTE</strong>: <a href="#item_language"><code>LANGUAGE</code></a> is a GNU extension, it affects you only if you
+<p><strong>NOTE</strong>: <a href="#item_language"><code>LANGUAGE</code></a> is a GNU extension, it affects you only if you
 are using the GNU libc.  This is the case if you are using e.g. Linux.
 If you are using ``commercial'' UNIXes you are most probably <em>not</em>
-using GNU libc and you can ignore <a href="#item_language"><code>LANGUAGE</code></a>.
+using GNU libc and you can ignore <a href="#item_language"><code>LANGUAGE</code></a>.</p>
 </dd>
 <dd>
 <p>However, in the case you are using <a href="#item_language"><code>LANGUAGE</code></a>: it affects the
@@ -854,55 +862,56 @@ priority than <a href="#item_lc_all">LC_ALL</a>.  Moreover, it's not a single va
 instead a ``path'' (``:''-separated list) of <em>languages</em> (not locales).
 See the GNU <code>gettext</code> library documentation for more information.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lc_ctype">LC_CTYPE</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lc_ctype">LC_CTYPE</a></strong>
+
 <dd>
-In the absence of <a href="#item_lc_all"><code>LC_ALL</code></a>, <a href="#item_lc_ctype"><code>LC_CTYPE</code></a> chooses the character type
+<p>In the absence of <a href="#item_lc_all"><code>LC_ALL</code></a>, <a href="#item_lc_ctype"><code>LC_CTYPE</code></a> chooses the character type
 locale.  In the absence of both <a href="#item_lc_all"><code>LC_ALL</code></a> and <a href="#item_lc_ctype"><code>LC_CTYPE</code></a>, <a href="#item_lang"><code>LANG</code></a>
-chooses the character type locale.
+chooses the character type locale.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lc_collate">LC_COLLATE</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lc_collate">LC_COLLATE</a></strong>
+
 <dd>
-In the absence of <a href="#item_lc_all"><code>LC_ALL</code></a>, <a href="#item_lc_collate"><code>LC_COLLATE</code></a> chooses the collation
+<p>In the absence of <a href="#item_lc_all"><code>LC_ALL</code></a>, <a href="#item_lc_collate"><code>LC_COLLATE</code></a> chooses the collation
 (sorting) locale.  In the absence of both <a href="#item_lc_all"><code>LC_ALL</code></a> and <a href="#item_lc_collate"><code>LC_COLLATE</code></a>,
-<a href="#item_lang"><code>LANG</code></a> chooses the collation locale.
+<a href="#item_lang"><code>LANG</code></a> chooses the collation locale.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lc_monetary">LC_MONETARY</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lc_monetary">LC_MONETARY</a></strong>
+
 <dd>
-In the absence of <a href="#item_lc_all"><code>LC_ALL</code></a>, <a href="#item_lc_monetary"><code>LC_MONETARY</code></a> chooses the monetary
+<p>In the absence of <a href="#item_lc_all"><code>LC_ALL</code></a>, <a href="#item_lc_monetary"><code>LC_MONETARY</code></a> chooses the monetary
 formatting locale.  In the absence of both <a href="#item_lc_all"><code>LC_ALL</code></a> and <a href="#item_lc_monetary"><code>LC_MONETARY</code></a>,
-<a href="#item_lang"><code>LANG</code></a> chooses the monetary formatting locale.
+<a href="#item_lang"><code>LANG</code></a> chooses the monetary formatting locale.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lc_numeric">LC_NUMERIC</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lc_numeric">LC_NUMERIC</a></strong>
+
 <dd>
-In the absence of <a href="#item_lc_all"><code>LC_ALL</code></a>, <a href="#item_lc_numeric"><code>LC_NUMERIC</code></a> chooses the numeric format
+<p>In the absence of <a href="#item_lc_all"><code>LC_ALL</code></a>, <a href="#item_lc_numeric"><code>LC_NUMERIC</code></a> chooses the numeric format
 locale.  In the absence of both <a href="#item_lc_all"><code>LC_ALL</code></a> and <a href="#item_lc_numeric"><code>LC_NUMERIC</code></a>, <a href="#item_lang"><code>LANG</code></a>
-chooses the numeric format.
+chooses the numeric format.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lc_time">LC_TIME</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lc_time">LC_TIME</a></strong>
+
 <dd>
-In the absence of <a href="#item_lc_all"><code>LC_ALL</code></a>, <a href="#item_lc_time"><code>LC_TIME</code></a> chooses the date and time
+<p>In the absence of <a href="#item_lc_all"><code>LC_ALL</code></a>, <a href="#item_lc_time"><code>LC_TIME</code></a> chooses the date and time
 formatting locale.  In the absence of both <a href="#item_lc_all"><code>LC_ALL</code></a> and <a href="#item_lc_time"><code>LC_TIME</code></a>,
-<a href="#item_lang"><code>LANG</code></a> chooses the date and time formatting locale.
+<a href="#item_lang"><code>LANG</code></a> chooses the date and time formatting locale.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lang">LANG</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lang">LANG</a></strong>
+
 <dd>
-<a href="#item_lang"><code>LANG</code></a> is the ``catch-all'' locale environment variable. If it is set, it
+<p><a href="#item_lang"><code>LANG</code></a> is the ``catch-all'' locale environment variable. If it is set, it
 is used as the last resort after the overall <a href="#item_lc_all"><code>LC_ALL</code></a> and the
-category-specific <code>LC_...</code>.
+category-specific <code>LC_...</code>.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -1008,13 +1017,13 @@ operating system upgrade.</p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
-<p><a href="../I18N/Langinfo.html">the I18N::Langinfo manpage</a>, <a href="perluniintro.html">the perluniintro manpage</a>, <a href="perlunicode.html">the perlunicode manpage</a>, <em>open</em>,
-<em>POSIX/isalnum</em>, <em>POSIX/isalpha</em>,
-<em>POSIX/isdigit</em>, <em>POSIX/isgraph</em>, <em>POSIX/islower</em>,
-<em>POSIX/isprint</em>, <em>POSIX/ispunct</em>, <em>POSIX/isspace</em>,
-<em>POSIX/isupper</em>, <em>POSIX/isxdigit</em>, <em>POSIX/localeconv</em>,
-<em>POSIX/setlocale</em>, <em>POSIX/strcoll</em>, <em>POSIX/strftime</em>,
-<em>POSIX/strtod</em>, <em>POSIX/strxfrm</em>.</p>
+<p><a href="../../I18N/Langinfo.html">the I18N::Langinfo manpage</a>, <a href="perluniintro.html">the perluniintro manpage</a>, <a href="perlunicode.html">the perlunicode manpage</a>, <a href="../../open.html">the open manpage</a>,
+<a href="../../auto/POSIX/isalnum.html">isalnum in the POSIX manpage</a>, <a href="../../auto/POSIX/isalpha.html">isalpha in the POSIX manpage</a>,
+<a href="../../auto/POSIX/isdigit.html">isdigit in the POSIX manpage</a>, <a href="../../auto/POSIX/isgraph.html">isgraph in the POSIX manpage</a>, <a href="../../auto/POSIX/islower.html">islower in the POSIX manpage</a>,
+<a href="../../auto/POSIX/isprint.html">isprint in the POSIX manpage</a>, <a href="../../auto/POSIX/ispunct.html">ispunct in the POSIX manpage</a>, <a href="../../auto/POSIX/isspace.html">isspace in the POSIX manpage</a>,
+<a href="../../auto/POSIX/isupper.html">isupper in the POSIX manpage</a>, <a href="../../auto/POSIX/isxdigit.html">isxdigit in the POSIX manpage</a>, <a href="../../auto/POSIX/localeconv.html">localeconv in the POSIX manpage</a>,
+<a href="../../auto/POSIX/setlocale.html">setlocale in the POSIX manpage</a>, <a href="../../auto/POSIX/strcoll.html">strcoll in the POSIX manpage</a>, <a href="../../auto/POSIX/strftime.html">strftime in the POSIX manpage</a>,
+<a href="../../auto/POSIX/strtod.html">strtod in the POSIX manpage</a>, <a href="../../auto/POSIX/strxfrm.html">strxfrm in the POSIX manpage</a>.</p>
 <p>
 </p>
 <hr />

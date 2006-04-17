@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlsyn - Perl syntax</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -42,7 +44,8 @@
 <hr />
 <p>
 </p>
-<h1><a name="name">NAME</a></h1>
+<h1><a name="name_x_syntax_">NAME
+</a></h1>
 <p>perlsyn - Perl syntax</p>
 <p>
 </p>
@@ -68,7 +71,8 @@ you will see familiar pieces in Perl.  They often work the same, but
 see <a href="perltrap.html">the perltrap manpage</a> for information about how they differ.</p>
 <p>
 </p>
-<h2><a name="declarations">Declarations</a></h2>
+<h2><a name="declarations_x_declaration__x_undef__x_undefined__x_uninitialized_">Declarations
+   </a></h2>
 <p>The only things you need to declare in Perl are report formats and
 subroutines (and sometimes not even subroutines).  A variable holds
 the undefined value (<code>undef</code>) until it has been assigned a defined
@@ -99,7 +103,8 @@ your format or subroutine definition is within the same block scope
 as the my if you expect to be able to access those private variables.</p>
 <p>Declaring a subroutine allows a subroutine name to be used as if it were a
 list operator from that point forward in the program.  You can declare a
-subroutine without defining it by saying <code>sub name</code>, thus:</p>
+subroutine without defining it by saying <code>sub name</code>, thus:
+</p>
 <pre>
     sub myname;
     $me = myname $0             or die &quot;can't get myname&quot;;</pre>
@@ -118,13 +123,15 @@ statements as if it were an ordinary statement.  That means it actually
 has both compile-time and run-time effects.</p>
 <p>
 </p>
-<h2><a name="comments">Comments</a></h2>
+<h2><a name="comments_x_comment__x___">Comments
+ </a></h2>
 <p>Text from a <code>&quot;#&quot;</code> character until the end of the line is a comment,
 and is ignored.  Exceptions include <code>&quot;#&quot;</code> inside a string or regular
 expression.</p>
 <p>
 </p>
-<h2><a name="simple_statements">Simple Statements</a></h2>
+<h2><a name="simple_statements_x_statement__x_semicolon__x_expression__x___">Simple Statements
+   </a></h2>
 <p>The only kind of simple statement is an expression evaluated for its
 side effects.  Every simple statement must be terminated with a
 semicolon, unless it is the final statement in a block, in which case
@@ -136,12 +143,18 @@ TERMs in an expression), and thus need an explicit termination if used
 as the last item in a statement.</p>
 <p>
 </p>
-<h2><a name="truth_and_falsehood">Truth and Falsehood</a></h2>
+<h2><a name="truth_and_falsehood_x_truth__x_falsehood__x_true__x_false__x____x_not__x_negation__x_0_">Truth and Falsehood
+       </a></h2>
 <p>The number 0, the strings <code>'0'</code> and <code>''</code>, the empty list <code>()</code>, and
-<code>undef</code> are all false in a boolean context. All other values are true.</p>
+<code>undef</code> are all false in a boolean context. All other values are true.
+Negation of a true value by <code>!</code> or <code>not</code> returns a special false value.
+When evaluated as a string it is treated as <code>''</code>, but as a number, it
+is treated as 0.</p>
 <p>
 </p>
-<h2><a name="statement_modifiers">Statement Modifiers</a></h2>
+<h2><a name="statement_modifiers_x_statement_modifier__x_modifier__x_if__x_unless__x_while__x_until__x_foreach__x_for_">Statement Modifiers
+    
+  </a></h2>
 <p>Any simple statement may optionally be followed by a <em>SINGLE</em> modifier,
 just before the terminating semicolon (or block ending).  The possible
 modifiers are:</p>
@@ -184,13 +197,15 @@ evaluated.  This is so that you can write loops like:</p>
 later will <em>NOT</em> work in this construct, because modifiers don't take
 loop labels.  Sorry.  You can always put another block inside of it
 (for <code>next</code>) or around it (for <code>last</code>) to do that sort of thing.
-For <code>next</code>, just double the braces:</p>
+For <code>next</code>, just double the braces:
+  </p>
 <pre>
     do {{
         next if $x == $y;
         # do something here
     }} until $x++ &gt; $z;</pre>
-<p>For <code>last</code>, you have to be more elaborate:</p>
+<p>For <code>last</code>, you have to be more elaborate:
+</p>
 <pre>
     LOOP: { 
             do {
@@ -203,10 +218,13 @@ modifier conditional or loop construct (e.g. <code>my $x if ...</code>) is
 <strong>undefined</strong>.  The value of the <code>my</code> variable may be <code>undef</code>, any
 previously assigned value, or possibly anything else.  Don't rely on
 it.  Future versions of perl might do something different from the
-version of perl you try it out on.  Here be dragons.</p>
+version of perl you try it out on.  Here be dragons.
+</p>
 <p>
 </p>
-<h2><a name="compound_statements">Compound Statements</a></h2>
+<h2><a name="compound_statements_x_statement__compound__x_block__x_bracket__curly__x_curly_bracket__x_brace__x____x____x_if__x_unless__x_while__x_until__x_foreach__x_for__x_continue_">Compound Statements
+    
+        </a></h2>
 <p>In Perl, a sequence of statements that defines a scope is called a block.
 Sometimes a block is delimited by the file containing it (in the case
 of a required file, or the program as a whole), and sometimes a block
@@ -220,6 +238,8 @@ We will call this syntactic construct a BLOCK.</p>
     if (EXPR) BLOCK elsif (EXPR) BLOCK ... else BLOCK
     LABEL while (EXPR) BLOCK
     LABEL while (EXPR) BLOCK continue BLOCK
+    LABEL until (EXPR) BLOCK
+    LABEL until (EXPR) BLOCK continue BLOCK
     LABEL for (EXPR; EXPR; EXPR) BLOCK
     LABEL foreach VAR (LIST) BLOCK
     LABEL foreach VAR (LIST) BLOCK continue BLOCK
@@ -241,6 +261,8 @@ bounded by curly brackets, there is never any ambiguity about which
 the sense of the test is reversed.</p>
 <p>The <code>while</code> statement executes the block as long as the expression is
 true (does not evaluate to the null string <code>&quot;&quot;</code> or <code>0</code> or <code>&quot;0&quot;</code>).
+The <code>until</code> statement executes the block as long as the expression is
+false.
 The LABEL is optional, and if present, consists of an identifier followed
 by a colon.  The LABEL identifies the loop for the loop control
 statements <code>next</code>, <code>last</code>, and <code>redo</code>.
@@ -255,7 +277,8 @@ increment a loop variable, even when the loop has been continued via
 the <code>next</code> statement.</p>
 <p>
 </p>
-<h2><a name="loop_control">Loop Control</a></h2>
+<h2><a name="loop_control_x_loop_control__x_loop__control__x_next__x_last__x_redo__x_continue_">Loop Control
+     </a></h2>
 <p>The <code>next</code> command starts the next iteration of the loop:</p>
 <pre>
     LINE: while (&lt;STDIN&gt;) {
@@ -327,7 +350,8 @@ executes once, see <a href="#basic_blocks_and_switch_statements">Basic BLOCKs an
 available.   Replace any occurrence of <code>if BLOCK</code> by <code>if (do BLOCK)</code>.</p>
 <p>
 </p>
-<h2><a name="for_loops">For Loops</a></h2>
+<h2><a name="for_loops_x_for__x_foreach_">For Loops
+ </a></h2>
 <p>Perl's C-style <code>for</code> loop works like the corresponding <code>while</code> loop;
 that means that this:</p>
 <pre>
@@ -345,12 +369,14 @@ that means that this:</p>
 <p>There is one minor difference: if variables are declared with <code>my</code>
 in the initialization section of the <code>for</code>, the lexical scope of
 those variables is exactly the <code>for</code> loop (the body of the loop
-and the control sections).</p>
+and the control sections).
+</p>
 <p>Besides the normal array index looping, <code>for</code> can lend itself
 to many other interesting applications.  Here's one that avoids the
 problem you get into if you explicitly test for end-of-file on
 an interactive file descriptor causing your program to appear to
-hang.</p>
+hang.
+  </p>
 <pre>
     $on_a_tty = -t STDIN &amp;&amp; -t STDOUT;
     sub prompt { print &quot;yes? &quot; if $on_a_tty }
@@ -359,14 +385,16 @@ hang.</p>
     }</pre>
 <p>Using <code>readline</code> (or the operator form, <code>&lt;EXPR&gt;</code>) as the
 conditional of a <code>for</code> loop is shorthand for the following.  This
-behaviour is the same as a <code>while</code> loop conditional.</p>
+behaviour is the same as a <code>while</code> loop conditional.
+  &gt;&gt;</p>
 <pre>
     for ( prompt(); defined( $_ = &lt;STDIN&gt; ); prompt() ) {
         # do something
     }</pre>
 <p>
 </p>
-<h2><a name="foreach_loops">Foreach Loops</a></h2>
+<h2><a name="foreach_loops_x_for__x_foreach_">Foreach Loops
+ </a></h2>
 <p>The <code>foreach</code> loop iterates over a normal list value and sets the
 variable VAR to be each element of the list in turn.  If the variable
 is preceded with the keyword <code>my</code>, then it is lexically scoped, and
@@ -375,19 +403,23 @@ implicitly local to the loop and regains its former value upon exiting
 the loop.  If the variable was previously declared with <code>my</code>, it uses
 that variable instead of the global one, but it's still localized to
 the loop.  This implicit localisation occurs <em>only</em> in a <code>foreach</code>
-loop.</p>
+loop.
+ </p>
 <p>The <code>foreach</code> keyword is actually a synonym for the <code>for</code> keyword, so
 you can use <code>foreach</code> for readability or <code>for</code> for brevity.  (Or because
 the Bourne shell is more familiar to you than <em>csh</em>, so writing <code>for</code>
-comes more naturally.)  If VAR is omitted, <code>$_</code> is set to each value.</p>
+comes more naturally.)  If VAR is omitted, <code>$_</code> is set to each value.
+</p>
 <p>If any element of LIST is an lvalue, you can modify it by modifying
 VAR inside the loop.  Conversely, if any element of LIST is NOT an
 lvalue, any attempt to modify that element will fail.  In other words,
 the <code>foreach</code> loop index variable is an implicit alias for each item
-in the list that you're looping over.</p>
+in the list that you're looping over.
+</p>
 <p>If any part of LIST is an array, <code>foreach</code> will get very confused if
 you add or remove elements within the loop body, for example with
-<code>splice</code>.   So don't do that.</p>
+<code>splice</code>.   So don't do that.
+</p>
 <p><code>foreach</code> probably won't do what you expect if VAR is a tied or other
 special variable.   Don't do that either.</p>
 <p>Examples:</p>
@@ -436,7 +468,8 @@ Perl executes a <code>foreach</code> statement more rapidly than it would the
 equivalent <code>for</code> loop.</p>
 <p>
 </p>
-<h2><a name="basic_blocks_and_switch_statements">Basic BLOCKs and Switch Statements</a></h2>
+<h2><a name="basic_blocks_and_switch_statements_x_switch__x_block__x_case_">Basic BLOCKs and Switch Statements
+  </a></h2>
 <p>A BLOCK by itself (labeled or not) is semantically equivalent to a
 loop that executes once.  Thus you can use any of the loop control
 statements in it to leave or restart the block.  (Note that this is
@@ -567,7 +600,8 @@ will be true.  If you don't, the previous <code>?:</code> example should be used
 instead of synthesizing a <code>switch</code> statement.</p>
 <p>
 </p>
-<h2><a name="goto">Goto</a></h2>
+<h2><a name="goto_x_goto_">Goto
+</a></h2>
 <p>Although not for the faint of heart, Perl does support a <code>goto</code>
 statement.  There are three forms: <code>goto</code>-LABEL, <code>goto</code>-EXPR, and
 <code>goto</code>-&amp;NAME.  A loop's LABEL is not actually a valid target for
@@ -598,7 +632,8 @@ resorting to a <code>goto</code>.  For certain applications, the catch and throw
 <code>eval{}</code> and <code>die()</code> for exception processing can also be a prudent approach.</p>
 <p>
 </p>
-<h2><a name="pods__embedded_documentation">PODs: Embedded Documentation</a></h2>
+<h2><a name="pods__embedded_documentation_x_pod__x_documentation_">PODs: Embedded Documentation
+ </a></h2>
 <p>Perl has a mechanism for intermixing documentation with source code.
 While it's expecting the beginning of a new statement, if the compiler
 encounters a line that begins with an equal sign and a word, like this</p>
@@ -640,7 +675,8 @@ the compiler will become pickier.</p>
 of code.</p>
 <p>
 </p>
-<h2><a name="plain_old_comments__not__">Plain Old Comments (Not!)</a></h2>
+<h2><a name="plain_old_comments__not___x_comment__x_line__x____x_preprocessor__x_eval_">Plain Old Comments (Not!)
+    </a></h2>
 <p>Perl can process line directives, much like the C preprocessor.  Using
 this, one can control Perl's idea of filenames and line numbers in
 error or warning messages (especially for strings that are processed

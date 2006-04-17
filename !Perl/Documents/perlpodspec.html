@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlpodspec - Plain Old Documentation: format specification and notes</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -105,10 +107,10 @@ lines.</p>
 <p>For purposes of Pod processing, there are four types of paragraphs in
 a Pod block:</p>
 <ul>
-<li></li>
-A command paragraph (also called a ``directive'').  The first line of
+<li>
+<p>A command paragraph (also called a ``directive'').  The first line of
 this paragraph must match <code>m/\A=[a-zA-Z]/</code>.  Command paragraphs are
-typically one line, as in:
+typically one line, as in:</p>
 <pre>
   =head1 NOTES</pre>
 <pre>
@@ -131,35 +133,36 @@ would to an ordinary paragraph -- i.e., formatting codes (like
 ``C&lt;...&gt;'') are parsed and presumably formatted appropriately, and
 whitespace in the form of literal spaces and/or tabs is not
 significant.</p>
-<p></p>
-<li></li>
-A <strong>verbatim paragraph</strong>.  The first line of this paragraph must be a
+</li>
+<li>
+<p>A <strong>verbatim paragraph</strong>.  The first line of this paragraph must be a
 literal space or tab, and this paragraph must not be inside a ``=begin
 <em>identifier</em>'', ... ``=end <em>identifier</em>'' sequence unless
 ``<em>identifier</em>'' begins with a colon (``:'').  That is, if a paragraph
 starts with a literal space or tab, but <em>is</em> inside a
 ``=begin <em>identifier</em>'', ... ``=end <em>identifier</em>'' region, then it's
-a data paragraph, unless ``<em>identifier</em>'' begins with a colon.
+a data paragraph, unless ``<em>identifier</em>'' begins with a colon.</p>
 <p>Whitespace <em>is</em> significant in verbatim paragraphs (although, in
 processing, tabs are probably expanded).</p>
-<p></p>
-<li></li>
-An <strong>ordinary paragraph</strong>.  A paragraph is an ordinary paragraph
+</li>
+<li>
+<p>An <strong>ordinary paragraph</strong>.  A paragraph is an ordinary paragraph
 if its first line matches neither <code>m/\A=[a-zA-Z]/</code> nor
 <code>m/\A[ \t]/</code>, <em>and</em> if it's not inside a ``=begin <em>identifier</em>'',
 ... ``=end <em>identifier</em>'' sequence unless ``<em>identifier</em>'' begins with
-a colon (``:'').
-<p></p>
-<li></li>
-A <strong>data paragraph</strong>.  This is a paragraph that <em>is</em> inside a ``=begin
+a colon (``:'').</p>
+</li>
+<li>
+<p>A <strong>data paragraph</strong>.  This is a paragraph that <em>is</em> inside a ``=begin
 <em>identifier</em>'' ... ``=end <em>identifier</em>'' sequence where
 ``<em>identifier</em>'' does <em>not</em> begin with a literal colon (``:'').  In
 some sense, a data paragraph is not part of Pod at all (i.e.,
 effectively it's ``out-of-band''), since it's not subject to most kinds
 of Pod parsing; but it is specified here, since Pod
 parsers need to be able to call an event for it, or store it in some
-form in a parse tree, or at least just parse <em>around</em> it.
-<p></p></ul>
+form in a parse tree, or at least just parse <em>around</em> it.</p>
+</li>
+</ul>
 <p>For example: consider the following paragraphs:</p>
 <pre>
   # &lt;- that's the 0th column</pre>
@@ -188,11 +191,11 @@ is discussed in detail in the section
 <a href="perlpod.html#command_paragraph">Command Paragraph in the perlpod manpage</a>.  These are the currently recognized
 Pod commands:</p>
 <dl>
-<dt><strong><a name="item__22_3dhead1_22_2c__22_3dhead2_22_2c__22_3dhead3_22">``=head1'', ``=head2'', ``=head3'', ``=head4''</a></strong><br />
-</dt>
+<dt><strong><a name="item__22_3dhead1_22_2c__22_3dhead2_22_2c__22_3dhead3_22">``=head1'', ``=head2'', ``=head3'', ``=head4''</a></strong>
+
 <dd>
-This command indicates that the text in the remainder of the paragraph
-is a heading.  That text may contain formatting codes.  Examples:
+<p>This command indicates that the text in the remainder of the paragraph
+is a heading.  That text may contain formatting codes.  Examples:</p>
 </dd>
 <dd>
 <pre>
@@ -202,14 +205,14 @@ is a heading.  That text may contain formatting codes.  Examples:
 <pre>
   =head3 What B&lt;Not&gt; to Do!</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__22_3dpod_22">``=pod''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22_3dpod_22">``=pod''</a></strong>
+
 <dd>
-This command indicates that this paragraph begins a Pod block.  (If we
+<p>This command indicates that this paragraph begins a Pod block.  (If we
 are already in the middle of a Pod block, this command has no effect at
 all.)  If there is any text in this command paragraph after ``=pod'',
-it must be ignored.  Examples:
+it must be ignored.  Examples:</p>
 </dd>
 <dd>
 <pre>
@@ -223,13 +226,13 @@ it must be ignored.  Examples:
 <pre>
   =pod This text is ignored.</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__22_3dcut_22">``=cut''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22_3dcut_22">``=cut''</a></strong>
+
 <dd>
-This command indicates that this line is the end of this previously
+<p>This command indicates that this line is the end of this previously
 started Pod block.  If there is any text after ``=cut'' on the line, it must be
-ignored.  Examples:
+ignored.  Examples:</p>
 </dd>
 <dd>
 <pre>
@@ -250,15 +253,15 @@ ignored.  Examples:
 that case, the Pod processor must halt parsing of the input file, and
 must by default emit a warning.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__22_3dover_22">``=over''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22_3dover_22">``=over''</a></strong>
+
 <dd>
-This command indicates that this is the start of a list/indent
+<p>This command indicates that this is the start of a list/indent
 region.  If there is any text following the ``=over'', it must consist
 of only a nonzero positive numeral.  The semantics of this numeral is
 explained in the <a href="#about__over____back_regions">About =over...=back Regions</a> section, further
-below.  Formatting codes are not expanded.  Examples:
+below.  Formatting codes are not expanded.  Examples:</p>
 </dd>
 <dd>
 <pre>
@@ -272,15 +275,15 @@ below.  Formatting codes are not expanded.  Examples:
 <pre>
   =over</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__22_3ditem_22">``=item''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22_3ditem_22">``=item''</a></strong>
+
 <dd>
-This command indicates that an item in a list begins here.  Formatting
+<p>This command indicates that an item in a list begins here.  Formatting
 codes are processed.  The semantics of the (optional) text in the
 remainder of this paragraph are
 explained in the <a href="#about__over____back_regions">About =over...=back Regions</a> section, further
-below.  Examples:
+below.  Examples:</p>
 </dd>
 <dd>
 <pre>
@@ -319,25 +322,25 @@ below.  Examples:
   scarcely paralleled in the most barbarous ages, and totally
   unworthy the head of a civilized nation.</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__22_3dback_22">``=back''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22_3dback_22">``=back''</a></strong>
+
 <dd>
-This command indicates that this is the end of the region begun
+<p>This command indicates that this is the end of the region begun
 by the most recent ``=over'' command.  It permits no text after the
-``=back'' command.
+``=back'' command.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__22_3dbegin_formatname_22">``=begin formatname''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22_3dbegin_formatname_22">``=begin formatname''</a></strong>
+
 <dd>
-This marks the following paragraphs (until the matching ``=end
+<p>This marks the following paragraphs (until the matching ``=end
 formatname'') as being for some special kind of processing.  Unless
 ``formatname'' begins with a colon, the contained non-command
 paragraphs are data paragraphs.  But if ``formatname'' <em>does</em> begin
 with a colon, then non-command paragraphs are ordinary paragraphs
 or data paragraphs.  This is discussed in detail in the section
-<a href="#about_data_paragraphs_and__begine_sol__end_regions">About Data Paragraphs and ``=begin&sol;=end'' Regions</a>.
+<a href="#about_data_paragraphs_and__begine_sol__end_regions">About Data Paragraphs and ``=begin&sol;=end'' Regions</a>.</p>
 </dd>
 <dd>
 <p>It is advised that formatnames match the regexp
@@ -345,22 +348,22 @@ or data paragraphs.  This is discussed in detail in the section
 expansion in the semantics and syntax of the first parameter
 to ``=begin''/``=end''/``=for''.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__22_3dend_formatname_22">``=end formatname''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22_3dend_formatname_22">``=end formatname''</a></strong>
+
 <dd>
-This marks the end of the region opened by the matching
+<p>This marks the end of the region opened by the matching
 ``=begin formatname'' region.  If ``formatname'' is not the formatname
 of the most recent open ``=begin formatname'' region, then this
 is an error, and must generate an error message.  This
 is discussed in detail in the section
-<a href="#about_data_paragraphs_and__begine_sol__end_regions">About Data Paragraphs and ``=begin&sol;=end'' Regions</a>.
+<a href="#about_data_paragraphs_and__begine_sol__end_regions">About Data Paragraphs and ``=begin&sol;=end'' Regions</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__22_3dfor_formatname_text_2e_2e_2e_22">``=for formatname text...''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22_3dfor_formatname_text_2e_2e_2e_22">``=for formatname text...''</a></strong>
+
 <dd>
-This is synonymous with:
+<p>This is synonymous with:</p>
 </dd>
 <dd>
 <pre>
@@ -382,18 +385,18 @@ then ``text...'' will constitute a data paragraph.  There is no way
 to use ``=for formatname text...'' to express ``text...'' as a verbatim
 paragraph.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__22_3dencoding_encodingname_22">``=encoding encodingname''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__22_3dencoding_encodingname_22">``=encoding encodingname''</a></strong>
+
 <dd>
-This command, which should occur early in the document (at least
+<p>This command, which should occur early in the document (at least
 before any non-US-ASCII data!), declares that this document is
 encoded in the encoding <em>encodingname</em>, which must be
-an encoding name that <em>Encoding</em> recognizes.  (Encoding's list
-of supported encodings, in <a href="../Encoding/Supported.html">the Encoding::Supported manpage</a>, is useful here.)
+an encoding name that <a href="../../Encode/Encoding.html">the Encoding manpage</a> recognizes.  (Encoding's list
+of supported encodings, in <a href="../../Encoding/Supported.html">the Encoding::Supported manpage</a>, is useful here.)
 If the Pod parser cannot decode the declared encoding, it 
 should emit a warning and may abort parsing the document
-altogether.
+altogether.</p>
 </dd>
 <dd>
 <p>A document having more than one ``=encoding'' line should be
@@ -408,7 +411,8 @@ may also complain if they see an ``=encoding'' line
 that contradicts the BOM (e.g., if a document with a UTF-16LE
 BOM has an ``=encoding shiftjis'' line).</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>If a Pod processor sees any command other than the ones listed
 above (like ``=head'', or ``=haed1'', or ``=stuff'', or ``=cuttlefish'',
 or ``=w123''), that processor must by default treat this as an
@@ -430,24 +434,24 @@ this term may still be found in the documentation for Pod parsers,
 and in error messages from Pod processors.)</p>
 <p>There are two syntaxes for formatting codes:</p>
 <ul>
-<li></li>
-A formatting code starts with a capital letter (just US-ASCII [A-Z])
+<li>
+<p>A formatting code starts with a capital letter (just US-ASCII [A-Z])
 followed by a ``&lt;'', any number of characters, and ending with the first
-matching ``&gt;''.  Examples:
+matching ``&gt;''.  Examples:</p>
 <pre>
     That's what I&lt;you&gt; think!</pre>
 <pre>
     What's C&lt;dump()&gt; for?</pre>
 <pre>
     X&lt;C&lt;chmod&gt; and C&lt;unlink()&gt; Under Different Operating Systems&gt;</pre>
-<p></p>
-<li></li>
-A formatting code starts with a capital letter (just US-ASCII [A-Z])
+</li>
+<li>
+<p>A formatting code starts with a capital letter (just US-ASCII [A-Z])
 followed by two or more ``&lt;'''s, one or more whitespace characters,
 any number of characters, one or more whitespace characters,
 and ending with the first matching sequence of two or more ``&gt;'''s, where
 the number of ``&gt;'''s equals the number of ``&lt;'''s in the opening of this
-formatting code.  Examples:
+formatting code.  Examples:</p>
 <pre>
     That's what I&lt;&lt; you &gt;&gt; think!</pre>
 <pre>
@@ -467,40 +471,41 @@ themselves.  That is, these are all synonymous:</p>
     thing
                &gt;&gt;&gt;&gt;</pre>
 <p>and so on.</p>
-<p></p></ul>
+</li>
+</ul>
 <p>In parsing Pod, a notably tricky part is the correct parsing of
 (potentially nested!) formatting codes.  Implementors should
 consult the code in the <code>parse_text</code> routine in Pod::Parser as an
 example of a correct implementation.</p>
 <dl>
-<dt><strong><a name="item_i_3ctext_3e__2d_2d_italic_text"><code>I&lt;text&gt;</code> -- italic text</a></strong><br />
-</dt>
+<dt><strong><a name="item_i_3ctext_3e__2d_2d_italic_text"><code>I&lt;text&gt;</code> -- italic text</a></strong>
+
 <dd>
-See the brief discussion in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.
+<p>See the brief discussion in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b_3ctext_3e__2d_2d_bold_text"><code>B&lt;text&gt;</code> -- bold text</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b_3ctext_3e__2d_2d_bold_text"><code>B&lt;text&gt;</code> -- bold text</a></strong>
+
 <dd>
-See the brief discussion in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.
+<p>See the brief discussion in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_c_3ccode_3e__2d_2d_code_text"><code>C&lt;code&gt;</code> -- code text</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_c_3ccode_3e__2d_2d_code_text"><code>C&lt;code&gt;</code> -- code text</a></strong>
+
 <dd>
-See the brief discussion in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.
+<p>See the brief discussion in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_f_3cfilename_3e__2d_2d_style_for_filenames"><code>F&lt;filename&gt;</code> -- style for filenames</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_f_3cfilename_3e__2d_2d_style_for_filenames"><code>F&lt;filename&gt;</code> -- style for filenames</a></strong>
+
 <dd>
-See the brief discussion in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.
+<p>See the brief discussion in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_x_3ctopic_name_3e__2d_2d_an_index_entry"><code>X&lt;topic name&gt;</code> -- an index entry</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_x_3ctopic_name_3e__2d_2d_an_index_entry"><code>X&lt;topic name&gt;</code> -- an index entry</a></strong>
+
 <dd>
-See the brief discussion in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.
+<p>See the brief discussion in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.</p>
 </dd>
 <dd>
 <p>This code is unusual in that most formatters completely discard
@@ -508,43 +513,43 @@ this code and its content.  Other formatters will render it with
 invisible codes that can be used in building an index of
 the current document.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_null"><code>Z&lt;&gt;</code> -- a null (zero-effect) formatting code</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_null"><code>Z&lt;&gt;</code> -- a null (zero-effect) formatting code</a></strong>
+
 <dd>
-Discussed briefly in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.
+<p>Discussed briefly in <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>.</p>
 </dd>
 <dd>
 <p>This code is unusual is that it should have no content.  That is,
 a processor may complain if it sees <code>Z&lt;potatoes&gt;</code>.  Whether
 or not it complains, the <em>potatoes</em> text should ignored.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_l_3cname_3e__2d_2d_a_hyperlink"><code>L&lt;name&gt;</code> -- a hyperlink</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_l_3cname_3e__2d_2d_a_hyperlink"><code>L&lt;name&gt;</code> -- a hyperlink</a></strong>
+
 <dd>
-The complicated syntaxes of this code are discussed at length in
+<p>The complicated syntaxes of this code are discussed at length in
 <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>, and implementation details are
 discussed below, in <a href="#about_le_lt____e_gt__codes">About L&lt;...&gt; Codes</a>.  Parsing the
 contents of L&lt;content&gt; is tricky.  Notably, the content has to be
 checked for whether it looks like a URL, or whether it has to be split
 on literal ``|'' and/or ``/'' (in the right order!), and so on,
-<em>before</em> E&lt;...&gt; codes are resolved.
+<em>before</em> E&lt;...&gt; codes are resolved.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_e_3cescape_3e__2d_2d_a_character_escape"><code>E&lt;escape&gt;</code> -- a character escape</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_e_3cescape_3e__2d_2d_a_character_escape"><code>E&lt;escape&gt;</code> -- a character escape</a></strong>
+
 <dd>
-See <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>, and several points in
-<a href="#notes_on_implementing_pod_processors">Notes on Implementing Pod Processors</a>.
+<p>See <a href="perlpod.html#formatting_codes">Formatting Codes in the perlpod manpage</a>, and several points in
+<a href="#notes_on_implementing_pod_processors">Notes on Implementing Pod Processors</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s_3ctext_3e__2d_2d_text_contains_non_2dbreaking_sp"><code>S&lt;text&gt;</code> -- text contains non-breaking spaces</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s_3ctext_3e__2d_2d_text_contains_non_2dbreaking_sp"><code>S&lt;text&gt;</code> -- text contains non-breaking spaces</a></strong>
+
 <dd>
-This formatting code is syntactically simple, but semantically
+<p>This formatting code is syntactically simple, but semantically
 complex.  What it means is that each space in the printable
-content of this code signifies a non-breaking space.
+content of this code signifies a non-breaking space.</p>
 </dd>
 <dd>
 <p>Consider:</p>
@@ -563,7 +568,8 @@ content of this code signifies a non-breaking space.
 difference is that in the latter, with the S code, those spaces
 are not ``normal'' spaces, but instead are non-breaking spaces.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>If a Pod processor sees any formatting code other than the ones
 listed above (as in ``N&lt;...&gt;'', or ``Q&lt;...&gt;'', etc.), that
 processor must by default treat this as an error.
@@ -581,7 +587,7 @@ a ``-''.  This was so that this:</p>
     C&lt;$foo-&gt;bar&gt;</pre>
 <p>would parse as equivalent to this:</p>
 <pre>
-    C&lt;$foo-E&lt;lt&gt;bar&gt;</pre>
+    C&lt;$foo-E&lt;gt&gt;bar&gt;</pre>
 <p>instead of as equivalent to a ``C'' formatting code containing 
 only ``$foo-'', and then a ``bar&gt;'' outside the ``C'' formatting code.  This
 problem has since been solved by the addition of syntaxes like this:</p>
@@ -616,44 +622,44 @@ elements.)</p>
 <p>The following is a long section of miscellaneous requirements
 and suggestions to do with Pod processing.</p>
 <ul>
-<li></li>
-Pod formatters should tolerate lines in verbatim blocks that are of
+<li>
+<p>Pod formatters should tolerate lines in verbatim blocks that are of
 any length, even if that means having to break them (possibly several
 times, for very long lines) to avoid text running off the side of the
 page.  Pod formatters may warn of such line-breaking.  Such warnings
 are particularly appropriate for lines are over 100 characters long, which
-are usually not intentional.
-<p></p>
-<li></li>
-Pod parsers must recognize <em>all</em> of the three well-known newline
-formats: CR, LF, and CRLF.  See <a href="perlport.html">perlport</a>.
-<p></p>
-<li></li>
-Pod parsers should accept input lines that are of any length.
-<p></p>
-<li></li>
-Since Perl recognizes a Unicode Byte Order Mark at the start of files
+are usually not intentional.</p>
+</li>
+<li>
+<p>Pod parsers must recognize <em>all</em> of the three well-known newline
+formats: CR, LF, and CRLF.  See <a href="perlport.html">perlport</a>.</p>
+</li>
+<li>
+<p>Pod parsers should accept input lines that are of any length.</p>
+</li>
+<li>
+<p>Since Perl recognizes a Unicode Byte Order Mark at the start of files
 as signaling that the file is Unicode encoded as in UTF-16 (whether
 big-endian or little-endian) or UTF-8, Pod parsers should do the
 same.  Otherwise, the character encoding should be understood as
 being UTF-8 if the first highbit byte sequence in the file seems
-valid as a UTF-8 sequence, or otherwise as Latin-1.
+valid as a UTF-8 sequence, or otherwise as Latin-1.</p>
 <p>Future versions of this specification may specify
 how Pod can accept other encodings.  Presumably treatment of other
 encodings in Pod parsing would be as in XML parsing: whatever the
 encoding declared by a particular Pod file, content is to be
 stored in memory as Unicode characters.</p>
-<p></p>
-<li></li>
-The well known Unicode Byte Order Marks are as follows:  if the
+</li>
+<li>
+<p>The well known Unicode Byte Order Marks are as follows:  if the
 file begins with the two literal byte values 0xFE 0xFF, this is
 the BOM for big-endian UTF-16.  If the file begins with the two
 literal byte value 0xFF 0xFE, this is the BOM for little-endian
 UTF-16.  If the file begins with the three literal byte values
-0xEF 0xBB 0xBF, this is the BOM for UTF-8.
-<p></p>
-<li></li>
-A naive but sufficient heuristic for testing the first highbit
+0xEF 0xBB 0xBF, this is the BOM for UTF-8.</p>
+</li>
+<li>
+<p>A naive but sufficient heuristic for testing the first highbit
 byte-sequence in a BOM-less file (whether in code or in Pod!), to see
 whether that sequence is valid as UTF-8 (RFC 2279) is to check whether
 that the first byte in the sequence is in the range 0xC0 - 0xFD
@@ -667,26 +673,26 @@ can cater to our heuristic (as well as any more intelligent heuristic)
 by prefacing that line with a comment line containing a highbit
 sequence that is clearly <em>not</em> valid as UTF-8.  A line consisting
 of simply ``#'', an e-acute, and any non-highbit byte,
-is sufficient to establish this file's encoding.
-<p></p>
-<li></li>
-This document's requirements and suggestions about encodings
+is sufficient to establish this file's encoding.</p>
+</li>
+<li>
+<p>This document's requirements and suggestions about encodings
 do not apply to Pod processors running on non-ASCII platforms,
-notably EBCDIC platforms.
-<p></p>
-<li></li>
-Pod processors must treat a ``=for [label] [content...]'' paragraph as
+notably EBCDIC platforms.</p>
+</li>
+<li>
+<p>Pod processors must treat a ``=for [label] [content...]'' paragraph as
 meaning the same thing as a ``=begin [label]'' paragraph, content, and
 an ``=end [label]'' paragraph.  (The parser may conflate these two
 constructs, or may leave them distinct, in the expectation that the
-formatter will nevertheless treat them the same.)
-<p></p>
-<li></li>
-When rendering Pod to a format that allows comments (i.e., to nearly
+formatter will nevertheless treat them the same.)</p>
+</li>
+<li>
+<p>When rendering Pod to a format that allows comments (i.e., to nearly
 any format other than plaintext), a Pod formatter must insert comment
 text identifying its name and version number, and the name and
 version numbers of any modules it might be using to process the Pod.
-Minimal examples:
+Minimal examples:</p>
 <pre>
   %% POD::Pod2PS v3.14159, using POD::Parser v1.92</pre>
 <pre>
@@ -702,9 +708,9 @@ file, the formatting options in effect, version of Perl used, etc.</p>
 <p>Formatters may also choose to note errors/warnings as comments,
 besides or instead of emitting them otherwise (as in messages to
 STDERR, or <code>die</code>ing).</p>
-<p></p>
-<li></li>
-Pod parsers <em>may</em> emit warnings or error messages (``Unknown E code
+</li>
+<li>
+<p>Pod parsers <em>may</em> emit warnings or error messages (``Unknown E code
 E&lt;zslig&gt;!'') to STDERR (whether through printing to STDERR, or
 <code>warn</code>ing/<code>carp</code>ing, or <code>die</code>ing/<code>croak</code>ing), but <em>must</em> allow
 suppressing all such STDERR output, and instead allow an option for
@@ -712,17 +718,17 @@ reporting errors/warnings
 in some other way, whether by triggering a callback, or noting errors
 in some attribute of the document object, or some similarly unobtrusive
 mechanism -- or even by appending a ``Pod Errors'' section to the end of
-the parsed form of the document.
-<p></p>
-<li></li>
-In cases of exceptionally aberrant documents, Pod parsers may abort the
+the parsed form of the document.</p>
+</li>
+<li>
+<p>In cases of exceptionally aberrant documents, Pod parsers may abort the
 parse.  Even then, using <code>die</code>ing/<code>croak</code>ing is to be avoided; where
 possible, the parser library may simply close the input file
 and add text like ``*** Formatting Aborted ***'' to the end of the
-(partial) in-memory document.
-<p></p>
-<li></li>
-In paragraphs where formatting codes (like E&lt;...&gt;, B&lt;...&gt;)
+(partial) in-memory document.</p>
+</li>
+<li>
+<p>In paragraphs where formatting codes (like E&lt;...&gt;, B&lt;...&gt;)
 are understood (i.e., <em>not</em> verbatim paragraphs, but <em>including</em>
 ordinary paragraphs, and command paragraphs that produce renderable
 text, like ``=head1''), literal whitespace should generally be considered
@@ -733,27 +739,27 @@ the paragraph).  Pod parsers should compact literal whitespace in each
 processed paragraph, but may provide an option for overriding this
 (since some processing tasks do not require it), or may follow
 additional special rules (for example, specially treating
-period-space-space or period-newline sequences).
-<p></p>
-<li></li>
-Pod parsers should not, by default, try to coerce apostrophe (') and
+period-space-space or period-newline sequences).</p>
+</li>
+<li>
+<p>Pod parsers should not, by default, try to coerce apostrophe (') and
 quote (``) into smart quotes (little 9's, 66's, 99's, etc), nor try to
 turn backtick (`) into anything else but a single backtick character
 (distinct from an openquote character!), nor ''--`` into anything but
 two minus signs.  They <em>must never</em> do any of those things to text
 in C&lt;...&gt; formatting codes, and never <em>ever</em> to text in verbatim
-paragraphs.
-<p></p>
-<li></li>
-When rendering Pod to a format that has two kinds of hyphens (-), one
+paragraphs.</p>
+</li>
+<li>
+<p>When rendering Pod to a format that has two kinds of hyphens (-), one
 that's a non-breaking hyphen, and another that's a breakable hyphen
 (as in ``object-oriented'', which can be split across lines as
 ``object-'', newline, ``oriented''), formatters are encouraged to
 generally translate ``-'' to non-breaking hyphen, but may apply
-heuristics to convert some of these to breaking hyphens.
-<p></p>
-<li></li>
-Pod formatters should make reasonable efforts to keep words of Perl
+heuristics to convert some of these to breaking hyphens.</p>
+</li>
+<li>
+<p>Pod formatters should make reasonable efforts to keep words of Perl
 code from being broken across lines.  For example, ``Foo::Bar'' in some
 formatting systems is seen as eligible for being broken across lines
 as ``Foo::'' newline ``Bar'' or even ``Foo::-'' newline ``Bar''.  This should
@@ -761,36 +767,36 @@ be avoided where possible, either by disabling all line-breaking in
 mid-word, or by wrapping particular words with internal punctuation
 in ``don't break this across lines'' codes (which in some formats may
 not be a single code, but might be a matter of inserting non-breaking
-zero-width spaces between every pair of characters in a word.)
-<p></p>
-<li></li>
-Pod parsers should, by default, expand tabs in verbatim paragraphs as
+zero-width spaces between every pair of characters in a word.)</p>
+</li>
+<li>
+<p>Pod parsers should, by default, expand tabs in verbatim paragraphs as
 they are processed, before passing them to the formatter or other
-processor.  Parsers may also allow an option for overriding this.
-<p></p>
-<li></li>
-Pod parsers should, by default, remove newlines from the end of
+processor.  Parsers may also allow an option for overriding this.</p>
+</li>
+<li>
+<p>Pod parsers should, by default, remove newlines from the end of
 ordinary and verbatim paragraphs before passing them to the
 formatter.  For example, while the paragraph you're reading now
 could be considered, in Pod source, to end with (and contain)
 the <code>newline(s)</code> that end it, it should be processed as ending with
-(and containing) the period character that ends this sentence.
-<p></p>
-<li></li>
-Pod parsers, when reporting errors, should make some effort to report
+(and containing) the period character that ends this sentence.</p>
+</li>
+<li>
+<p>Pod parsers, when reporting errors, should make some effort to report
 an approximate line number (``Nested E&lt;&gt;'s in Paragraph #52, near
 line 633 of Thing/Foo.pm!''), instead of merely noting the paragraph
 number (``Nested E&lt;&gt;'s in Paragraph #52 of Thing/Foo.pm!'').  Where
 this is problematic, the paragraph number should at least be
 accompanied by an excerpt from the paragraph (``Nested E&lt;&gt;'s in
 Paragraph #52 of Thing/Foo.pm, which begins 'Read/write accessor for
-the C&lt;interest rate&gt; attribute...''').
-<p></p>
-<li></li>
-Pod parsers, when processing a series of verbatim paragraphs one
+the C&lt;interest rate&gt; attribute...''').</p>
+</li>
+<li>
+<p>Pod parsers, when processing a series of verbatim paragraphs one
 after another, should consider them to be one large verbatim
 paragraph that happens to contain blank lines.  I.e., these two
-lines, which have a blank line between them:
+lines, which have a blank line between them:</p>
 <pre>
         use Foo;</pre>
 <pre>
@@ -800,28 +806,28 @@ Foo-&gt;VERSION'') before being passed to the formatter or other
 processor.  Parsers may also allow an option for overriding this.</p>
 <p>While this might be too cumbersome to implement in event-based Pod
 parsers, it is straightforward for parsers that return parse trees.</p>
-<p></p>
-<li></li>
-Pod formatters, where feasible, are advised to avoid splitting short
-verbatim paragraphs (under twelve lines, say) across pages.
-<p></p>
-<li></li>
-Pod parsers must treat a line with only spaces and/or tabs on it as a
+</li>
+<li>
+<p>Pod formatters, where feasible, are advised to avoid splitting short
+verbatim paragraphs (under twelve lines, say) across pages.</p>
+</li>
+<li>
+<p>Pod parsers must treat a line with only spaces and/or tabs on it as a
 ``blank line'' such as separates paragraphs.  (Some older parsers
 recognized only two adjacent newlines as a ``blank line'' but would not
 recognize a newline, a space, and a newline, as a blank line.  This
-is noncompliant behavior.)
-<p></p>
-<li></li>
-Authors of Pod formatters/processors should make every effort to
+is noncompliant behavior.)</p>
+</li>
+<li>
+<p>Authors of Pod formatters/processors should make every effort to
 avoid writing their own Pod parser.  There are already several in
 CPAN, with a wide range of interface styles -- and one of them,
-Pod::Parser, comes with modern versions of Perl.
-<p></p>
-<li></li>
-Characters in Pod documents may be conveyed either as literals, or by
+Pod::Parser, comes with modern versions of Perl.</p>
+</li>
+<li>
+<p>Characters in Pod documents may be conveyed either as literals, or by
 number in E&lt;n&gt; codes, or by an equivalent mnemonic, as in
-E&lt;eacute&gt; which is exactly equivalent to E&lt;233&gt;.
+E&lt;eacute&gt; which is exactly equivalent to E&lt;233&gt;.</p>
 <p>Characters in the range 32-126 refer to those well known US-ASCII
 characters (also defined there by Unicode, with the same meaning),
 which all Pod formatters must render faithfully.  Characters
@@ -831,15 +837,15 @@ literal byte-sequences for newline (13, 13 10, or 10), and tab (9).</p>
 <p>Characters in the range 160-255 refer to Latin-1 characters (also
 defined there by Unicode, with the same meaning).  Characters above
 255 should be understood to refer to Unicode characters.</p>
-<p></p>
-<li></li>
-Be warned
+</li>
+<li>
+<p>Be warned
 that some formatters cannot reliably render characters outside 32-126;
 and many are able to handle 32-126 and 160-255, but nothing above
-255.
-<p></p>
-<li></li>
-Besides the well-known ``E&lt;lt&gt;'' and ``E&lt;gt&gt;'' codes for
+255.</p>
+</li>
+<li>
+<p>Besides the well-known ``E&lt;lt&gt;'' and ``E&lt;gt&gt;'' codes for
 less-than and greater-than, Pod parsers must understand ``E&lt;sol&gt;''
 for ``/'' (solidus, slash), and ``E&lt;verbar&gt;'' for ``|'' (vertical bar,
 pipe).  Pod parsers should also understand ``E&lt;lchevron&gt;'' and
@@ -848,10 +854,10 @@ pipe).  Pod parsers should also understand ``E&lt;lchevron&gt;'' and
 guillemet'' and ``right-pointing double angle quotation mark'' = ``right
 pointing guillemet''.  (These look like little ``&lt;&lt;'' and ``&gt;&gt;'', and they
 are now preferably expressed with the HTML/XHTML codes ``E&lt;laquo&gt;''
-and ``E&lt;raquo&gt;''.)
-<p></p>
-<li></li>
-Pod parsers should understand all ``E&lt;html&gt;'' codes as defined
+and ``E&lt;raquo&gt;''.)</p>
+</li>
+<li>
+<p>Pod parsers should understand all ``E&lt;html&gt;'' codes as defined
 in the entity declarations in the most recent XHTML specification at
 <code>www.W3.org</code>.  Pod parsers must understand at least the entities
 that define characters in the range 160-255 (Latin-1).  Pod parsers,
@@ -864,15 +870,15 @@ alternative option of processing such unknown
 for such codes, or by adding a special node-type to the in-memory
 document tree.  Such ``E&lt;<em>identifier</em>&gt;'' may have special meaning
 to some processors, or some processors may choose to add them to
-a special error report.
-<p></p>
-<li></li>
-Pod parsers must also support the XHTML codes ``E&lt;quot&gt;'' for
+a special error report.</p>
+</li>
+<li>
+<p>Pod parsers must also support the XHTML codes ``E&lt;quot&gt;'' for
 character 34 (doublequote, ``), ''E&lt;amp&gt;`` for character 38
-(ampersand, &amp;), and ''E&lt;apos&gt;`` for character 39 (apostrophe, ').
-<p></p>
-<li></li>
-Note that in all cases of ``E&lt;whatever&gt;'', <em>whatever</em> (whether
+(ampersand, &amp;), and ''E&lt;apos&gt;`` for character 39 (apostrophe, ').</p>
+</li>
+<li>
+<p>Note that in all cases of ``E&lt;whatever&gt;'', <em>whatever</em> (whether
 an htmlname, or a number in any base) must consist only of
 alphanumeric characters -- that is, <em>whatever</em> must watch
 <code>m/\A\w+\z/</code>.  So ``E&lt; 0 1 2 3 &gt;'' is invalid, because
@@ -887,13 +893,13 @@ invalid, potentially earning a different error message than the
 error message (or warning, or event) generated by a merely unknown
 (but theoretically valid) htmlname, as in ``E&lt;qacute&gt;''
 [sic].  However, Pod parsers are not required to make this
-distinction.
-<p></p>
-<li></li>
-Note that E&lt;number&gt; <em>must not</em> be interpreted as simply
+distinction.</p>
+</li>
+<li>
+<p>Note that E&lt;number&gt; <em>must not</em> be interpreted as simply
 ``codepoint <em>number</em> in the current/native character set''.  It always
 means only ``the character represented by codepoint <em>number</em> in
-Unicode.''  (This is identical to the semantics of &amp;#<em>number</em>; in XML.)
+Unicode.''  (This is identical to the semantics of &amp;#<em>number</em>; in XML.)</p>
 <p>This will likely require many formatters to have tables mapping from
 treatable Unicode codepoints (such as the ``\xE9'' for the e-acute
 character) to the escape sequences or codes necessary for conveying
@@ -910,9 +916,9 @@ Cherokee syllabics, Etruscan runes, Byzantine musical symbols, or any
 of the other weird things that Unicode can encode.)  And
 if a Pod document uses a character not found in such a mapping, the
 formatter should consider it an unrenderable character.</p>
-<p></p>
-<li></li>
-If, surprisingly, the implementor of a Pod formatter can't find a
+</li>
+<li>
+<p>If, surprisingly, the implementor of a Pod formatter can't find a
 satisfactory pre-existing table mapping from Unicode characters to
 escapes in the target format (e.g., a decent table of Unicode
 characters to *roff escapes), it will be necessary to build such a
@@ -923,7 +929,7 @@ fastidiousness compels) through the characters that the (X)HTML
 standards groups judged important enough to merit mnemonics
 for.  These are declared in the (X)HTML specifications at the
 www.W3.org site.  At time of writing (September 2001), the most recent
-entity declaration files are:
+entity declaration files are:</p>
 <pre>
   <a href="http://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent">http://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent</a>
   <a href="http://www.w3.org/TR/xhtml1/DTD/xhtml-special.ent">http://www.w3.org/TR/xhtml1/DTD/xhtml-special.ent</a>
@@ -946,9 +952,9 @@ mapping, for example, this would merit the entry:</p>
 (and formatters) will support Unicode characters directly (as (X)HTML
 does with <code>&amp;infin;</code>, <code>&amp;#8734;</code>, or <code>&amp;#x221E;</code>), reducing the need
 for idiosyncratic mappings of Unicode-to-<em>my_escapes</em>.</p>
-<p></p>
-<li></li>
-It is up to individual Pod formatter to display good judgment when
+</li>
+<li>
+<p>It is up to individual Pod formatter to display good judgment when
 confronted with an unrenderable character (which is distinct from an
 unknown E&lt;thing&gt; sequence that the parser couldn't resolve to
 anything, renderable or not).  It is good practice to map Latin letters
@@ -957,8 +963,8 @@ unaccented US-ASCII letters (like a simple character 101, ``e''), but
 clearly this is often not feasible, and an unrenderable character may
 be represented as ``?'', or the like.  In attempting a sane fallback
 (as from E&lt;233&gt; to ``e''), Pod formatters may use the
-%Latin1Code_to_fallback table in <a href="../Pod/Escapes.html">Pod::Escapes</a>, or
-<a href="../Text/Unidecode.html">Text::Unidecode</a>, if available.
+%Latin1Code_to_fallback table in <a href="../../Pod/Escapes.html">Pod::Escapes</a>, or
+<a href="../../Text/Unidecode.html">Text::Unidecode</a>, if available.</p>
 <p>For example, this Pod text:</p>
 <pre>
   magic is enabled if you set C&lt;$Currency&gt; to 'E&lt;euro&gt;'.</pre>
@@ -968,15 +974,15 @@ be represented as ``?'', or the like.  In attempting a sane fallback
 ``magic is enabled if you set <code>$Currency</code> to '[x20AC]', etc.</p>
 <p>A Pod formatter may also note, in a comment or warning, a list of what
 unrenderable characters were encountered.</p>
-<p></p>
-<li></li>
-E&lt;...&gt; may freely appear in any formatting code (other than
+</li>
+<li>
+<p>E&lt;...&gt; may freely appear in any formatting code (other than
 in another E&lt;...&gt; or in an Z&lt;&gt;).  That is, ``X&lt;The
 E&lt;euro&gt;1,000,000 Solution&gt;'' is valid, as is ``L&lt;The
-E&lt;euro&gt;1,000,000 Solution|Million::Euros&gt;''.
-<p></p>
-<li></li>
-Some Pod formatters output to formats that implement non-breaking
+E&lt;euro&gt;1,000,000 Solution|Million::Euros&gt;''.</p>
+</li>
+<li>
+<p>Some Pod formatters output to formats that implement non-breaking
 spaces as an individual character (which I'll call ``NBSP''), and
 others output to formats that implement non-breaking spaces just as
 spaces wrapped in a ``don't break this across lines'' code.  Note that
@@ -990,16 +996,16 @@ I&lt;bar&gt; baz&gt;'' as if it were
 ``foo<em>NBSP</em>I&lt;bar&gt;<em>NBSP</em>baz'', and, going the other way, the
 optional parsing of groups of words joined by NBSP's as if each group
 were in a S&lt;...&gt; code, so that formatters may use the
-representation that maps best to what the output format demands.
-<p></p>
-<li></li>
-Some processors may find that the <code>S&lt;...&gt;</code> code is easiest to
+representation that maps best to what the output format demands.</p>
+</li>
+<li>
+<p>Some processors may find that the <code>S&lt;...&gt;</code> code is easiest to
 implement by replacing each space in the parse tree under the content
 of the S, with an NBSP.  But note: the replacement should apply <em>not</em> to
 spaces in <em>all</em> text, but <em>only</em> to spaces in <em>printable</em> text.  (This
 distinction may or may not be evident in the particular tree/event
 model implemented by the Pod parser.)  For example, consider this
-unusual case:
+unusual case:</p>
 <pre>
    S&lt;L&lt;/Autoloaded Functions&gt;&gt;</pre>
 <p>This means that the space in the middle of the visible link text must
@@ -1015,9 +1021,9 @@ this formatter outputs a format supporting hypertext).</p>
 <p>Formatters may choose to just not support the S format code,
 especially in cases where the output format simply has no NBSP
 character/code and no code for ``don't break this stuff across lines''.</p>
-<p></p>
-<li></li>
-Besides the NBSP character discussed above, implementors are reminded
+</li>
+<li>
+<p>Besides the NBSP character discussed above, implementors are reminded
 of the existence of the other ``special'' character in Latin-1, the
 ``soft hyphen'' character, also known as ``discretionary hyphen'',
 i.e. <code>E&lt;173&gt;</code> = <code>E&lt;0xAD&gt;</code> =
@@ -1027,7 +1033,7 @@ point.  That is, it normally renders as nothing, but may render as a
 should, as appropriate, do one of the following:  1) render this with
 a code with the same meaning (e.g., ``\-'' in RTF), 2) pass it through
 in the expectation that the formatter understands this character as
-such, or 3) delete it.
+such, or 3) delete it.</p>
 <p>For example:</p>
 <pre>
   sigE&lt;shy&gt;action
@@ -1042,23 +1048,24 @@ to hyphenate ``Jarkko'' and/or ``Hietaniemi'', it can do
 so only at the points where there is a <code>E&lt;shy&gt;</code> code.</p>
 <p>In practice, it is anticipated that this character will not be used
 often, but formatters should either support it, or delete it.</p>
-<p></p>
-<li></li>
-If you think that you want to add a new command to Pod (like, say, a
+</li>
+<li>
+<p>If you think that you want to add a new command to Pod (like, say, a
 ``=biblio'' command), consider whether you could get the same
 effect with a for or begin/end sequence: ``=for biblio ...'' or ``=begin
 biblio'' ... ``=end biblio''.  Pod processors that don't understand
 ``=for biblio'', etc, will simply ignore it, whereas they may complain
-loudly if they see ``=biblio''.
-<p></p>
-<li></li>
-Throughout this document, ``Pod'' has been the preferred spelling for
+loudly if they see ``=biblio''.</p>
+</li>
+<li>
+<p>Throughout this document, ``Pod'' has been the preferred spelling for
 the name of the documentation format.  One may also use ``POD'' or
 ``pod''.  For the documentation that is (typically) in the Pod
 format, you may use ``pod'', or ``Pod'', or ``POD''.  Understanding these
 distinctions is useful; but obsessing over how to spell them, usually
-is not.
-<p></p></ul>
+is not.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -1068,63 +1075,65 @@ code is the most complex of the Pod formatting codes.  The points below
 will hopefully clarify what it means and how processors should deal
 with it.</p>
 <ul>
-<li></li>
-In parsing an L&lt;...&gt; code, Pod parsers must distinguish at least
-four attributes:
+<li>
+<p>In parsing an L&lt;...&gt; code, Pod parsers must distinguish at least
+four attributes:</p>
 <dl>
-<dt><strong><a name="item_first_3a">First:</a></strong><br />
-</dt>
+<dt><strong><a name="item_first_3a">First:</a></strong>
+
 <dd>
-The link-text.  If there is none, this must be undef.  (E.g., in
+<p>The link-text.  If there is none, this must be undef.  (E.g., in
 ``L&lt;Perl Functions|perlfunc&gt;'', the link-text is ``Perl Functions''.
 In ``L&lt;Time::HiRes&gt;'' and even ``L&lt;|Time::HiRes&gt;'', there is no
-link text.  Note that link text may contain formatting.)
+link text.  Note that link text may contain formatting.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_second_3a">Second:</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_second_3a">Second:</a></strong>
+
 <dd>
-The possibly inferred link-text -- i.e., if there was no real link
+<p>The possibly inferred link-text -- i.e., if there was no real link
 text, then this is the text that we'll infer in its place.  (E.g., for
-``L&lt;Getopt::Std&gt;'', the inferred link text is ``Getopt::Std''.)
+``L&lt;Getopt::Std&gt;'', the inferred link text is ``Getopt::Std''.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_third_3a">Third:</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_third_3a">Third:</a></strong>
+
 <dd>
-The name or URL, or undef if none.  (E.g., in ``L&lt;Perl
+<p>The name or URL, or undef if none.  (E.g., in ``L&lt;Perl
 Functions|perlfunc&gt;'', the name -- also sometimes called the page --
-is ``perlfunc''.  In ``L&lt;/CAVEATS&gt;'', the name is undef.)
+is ``perlfunc''.  In ``L&lt;/CAVEATS&gt;'', the name is undef.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_fourth_3a">Fourth:</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_fourth_3a">Fourth:</a></strong>
+
 <dd>
-The section (AKA ``item'' in older perlpods), or undef if none.  E.g.,
-in <a href="../Getopt/Std.html#description">DESCRIPTION in the Getopt::Std manpage</a>, ``DESCRIPTION'' is the section.  (Note
+<p>The section (AKA ``item'' in older perlpods), or undef if none.  E.g.,
+in <a href="../../Getopt/Std.html#description">DESCRIPTION in the Getopt::Std manpage</a>, ``DESCRIPTION'' is the section.  (Note
 that this is not the same as a manpage section like the ``5'' in ``man 5
 crontab''.  ``Section Foo'' in the Pod sense means the part of the text
-that's introduced by the heading or item whose text is ``Foo''.)
+that's introduced by the heading or item whose text is ``Foo''.)</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Pod parsers may also note additional attributes including:</p>
 <dl>
-<dt><strong><a name="item_fifth_3a">Fifth:</a></strong><br />
-</dt>
+<dt><strong><a name="item_fifth_3a">Fifth:</a></strong>
+
 <dd>
-A flag for whether item 3 (if present) is a URL (like
+<p>A flag for whether item 3 (if present) is a URL (like
 ``http://lists.perl.org'' is), in which case there should be no section
 attribute; a Pod name (like ``perldoc'' and ``Getopt::Std'' are); or
-possibly a man page name (like ``crontab(5)'' is).
+possibly a man page name (like ``crontab(5)'' is).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_sixth_3a">Sixth:</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_sixth_3a">Sixth:</a></strong>
+
 <dd>
-The raw original L&lt;...&gt; content, before text is split on
-``|'', ``/'', etc, and before E&lt;...&gt; codes are expanded.
+<p>The raw original L&lt;...&gt; content, before text is split on
+``|'', ``/'', etc, and before E&lt;...&gt; codes are expanded.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>(The above were numbered only for concise reference below.  It is not
 a requirement that these be passed as an actual list or array.)</p>
 <p>For example:</p>
@@ -1180,21 +1189,21 @@ a requirement that these be passed as an actual list or array.)</p>
 fact that they match <code>m/\A\w+:[^:\s]\S*\z/</code>.  So
 <code>L&lt;http://www.perl.com&gt;</code> is a URL, but
 <code>L&lt;HTTP::Response&gt;</code> isn't.</p>
-<li></li>
-In case of L&lt;...&gt; codes with no ``text|'' part in them,
+<li>
+<p>In case of L&lt;...&gt; codes with no ``text|'' part in them,
 older formatters have exhibited great variation in actually displaying
 the link or cross reference.  For example, L&lt;crontab(5)&gt; would render
 as ``the <code>crontab(5)</code> manpage'', or ``in the <code>crontab(5)</code> manpage''
-or just ``<code>crontab(5)</code>''.
+or just ``<code>crontab(5)</code>''.</p>
 <p>Pod processors must now treat ``text|''-less links as follows:</p>
 <pre>
   L&lt;name&gt;         =&gt;  L&lt;name|name&gt;
   L&lt;/section&gt;     =&gt;  L&lt;&quot;section&quot;|/section&gt;
   L&lt;name/section&gt; =&gt;  L&lt;&quot;section&quot; in name|name/section&gt;</pre>
-<p></p>
-<li></li>
-Note that section names might contain markup.  I.e., if a section
-starts with:
+</li>
+<li>
+<p>Note that section names might contain markup.  I.e., if a section
+starts with:</p>
 <pre>
   =head2 About the C&lt;-M&gt; Operator</pre>
 <p>or with:</p>
@@ -1214,9 +1223,9 @@ as in:</p>
 <pre>
   &lt;a href=&quot;somedoc#About_the_-M_Operator&quot;&gt;About the &lt;code&gt;-M&lt;/code&gt;
   Operator&quot; in somedoc&lt;/a&gt;</pre>
-<p></p>
-<li></li>
-Previous versions of perlpod distinguished <code>L&lt;name/&quot;section&quot;&gt;</code>
+</li>
+<li>
+<p>Previous versions of perlpod distinguished <code>L&lt;name/&quot;section&quot;&gt;</code>
 links from <code>L&lt;name/item&gt;</code> links (and their targets).  These
 have been merged syntactically and semantically in the current
 specification, and <em>section</em> can refer either to a ``=head<em>n</em> Heading
@@ -1227,22 +1236,22 @@ same <em>section</em> identifier (e.g., in HTML, several things all producing
 the same <em>anchorname</em> in &lt;a name=``<em>anchorname</em>''&gt;...&lt;/a&gt;
 elements).  Where Pod processors can control this behavior, they should
 use the first such anchor.  That is, <code>L&lt;Foo/Bar&gt;</code> refers to the
-<em>first</em> ``Bar'' section in Foo.
+<em>first</em> ``Bar'' section in Foo.</p>
 <p>But for some processors/formats this cannot be easily controlled; as
 with the HTML example, the behavior of multiple ambiguous
 &lt;a name=``<em>anchorname</em>''&gt;...&lt;/a&gt; is most easily just left up to
 browsers to decide.</p>
-<p></p>
-<li></li>
-Authors wanting to link to a particular (absolute) URL, must do so
+</li>
+<li>
+<p>Authors wanting to link to a particular (absolute) URL, must do so
 only with ``L&lt;scheme:...&gt;'' codes (like
 L&lt;<a href="http://www.perl.org>">http://www.perl.org></a>), and must not attempt ``L&lt;Some Site
 Name|scheme:...&gt;'' codes.  This restriction avoids many problems
-in parsing and rendering L&lt;...&gt; codes.
-<p></p>
-<li></li>
-In a <code>L&lt;text|...&gt;</code> code, text may contain formatting codes
-for formatting or for E&lt;...&gt; escapes, as in:
+in parsing and rendering L&lt;...&gt; codes.</p>
+</li>
+<li>
+<p>In a <code>L&lt;text|...&gt;</code> code, text may contain formatting codes
+for formatting or for E&lt;...&gt; escapes, as in:</p>
 <pre>
   L&lt;B&lt;ummE&lt;234&gt;stuff&gt;|...&gt;</pre>
 <p>For <code>L&lt;...&gt;</code> codes without a ``name|'' part, only
@@ -1254,19 +1263,19 @@ and all parts of an L&lt;...&gt; (i.e., in <em>name</em>, <em>section</em>, <em>
 and <em>url</em>).</p>
 <p>Authors must not nest L&lt;...&gt; codes.  For example, ``L&lt;The
 L&lt;Foo::Bar&gt; man page&gt;'' should be treated as an error.</p>
-<p></p>
-<li></li>
-Note that Pod authors may use formatting codes inside the ``text''
-part of ``L&lt;text|name&gt;'' (and so on for L&lt;text|/``sec''&gt;).
+</li>
+<li>
+<p>Note that Pod authors may use formatting codes inside the ``text''
+part of ``L&lt;text|name&gt;'' (and so on for L&lt;text|/``sec''&gt;).</p>
 <p>In other words, this is valid:</p>
 <pre>
   Go read L&lt;the docs on C&lt;$.&gt;|<a href="perlvar.html">perlvar</a>/&quot;$.&quot;&gt;</pre>
 <p>Some output formats that do allow rendering ``L&lt;...&gt;'' codes as
 hypertext, might not allow the link-text to be formatted; in
 that case, formatters will have to just ignore that formatting.</p>
-<p></p>
-<li></li>
-At time of writing, <code>L&lt;name&gt;</code> values are of two types:
+</li>
+<li>
+<p>At time of writing, <code>L&lt;name&gt;</code> values are of two types:
 either the name of a Pod page like <code>L&lt;Foo::Bar&gt;</code> (which
 might be a real Perl module or program in an @INC / PATH
 directory, or a .pod file in those places); or the name of a UNIX
@@ -1278,10 +1287,10 @@ is being discussed is not a Pod page, and so is presumably a
 UNIX man page.  The distinction is of no importance to many
 Pod processors, but some processors that render to hypertext formats
 may need to distinguish them in order to know how to render a
-given <code>L&lt;foo&gt;</code> code.
-<p></p>
-<li></li>
-Previous versions of perlpod allowed for a <code>L&lt;section&gt;</code> syntax
+given <code>L&lt;foo&gt;</code> code.</p>
+</li>
+<li>
+<p>Previous versions of perlpod allowed for a <code>L&lt;section&gt;</code> syntax
 (as in ``<code>L&lt;Object Attributes&gt;</code>''), which was not easily distinguishable
 from <code>L&lt;name&gt;</code> syntax.  This syntax is no longer in the
 specification, and has been replaced by the <code>L&lt;&quot;section&quot;&gt;</code> syntax
@@ -1289,8 +1298,9 @@ specification, and has been replaced by the <code>L&lt;&quot;section&quot;&gt;</
 the <code>L&lt;section&gt;</code> syntax, for a while at least.  The suggested
 heuristic for distinguishing <code>L&lt;section&gt;</code> from <code>L&lt;name&gt;</code>
 is that if it contains any whitespace, it's a <em>section</em>.  Pod processors
-may warn about this being deprecated syntax.
-<p></p></ul>
+may warn about this being deprecated syntax.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -1299,8 +1309,8 @@ may warn about this being deprecated syntax.
 structures.  (I use the term ``region'' here simply as a collective
 term for everything from the ``=over'' to the matching ``=back''.)</p>
 <ul>
-<li></li>
-The non-zero numeric <em>indentlevel</em> in ``=over <em>indentlevel</em>'' ...
+<li>
+<p>The non-zero numeric <em>indentlevel</em> in ``=over <em>indentlevel</em>'' ...
 ``=back'' is used for giving the formatter a clue as to how many
 ``spaces'' (ems, or roughly equivalent units) it should tab over,
 although many formatters will have to convert this to an absolute
@@ -1309,65 +1319,66 @@ in the document's base font.  Other formatters may have to completely
 ignore the number.  The lack of any explicit <em>indentlevel</em> parameter is
 equivalent to an <em>indentlevel</em> value of 4.  Pod processors may
 complain if <em>indentlevel</em> is present but is not a positive number
-matching <code>m/\A(\d*\.)?\d+\z/</code>.
-<p></p>
-<li></li>
-Authors of Pod formatters are reminded that ``=over'' ... ``=back'' may
+matching <code>m/\A(\d*\.)?\d+\z/</code>.</p>
+</li>
+<li>
+<p>Authors of Pod formatters are reminded that ``=over'' ... ``=back'' may
 map to several different constructs in your output format.  For
 example, in converting Pod to (X)HTML, it can map to any of
 &lt;ul&gt;...&lt;/ul&gt;, &lt;ol&gt;...&lt;/ol&gt;, &lt;dl&gt;...&lt;/dl&gt;, or
 &lt;blockquote&gt;...&lt;/blockquote&gt;.  Similarly, ``=item'' can map to &lt;li&gt; or
-&lt;dt&gt;.
-<p></p>
-<li></li>
-Each ``=over'' ... ``=back'' region should be one of the following:
+&lt;dt&gt;.</p>
+</li>
+<li>
+<p>Each ``=over'' ... ``=back'' region should be one of the following:</p>
 <ul>
-<li></li>
-An ``=over'' ... ``=back'' region containing only ``=item *'' commands,
+<li>
+<p>An ``=over'' ... ``=back'' region containing only ``=item *'' commands,
 each followed by some number of ordinary/verbatim paragraphs, other
 nested ``=over'' ... ``=back'' regions, ``=for...'' paragraphs, and
-``=begin''...``=end'' regions.
+``=begin''...``=end'' regions.</p>
 <p>(Pod processors must tolerate a bare ``=item'' as if it were ``=item
 *''.)  Whether ``*'' is rendered as a literal asterisk, an ``o'', or as
 some kind of real bullet character, is left up to the Pod formatter,
 and may depend on the level of nesting.</p>
-<p></p>
-<li></li>
-An ``=over'' ... ``=back'' region containing only
+</li>
+<li>
+<p>An ``=over'' ... ``=back'' region containing only
 <code>m/\A=item\s+\d+\.?\s*\z/</code> paragraphs, each one (or each group of them)
 followed by some number of ordinary/verbatim paragraphs, other nested
 ``=over'' ... ``=back'' regions, ``=for...'' paragraphs, and/or
 ``=begin''...``=end'' codes.  Note that the numbers must start at 1
 in each section, and must proceed in order and without skipping
-numbers.
+numbers.</p>
 <p>(Pod processors must tolerate lines like ``=item 1'' as if they were
 ``=item 1.'', with the period.)</p>
-<p></p>
-<li></li>
-An ``=over'' ... ``=back'' region containing only ``=item [text]''
+</li>
+<li>
+<p>An ``=over'' ... ``=back'' region containing only ``=item [text]''
 commands, each one (or each group of them) followed by some number of
 ordinary/verbatim paragraphs, other nested ``=over'' ... ``=back''
-regions, or ``=for...'' paragraphs, and ``=begin''...``=end'' regions.
+regions, or ``=for...'' paragraphs, and ``=begin''...``=end'' regions.</p>
 <p>The ``=item [text]'' paragraph should not match
 <code>m/\A=item\s+\d+\.?\s*\z/</code> or <code>m/\A=item\s+\*\s*\z/</code>, nor should it
 match just <code>m/\A=item\s*\z/</code>.</p>
-<p></p>
-<li></li>
-An ``=over'' ... ``=back'' region containing no ``=item'' paragraphs at
+</li>
+<li>
+<p>An ``=over'' ... ``=back'' region containing no ``=item'' paragraphs at
 all, and containing only some number of 
 ordinary/verbatim paragraphs, and possibly also some nested ``=over''
 ... ``=back'' regions, ``=for...'' paragraphs, and ``=begin''...``=end''
 regions.  Such an itemless ``=over'' ... ``=back'' region in Pod is
 equivalent in meaning to a ``&lt;blockquote&gt;...&lt;/blockquote&gt;'' element in
-HTML.
-<p></p></ul>
+HTML.</p>
+</li>
+</ul>
 <p>Note that with all the above cases, you can determine which type of
 ``=over'' ... ``=back'' you have, by examining the first (non-``=cut'', 
 non-``=pod'') Pod paragraph after the ``=over'' command.</p>
-<li></li>
-Pod formatters <em>must</em> tolerate arbitrarily large amounts of text
+<li>
+<p>Pod formatters <em>must</em> tolerate arbitrarily large amounts of text
 in the ``=item <em>text...</em>'' paragraph.  In practice, most such
-paragraphs are short, as in:
+paragraphs are short, as in:</p>
 <pre>
   =item For cutting off our trade with all parts of the world</pre>
 <p>But they may be arbitrarily long:</p>
@@ -1380,10 +1391,10 @@ paragraphs are short, as in:
   tyranny, already begun with circumstances of cruelty and perfidy
   scarcely paralleled in the most barbarous ages, and totally
   unworthy the head of a civilized nation.</pre>
-<p></p>
-<li></li>
-Pod processors should tolerate ``=item *'' / ``=item <em>number</em>'' commands
-with no accompanying paragraph.  The middle item is an example:
+</li>
+<li>
+<p>Pod processors should tolerate ``=item *'' / ``=item <em>number</em>'' commands
+with no accompanying paragraph.  The middle item is an example:</p>
 <pre>
   =over</pre>
 <pre>
@@ -1398,28 +1409,28 @@ with no accompanying paragraph.  The middle item is an example:
   Stop by the store.  Get Abba Zabas, Stoli, and cheap lawn chairs.</pre>
 <pre>
   =back</pre>
-<p></p>
-<li></li>
-No ``=over'' ... ``=back'' region can contain headings.  Processors may
-treat such a heading as an error.
-<p></p>
-<li></li>
-Note that an ``=over'' ... ``=back'' region should have some
-content.  That is, authors should not have an empty region like this:
+</li>
+<li>
+<p>No ``=over'' ... ``=back'' region can contain headings.  Processors may
+treat such a heading as an error.</p>
+</li>
+<li>
+<p>Note that an ``=over'' ... ``=back'' region should have some
+content.  That is, authors should not have an empty region like this:</p>
 <pre>
   =over</pre>
 <pre>
   =back</pre>
 <p>Pod processors seeing such a contentless ``=over'' ... ``=back'' region,
 may ignore it, or may report it as an error.</p>
-<p></p>
-<li></li>
-Processors must tolerate an ``=over'' list that goes off the end of the
+</li>
+<li>
+<p>Processors must tolerate an ``=over'' list that goes off the end of the
 document (i.e., which has no matching ``=back''), but they may warn
-about such a list.
-<p></p>
-<li></li>
-Authors of Pod formatters should note that this construct:
+about such a list.</p>
+</li>
+<li>
+<p>Authors of Pod formatters should note that this construct:</p>
 <pre>
   =item Neque</pre>
 <pre>
@@ -1485,7 +1496,8 @@ ipsum...'' paragraph applies to the ``Quisquam Est'' item or to all three
 items ``Neque'', ``Porro'', and ``Quisquam Est''.  While not an ideal
 situation, this is preferable to providing formatting cues that may
 be actually contrary to the author's intent.</p>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -1781,7 +1793,7 @@ parameter.</p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
 <p><a href="perlpod.html">the perlpod manpage</a>, <a href="perlsyn.html#pods__embedded_documentation">PODs: Embedded Documentation in the perlsyn manpage</a>,
-<em>podchecker</em></p>
+<a href="podchecker.html">the podchecker manpage</a></p>
 <p>
 </p>
 <hr />

@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlhack - How to hack at the Perl internals</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -44,6 +46,11 @@
 		<li><a href="#writing_a_test">Writing a test</a></li>
 		<li><a href="#special_make_test_targets">Special Make Test Targets</a></li>
 		<li><a href="#running_tests_by_hand">Running tests by hand</a></li>
+		<ul>
+
+			<li><a href="#using_t_harness_for_testing">Using t/harness for testing</a></li>
+		</ul>
+
 	</ul>
 
 	<li><a href="#external_tools_for_debugging_perl">EXTERNAL TOOLS FOR DEBUGGING PERL</a></li>
@@ -102,12 +109,11 @@ words, it's your usual mix of technical people.</p>
 <p>Over this group of porters presides Larry Wall.  He has the final word
 in what does and does not change in the Perl language.  Various
 releases of Perl are shepherded by a ``pumpking'', a porter
-responsible for gathering patches, deciding on a patch-by-patch
+responsible for gathering patches, deciding on a patch-by-patch,
 feature-by-feature basis what will and will not go into the release.
 For instance, Gurusamy Sarathy was the pumpking for the 5.6 release of
 Perl, and Jarkko Hietaniemi was the pumpking for the 5.8 release, and
-Hugo van der Sanden and Rafael Garcia-Suarez share the pumpking for
-the 5.10 release.</p>
+Rafael Garcia-Suarez holds the pumpking crown for the 5.10 release.</p>
 <p>In addition, various people are pumpkings for different things.  For
 instance, Andy Dougherty and Jarkko Hietaniemi did a grand job as the
 <em>Configure</em> pumpkin up till the 5.8 release. For the 5.10 release
@@ -124,14 +130,15 @@ work out their differences without impeachment or court cases.</p>
 <p>You might sometimes see reference to Rule 1 and Rule 2.  Larry's power
 as Supreme Court is expressed in The Rules:</p>
 <ol>
-<li></li>
-Larry is always by definition right about how Perl should behave.
-This means he has final veto power on the core functionality.
-<p></p>
-<li></li>
-Larry is allowed to change his mind about any matter at a later date,
-regardless of whether he previously invoked Rule 1.
-<p></p></ol>
+<li>
+<p>Larry is always by definition right about how Perl should behave.
+This means he has final veto power on the core functionality.</p>
+</li>
+<li>
+<p>Larry is allowed to change his mind about any matter at a later date,
+regardless of whether he previously invoked Rule 1.</p>
+</li>
+</ol>
 <p>Got that?  Larry is always right, even when he was wrong.  It's rare
 to see either Rule exercised, but they are often alluded to.</p>
 <p>New features and extensions to the language are contentious, because
@@ -142,11 +149,11 @@ the heuristics are flexible and often difficult to fathom.  Here is
 one person's list, roughly in decreasing order of importance, of
 heuristics that new features have to be weighed against:</p>
 <dl>
-<dt><strong><a name="item_does_concept_match_the_general_goals_of_perl_3f">Does concept match the general goals of Perl?</a></strong><br />
-</dt>
+<dt><strong><a name="item_does_concept_match_the_general_goals_of_perl_3f">Does concept match the general goals of Perl?</a></strong>
+
 <dd>
-These haven't been written anywhere in stone, but one approximation
-is:
+<p>These haven't been written anywhere in stone, but one approximation
+is:</p>
 </dd>
 <dd>
 <pre>
@@ -156,133 +163,134 @@ is:
  4. Keep it open and exciting to use/patch/advocate Perl everywhere.
  5. Either assimilate new technologies, or build bridges to them.</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_where_is_the_implementation_3f">Where is the implementation?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_where_is_the_implementation_3f">Where is the implementation?</a></strong>
+
 <dd>
-All the talk in the world is useless without an implementation.  In
+<p>All the talk in the world is useless without an implementation.  In
 almost every case, the person or people who argue for a new feature
 will be expected to be the ones who implement it.  Porters capable
 of coding new features have their own agendas, and are not available
-to implement your (possibly good) idea.
+to implement your (possibly good) idea.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_backwards_compatibility">Backwards compatibility</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_backwards_compatibility">Backwards compatibility</a></strong>
+
 <dd>
-It's a cardinal sin to break existing Perl programs.  New warnings are
+<p>It's a cardinal sin to break existing Perl programs.  New warnings are
 contentious--some say that a program that emits warnings is not
 broken, while others say it is.  Adding keywords has the potential to
 break programs, changing the meaning of existing token sequences or
-functions might break programs.
+functions might break programs.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_could_it_be_a_module_instead_3f">Could it be a module instead?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_could_it_be_a_module_instead_3f">Could it be a module instead?</a></strong>
+
 <dd>
-Perl 5 has extension mechanisms, modules and XS, specifically to avoid
+<p>Perl 5 has extension mechanisms, modules and XS, specifically to avoid
 the need to keep changing the Perl interpreter.  You can write modules
 that export functions, you can give those functions prototypes so they
 can be called like built-in functions, you can even write XS code to
 mess with the runtime data structures of the Perl interpreter if you
 want to implement really complicated things.  If it can be done in a
-module instead of in the core, it's highly unlikely to be added.
+module instead of in the core, it's highly unlikely to be added.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_is_the_feature_generic_enough_3f">Is the feature generic enough?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_is_the_feature_generic_enough_3f">Is the feature generic enough?</a></strong>
+
 <dd>
-Is this something that only the submitter wants added to the language,
+<p>Is this something that only the submitter wants added to the language,
 or would it be broadly useful?  Sometimes, instead of adding a feature
 with a tight focus, the porters might decide to wait until someone
 implements the more generalized feature.  For instance, instead of
 implementing a ``delayed evaluation'' feature, the porters are waiting
-for a macro system that would permit delayed evaluation and much more.
+for a macro system that would permit delayed evaluation and much more.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_does_it_potentially_introduce_new_bugs_3f">Does it potentially introduce new bugs?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_does_it_potentially_introduce_new_bugs_3f">Does it potentially introduce new bugs?</a></strong>
+
 <dd>
-Radical rewrites of large chunks of the Perl interpreter have the
+<p>Radical rewrites of large chunks of the Perl interpreter have the
 potential to introduce new bugs.  The smaller and more localized the
-change, the better.
+change, the better.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_does_it_preclude_other_desirable_features_3f">Does it preclude other desirable features?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_does_it_preclude_other_desirable_features_3f">Does it preclude other desirable features?</a></strong>
+
 <dd>
-A patch is likely to be rejected if it closes off future avenues of
+<p>A patch is likely to be rejected if it closes off future avenues of
 development.  For instance, a patch that placed a true and final
 interpretation on prototypes is likely to be rejected because there
 are still options for the future of prototypes that haven't been
-addressed.
+addressed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_is_the_implementation_robust_3f">Is the implementation robust?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_is_the_implementation_robust_3f">Is the implementation robust?</a></strong>
+
 <dd>
-Good patches (tight code, complete, correct) stand more chance of
+<p>Good patches (tight code, complete, correct) stand more chance of
 going in.  Sloppy or incorrect patches might be placed on the back
 burner until the pumpking has time to fix, or might be discarded
-altogether without further notice.
+altogether without further notice.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_is_the_implementation_generic_enough_to_be_portabl">Is the implementation generic enough to be portable?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_is_the_implementation_generic_enough_to_be_portabl">Is the implementation generic enough to be portable?</a></strong>
+
 <dd>
-The worst patches make use of a system-specific features.  It's highly
+<p>The worst patches make use of a system-specific features.  It's highly
 unlikely that nonportable additions to the Perl language will be
-accepted.
+accepted.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_is_the_implementation_tested_3f">Is the implementation tested?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_is_the_implementation_tested_3f">Is the implementation tested?</a></strong>
+
 <dd>
-Patches which change behaviour (fixing bugs or introducing new features)
+<p>Patches which change behaviour (fixing bugs or introducing new features)
 must include regression tests to verify that everything works as expected.
 Without tests provided by the original author, how can anyone else changing
 perl in the future be sure that they haven't unwittingly broken the behaviour
 the patch implements? And without tests, how can the patch's author be
 confident that his/her hard work put into the patch won't be accidentally
-thrown away by someone in the future?
+thrown away by someone in the future?</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_is_there_enough_documentation_3f">Is there enough documentation?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_is_there_enough_documentation_3f">Is there enough documentation?</a></strong>
+
 <dd>
-Patches without documentation are probably ill-thought out or
+<p>Patches without documentation are probably ill-thought out or
 incomplete.  Nothing can be added without documentation, so submitting
 a patch for the appropriate manpages as well as the source code is
-always a good idea.
+always a good idea.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_is_there_another_way_to_do_it_3f">Is there another way to do it?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_is_there_another_way_to_do_it_3f">Is there another way to do it?</a></strong>
+
 <dd>
-Larry said ``Although the Perl Slogan is <em>There's More Than One Way
+<p>Larry said ``Although the Perl Slogan is <em>There's More Than One Way
 to Do It</em>, I hesitate to make 10 ways to do something''.  This is a
 tricky heuristic to navigate, though--one man's essential addition is
-another man's pointless cruft.
+another man's pointless cruft.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_does_it_create_too_much_work_3f">Does it create too much work?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_does_it_create_too_much_work_3f">Does it create too much work?</a></strong>
+
 <dd>
-Work for the pumpking, work for Perl programmers, work for module
-authors, ...  Perl is supposed to be easy.
+<p>Work for the pumpking, work for Perl programmers, work for module
+authors, ...  Perl is supposed to be easy.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_patches_speak_louder_than_words">Patches speak louder than words</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_patches_speak_louder_than_words">Patches speak louder than words</a></strong>
+
 <dd>
-Working code is always preferred to pie-in-the-sky ideas.  A patch to
+<p>Working code is always preferred to pie-in-the-sky ideas.  A patch to
 add a feature stands a much higher chance of making it to the language
 than does a random feature request, no matter how fervently argued the
 request might be.  This ties into ``Will it be useful?'', as the fact
 that someone took the time to make the patch demonstrates a strong
-desire for the feature.
+desire for the feature.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>If you're on the list, you might hear the word ``core'' bandied
 around.  It refers to the standard distribution.  ``Hacking on the
 core'' means you're changing the C source code to the Perl
@@ -300,8 +308,8 @@ changed.  The current state of the main trunk of repository, and patches
 that describe the individual changes that have happened since the last
 public release are available at this location:</p>
 <pre>
-    <a href="http://public.activestate.com/gsar/APC/">http://public.activestate.com/gsar/APC/</a>
-    <a href="ftp://ftp.linux.activestate.com/pub/staff/gsar/APC/">ftp://ftp.linux.activestate.com/pub/staff/gsar/APC/</a></pre>
+    <a href="http://public.activestate.com/pub/apc/">http://public.activestate.com/pub/apc/</a>
+    <a href="ftp://public.activestate.com/pub/apc/">ftp://public.activestate.com/pub/apc/</a></pre>
 <p>If you're looking for a particular change, or a change that affected
 a particular set of files, you may find the <strong>Perl Repository Browser</strong>
 useful:</p>
@@ -326,16 +334,16 @@ branch by FTP.)</p>
 <p>If you choose to keep in sync using rsync, there are two approaches
 to doing so:</p>
 <dl>
-<dt><strong><a name="item_rsync_27ing_the_source_tree">rsync'ing the source tree</a></strong><br />
-</dt>
+<dt><strong><a name="item_rsync_27ing_the_source_tree">rsync'ing the source tree</a></strong>
+
 <dd>
-Presuming you are in the directory where your perl source resides
-and you have rsync installed and available, you can `upgrade' to
-the bleadperl using:
+<p>Presuming you are in the directory where your perl source resides
+and you have rsync installed and available, you can ``upgrade'' to
+the bleadperl using:</p>
 </dd>
 <dd>
 <pre>
- # rsync -avz rsync://ftp.linux.activestate.com/perl-current/ .</pre>
+ # rsync -avz rsync://public.activestate.com/perl-current/ .</pre>
 </dd>
 <dd>
 <p>This takes care of updating every single item in the source tree to
@@ -350,7 +358,7 @@ run it with the --delete and the --dry-run options like this:</p>
 </dd>
 <dd>
 <pre>
- # rsync -avz --delete --dry-run rsync://ftp.linux.activestate.com/perl-current/ .</pre>
+ # rsync -avz --delete --dry-run rsync://public.activestate.com/perl-current/ .</pre>
 </dd>
 <dd>
 <p>This will <em>simulate</em> an rsync run that also deletes files not
@@ -370,12 +378,12 @@ source trees to the real source), there are some ways to get around
 this problem.</p>
 </dd>
 <dl>
-<dt><strong><a name="item_using_rsync_over_the_lan">Using rsync over the LAN</a></strong><br />
-</dt>
+<dt><strong><a name="item_using_rsync_over_the_lan">Using rsync over the LAN</a></strong>
+
 <dd>
-Set up a local rsync server which makes the rsynced source tree
+<p>Set up a local rsync server which makes the rsynced source tree
 available to the LAN and sync the other machines against this
-directory.
+directory.</p>
 </dd>
 <dd>
 <p>From <a href="http://rsync.samba.org/README.html">http://rsync.samba.org/README.html</a> :</p>
@@ -388,13 +396,13 @@ directory.
     have a working rsh or ssh system.  Using ssh is recommended for
     its security features.&quot;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_using_pushing_over_the_nfs">Using pushing over the NFS</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_using_pushing_over_the_nfs">Using pushing over the NFS</a></strong>
+
 <dd>
-Having the other systems mounted over the NFS, you can take an
+<p>Having the other systems mounted over the NFS, you can take an
 active pushing approach by checking the just updated tree against
-the other not-yet synced trees. An example would be
+the other not-yet synced trees. An example would be</p>
 </dd>
 <dd>
 <pre>
@@ -442,16 +450,17 @@ the other not-yet synced trees. An example would be
 file checksums before updating. Not all NFS systems support
 reliable utime support (when used over the NFS).</p>
 </dd>
-<p></p></dl>
-<dt><strong><a name="item_rsync_27ing_the_patches">rsync'ing the patches</a></strong><br />
-</dt>
+</li>
+</dl>
+<dt><strong><a name="item_rsync_27ing_the_patches">rsync'ing the patches</a></strong>
+
 <dd>
-The source tree is maintained by the pumpking who applies patches to
+<p>The source tree is maintained by the pumpking who applies patches to
 the files in the tree. These patches are either created by the
 pumpking himself using <code>diff -c</code> after updating the file manually or
 by applying patches sent in by posters on the perl5-porters list.
 These patches are also saved and rsync'able, so you can apply them
-yourself to the source files.
+yourself to the source files.</p>
 </dd>
 <dd>
 <p>Presuming you are in a directory where your patches reside, you can
@@ -459,7 +468,7 @@ get them in sync with</p>
 </dd>
 <dd>
 <pre>
- # rsync -avz rsync://ftp.linux.activestate.com/perl-current-diffs/ .</pre>
+ # rsync -avz rsync://public.activestate.com/perl-current-diffs/ .</pre>
 </dd>
 <dd>
 <p>This makes sure the latest available patch is downloaded to your
@@ -471,7 +480,7 @@ patch directory.</p>
 <dd>
 <pre>
  # last=`ls -t *.gz | sed q`
- # rsync -avz rsync://ftp.linux.activestate.com/perl-current-diffs/ .
+ # rsync -avz rsync://public.activestate.com/perl-current-diffs/ .
  # find . -name '*.gz' -newer $last -exec gzcat {} \; &gt;blead.patch
  # cd ../perl-current
  # patch -p1 -N &lt;../perl-current-diffs/blead.patch</pre>
@@ -480,38 +489,40 @@ patch directory.</p>
 <p>or, since this is only a hint towards how it works, use CPAN-patchaperl
 from Andreas König to have better control over the patching process.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="why_rsync_the_source_tree">Why rsync the source tree</a></h2>
 <dl>
-<dt><strong><a name="item_it_27s_easier_to_rsync_the_source_tree">It's easier to rsync the source tree</a></strong><br />
-</dt>
+<dt><strong><a name="item_it_27s_easier_to_rsync_the_source_tree">It's easier to rsync the source tree</a></strong>
+
 <dd>
-Since you don't have to apply the patches yourself, you are sure all
-files in the source tree are in the right state.
+<p>Since you don't have to apply the patches yourself, you are sure all
+files in the source tree are in the right state.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_it_27s_more_reliable">It's more reliable</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_it_27s_more_reliable">It's more reliable</a></strong>
+
 <dd>
-While both the rsync-able source and patch areas are automatically
+<p>While both the rsync-able source and patch areas are automatically
 updated every few minutes, keep in mind that applying patches may
 sometimes mean careful hand-holding, especially if your version of
 the <code>patch</code> program does not understand how to deal with new files,
-files with 8-bit characters, or files without trailing newlines.
+files with 8-bit characters, or files without trailing newlines.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="why_rsync_the_patches">Why rsync the patches</a></h2>
 <dl>
-<dt><strong><a name="item_it_27s_easier_to_rsync_the_patches">It's easier to rsync the patches</a></strong><br />
-</dt>
+<dt><strong><a name="item_it_27s_easier_to_rsync_the_patches">It's easier to rsync the patches</a></strong>
+
 <dd>
-If you have more than one machine that you want to keep in track with
+<p>If you have more than one machine that you want to keep in track with
 bleadperl, it's easier to rsync the patches only once and then apply
-them to all the source trees on the different machines.
+them to all the source trees on the different machines.</p>
 </dd>
 <dd>
 <p>In case you try to keep in pace on 5 different machines, for which
@@ -520,17 +531,17 @@ trees should than be done 5 times over the NFS. Having
 rsync'ed the patches only once, I can apply them to all the source
 trees automatically. Need you say more ;-)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_it_27s_a_good_reference">It's a good reference</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_it_27s_a_good_reference">It's a good reference</a></strong>
+
 <dd>
-If you do not only like to have the most recent development branch,
+<p>If you do not only like to have the most recent development branch,
 but also like to <strong>fix</strong> bugs, or extend features, you want to dive
 into the sources. If you are a seasoned perl core diver, you don't
 need no manuals, tips, roadmaps, perlguts.pod or other aids to find
 your way around. But if you are a starter, the patches may help you
 in finding where you should start and how to change the bits that
-bug you.
+bug you.</p>
 </dd>
 <dd>
 <p>The file <strong>Changes</strong> is updated on occasions the pumpking sees as his
@@ -545,36 +556,36 @@ succeeding patches available from then on (7583, 7584, ...).</p>
 <p>You can use the patches later as a kind of search archive.</p>
 </dd>
 <dl>
-<dt><strong><a name="item_finding_a_start_point">Finding a start point</a></strong><br />
-</dt>
+<dt><strong><a name="item_finding_a_start_point">Finding a start point</a></strong>
+
 <dd>
-If you want to fix/change the behaviour of function/feature Foo, just
+<p>If you want to fix/change the behaviour of function/feature Foo, just
 scan the patches for patches that mention Foo either in the subject,
 the comments, or the body of the fix. A good chance the patch shows
 you the files that are affected by that patch which are very likely
-to be the starting point of your journey into the guts of perl.
+to be the starting point of your journey into the guts of perl.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_finding_how_to_fix_a_bug">Finding how to fix a bug</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_finding_how_to_fix_a_bug">Finding how to fix a bug</a></strong>
+
 <dd>
-If you've found <em>where</em> the function/feature Foo misbehaves, but you
+<p>If you've found <em>where</em> the function/feature Foo misbehaves, but you
 don't know how to fix it (but you do know the change you want to
 make), you can, again, peruse the patches for similar changes and
-look how others apply the fix.
+look how others apply the fix.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_finding_the_source_of_misbehaviour">Finding the source of misbehaviour</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_finding_the_source_of_misbehaviour">Finding the source of misbehaviour</a></strong>
+
 <dd>
-When you keep in sync with bleadperl, the pumpking would love to
+<p>When you keep in sync with bleadperl, the pumpking would love to
 <em>see</em> that the community efforts really work. So after each of his
 sync points, you are to 'make test' to check if everything is still
 in working order. If it is, you do 'make ok', which will send an OK
 report to <a href="mailto:perlbug@perl.org.">perlbug@perl.org.</a> (If you do not have access to a mailer
 from the system you just finished successfully 'make test', you can
 do 'make okfile', which creates the file <code>perl.ok</code>, which you can
-than take to your favourite mailer and mail yourself).
+than take to your favourite mailer and mail yourself).</p>
 </dd>
 <dd>
 <p>But of course, as always, things will not always lead to a success
@@ -591,7 +602,8 @@ patches to see which patch changed what file and what change caused
 the misbehaviour. If you note that in the bug report, it saves the
 one trying to solve it, looking for that point.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>If searching the patches is too bothersome, you might consider using
 perl's bugtron to find more information about discussions and
 ramblings on posted bugs.</p>
@@ -735,14 +747,14 @@ mailing list, send mail to <em><a href="mailto:perl5-porters-subscribe@perl.org"
 unsubscribe, send mail to <em><a href="mailto:perl5-porters-unsubscribe@perl.org">perl5-porters-unsubscribe@perl.org</a></em>.</p>
 <p>To hack on the Perl guts, you'll need to read the following things:</p>
 <dl>
-<dt><strong><a name="item_perlguts"><a href="perlguts.html">the perlguts manpage</a></a></strong><br />
-</dt>
+<dt><strong><a name="item_perlguts"><a href="perlguts.html">the perlguts manpage</a></a></strong>
+
 <dd>
-This is of paramount importance, since it's the documentation of what
+<p>This is of paramount importance, since it's the documentation of what
 goes where in the Perl source. Read it over a couple of times and it
 might start to make sense - don't worry if it doesn't yet, because the
 best way to study it is to read it in conjunction with poking at Perl
-source, and we'll do that later on.
+source, and we'll do that later on.</p>
 </dd>
 <dd>
 <p>You might also want to look at Gisle Aas's illustrated perlguts -
@@ -750,42 +762,43 @@ there's no guarantee that this will be absolutely up-to-date with the
 latest documentation in the Perl core, but the fundamentals will be
 right. ( <a href="http://gisle.aas.no/perl/illguts/">http://gisle.aas.no/perl/illguts/</a> )</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlxstut_and_perlxs"><a href="perlxstut.html">the perlxstut manpage</a> and <a href="perlxs.html">the perlxs manpage</a></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlxstut_and_perlxs"><a href="perlxstut.html">the perlxstut manpage</a> and <a href="perlxs.html">the perlxs manpage</a></a></strong>
+
 <dd>
-A working knowledge of XSUB programming is incredibly useful for core
+<p>A working knowledge of XSUB programming is incredibly useful for core
 hacking; XSUBs use techniques drawn from the PP code, the portion of the
 guts that actually executes a Perl program. It's a lot gentler to learn
 those techniques from simple examples and explanation than from the core
-itself.
+itself.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlapi"><a href="perlapi.html">the perlapi manpage</a></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlapi"><a href="perlapi.html">the perlapi manpage</a></a></strong>
+
 <dd>
-The documentation for the Perl API explains what some of the internal
-functions do, as well as the many macros used in the source.
+<p>The documentation for the Perl API explains what some of the internal
+functions do, as well as the many macros used in the source.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_porting_2fpumpkin_2epod"><em>Porting/pumpkin.pod</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_porting_2fpumpkin_2epod"><em>Porting/pumpkin.pod</em></a></strong>
+
 <dd>
-This is a collection of words of wisdom for a Perl porter; some of it is
+<p>This is a collection of words of wisdom for a Perl porter; some of it is
 only useful to the pumpkin holder, but most of it applies to anyone
-wanting to go about Perl development.
+wanting to go about Perl development.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_the_perl5_2dporters_faq">The perl5-porters FAQ</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_the_perl5_2dporters_faq">The perl5-porters FAQ</a></strong>
+
 <dd>
-This should be available from <a href="http://simon-cozens.org/writings/p5p-faq">http://simon-cozens.org/writings/p5p-faq</a> ;
+<p>This should be available from <a href="http://simon-cozens.org/writings/p5p-faq">http://simon-cozens.org/writings/p5p-faq</a> ;
 alternatively, you can get the FAQ emailed to you by sending mail to
 <code>perl5-porters-faq@perl.org</code>. It contains hints on reading perl5-porters,
 information on how perl5-porters works and how Perl development in general
-works.
+works.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="finding_your_way_around">Finding Your Way Around</a></h2>
@@ -793,39 +806,39 @@ works.
 (pumpkins) will have responsibility for each area. These areas sometimes
 correspond to files or directories in the source kit. Among the areas are:</p>
 <dl>
-<dt><strong><a name="item_core_modules">Core modules</a></strong><br />
-</dt>
+<dt><strong><a name="item_core_modules">Core modules</a></strong>
+
 <dd>
-Modules shipped as part of the Perl core live in the <em>lib/</em> and <em>ext/</em>
+<p>Modules shipped as part of the Perl core live in the <em>lib/</em> and <em>ext/</em>
 subdirectories: <em>lib/</em> is for the pure-Perl modules, and <em>ext/</em>
-contains the core XS modules.
+contains the core XS modules.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_tests">Tests</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_tests">Tests</a></strong>
+
 <dd>
-There are tests for nearly all the modules, built-ins and major bits
+<p>There are tests for nearly all the modules, built-ins and major bits
 of functionality.  Test files all have a .t suffix.  Module tests live
 in the <em>lib/</em> and <em>ext/</em> directories next to the module being
-tested.  Others live in <em>t/</em>.  See <a href="#writing_a_test">Writing a test</a>
+tested.  Others live in <em>t/</em>.  See <a href="#writing_a_test">Writing a test</a></p>
 </dd>
-<p></p>
-<dt><strong><a name="item_documentation">Documentation</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_documentation">Documentation</a></strong>
+
 <dd>
-Documentation maintenance includes looking after everything in the
+<p>Documentation maintenance includes looking after everything in the
 <em>pod/</em> directory, (as well as contributing new documentation) and
-the documentation to the modules in core.
+the documentation to the modules in core.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_configure">Configure</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_configure">Configure</a></strong>
+
 <dd>
-The configure process is the way we make Perl portable across the
+<p>The configure process is the way we make Perl portable across the
 myriad of operating systems it supports. Responsibility for the
 configure, build and installation process, as well as the overall
 portability of the core code rests with the configure pumpkin - others
-help out with individual operating systems.
+help out with individual operating systems.</p>
 </dd>
 <dd>
 <p>The files involved are the operating system directories, (<em>win32/</em>,
@@ -833,14 +846,15 @@ help out with individual operating systems.
 and <em>Makefile</em>, as well as the metaconfig files which generate
 <em>Configure</em>. (metaconfig isn't included in the core distribution.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_interpreter">Interpreter</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_interpreter">Interpreter</a></strong>
+
 <dd>
-And of course, there's the core of the Perl interpreter itself. Let's
-have a look at that in a little more detail.
+<p>And of course, there's the core of the Perl interpreter itself. Let's
+have a look at that in a little more detail.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Before we leave looking at the layout, though, don't forget that
 <em>MANIFEST</em> contains not only the file names in the Perl distribution,
 but short descriptions of what's in them, too. For an overview of the
@@ -856,13 +870,13 @@ into the internal representation, or bytecode, and then executing it.
 happens.</p>
 <p>Here is a short breakdown of perl's operation:</p>
 <dl>
-<dt><strong><a name="item_startup">Startup</a></strong><br />
-</dt>
+<dt><strong><a name="item_startup">Startup</a></strong>
+
 <dd>
-The action begins in <em>perlmain.c</em>. (or <em>miniperlmain.c</em> for miniperl)
+<p>The action begins in <em>perlmain.c</em>. (or <em>miniperlmain.c</em> for miniperl)
 This is very high-level code, enough to fit on a single screen, and it
 resembles the code found in <a href="perlembed.html">the perlembed manpage</a>; most of the real action takes
-place in <em>perl.c</em>
+place in <em>perl.c</em></p>
 </dd>
 <dd>
 <p>First, <em>perlmain.c</em> allocates some memory and constructs a Perl
@@ -922,19 +936,19 @@ in <em>perl.c</em>, which processes the command line options, sets up any
 statically linked XS modules, opens the program and calls <code>yyparse</code> to
 parse it.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_parsing">Parsing</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_parsing">Parsing</a></strong>
+
 <dd>
-The aim of this stage is to take the Perl source, and turn it into an op
+<p>The aim of this stage is to take the Perl source, and turn it into an op
 tree. We'll see what one of those looks like later. Strictly speaking,
-there's three things going on here.
+there's three things going on here.</p>
 </dd>
 <dd>
 <p><code>yyparse</code>, the parser, lives in <em>perly.c</em>, although you're better off
 reading the original YACC input in <em>perly.y</em>. (Yes, Virginia, there
 <strong>is</strong> a YACC grammar for Perl!) The job of the parser is to take your
-code and `understand' it, splitting it into sentences, deciding which
+code and ``understand'' it, splitting it into sentences, deciding which
 operands go with which operators and so on.</p>
 </dd>
 <dd>
@@ -954,11 +968,11 @@ operations for the interpreter to perform during execution. The routines
 which construct and link together the various operations are to be found
 in <em>op.c</em>, and will be examined later.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_optimization">Optimization</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_optimization">Optimization</a></strong>
+
 <dd>
-Now the parsing stage is complete, and the finished tree represents
+<p>Now the parsing stage is complete, and the finished tree represents
 the operations that the Perl interpreter needs to perform to execute our
 program. Next, Perl does a dry run over the tree looking for
 optimisations: constant expressions such as <code>3 + 4</code> will be computed
@@ -967,16 +981,16 @@ replaced with a single one. For instance, to fetch the variable <code>$foo</code
 instead of grabbing the glob <code>*foo</code> and looking at the scalar
 component, the optimizer fiddles the op tree to use a function which
 directly looks up the scalar in question. The main optimizer is <code>peep</code>
-in <em>op.c</em>, and many ops have their own optimizing functions.
+in <em>op.c</em>, and many ops have their own optimizing functions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_running">Running</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_running">Running</a></strong>
+
 <dd>
-Now we're finally ready to go: we have compiled Perl byte code, and all
+<p>Now we're finally ready to go: we have compiled Perl byte code, and all
 that's left to do is run it. The actual execution is done by the
 <code>runops_standard</code> function in <em>run.c</em>; more specifically, it's done by
-these three innocent looking lines:
+these three innocent looking lines:</p>
 </dd>
 <dd>
 <pre>
@@ -1001,14 +1015,200 @@ execution if required.</p>
 </dd>
 <dd>
 <p>The actual functions called are known as PP code, and they're spread
-between four files: <em>pp_hot.c</em> contains the `hot' code, which is most
+between four files: <em>pp_hot.c</em> contains the ``hot'' code, which is most
 often used and highly optimized, <em>pp_sys.c</em> contains all the
 system-specific functions, <em>pp_ctl.c</em> contains the functions which
 implement control structures (<code>if</code>, <code>while</code> and the like) and <em>pp.c</em>
 contains everything else. These are, if you like, the C code for Perl's
 built-in functions and operators.</p>
 </dd>
-<p></p></dl>
+<dd>
+<p>Note that each <code>pp_</code> function is expected to return a pointer to the next
+op. Calls to perl subs (and eval blocks) are handled within the same
+runops loop, and do not consume extra space on the C stack. For example,
+<code>pp_entersub</code> and <code>pp_entertry</code> just push a <code>CxSUB</code> or <code>CxEVAL</code> block
+struct onto the context stack which contain the address of the op
+following the sub call or eval. They then return the first op of that sub
+or eval block, and so execution continues of that sub or block.  Later, a
+<code>pp_leavesub</code> or <code>pp_leavetry</code> op pops the <code>CxSUB</code> or <code>CxEVAL</code>,
+retrieves the return op from it, and returns it.</p>
+</dd>
+</li>
+<dt><strong><a name="item_exception_handing">Exception handing</a></strong>
+
+<dd>
+<p>Perl's exception handing (i.e. <code>die</code> etc) is built on top of the low-level
+<code>setjmp()</code>/<code>longjmp()</code> C-library functions. These basically provide a
+way to capture the current PC and SP registers and later restore them; i.e.
+a <code>longjmp()</code> continues at the point in code where a previous <code>setjmp()</code>
+was done, with anything further up on the C stack being lost. This is why
+code should always save values using <code>SAVE_FOO</code> rather than in auto
+variables.</p>
+</dd>
+<dd>
+<p>The perl core wraps <code>setjmp()</code> etc in the macros <code>JMPENV_PUSH</code> and
+<code>JMPENV_JUMP</code>. The basic rule of perl exceptions is that <code>exit</code>, and
+<code>die</code> (in the absence of <code>eval</code>) perform a <code>JMPENV_JUMP(2)</code>, while
+<code>die</code> within <code>eval</code> does a <code>JMPENV_JUMP(3)</code>.</p>
+</dd>
+<dd>
+<p>At entry points to perl, such as <code>perl_parse()</code>, <code>perl_run()</code> and
+<code>call_sv(cv, G_EVAL)</code> each does a <code>JMPENV_PUSH</code>, then enter a runops
+loop or whatever, and handle possible exception returns. For a 2 return,
+final cleanup is performed, such as popping stacks and calling <code>CHECK</code> or
+<code>END</code> blocks. Amongst other things, this is how scope cleanup still
+occurs during an <code>exit</code>.</p>
+</dd>
+<dd>
+<p>If a <code>die</code> can find a <code>CxEVAL</code> block on the context stack, then the
+stack is popped to that level and the return op in that block is assigned
+to <code>PL_restartop</code>; then a <code>JMPENV_JUMP(3)</code> is performed.  This normally
+passes control back to the guard. In the case of <code>perl_run</code> and
+<code>call_sv</code>, a non-null <code>PL_restartop</code> triggers re-entry to the runops
+loop. The is the normal way that <code>die</code> or <code>croak</code> is handled within an
+<code>eval</code>.</p>
+</dd>
+<dd>
+<p>Sometimes ops are executed within an inner runops loop, such as tie, sort
+or overload code. In this case, something like</p>
+</dd>
+<dd>
+<pre>
+    sub FETCH { eval { die } }</pre>
+</dd>
+<dd>
+<p>would cause a longjmp right back to the guard in <code>perl_run</code>, popping both
+runops loops, which is clearly incorrect. One way to avoid this is for the
+tie code to do a <code>JMPENV_PUSH</code> before executing <code>FETCH</code> in the inner
+runops loop, but for efficiency reasons, perl in fact just sets a flag,
+using <code>CATCH_SET(TRUE)</code>. The <code>pp_require</code>, <code>pp_entereval</code> and
+<code>pp_entertry</code> ops check this flag, and if true, they call <code>docatch</code>,
+which does a <code>JMPENV_PUSH</code> and starts a new runops level to execute the
+code, rather than doing it on the current loop.</p>
+</dd>
+<dd>
+<p>As a further optimisation, on exit from the eval block in the <code>FETCH</code>,
+execution of the code following the block is still carried on in the inner
+loop.  When an exception is raised, <code>docatch</code> compares the <code>JMPENV</code>
+level of the <code>CxEVAL</code> with <code>PL_top_env</code> and if they differ, just
+re-throws the exception. In this way any inner loops get popped.</p>
+</dd>
+<dd>
+<p>Here's an example.</p>
+</dd>
+<dd>
+<pre>
+    1: eval { tie @a, 'A' };
+    2: sub A::TIEARRAY {
+    3:     eval { die };
+    4:     die;
+    5: }</pre>
+</dd>
+<dd>
+<p>To run this code, <code>perl_run</code> is called, which does a <code>JMPENV_PUSH</code> then
+enters a runops loop. This loop executes the eval and tie ops on line 1,
+with the eval pushing a <code>CxEVAL</code> onto the context stack.</p>
+</dd>
+<dd>
+<p>The <code>pp_tie</code> does a <code>CATCH_SET(TRUE)</code>, then starts a second runops loop
+to execute the body of <code>TIEARRAY</code>. When it executes the entertry op on
+line 3, <code>CATCH_GET</code> is true, so <code>pp_entertry</code> calls <code>docatch</code> which
+does a <code>JMPENV_PUSH</code> and starts a third runops loop, which then executes
+the die op. At this point the C call stack looks like this:</p>
+</dd>
+<dd>
+<pre>
+    Perl_pp_die
+    Perl_runops      # third loop
+    S_docatch_body
+    S_docatch
+    Perl_pp_entertry
+    Perl_runops      # second loop
+    S_call_body
+    Perl_call_sv
+    Perl_pp_tie
+    Perl_runops      # first loop
+    S_run_body
+    perl_run
+    main</pre>
+</dd>
+<dd>
+<p>and the context and data stacks, as shown by <code>-Dstv</code>, look like:</p>
+</dd>
+<dd>
+<pre>
+    STACK 0: MAIN
+      CX 0: BLOCK  =&gt;
+      CX 1: EVAL   =&gt; AV()  PV(&quot;A&quot;\0)
+      retop=leave
+    STACK 1: MAGIC
+      CX 0: SUB    =&gt;
+      retop=(null)
+      CX 1: EVAL   =&gt; *
+    retop=nextstate</pre>
+</dd>
+<dd>
+<p>The die pops the first <code>CxEVAL</code> off the context stack, sets
+<code>PL_restartop</code> from it, does a <code>JMPENV_JUMP(3)</code>, and control returns to
+the top <code>docatch</code>. This then starts another third-level runops level,
+which executes the nextstate, pushmark and die ops on line 4. At the point
+that the second <code>pp_die</code> is called, the C call stack looks exactly like
+that above, even though we are no longer within an inner eval; this is
+because of the optimization mentioned earlier. However, the context stack
+now looks like this, ie with the top CxEVAL popped:</p>
+</dd>
+<dd>
+<pre>
+    STACK 0: MAIN
+      CX 0: BLOCK  =&gt;
+      CX 1: EVAL   =&gt; AV()  PV(&quot;A&quot;\0)
+      retop=leave
+    STACK 1: MAGIC
+      CX 0: SUB    =&gt;
+      retop=(null)</pre>
+</dd>
+<dd>
+<p>The die on line 4 pops the context stack back down to the CxEVAL, leaving
+it as:</p>
+</dd>
+<dd>
+<pre>
+    STACK 0: MAIN
+      CX 0: BLOCK  =&gt;</pre>
+</dd>
+<dd>
+<p>As usual, <code>PL_restartop</code> is extracted from the <code>CxEVAL</code>, and a
+<code>JMPENV_JUMP(3)</code> done, which pops the C stack back to the docatch:</p>
+</dd>
+<dd>
+<pre>
+    S_docatch
+    Perl_pp_entertry
+    Perl_runops      # second loop
+    S_call_body
+    Perl_call_sv
+    Perl_pp_tie
+    Perl_runops      # first loop
+    S_run_body
+    perl_run
+    main</pre>
+</dd>
+<dd>
+<p>In  this case, because the <code>JMPENV</code> level recorded in the <code>CxEVAL</code>
+differs from the current one, <code>docatch</code> just does a <code>JMPENV_JUMP(3)</code>
+and the C stack unwinds to:</p>
+</dd>
+<dd>
+<pre>
+    perl_run
+    main</pre>
+</dd>
+<dd>
+<p>Because <code>PL_restartop</code> is non-null, <code>run_body</code> starts a new runops loop
+and execution continues.</p>
+</dd>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="internal_variable_types">Internal Variable Types</a></h2>
@@ -1021,7 +1221,7 @@ internal to Perl. The symbol table, for instance, is an ordinary Perl
 hash. Your code is represented by an SV as it's read into the parser;
 any program files you call are opened via ordinary Perl filehandles, and
 so on.</p>
-<p>The core <a href="../Devel/Peek.html">Devel::Peek</a> module lets us examine SVs from a
+<p>The core <a href="../../Devel/Peek.html">Devel::Peek</a> module lets us examine SVs from a
 Perl program. Let's see, for instance, how Perl treats the constant
 <code>&quot;hello&quot;</code>.</p>
 <pre>
@@ -1107,7 +1307,7 @@ constructed.</p>
 <p>First, what is the op tree, anyway? The op tree is the parsed
 representation of your program, as we saw in our section on parsing, and
 it's the sequence of operations that Perl goes through to execute your
-program, as we saw in <a href="#running">Running</a>.</p>
+program, as we saw in <a href="#item_running">Running</a>.</p>
 <p>An op is a fundamental operation that Perl can perform: all the built-in
 functions and operators are ops, and there are a series of ops which
 deal with concepts the interpreter needs internally - entering and
@@ -1119,8 +1319,8 @@ secondly, execution order tells perl what order to perform the
 operations in.</p>
 <p>The easiest way to examine the op tree is to stop Perl after it has
 finished parsing, and get it to dump out the tree. This is exactly what
-the compiler backends <a href="../B/Terse.html">B::Terse</a>, <a href="../B/Concise.html">B::Concise</a>
-and <a href="../B/Debug.html">B::Debug</a> do.</p>
+the compiler backends <a href="../../B/Terse.html">B::Terse</a>, <a href="../../B/Concise.html">B::Concise</a>
+and <a href="../../B/Debug.html">B::Debug</a> do.</p>
 <p>Let's have a look at how Perl sees <code>$a = $b + $c</code>:</p>
 <pre>
      % perl -MO=Terse -e '$a=$b+$c'
@@ -1144,7 +1344,7 @@ result of <code>$b+$c</code>, is uppermost on line 5, and the left hand side is 
 line 10.</p>
 <p>Line 10 is the null op: this does exactly nothing. What is that doing
 there? If you see the null op, it's a sign that something has been
-optimized away after parsing. As we mentioned in <a href="#optimization">Optimization</a>,
+optimized away after parsing. As we mentioned in <a href="#item_optimization">Optimization</a>,
 the optimization stage sometimes converts two operations into one, for
 example when fetching a scalar variable. When this happens, instead of
 rewriting the op tree and cleaning up the dangling pointers, it's easier
@@ -1216,9 +1416,9 @@ piece we need to construct the tree for <code>$a = $b + $c</code></p>
 fed certain things by the tokeniser, which generally end up in upper
 case. Here, <code>ADDOP</code>, is provided when the tokeniser sees <code>+</code> in your
 code. <code>ASSIGNOP</code> is provided when <code>=</code> is used for assigning. These are
-`terminal symbols', because you can't get any simpler than them.</p>
+``terminal symbols'', because you can't get any simpler than them.</p>
 <p>The grammar, lines one and three of the snippet above, tells you how to
-build up more complex forms. These complex forms, `non-terminal symbols'
+build up more complex forms. These complex forms, ``non-terminal symbols''
 are generally placed in lower case. <code>term</code> here is a non-terminal
 symbol, representing a single expression.</p>
 <p>The grammar gives you the following rule: you can make the thing on the
@@ -1244,8 +1444,8 @@ call <code>newBINOP</code> to create a new binary operator. The first parameter 
 <code>newBINOP</code>, a function in <em>op.c</em>, is the op type. It's an addition
 operator, so we want the type to be <code>ADDOP</code>. We could specify this
 directly, but it's right there as the second token in the input, so we
-use <code>$2</code>. The second parameter is the op's flags: 0 means `nothing
-special'. Then the things to add: the left and right hand side of our
+use <code>$2</code>. The second parameter is the op's flags: 0 means ``nothing
+special''. Then the things to add: the left and right hand side of our
 expression, in scalar context.</p>
 <p>
 </p>
@@ -1255,14 +1455,14 @@ results to the next op? The answer is, through the use of stacks. Perl
 has a number of stacks to store things it's currently working on, and
 we'll look at the three most important ones here.</p>
 <dl>
-<dt><strong><a name="item_argument_stack">Argument stack</a></strong><br />
-</dt>
+<dt><strong><a name="item_argument_stack">Argument stack</a></strong>
+
 <dd>
-Arguments are passed to PP code and returned from PP code using the
+<p>Arguments are passed to PP code and returned from PP code using the
 argument stack, <code>ST</code>. The typical way to handle arguments is to pop
 them off the stack, deal with them how you wish, and then push the result
 back onto the stack. This is how, for instance, the cosine operator
-works:
+works:</p>
 </dd>
 <dd>
 <pre>
@@ -1298,22 +1498,22 @@ negation of an integer:</p>
 XSUBs - see <a href="perlxstut.html">the perlxstut manpage</a>, <a href="perlxs.html">the perlxs manpage</a> and <a href="perlguts.html">the perlguts manpage</a> for a longer
 description of the macros used in stack manipulation.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_mark_stack">Mark stack</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_mark_stack">Mark stack</a></strong>
+
 <dd>
-I say `your portion of the stack' above because PP code doesn't
+<p>I say ``your portion of the stack'' above because PP code doesn't
 necessarily get the whole stack to itself: if your function calls
 another function, you'll only want to expose the arguments aimed for the
 called function, and not (necessarily) let it get at your own data. The
-way we do this is to have a `virtual' bottom-of-stack, exposed to each
+way we do this is to have a ``virtual'' bottom-of-stack, exposed to each
 function. The mark stack keeps bookmarks to locations in the argument
 stack usable by each function. For instance, when dealing with a tied
-variable, (internally, something with `P' magic) Perl has to call
+variable, (internally, something with ``P'' magic) Perl has to call
 methods for accesses to the tied variables. However, we need to separate
 the arguments exposed to the method to the argument exposed to the
 original function - the store or fetch or whatever it may be. Here's how
-the tied <code>push</code> is implemented; see <code>av_push</code> in <em>av.c</em>:
+the tied <code>push</code> is implemented; see <code>av_push</code> in <em>av.c</em>:</p>
 </dd>
 <dd>
 <pre>
@@ -1390,13 +1590,13 @@ going to discard its return value.</p>
 <p>Finally, we remove the value we placed on the mark stack, since we
 don't need it any more.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_save_stack">Save stack</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_save_stack">Save stack</a></strong>
+
 <dd>
-C doesn't have a concept of local scope, so perl provides one. We've
+<p>C doesn't have a concept of local scope, so perl provides one. We've
 seen that <code>ENTER</code> and <code>LEAVE</code> are used as scoping braces; the save
-stack implements the C equivalent of, for example:
+stack implements the C equivalent of, for example:</p>
 </dd>
 <dd>
 <pre>
@@ -1408,7 +1608,8 @@ stack implements the C equivalent of, for example:
 <dd>
 <p>See <a href="perlguts.html#localising_changes">Localising Changes in the perlguts manpage</a> for how to use the save stack.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="millions_of_macros">Millions of Macros</a></h2>
@@ -1482,10 +1683,11 @@ modules.</p>
 <p>If the debugging output of <code>-D</code> doesn't help you, it's time to step
 through perl's execution with a source-level debugger.</p>
 <ul>
-<li></li>
-We'll use <code>gdb</code> for our examples here; the principles will apply to any
-debugger, but check the manual of the one you're using.
-<p></p></ul>
+<li>
+<p>We'll use <code>gdb</code> for our examples here; the principles will apply to any
+debugger, but check the manual of the one you're using.</p>
+</li>
+</ul>
 <p>To fire up the debugger, type</p>
 <pre>
     gdb ./perl</pre>
@@ -1497,63 +1699,63 @@ prompt.</p>
 <p><code>help</code> will get you into the documentation, but here are the most
 useful commands:</p>
 <dl>
-<dt><strong><a name="item_run__5bargs_5d">run [args]</a></strong><br />
-</dt>
+<dt><strong><a name="item_run__5bargs_5d">run [args]</a></strong>
+
 <dd>
-Run the program with the given arguments.
+<p>Run the program with the given arguments.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_break_function_name">break function_name</a></strong><br />
-</dt>
-<dt><strong><a name="item_break_source_2ec_3axxx">break source.c:xxx</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_break_function_name">break function_name</a></strong>
+
+<dt><strong><a name="item_break_source_2ec_3axxx">break source.c:xxx</a></strong>
+
 <dd>
-Tells the debugger that we'll want to pause execution when we reach
+<p>Tells the debugger that we'll want to pause execution when we reach
 either the named function (but see <a href="perlguts.html#internal_functions">Internal Functions in the perlguts manpage</a>!) or the given
-line in the named source file.
+line in the named source file.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_step">step</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_step">step</a></strong>
+
 <dd>
-Steps through the program a line at a time.
+<p>Steps through the program a line at a time.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_next">next</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_next">next</a></strong>
+
 <dd>
-Steps through the program a line at a time, without descending into
-functions.
+<p>Steps through the program a line at a time, without descending into
+functions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_continue">continue</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_continue">continue</a></strong>
+
 <dd>
-Run until the next breakpoint.
+<p>Run until the next breakpoint.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_finish">finish</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_finish">finish</a></strong>
+
 <dd>
-Run until the end of the current function, then stop again.
+<p>Run until the end of the current function, then stop again.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__27enter_27">'enter'</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__27enter_27">'enter'</a></strong>
+
 <dd>
-Just pressing Enter will do the most recent operation again - it's a
-blessing when stepping through miles of source code.
+<p>Just pressing Enter will do the most recent operation again - it's a
+blessing when stepping through miles of source code.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_print">print</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_print">print</a></strong>
+
 <dd>
-Execute the given C code and print its results. <strong>WARNING</strong>: Perl makes
+<p>Execute the given C code and print its results. <strong>WARNING</strong>: Perl makes
 heavy use of macros, and <em>gdb</em> does not necessarily support macros
 (see later <a href="#gdb_macro_support">gdb macro support</a>).  You'll have to substitute them
 yourself, or to invoke cpp on the source code files
 (see <a href="#the__i_targets">The .i Targets</a>)
-So, for instance, you can't say
+So, for instance, you can't say</p>
 </dd>
 <dd>
 <pre>
@@ -1566,7 +1768,8 @@ So, for instance, you can't say
 <pre>
     print Perl_sv_2pv_nolen(sv)</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>You may find it helpful to have a ``macro dictionary'', which you can
 produce by saying <code>cpp -dM perl.c | sort</code>. Even then, <em>cpp</em> won't
 recursively apply those macros for you.</p>
@@ -1583,7 +1786,7 @@ different switch (if they support debugging macros at all).</p>
 <h2><a name="dumping_perl_data_structures">Dumping Perl Data Structures</a></h2>
 <p>One way to get around this macro hell is to use the dumping functions in
 <em>dump.c</em>; these work a little like an internal
-<a href="../Devel/Peek.html">Devel::Peek</a>, but they also cover OPs and other structures
+<a href="../../Devel/Peek.html">Devel::Peek</a>, but they also cover OPs and other structures
 that you can't get at from Perl. Let's take an example. We'll use the
 <code>$a = $b + $c</code> we used before, but give it a bit of context: 
 <code>$b = &quot;6XXXX&quot;; $c = 2.3;</code>. Where's a good place to stop and poke around?</p>
@@ -1640,7 +1843,7 @@ subroutine:</p>
     311           dPOPTOPnnrl_ul;</pre>
 <p>We can also dump out this op: the current op is always stored in
 <code>PL_op</code>, and we can dump it with <code>Perl_op_dump</code>. This'll give us
-similar output to <a href="../B/Debug.html">B::Debug</a>.</p>
+similar output to <a href="../../B/Debug.html">B::Debug</a>.</p>
 <pre>
     {
     13  TYPE = add  ===&gt; 14
@@ -1747,7 +1950,7 @@ use the one from t/test.pl.</p>
 <pre>
  print 'not ' unless &quot;1.20.300.4000&quot; eq sprintf &quot;%vd&quot;, pack(&quot;U*&quot;,1,20,300,4000);
  print &quot;ok $test\n&quot;; $test++;</pre>
-<p>we can write the more sensible (see <a href="../Test/More.html">the Test::More manpage</a> for a full
+<p>we can write the more sensible (see <a href="../../Test/More.html">the Test::More manpage</a> for a full
 explanation of <code>is()</code> and other testing functions).</p>
 <pre>
  is( &quot;1.20.300.4000&quot;, sprintf &quot;%vd&quot;, pack(&quot;U*&quot;,1,20,300,4000), 
@@ -1819,6 +2022,8 @@ patch the CPAN version instead of the core and send the patch off to
 the module maintainer (with a copy to p5p).  This will help the module
 maintainer keep the CPAN version in sync with the core version without
 constantly scanning p5p.</p>
+<p>The list of maintainers of core modules is usefully documented in
+<em>Porting/Maintainers.pl</em>.</p>
 <p>
 </p>
 <h2><a name="adding_a_new_function_to_the_core">Adding a new function to the core</a></h2>
@@ -1888,81 +2093,82 @@ so there are some snags (and it would be wonderful for you to brush
 them out), but it basically works that way.  Everything else lives in
 <em>t/</em>.</p>
 <dl>
-<dt><strong><a name="item_t_"><em>t/base/</em></a></strong><br />
-</dt>
+<dt><strong><a name="item_t_"><em>t/base/</em></a></strong>
+
 <dd>
-Testing of the absolute basic functionality of Perl.  Things like
+<p>Testing of the absolute basic functionality of Perl.  Things like
 <code>if</code>, basic file reads and writes, simple regexes, etc.  These are
 run first in the test suite and if any of them fail, something is
-<em>really</em> broken.
+<em>really</em> broken.</p>
 </dd>
-<p></p>
-<dt><strong><em>t/cmd/</em></strong><br />
-</dt>
+</li>
+<dt><strong><em>t/cmd/</em></strong>
+
 <dd>
-These test the basic control structures, <code>if/else</code>, <code>while</code>,
-subroutines, etc.
+<p>These test the basic control structures, <code>if/else</code>, <code>while</code>,
+subroutines, etc.</p>
 </dd>
-<p></p>
-<dt><strong><em>t/comp/</em></strong><br />
-</dt>
+</li>
+<dt><strong><em>t/comp/</em></strong>
+
 <dd>
-Tests basic issues of how Perl parses and compiles itself.
+<p>Tests basic issues of how Perl parses and compiles itself.</p>
 </dd>
-<p></p>
-<dt><strong><em>t/io/</em></strong><br />
-</dt>
+</li>
+<dt><strong><em>t/io/</em></strong>
+
 <dd>
-Tests for built-in IO functions, including command line arguments.
+<p>Tests for built-in IO functions, including command line arguments.</p>
 </dd>
-<p></p>
-<dt><strong><em>t/lib/</em></strong><br />
-</dt>
+</li>
+<dt><strong><em>t/lib/</em></strong>
+
 <dd>
-The old home for the module tests, you shouldn't put anything new in
+<p>The old home for the module tests, you shouldn't put anything new in
 here.  There are still some bits and pieces hanging around in here
-that need to be moved.  Perhaps you could move them?  Thanks!
+that need to be moved.  Perhaps you could move them?  Thanks!</p>
 </dd>
-<p></p>
-<dt><strong><em>t/op/</em></strong><br />
-</dt>
+</li>
+<dt><strong><em>t/op/</em></strong>
+
 <dd>
-Tests for perl's built in functions that don't fit into any of the
-other directories.
+<p>Tests for perl's built in functions that don't fit into any of the
+other directories.</p>
 </dd>
-<p></p>
-<dt><strong><em>t/pod/</em></strong><br />
-</dt>
+</li>
+<dt><strong><em>t/pod/</em></strong>
+
 <dd>
-Tests for POD directives.  There are still some tests for the Pod
-modules hanging around in here that need to be moved out into <em>lib/</em>.
+<p>Tests for POD directives.  There are still some tests for the Pod
+modules hanging around in here that need to be moved out into <em>lib/</em>.</p>
 </dd>
-<p></p>
-<dt><strong><em>t/run/</em></strong><br />
-</dt>
+</li>
+<dt><strong><em>t/run/</em></strong>
+
 <dd>
-Testing features of how perl actually runs, including exit codes and
-handling of PERL* environment variables.
+<p>Testing features of how perl actually runs, including exit codes and
+handling of PERL* environment variables.</p>
 </dd>
-<p></p>
-<dt><strong><em>t/uni/</em></strong><br />
-</dt>
+</li>
+<dt><strong><em>t/uni/</em></strong>
+
 <dd>
-Tests for the core support of Unicode.
+<p>Tests for the core support of Unicode.</p>
 </dd>
-<p></p>
-<dt><strong><em>t/win32/</em></strong><br />
-</dt>
+</li>
+<dt><strong><em>t/win32/</em></strong>
+
 <dd>
-Windows-specific tests.
+<p>Windows-specific tests.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_t_2fx2p"><em>t/x2p</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_t_2fx2p"><em>t/x2p</em></a></strong>
+
 <dd>
-A test suite for the s2p converter.
+<p>A test suite for the s2p converter.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>The core uses the same testing style as the rest of Perl, a simple
 ``ok/not ok'' run through Test::Harness, but there are a few special
 considerations.</p>
@@ -1972,37 +2178,39 @@ decision of which to use depends on what part of the test suite you're
 working on.  This is a measure to prevent a high-level failure (such
 as Config.pm breaking) from causing basic functionality tests to fail.</p>
 <dl>
-<dt><strong>t/base t/comp</strong><br />
-</dt>
+<dt><strong>t/base t/comp</strong>
+
 <dd>
-Since we don't know if require works, or even subroutines, use ad hoc
+<p>Since we don't know if require works, or even subroutines, use ad hoc
 tests for these two.  Step carefully to avoid using the feature being
-tested.
+tested.</p>
 </dd>
-<p></p>
-<dt><strong>t/cmd t/run t/io t/op</strong><br />
-</dt>
+</li>
+<dt><strong>t/cmd t/run t/io t/op</strong>
+
 <dd>
-Now that basic <code>require()</code> and subroutines are tested, you can use the
+<p>Now that basic <code>require()</code> and subroutines are tested, you can use the
 t/test.pl library which emulates the important features of Test::More
-while using a minimum of core features.
+while using a minimum of core features.</p>
 </dd>
 <dd>
 <p>You can also conditionally use certain libraries like Config, but be
 sure to skip the test gracefully if it's not there.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_t_2flib_ext_lib">t/lib ext lib</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_t_2flib_ext_lib">t/lib ext lib</a></strong>
+
 <dd>
-Now that the core of Perl is tested, Test::More can be used.  You can
-also use the full suite of core modules in the tests.
+<p>Now that the core of Perl is tested, Test::More can be used.  You can
+also use the full suite of core modules in the tests.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>When you say ``make test'' Perl uses the <em>t/TEST</em> program to run the
-test suite.  All tests are run from the <em>t/</em> directory, <strong>not</strong> the
-directory which contains the test.  This causes some problems with the
-tests in <em>lib/</em>, so here's some opportunity for some patching.</p>
+test suite (except under Win32 where it uses <em>t/harness</em> instead.)  
+All tests are run from the <em>t/</em> directory, <strong>not</strong> the directory 
+which contains the test.  This causes some problems with the tests 
+in <em>lib/</em>, so here's some opportunity for some patching.</p>
 <p>You must be triply conscious of cross-platform concerns.  This usually
 boils down to using File::Spec and avoiding things like <code>fork()</code> and
 <code>system()</code> unless absolutely necessary.</p>
@@ -2012,89 +2220,126 @@ boils down to using File::Spec and avoiding things like <code>fork()</code> and
 <p>There are various special make targets that can be used to test Perl
 slightly differently than the standard ``test'' target.  Not all them
 are expected to give a 100% success rate.  Many of them have several
-aliases.</p>
+aliases, and many of them are not available on certain operating
+systems.</p>
 <dl>
-<dt><strong><a name="item_coretest">coretest</a></strong><br />
-</dt>
+<dt><strong><a name="item_coretest">coretest</a></strong>
+
 <dd>
-Run <em>perl</em> on all core tests (<em>t/*</em> and <em>lib/[a-z]*</em> pragma tests).
+<p>Run <em>perl</em> on all core tests (<em>t/*</em> and <em>lib/[a-z]*</em> pragma tests).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_test_2edeparse">test.deparse</a></strong><br />
-</dt>
 <dd>
-Run all the tests through B::Deparse.  Not all tests will succeed.
+<p>(Not available on Win32)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_test_2etaintwarn">test.taintwarn</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_test_2edeparse">test.deparse</a></strong>
+
 <dd>
-Run all tests with the <strong>-t</strong> command-line switch.  Not all tests
-are expected to succeed (until they're specifically fixed, of course).
+<p>Run all the tests through B::Deparse.  Not all tests will succeed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_minitest">minitest</a></strong><br />
-</dt>
 <dd>
-Run <em>miniperl</em> on <em>t/base</em>, <em>t/comp</em>, <em>t/cmd</em>, <em>t/run</em>, <em>t/io</em>,
-<em>t/op</em>, and <em>t/uni</em> tests.
+<p>(Not available on Win32)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_test_2evalgrind_check_2evalgrind_utest_2evalgrind_">test.valgrind check.valgrind utest.valgrind ucheck.valgrind</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_test_2etaintwarn">test.taintwarn</a></strong>
+
 <dd>
-(Only in Linux) Run all the tests using the memory leak + naughty
+<p>Run all tests with the <strong>-t</strong> command-line switch.  Not all tests
+are expected to succeed (until they're specifically fixed, of course).</p>
+</dd>
+<dd>
+<p>(Not available on Win32)</p>
+</dd>
+</li>
+<dt><strong><a name="item_minitest">minitest</a></strong>
+
+<dd>
+<p>Run <em>miniperl</em> on <em>t/base</em>, <em>t/comp</em>, <em>t/cmd</em>, <em>t/run</em>, <em>t/io</em>,
+<em>t/op</em>, and <em>t/uni</em> tests.</p>
+</dd>
+</li>
+<dt><strong><a name="item_test_2evalgrind_check_2evalgrind_utest_2evalgrind_">test.valgrind check.valgrind utest.valgrind ucheck.valgrind</a></strong>
+
+<dd>
+<p>(Only in Linux) Run all the tests using the memory leak + naughty
 memory access tool ``valgrind''.  The log files will be named
-<em>testname.valgrind</em>.
+<em>testname.valgrind</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_test_2ethird_check_2ethird_utest_2ethird_ucheck_2e">test.third check.third utest.third ucheck.third</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_test_2ethird_check_2ethird_utest_2ethird_ucheck_2e">test.third check.third utest.third ucheck.third</a></strong>
+
 <dd>
-(Only in Tru64)  Run all the tests using the memory leak + naughty
+<p>(Only in Tru64)  Run all the tests using the memory leak + naughty
 memory access tool ``Third Degree''.  The log files will be named
-<em>perl3.log.testname</em>.
+<em>perl.3log.testname</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_test_2etorture_torturetest">test.torture torturetest</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_test_2etorture_torturetest">test.torture torturetest</a></strong>
+
 <dd>
-Run all the usual tests and some extra tests.  As of Perl 5.8.0 the
-only extra tests are Abigail's JAPHs, <em>t/japh/abigail.t</em>.
+<p>Run all the usual tests and some extra tests.  As of Perl 5.8.0 the
+only extra tests are Abigail's JAPHs, <em>t/japh/abigail.t</em>.</p>
 </dd>
 <dd>
 <p>You can also run the torture test with <em>t/harness</em> by giving
-<code>-torture</code> argument to <em>t/harness</em>.</p>
+<a href="#item__2dtorture"><code>-torture</code></a> argument to <em>t/harness</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_utest_ucheck_test_2eutf8_check_2eutf8">utest ucheck test.utf8 check.utf8</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_utest_ucheck_test_2eutf8_check_2eutf8">utest ucheck test.utf8 check.utf8</a></strong>
+
 <dd>
-Run all the tests with -Mutf8.  Not all tests will succeed.
+<p>Run all the tests with -Mutf8.  Not all tests will succeed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_minitest_2eutf16_test_2eutf16">minitest.utf16 test.utf16</a></strong><br />
-</dt>
 <dd>
-Runs the tests with UTF-16 encoded scripts, encoded with different
-versions of this encoding.
+<p>(Not available on Win32)</p>
+</dd>
+</li>
+<dt><strong><a name="item_minitest_2eutf16_test_2eutf16">minitest.utf16 test.utf16</a></strong>
+
+<dd>
+<p>Runs the tests with UTF-16 encoded scripts, encoded with different
+versions of this encoding.</p>
 </dd>
 <dd>
 <p><code>make utest.utf16</code> runs the test suite with a combination of <code>-utf8</code> and
 <code>-utf16</code> arguments to <em>t/TEST</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_test_harness">test_harness</a></strong><br />
-</dt>
 <dd>
-Run the test suite with the <em>t/harness</em> controlling program, instead of
+<p>(Not available on Win32)</p>
+</dd>
+</li>
+<dt><strong><a name="item_test_harness">test_harness</a></strong>
+
+<dd>
+<p>Run the test suite with the <em>t/harness</em> controlling program, instead of
 <em>t/TEST</em>. <em>t/harness</em> is more sophisticated, and uses the
-<a href="../Test/Harness.html">the Test::Harness manpage</a> module, thus using this test target supposes that perl
+<a href="../../Test/Harness.html">the Test::Harness manpage</a> module, thus using this test target supposes that perl
 mostly works. The main advantage for our purposes is that it prints a
 detailed summary of failed tests at the end. Also, unlike <em>t/TEST</em>, it
-doesn't redirect stderr to stdout.
+doesn't redirect stderr to stdout.</p>
 </dd>
-<p></p></dl>
+<dd>
+<p>Note that under Win32 <em>t/harness</em> is always used instead of <em>t/TEST</em>, so
+there is no special ``test_harness'' target.</p>
+</dd>
+<dd>
+<p>Under Win32's ``test'' target you may use the TEST_SWITCHES and TEST_FILES
+environment variables to control the behaviour of <em>t/harness</em>.  This means
+you can say</p>
+</dd>
+<dd>
+<pre>
+    nmake test TEST_FILES=&quot;op/*.t&quot;
+    nmake test TEST_SWITCHES=&quot;-torture&quot; TEST_FILES=&quot;op/*.t&quot;</pre>
+</dd>
+</li>
+<dt><strong><a name="item_test_2dnotty_test_notty">test-notty test_notty</a></strong>
+
+<dd>
+<p>Sets PERL_SKIP_TTY_TEST to true before running normal test.</p>
+</dd>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="running_tests_by_hand">Running tests by hand</a></h2>
@@ -2106,40 +2351,85 @@ commands from the <em>t/</em> directory :</p>
 <pre>
     ./perl -I../lib harness list-of-.t-files</pre>
 <p>(if you don't specify test scripts, the whole test suite will be run.)</p>
+<p>
+</p>
+<h3><a name="using_t_harness_for_testing">Using t/harness for testing</a></h3>
+<p>If you use <code>harness</code> for testing you have several command line options
+available to you. The arguments are as follows, and are in the order
+that they must appear if used together.</p>
+<pre>
+    harness -v -torture -re=pattern LIST OF FILES TO TEST
+    harness -v -torture -re LIST OF PATTERNS TO MATCH</pre>
+<p>If <code>LIST OF FILES TO TEST</code> is omitted the file list is obtained from
+the manifest. The file list may include shell wildcards which will be 
+expanded out.</p>
+<dl>
+<dt><strong><a name="item__2dv">-v</a></strong>
+
+<dd>
+<p>Run the tests under verbose mode so you can see what tests were run, 
+and debug outbut.</p>
+</dd>
+</li>
+<dt><strong><a name="item__2dtorture">-torture</a></strong>
+
+<dd>
+<p>Run the torture tests as well as the normal set.</p>
+</dd>
+</li>
+<dt><strong><a name="item__2dre_3dpattern">-re=PATTERN</a></strong>
+
+<dd>
+<p>Filter the file list so that all the test files run match PATTERN.
+Note that this form is distinct from the <strong>-re LIST OF PATTERNS</strong> form below
+in that it allows the file list to be provided as well.</p>
+</dd>
+</li>
+<dt><strong><a name="item__2dre_list_of_patterns">-re LIST OF PATTERNS</a></strong>
+
+<dd>
+<p>Filter the file list so that all the test files run match 
+/(LIST|OF|PATTERNS)/. Note that with this form the patterns
+are joined by '|' and you cannot supply a list of files, instead
+the test files are obtained from the MANIFEST.</p>
+</dd>
+</li>
+</dl>
 <p>You can run an individual test by a command similar to</p>
 <pre>
     ./perl -I../lib patho/to/foo.t</pre>
 <p>except that the harnesses set up some environment variables that may
 affect the execution of the test :</p>
 <dl>
-<dt><strong><a name="item_perl_core_3d1">PERL_CORE=1</a></strong><br />
-</dt>
+<dt><strong><a name="item_perl_core_3d1">PERL_CORE=1</a></strong>
+
 <dd>
-indicates that we're running this test part of the perl core test suite.
-This is useful for modules that have a dual life on CPAN.
+<p>indicates that we're running this test part of the perl core test suite.
+This is useful for modules that have a dual life on CPAN.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_destruct_level_3d2">PERL_DESTRUCT_LEVEL=2</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_destruct_level_3d2">PERL_DESTRUCT_LEVEL=2</a></strong>
+
 <dd>
-is set to 2 if it isn't set already (see <a href="#perl_destruct_level">PERL_DESTRUCT_LEVEL</a>)
+<p>is set to 2 if it isn't set already (see <a href="#perl_destruct_level">PERL_DESTRUCT_LEVEL</a>)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl">PERL</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl">PERL</a></strong>
+
 <dd>
-(used only by <em>t/TEST</em>) if set, overrides the path to the perl executable
-that should be used to run the tests (the default being <em>./perl</em>).
+<p>(used only by <em>t/TEST</em>) if set, overrides the path to the perl executable
+that should be used to run the tests (the default being <em>./perl</em>).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_skip_tty_test">PERL_SKIP_TTY_TEST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_skip_tty_test">PERL_SKIP_TTY_TEST</a></strong>
+
 <dd>
-if set, tells to skip the tests that need a terminal. It's actually set
+<p>if set, tells to skip the tests that need a terminal. It's actually set
 automatically by the Makefile, but can also be forced artificially by
-running 'make test_notty'.
+running 'make test_notty'.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -2195,38 +2485,39 @@ using:</p>
      -Uusemymalloc -Dusemultiplicity</pre>
 <p>where these arguments mean:</p>
 <dl>
-<dt><strong><a name="item__2daccflags_3d_2ddpurify">-Accflags=-DPURIFY</a></strong><br />
-</dt>
+<dt><strong><a name="item__2daccflags_3d_2ddpurify">-Accflags=-DPURIFY</a></strong>
+
 <dd>
-Disables Perl's arena memory allocation functions, as well as
+<p>Disables Perl's arena memory allocation functions, as well as
 forcing use of memory allocation functions derived from the
-system malloc.
+system malloc.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2ddoptimize_3d_27_2dg_27">-Doptimize='-g'</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2ddoptimize_3d_27_2dg_27">-Doptimize='-g'</a></strong>
+
 <dd>
-Adds debugging information so that you see the exact source
+<p>Adds debugging information so that you see the exact source
 statements where the problem occurs.  Without this flag, all
-you will see is the source filename of where the error occurred.
+you will see is the source filename of where the error occurred.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2duusemymalloc">-Uusemymalloc</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2duusemymalloc">-Uusemymalloc</a></strong>
+
 <dd>
-Disable Perl's malloc so that Purify can more closely monitor
+<p>Disable Perl's malloc so that Purify can more closely monitor
 allocations and leaks.  Using Perl's malloc will make Purify
-report most leaks in the ``potential'' leaks category.
+report most leaks in the ``potential'' leaks category.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2ddusemultiplicity">-Dusemultiplicity</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2ddusemultiplicity">-Dusemultiplicity</a></strong>
+
 <dd>
-Enabling the multiplicity option allows perl to clean up
+<p>Enabling the multiplicity option allows perl to clean up
 thoroughly when the interpreter shuts down, which reduces the
-number of bogus leak reports from Purify.
+number of bogus leak reports from Purify.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Once you've compiled a perl suitable for Purify'ing, then you
 can just:</p>
 <pre>
@@ -2267,11 +2558,11 @@ options to output to the log file ``perl.log'':</p>
 on the fly.  There are several options in the makefile you
 should change to get the most use out of Purify:</p>
 <dl>
-<dt><strong><a name="item_defines">DEFINES</a></strong><br />
-</dt>
+<dt><strong><a name="item_defines">DEFINES</a></strong>
+
 <dd>
-You should add -DPURIFY to the DEFINES line so the DEFINES
-line looks something like:
+<p>You should add -DPURIFY to the DEFINES line so the DEFINES
+line looks something like:</p>
 </dd>
 <dd>
 <pre>
@@ -2282,31 +2573,32 @@ line looks something like:
 well as to force use of memory allocation functions derived
 from the system malloc.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_use_multi__3d_define">USE_MULTI = define</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_use_multi__3d_define">USE_MULTI = define</a></strong>
+
 <dd>
-Enabling the multiplicity option allows perl to clean up
+<p>Enabling the multiplicity option allows perl to clean up
 thoroughly when the interpreter shuts down, which reduces the
-number of bogus leak reports from Purify.
+number of bogus leak reports from Purify.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__23perl_malloc__3d_define">#PERL_MALLOC = define</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__23perl_malloc__3d_define">#PERL_MALLOC = define</a></strong>
+
 <dd>
-Disable Perl's malloc so that Purify can more closely monitor
+<p>Disable Perl's malloc so that Purify can more closely monitor
 allocations and leaks.  Using Perl's malloc will make Purify
-report most leaks in the ``potential'' leaks category.
+report most leaks in the ``potential'' leaks category.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_cfg__3d_debug">CFG = Debug</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_cfg__3d_debug">CFG = Debug</a></strong>
+
 <dd>
-Adds debugging information so that you see the exact source
+<p>Adds debugging information so that you see the exact source
 statements where the problem occurs.  Without this flag, all
-you will see is the source filename of where the error occurred.
+you will see is the source filename of where the error occurred.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>As an example, to show any memory leaks produced during the
 standard Perl testset you would create and run Purify as:</p>
 <pre>
@@ -2422,43 +2714,44 @@ during the execution.</p>
 <p>The gprof tool can then display the collected data in various ways.
 Usually gprof understands the following options:</p>
 <dl>
-<dt><strong><a name="item__2da">-a</a></strong><br />
-</dt>
+<dt><strong><a name="item__2da">-a</a></strong>
+
 <dd>
-Suppress statically defined functions from the profile.
+<p>Suppress statically defined functions from the profile.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2db">-b</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2db">-b</a></strong>
+
 <dd>
-Suppress the verbose descriptions in the profile.
+<p>Suppress the verbose descriptions in the profile.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2de_routine">-e routine</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2de_routine">-e routine</a></strong>
+
 <dd>
-Exclude the given routine and its descendants from the profile.
+<p>Exclude the given routine and its descendants from the profile.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2df_routine">-f routine</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2df_routine">-f routine</a></strong>
+
 <dd>
-Display only the given routine and its descendants in the profile.
+<p>Display only the given routine and its descendants in the profile.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2ds">-s</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2ds">-s</a></strong>
+
 <dd>
-Generate a summary file called <em>gmon.sum</em> which then may be given
-to subsequent gprof runs to accumulate data over several runs.
+<p>Generate a summary file called <em>gmon.sum</em> which then may be given
+to subsequent gprof runs to accumulate data over several runs.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dz">-z</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dz">-z</a></strong>
+
 <dd>
-Display routines that have zero usage.
+<p>Display routines that have zero usage.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>For more detailed explanation of the available commands and output
 formats, see your own local documentation of gprof.</p>
 <p>
@@ -2510,72 +2803,74 @@ incantation depends on your operating system, ``prof perl.Counts'' in
 IRIX, and ``prof -pixie -all -L. perl'' in Tru64.</p>
 <p>In IRIX the following prof options are available:</p>
 <dl>
-<dt><strong><a name="item__2dh">-h</a></strong><br />
-</dt>
+<dt><strong><a name="item__2dh">-h</a></strong>
+
 <dd>
-Reports the most heavily used lines in descending order of use.
-Useful for finding the hotspot lines.
+<p>Reports the most heavily used lines in descending order of use.
+Useful for finding the hotspot lines.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dl">-l</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dl">-l</a></strong>
+
 <dd>
-Groups lines by procedure, with procedures sorted in descending order of use.
+<p>Groups lines by procedure, with procedures sorted in descending order of use.
 Within a procedure, lines are listed in source order.
-Useful for finding the hotspots of procedures.
+Useful for finding the hotspots of procedures.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>In Tru64 the following options are available:</p>
 <dl>
-<dt><strong><a name="item__2dp_5brocedures_5d">-p[rocedures]</a></strong><br />
-</dt>
+<dt><strong><a name="item__2dp_5brocedures_5d">-p[rocedures]</a></strong>
+
 <dd>
-Procedures sorted in descending order by the number of cycles executed
+<p>Procedures sorted in descending order by the number of cycles executed
 in each procedure.  Useful for finding the hotspot procedures.
-(This is the default option.)
+(This is the default option.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dh_5beavy_5d">-h[eavy]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dh_5beavy_5d">-h[eavy]</a></strong>
+
 <dd>
-Lines sorted in descending order by the number of cycles executed in
-each line.  Useful for finding the hotspot lines.
+<p>Lines sorted in descending order by the number of cycles executed in
+each line.  Useful for finding the hotspot lines.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2di_5bnvocations_5d">-i[nvocations]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2di_5bnvocations_5d">-i[nvocations]</a></strong>
+
 <dd>
-The called procedures are sorted in descending order by number of calls
-made to the procedures.  Useful for finding the most used procedures.
+<p>The called procedures are sorted in descending order by number of calls
+made to the procedures.  Useful for finding the most used procedures.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dl_5bines_5d">-l[ines]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dl_5bines_5d">-l[ines]</a></strong>
+
 <dd>
-Grouped by procedure, sorted by cycles executed per procedure.
-Useful for finding the hotspots of procedures.
+<p>Grouped by procedure, sorted by cycles executed per procedure.
+Useful for finding the hotspots of procedures.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dtestcoverage">-testcoverage</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dtestcoverage">-testcoverage</a></strong>
+
 <dd>
-The compiler emitted code for these lines, but the code was unexecuted.
+<p>The compiler emitted code for these lines, but the code was unexecuted.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dz_5bero_5d">-z[ero]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dz_5bero_5d">-z[ero]</a></strong>
+
 <dd>
-Unexecuted procedures.
+<p>Unexecuted procedures.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>For further information, see your system's manual pages for pixie and prof.</p>
 <p>
 </p>
 <h2><a name="miscellaneous_tricks">Miscellaneous tricks</a></h2>
 <ul>
-<li></li>
-Those debugging perl with the DDD frontend over gdb may find the
-following useful:
+<li>
+<p>Those debugging perl with the DDD frontend over gdb may find the
+following useful:</p>
 <p>You can extend the data conversion shortcuts menu, so for example you
 can display an SV's IV value with one click, without doing any typing.
 To do that simply edit ~/.ddd/init file and add after:</p>
@@ -2600,11 +2895,12 @@ Just remember that every line, but the last one, should end with \n\</p>
 3rd mouse button -&gt; New Display -&gt; Edit Menu</p>
 <p>Note: you can define up to 20 conversion shortcuts in the gdb
 section.</p>
-<p></p>
-<li></li>
-If you see in a debugger a memory area mysteriously full of 0xabababab,
-you may be seeing the effect of the <code>Poison()</code> macro, see <a href="perlclib.html">the perlclib manpage</a>.
-<p></p></ul>
+</li>
+<li>
+<p>If you see in a debugger a memory area mysteriously full of 0xabababab,
+you may be seeing the effect of the <code>Poison()</code> macro, see <a href="perlclib.html">the perlclib manpage</a>.</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="conclusion">CONCLUSION</a></h2>
@@ -2618,31 +2914,32 @@ about how to use external tools to debug and test Perl.</p>
 as possible, get your hands dirty. The best way to learn is by doing,
 so:</p>
 <ul>
-<li></li>
-Subscribe to perl5-porters, follow the patches and try and understand
+<li>
+<p>Subscribe to perl5-porters, follow the patches and try and understand
 them; don't be afraid to ask if there's a portion you're not clear on -
-who knows, you may unearth a bug in the patch...
-<p></p>
-<li></li>
-Keep up to date with the bleeding edge Perl distributions and get
+who knows, you may unearth a bug in the patch...</p>
+</li>
+<li>
+<p>Keep up to date with the bleeding edge Perl distributions and get
 familiar with the changes. Try and get an idea of what areas people are
-working on and the changes they're making.
-<p></p>
-<li></li>
-Do read the README associated with your operating system, e.g. README.aix
+working on and the changes they're making.</p>
+</li>
+<li>
+<p>Do read the README associated with your operating system, e.g. README.aix
 on the IBM AIX OS. Don't hesitate to supply patches to that README if
-you find anything missing or changed over a new OS release.
-<p></p>
-<li></li>
-Find an area of Perl that seems interesting to you, and see if you can
+you find anything missing or changed over a new OS release.</p>
+</li>
+<li>
+<p>Find an area of Perl that seems interesting to you, and see if you can
 work out how it works. Scan through the source, and step over it in the
 debugger. Play, poke, investigate, fiddle! You'll probably get to
 understand not just your chosen area but a much wider range of <em>perl</em>'s
-activity as well, and probably sooner than you'd think.
-<p></p></ul>
+activity as well, and probably sooner than you'd think.</p>
+</li>
+</ul>
 <dl>
-<dt><strong><a name="item_the_road_goes_ever_on_and_on_2c_down_from_the_door"><em>The Road goes ever on and on, down from the door where it began.</em></a></strong><br />
-</dt>
+<dt><strong><a name="item_the_road_goes_ever_on_and_on_2c_down_from_the_door"><em>The Road goes ever on and on, down from the door where it began.</em></a></strong>
+
 </dl>
 <p>If you can do these things, you've started on the long road to Perl porting. 
 Thanks for wanting to help make Perl better - and happy hacking!</p>

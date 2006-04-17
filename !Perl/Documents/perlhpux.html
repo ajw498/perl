@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>README.hpux - Perl version 5 on Hewlett-Packard Unix systems</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -65,13 +67,13 @@ compiled and/or runs.</p>
 <p>
 </p>
 <h2><a name="using_perl_as_shipped_with_hpux">Using perl as shipped with HP-UX</a></h2>
-<p>As of application release September 2001, HP-UX 11.00 is shipped with
-perl-5.6.1 in /opt/perl. The first occurrence is on CD 5012-7954 and
-can be installed using</p>
+<p>Application release September 2001, HP-UX 11.00 is the first to ship
+with Perl. By the time it was perl-5.6.1 in /opt/perl. The first
+occurrence is on CD 5012-7954 and can be installed using</p>
 <pre>
   swinstall -s /cdrom perl</pre>
 <p>assuming you have mounted that CD on /cdrom. In this version the
-following modules are installed:</p>
+following modules were installed:</p>
 <pre>
   ActivePerl::DocTools-0.04   HTML::Parser-3.19   XML::DOM-1.25
   Archive::Tar-0.072          HTML::Tagset-3.03   XML::Parser-2.27
@@ -81,10 +83,12 @@ following modules are installed:</p>
   File::CounterFile-0.12      SOAP::Lite-0.46     libwww-perl-5.51
   Font::AFM-1.18              Storable-1.011      libxml-perl-0.07
   HTML-Tree-3.11              URI-1.11            perl-ldap-0.23</pre>
-<p>The build is a portable hppa-1.1 multithread build that supports large
+<p>The build was a portable hppa-1.1 multithread build that supports large
 files compiled with gcc-2.9-hppa-991112</p>
 <p>If you perform a new installation, then Perl will be installed
 automatically.</p>
+<p>More recent (preinstalled) HP-UX systems have more recent versions of
+Perl and the updated modules.</p>
 <p>
 </p>
 <h2><a name="using_perl_from_hp_s_porting_centre">Using perl from HP's porting centre</a></h2>
@@ -94,7 +98,8 @@ Perl binaries available is obvious.</p>
 <p>The HP porting centres are limited in what systems they are allowed
 to port to and they usually choose the two most recent OS versions
 available. This means that at the moment of writing, there are only
-HPUX-11.00 and 11-20/22 (IA64) ports available on the porting centres.</p>
+HP-UX 11.11 (pa-risc 2.0) and HP-UX 11.23 (Itanium 2) ports available
+on the porting centres.</p>
 <p>HP has asked the porting centre to move Open Source binaries
 from /opt to /usr/local, so binaries produced since the start
 of July 2002 are located in /usr/local.</p>
@@ -122,7 +127,8 @@ chips, but any machine with this chip in it is quite obsolete and this
 document will not attempt to address issues for compiling Perl on the
 Motorola chipset.</p>
 <p>The most recent version of PA-RISC at the time of this document's last
-update is 2.0.</p>
+update is 2.0. HP PA-RISC systems are usually refered to with model
+description ``HP 9000''.</p>
 <p>A complete list of models at the time the OS was built is in the file
 /usr/sam/lib/mo/sched.models. The first column corresponds to the last
 part of the output of the ``model'' command.  The second column is the
@@ -193,9 +199,9 @@ that contained the explanation is dead, so here's a short summary:</p>
   HP 9000 L-Class servers, now renamed HP Server rp5400 series.
   HP 9000 N-Class servers, now renamed HP Server rp7400.</pre>
 <pre>
-  rp2400, rp2405, rp2430, rp2450, rp2470, rp3410, rp3440, rp4440,
-  rp5400, rp5405, rp5430, rp5450, rp5470, rp7400, rp7405, rp7410,
-  rp7420, rp8400, rp8420, Superdome</pre>
+  rp2400, rp2405, rp2430, rp2450, rp2470, rp3410, rp3440, rp4410,
+  rp4440, rp5400, rp5405, rp5430, rp5450, rp5470, rp7400, rp7405,
+  rp7410, rp7420, rp8400, rp8420, Superdome</pre>
 <p>The current naming convention is:</p>
 <pre>
   aadddd
@@ -218,13 +224,15 @@ that contained the explanation is dead, so here's a short summary:</p>
 </p>
 <h2><a name="itanium_processor_family_and_hpux">Itanium Processor Family and HP-UX</a></h2>
 <p>HP-UX also runs on the new Itanium processor.  This requires the use
-of a different version of HP-UX (currently 11.23 or 11i v1.6), and with
+of a different version of HP-UX (currently 11.23 or 11i v2), and with
 the exception of a few differences detailed below and in later sections,
 Perl should compile with no problems.</p>
 <p>Although PA-RISC binaries can run on Itanium systems, you should not
 attempt to use a PA-RISC version of Perl on an Itanium system.  This is
 because shared libraries created on an Itanium system cannot be loaded
 while running a PA-RISC executable.</p>
+<p>HP Itanium 2 systems are usually refered to with model description
+``HP Integrity''.</p>
 <p>
 </p>
 <h2><a name="itanium___itanium_2">Itanium &amp; Itanium 2</a></h2>
@@ -232,8 +240,8 @@ while running a PA-RISC executable.</p>
 date of this document's last update, the following systems contain
 Itanium or Itanium 2 chips (this is very likely to be out of date):</p>
 <pre>
-  rx1600, rx2600, rx2600hptc, rx4610, rx4640, rx5670, rx7620, rx8620,
-  rx9610</pre>
+  BL60p, rx1600, rx1620, rx2600, rx2600hptc, rx2620, rx4610, rx4640,
+  rx5670, rx7620, rx8620, rx9610</pre>
 <p>To see all about your machine, type</p>
 <pre>
   # model
@@ -361,7 +369,7 @@ that also include recent GNU binutils and GNU gdb.  Read the instructions
 on that page to rebuild gcc using itself.</p>
 <p>On PA-RISC you need a different compiler for 32-bit applications and for
 64-bit applications. On PA-RISC, 32-bit objects and 64-bit objects do
-not mix. period. There is no different behaviour for HP C-ANSI-C or GNU
+not mix. Period. There is no different behaviour for HP C-ANSI-C or GNU
 gcc. So if you require your perl binary to use 64-bit libraries, like
 Oracle-64bit, you MUST build a 64-bit perl.</p>
 <p>Building a 64-bit capable gcc on PA-RISC from source is possible only when
@@ -416,8 +424,7 @@ this right for you.</p>
 threads library package. Two examples are the HP DCE package, available
 on ``HP-UX Hardware Extensions 3.0, Install and Core OS, Release 10.20,
 April 1999 (B3920-13941)'' or the Freely available PTH package, available
-though worldwide HP-UX mirrors of precompiled packages
-(e.g. <a href="http://hpux.tn.tudelft.nl/hppd/hpux/)">http://hpux.tn.tudelft.nl/hppd/hpux/)</a></p>
+on H.Merijn's site (http://mirrors.develooper.com/hpux/).</p>
 <p>If you are going to use the HP DCE package, the library used for threading
 is /usr/lib/libcma.sl, but there have been multiple updates of that
 library over time. Perl will build with the first version, but it
@@ -440,29 +447,39 @@ in one of the following patches: PHSS_19739, PHSS_20608, or PHSS_23672</p>
      HP DCE/9000 1.5 PHSS_23672    Module: libcma.1 (Export)
                                    Date: Apr  9 2001 10:01:06
   d3:/usr/lib 107 &gt;</pre>
+<p>If you choose for the PTH package, use swinstall to install pth in
+the default location (/opt/pth), and then make symbolic links to the
+libraries from /usr/lib</p>
+<pre>
+  # cd /usr/lib
+  # ln -s /opt/pth/lib/libpth* .</pre>
+<p>For building perl to support Oracle, it needs to be linked with libcl
+and libpthread. So even if your perl is an unthreaded build, these
+libraries might be required. See ``Oracle on HP-UX'' below.</p>
 <p>
 </p>
 <h2><a name="64bit_perl_on_hpux">64-bit Perl on HP-UX</a></h2>
 <p>Beginning with HP-UX 11.00, programs compiled under HP-UX can take
 advantage of the LP64 programming environment (LP64 means Longs and
-Pointers are 64 bits wide).</p>
-<p>Work is being performed on Perl to make it 64-bit compliant on all
-versions of Unix.  Once this is complete, scalar variables will be able
-to hold numbers larger than 2^32 with complete precision.</p>
+Pointers are 64 bits wide), in which scalar variables will be able
+to hold numbers larger than 2^32 with complete precision.  Perl has
+proven to be consistent and reliable in 64bit mode since 5.8.1 on
+all HP-UX 11.xx.</p>
 <p>As of the date of this document, Perl is fully 64-bit compliant on
 HP-UX 11.00 and up for both cc- and gcc builds. If you are about to
 build a 64-bit perl with GNU gcc, please read the gcc section carefully.</p>
-<p>Should a user wish to experiment with compiling Perl in the LP64
-environment, use the -Duse64bitall flag to Configure.  This will force
-Perl to be compiled in a pure LP64 environment (with the +DD64 flag for
-HP C-ANSI-C, with no additional options for GNU gcc 64-bit on PA-RISC,
-and with -mlp64 for GNU gcc on Itanium).
+<p>Should a user have the need for compiling Perl in the LP64 environment,
+use the -Duse64bitall flag to Configure.  This will force Perl to be
+compiled in a pure LP64 environment (with the +DD64 flag for HP C-ANSI-C,
+with no additional options for GNU gcc 64-bit on PA-RISC, and with
+-mlp64 for GNU gcc on Itanium).
 If you want to compile Perl using gcc, you will have to get a version of
 the compiler that supports 64-bit operations.)</p>
 <p>You can also use the -Duse64bitint flag to Configure.  Although there
 are some minor differences between compiling Perl with this flag versus
 the -Duse64bitall flag, they should not be noticeable from a Perl user's
-perspective.</p>
+perspective. When configuring -Duse64bitint using a 64bit gcc on a
+pa-risc architecture, -Duse64bitint is silently promoted to -Duse64bitall.</p>
 <p>In both cases, it is strongly recommended that you use these flags when
 you run Configure.  If you do not use do this, but later answer the
 questions about 64-bit numbers when Configure asks you, you may get a
@@ -559,13 +576,13 @@ the same bug also affects Solaris.</p>
 <hr />
 <h1><a name="author">AUTHOR</a></h1>
 <p>Jeff Okamoto &lt;<a href="mailto:okamoto@corp.hp.com">okamoto@corp.hp.com</a>&gt;
-H.Merijn Brand &lt;<a href="mailto:h.m.brand@hccnet.nl">h.m.brand@hccnet.nl</a>&gt;</p>
+H.Merijn Brand &lt;<a href="mailto:h.m.brand@xs4all.nl">h.m.brand@xs4all.nl</a>&gt;</p>
 <p>With much assistance regarding shared libraries from Marc Sabatella.</p>
 <p>
 </p>
 <hr />
 <h1><a name="date">DATE</a></h1>
-<p>Version 0.7.1: 2004-10-08</p>
+<p>Version 0.7.6: 2005-12-20</p>
 <table border="0" width="100%" cellspacing="0" cellpadding="3">
 <tr><td class="block" style="background-color: #cccccc" valign="middle">
 <big><strong><span class="block">&nbsp;README.hpux - Perl version 5 on Hewlett-Packard Unix systems</span></strong></big>

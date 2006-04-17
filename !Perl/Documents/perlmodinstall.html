@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlmodinstall - Installing CPAN Modules</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -65,14 +67,14 @@ found it on the CPAN.</p>
 know there's a tasty module inside.  There are four steps you must now
 take:</p>
 <dl>
-<dt><strong><a name="item_decompress_the_file"><strong>DECOMPRESS</strong> the file</a></strong><br />
-</dt>
-<dt><strong><a name="item_unpack_the_file_into_a_directory"><strong>UNPACK</strong> the file into a directory</a></strong><br />
-</dt>
-<dt><strong><a name="item_module"><strong>BUILD</strong> the module (sometimes unnecessary)</a></strong><br />
-</dt>
-<dt><strong><a name="item_install_the_module_2e"><strong>INSTALL</strong> the module.</a></strong><br />
-</dt>
+<dt><strong><a name="item_decompress_the_file"><strong>DECOMPRESS</strong> the file</a></strong>
+
+<dt><strong><a name="item_unpack_the_file_into_a_directory"><strong>UNPACK</strong> the file into a directory</a></strong>
+
+<dt><strong><a name="item_module"><strong>BUILD</strong> the module (sometimes unnecessary)</a></strong>
+
+<dt><strong><a name="item_install_the_module_2e"><strong>INSTALL</strong> the module.</a></strong>
+
 </dl>
 <p>Here's how to perform each step for each operating system.  This is
 &lt;not&gt; a substitute for reading the README and INSTALL files that
@@ -90,8 +92,8 @@ directories you see when you type <code>perl -e &quot;print qq(@INC)&quot;</code
 want to install them into a local directory (such as your home
 directory) and use this approach.</p>
 <ul>
-<li></li>
-<strong>If you're on a Unix or Linux system,</strong>
+<li>
+<p><strong>If you're on a Unix or Unix-like system,</strong></p>
 <p>You can use Andreas Koenig's CPAN module
 ( <a href="http://www.cpan.org/modules/by-module/CPAN">http://www.cpan.org/modules/by-module/CPAN</a> )
 to automate the following steps, from DECOMPRESS through INSTALL.</p>
@@ -125,9 +127,9 @@ Most Unix systems have dynamic linking -- if yours doesn't, or if for
 another reason you have a statically-linked perl, <strong>and</strong> the
 module requires compilation, you'll need to build a new Perl binary
 that includes the module.  Again, you'll probably need to be root.</p>
-<p></p>
-<li></li>
-<strong>If you're running ActivePerl (Win95/98/2K/NT/XP, Linux, Solaris)</strong>
+</li>
+<li>
+<p><strong>If you're running ActivePerl (Win95/98/2K/NT/XP, Linux, Solaris)</strong></p>
 <p>First, type <code>ppm</code> from a shell and see whether ActiveState's PPM
 repository has your module.  If so, you can install it with <code>ppm</code> and
 you won't have to bother with any of the other steps here.  You might
@@ -163,9 +165,9 @@ from ActiveState.
 <p>While still in that directory, type:</p>
 <pre>
       nmake install</pre>
-<p></p>
-<li></li>
-<strong>If you're using a Macintosh,</strong>
+</li>
+<li>
+<p><strong>If you're using a Macintosh with ``Classic'' MacOS and MacPerl,</strong></p>
 <p>A. DECOMPRESS</p>
 <p>First, make sure you have the latest <strong>cpan-mac</strong> distribution (
 <a href="http://www.cpan.org/authors/id/CNANDOR/">http://www.cpan.org/authors/id/CNANDOR/</a> ), which has utilities for
@@ -227,9 +229,9 @@ automagically).  Create whatever directory structures are required
      use AutoSplit;
      my $dir = &quot;${MACPERL}site_perl&quot;;
      autosplit(&quot;$dir:Some:Module.pm&quot;, &quot;$dir:auto&quot;, 0, 1, 1);</pre>
-<p></p>
-<li></li>
-<strong>If you're on the DJGPP port of DOS,</strong>
+</li>
+<li>
+<p><strong>If you're on the DJGPP port of DOS,</strong></p>
 <pre>
    A. DECOMPRESS</pre>
 <p>djtarx ( <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2/">ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2/</a> )
@@ -251,15 +253,15 @@ in the Perl distribution.</p>
 <pre>
      make install</pre>
 <p>You will need the packages mentioned in <em>README.dos</em> in the Perl distribution.</p>
-<p></p>
-<li></li>
-<strong>If you're on OS/2,</strong>
+</li>
+<li>
+<p><strong>If you're on OS/2,</strong></p>
 <p>Get the EMX development suite and gzip/tar, from either Hobbes (
 <a href="http://hobbes.nmsu.edu">http://hobbes.nmsu.edu</a> ) or Leo ( <a href="http://www.leo.org">http://www.leo.org</a> ), and then follow
 the instructions for Unix.</p>
-<p></p>
-<li></li>
-<strong>If you're on VMS,</strong>
+</li>
+<li>
+<p><strong>If you're on VMS,</strong></p>
 <p>When downloading from CPAN, save your file with a <code>.tgz</code>
 extension instead of <code>.tar.gz</code>.  All other periods in the
 filename should be replaced with underscores.  For example,
@@ -304,9 +306,9 @@ the DESCRIP.MMS for the module:</p>
 <pre>
     mms install</pre>
 <p>Substitute <code>mmk</code> for <code>mms</code> above if you're using MMK.</p>
-<p></p>
-<li></li>
-<strong>If you're on MVS</strong>,
+</li>
+<li>
+<p><strong>If you're on MVS</strong>,</p>
 <p>Introduce the <em>.tar.gz</em> file into an HFS as binary; don't translate from
 ASCII to EBCDIC.</p>
 <p>A. DECOMPRESS</p>
@@ -320,7 +322,8 @@ ASCII to EBCDIC.</p>
 <p>The BUILD and INSTALL steps are identical to those for Unix.  Some
 modules generate Makefiles that work better with GNU make, which is
 available from <a href="http://www.mks.com/s390/gnu/">http://www.mks.com/s390/gnu/</a></p>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -332,24 +335,25 @@ system.  There are basically three categories
 of modules that will not work ``out of the box'' with all
 platforms (with some possibility of overlap):</p>
 <ul>
-<li></li>
-<strong>Those that should, but don't.</strong>  These need to be fixed; consider
-contacting the author and possibly writing a patch.
-<p></p>
-<li></li>
-<strong>Those that need to be compiled, where the target platform
+<li>
+<p><strong>Those that should, but don't.</strong>  These need to be fixed; consider
+contacting the author and possibly writing a patch.</p>
+</li>
+<li>
+<p><strong>Those that need to be compiled, where the target platform
 doesn't have compilers readily available.</strong>  (These modules contain
 <em>.xs</em> or <em>.c</em> files, usually.)  You might be able to find
 existing binaries on the CPAN or elsewhere, or you might
 want to try getting compilers and building it yourself, and then
-release the binary for other poor souls to use.
-<p></p>
-<li></li>
-<strong>Those that are targeted at a specific platform.</strong>
+release the binary for other poor souls to use.</p>
+</li>
+<li>
+<p><strong>Those that are targeted at a specific platform.</strong>
 (Such as the Win32:: modules.)  If the module is targeted
 specifically at a platform other than yours, you're out
-of luck, most likely.
-<p></p></ul>
+of luck, most likely.</p>
+</li>
+</ul>
 <p>Check the CPAN Testers if a module should work with your platform
 but it doesn't behave as you'd expect, or you aren't sure whether or
 not a module will work under your platform.  If the module you want

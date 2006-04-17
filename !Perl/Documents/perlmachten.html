@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>README.machten - Perl version 5 on Power MachTen systems</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -89,37 +91,38 @@ change the default installation directory -- see <em>INSTALL</em>.</p>
 </p>
 <h2><a name="failures_during_make_test_on_machten">Failures during <code>make test</code> on MachTen</a></h2>
 <dl>
-<dt><strong><a name="item_op_2flexassign_2et">op/lexassign.t</a></strong><br />
-</dt>
+<dt><strong><a name="item_op_2flexassign_2et">op/lexassign.t</a></strong>
+
 <dd>
-This test may fail when first run after building perl.  It does not
-fail subsequently.  The cause is unknown.
+<p>This test may fail when first run after building perl.  It does not
+fail subsequently.  The cause is unknown.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pragma_2fwarnings_2et">pragma/warnings.t</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pragma_2fwarnings_2et">pragma/warnings.t</a></strong>
+
 <dd>
-Test 257 fails due to a failure to warn about attempts to read from a
+<p>Test 257 fails due to a failure to warn about attempts to read from a
 filehandle which is a duplicate of stdout when stdout is attached to a
 pipe.  The output of the test contains a block comment which discusses
-a different failure, not applicable to MachTen.
+a different failure, not applicable to MachTen.</p>
 </dd>
 <dd>
 <p>The root of the problem is that Machten does not assign a file type to
-either end of a pipe (see <em>stat</em>), resulting, among other things
+either end of a pipe (see <a href="../../File/stat.html">the stat manpage</a>), resulting, among other things
 in Perl's <code>-p</code> test failing on file descriptors belonging to pipes.
 As a result, perl becomes confused, and the test for reading from a
 write-only file fails.  I am reluctant to patch perl to get around
 this, as it's clearly an OS bug (about which Tenon has been informed),
 and limited in its effect on practical Perl programs.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="building_external_modules_on_machten">Building external modules on MachTen</a></h2>
 <p>To add an external module to perl, build in the normal way, which
-is documented in <a href="../ExtUtils/MakeMaker.html">the ExtUtils::MakeMaker manpage</a>, or which can be driven
-automatically by the CPAN module (see <em>CPAN</em>), which is part of the
+is documented in <a href="../../ExtUtils/MakeMaker.html">the ExtUtils::MakeMaker manpage</a>, or which can be driven
+automatically by the CPAN module (see <a href="../../CPAN.html">the CPAN manpage</a>), which is part of the
 standard distribution.  If you want to install a module which
 contains XS code (C or C++ source which compiles to object code
 for linking with perl), you will have to replace your perl binary with

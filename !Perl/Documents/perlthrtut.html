@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlthrtut - tutorial on threads in Perl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -115,13 +117,13 @@ have <code>use5005threads=define</code> you have 5.005 threads.
 If you have neither, you don't have any thread support built in.
 If you have both, you are in trouble.</p>
 <p>The user-level interface to the 5.005 threads was via the <em>Threads</em>
-class, while ithreads uses the <em>threads</em> class. Note the change in case.</p>
+class, while ithreads uses the <a href="../../threads.html">the threads manpage</a> class. Note the change in case.</p>
 <p>
 </p>
 <hr />
 <h1><a name="status">Status</a></h1>
 <p>The ithreads code has been available since Perl 5.6.0, and is considered
-stable. The user-level interface to ithreads (the <em>threads</em> classes)
+stable. The user-level interface to ithreads (the <a href="../../threads.html">the threads manpage</a> classes)
 appeared in the 5.8.0 release, and as of this time is considered stable
 although it should be treated with caution as with all new features.</p>
 <p>
@@ -146,8 +148,8 @@ different models for different pieces of your program.</p>
 <p>
 </p>
 <h2><a name="boss_worker">Boss/Worker</a></h2>
-<p>The boss/worker model usually has one `boss' thread and one or more
-`worker' threads.  The boss thread gathers or generates tasks that need
+<p>The boss/worker model usually has one ``boss'' thread and one or more
+``worker'' threads.  The boss thread gathers or generates tasks that need
 to be done, then parcels those tasks out to the appropriate worker
 thread.</p>
 <p>This model is common in GUI and server programs, where a main thread
@@ -243,10 +245,10 @@ are covered in <a href="#basic_semaphores">Basic semaphores</a>.</p>
 </p>
 <hr />
 <h1><a name="thread_basics">Thread Basics</a></h1>
-<p>The core <em>threads</em> module provides the basic functions you need to write
+<p>The core <a href="../../threads.html">the threads manpage</a> module provides the basic functions you need to write
 threaded programs.  In the following sections we'll cover the basics,
 showing you what you need to do to create a threaded program.   After
-that, we'll go over some of the features of the <em>threads</em> module that
+that, we'll go over some of the features of the <a href="../../threads.html">the threads manpage</a> module that
 make threaded programming easier.</p>
 <p>
 </p>
@@ -294,7 +296,7 @@ Future versions of Perl may fix this problem.</p>
 <p>
 </p>
 <h2><a name="creating_threads">Creating Threads</a></h2>
-<p>The <em>threads</em> package provides the tools you need to create new
+<p>The <a href="../../threads.html">the threads manpage</a> package provides the tools you need to create new
 threads.  Like any other module, you need to tell Perl that you want to use
 it; <code>use threads</code> imports all the pieces you need to create basic
 threads.</p>
@@ -403,7 +405,7 @@ except that in this case, the data is just copied to a different part of
 memory within the same process rather than a real fork taking place.</p>
 <p>To make use of threading however, one usually wants the threads to share
 at least some data between themselves. This is done with the
-<a href="../threads/shared.html">the threads::shared manpage</a> module and the <code> : shared</code> attribute:</p>
+<a href="../../threads/shared.html">the threads::shared manpage</a> module and the <code> : shared</code> attribute:</p>
 <pre>
     use threads;
     use threads::shared;</pre>
@@ -758,7 +760,7 @@ thread needs to check out or return a number of resources at once.</p>
 co-operating threads that a resource has become available. They are
 very similar in use to the functions found in <code>pthreads</code>. However
 for most purposes, queues are simpler to use and more intuitive. See
-<a href="../threads/shared.html">the threads::shared manpage</a> for more details.</p>
+<a href="../../threads/shared.html">the threads::shared manpage</a> for more details.</p>
 <p>
 </p>
 <h2><a name="giving_up_control">Giving up control</a></h2>
@@ -1119,7 +1121,7 @@ less emphasis on yield().</p>
 Journal #10, and is copyright 1998 The Perl Journal. It appears courtesy
 of Jon Orwant and The Perl Journal.  This document may be distributed
 under the same terms as Perl itself.</p>
-<p>For more information please see <em>threads</em> and <a href="../threads/shared.html">the threads::shared manpage</a>.</p>
+<p>For more information please see <a href="../../threads.html">the threads manpage</a> and <a href="../../threads/shared.html">the threads::shared manpage</a>.</p>
 <table border="0" width="100%" cellspacing="0" cellpadding="3">
 <tr><td class="block" style="background-color: #cccccc" valign="middle">
 <big><strong><span class="block">&nbsp;perlthrtut - tutorial on threads in Perl</span></strong></big>

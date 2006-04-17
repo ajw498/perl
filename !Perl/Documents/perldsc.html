@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perldsc - Perl Data Structures Cookbook</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -74,7 +76,8 @@
 <hr />
 <p>
 </p>
-<h1><a name="name">NAME</a></h1>
+<h1><a name="name_x_data_structure__x_complex_data_structure__x_struct_">NAME
+  </a></h1>
 <p>perldsc - Perl Data Structures Cookbook</p>
 <p>
 </p>
@@ -120,29 +123,31 @@ purloin a drop-in example from here.</p>
 <p>Let's look at each of these possible constructs in detail.  There are separate
 sections on each of the following:</p>
 <ul>
-<li><strong><a name="item_arrays_of_arrays">arrays of arrays</a></strong><br />
-</li>
-<li><strong><a name="item_hashes_of_arrays">hashes of arrays</a></strong><br />
-</li>
-<li><strong><a name="item_arrays_of_hashes">arrays of hashes</a></strong><br />
-</li>
-<li><strong><a name="item_hashes_of_hashes">hashes of hashes</a></strong><br />
-</li>
-<li><strong><a name="item_more_elaborate_constructs">more elaborate constructs</a></strong><br />
-</li>
+<li><strong><a name="item_arrays_of_arrays">arrays of arrays</a></strong>
+
+<li><strong><a name="item_hashes_of_arrays">hashes of arrays</a></strong>
+
+<li><strong><a name="item_arrays_of_hashes">arrays of hashes</a></strong>
+
+<li><strong><a name="item_hashes_of_hashes">hashes of hashes</a></strong>
+
+<li><strong><a name="item_more_elaborate_constructs">more elaborate constructs</a></strong>
+
 </ul>
 <p>But for now, let's look at general issues common to all
 these types of data structures.</p>
 <p>
 </p>
 <hr />
-<h1><a name="references">REFERENCES</a></h1>
+<h1><a name="references_x_reference__x_dereference__x_dereferencing__x_pointer_">REFERENCES
+   </a></h1>
 <p>The most important thing to understand about all data structures in Perl
 -- including multidimensional arrays--is that even though they might
 appear otherwise, Perl <code>@ARRAY</code>s and <code>%HASH</code>es are all internally
 one-dimensional.  They can hold only scalar values (meaning a string,
 number, or a reference).  They cannot directly contain other arrays or
-hashes, but instead contain <em>references</em> to other arrays or hashes.</p>
+hashes, but instead contain <em>references</em> to other arrays or hashes.
+ </p>
 <p>You can't use a reference to an array or hash in quite the same way that you
 would a real array or hash.  For C or C++ programmers unused to
 distinguishing between arrays and pointers to the same, this can be
@@ -231,7 +236,8 @@ the following C program:</p>
 in memory!  In C, you'd have to remember to <code>malloc()</code> yourself some new
 memory.  In Perl, you'll want to use the array constructor <code>[]</code> or the
 hash constructor <code>{}</code> instead.   Here's the right way to do the preceding
-broken code fragments:</p>
+broken code fragments:
+ </p>
 <pre>
     for $i (1..10) {
         @array = somefunc($i);
@@ -297,9 +303,11 @@ do the right thing behind the scenes.</p>
 <p>
 </p>
 <hr />
-<h1><a name="caveat_on_precedence">CAVEAT ON PRECEDENCE</a></h1>
+<h1><a name="caveat_on_precedence_x_dereference__precedence__x_dereferencing__precedence_">CAVEAT ON PRECEDENCE
+ </a></h1>
 <p>Speaking of things like <code>@{$AoA[$i]}</code>, the following are actually the
-same thing:</p>
+same thing:
+ &gt;&gt;</p>
 <pre>
     $aref-&gt;[2][2]       # clear
     $$aref[2][2]        # confusing</pre>
@@ -345,7 +353,11 @@ variable, and it would thereby remind you to write instead:</p>
 <p>
 </p>
 <hr />
-<h1><a name="debugging">DEBUGGING</a></h1>
+<h1><a name="debugging_x_data_structure__debugging__x_complex_data_structure__debugging__x_aoa__debugging__x_hoa__debugging__x_aoh__debugging__x_hoh__debugging__x_array_of_arrays__debugging__x_hash_of_arrays__debugging__x_array_of_hashes__debugging__x_hash_of_hashes__debugging_">DEBUGGING
+ 
+   
+ 
+ </a></h1>
 <p>Before version 5.002, the standard Perl debugger didn't do a very nice job of
 printing out complex data structures.  With 5.002 or above, the
 debugger includes several new features, including command line editing as
@@ -380,7 +392,8 @@ types of data structures.</p>
 <p>
 </p>
 <hr />
-<h1><a name="arrays_of_arrays">ARRAYS OF ARRAYS</a></h1>
+<h1><a name="arrays_of_arrays_x_array_of_arrays__x_aoa_">ARRAYS OF ARRAYS
+ </a></h1>
 <p>
 </p>
 <h2><a name="declaration_of_an_array_of_arrays">Declaration of an ARRAY OF ARRAYS</a></h2>
@@ -441,7 +454,8 @@ types of data structures.</p>
 <p>
 </p>
 <hr />
-<h1><a name="hashes_of_arrays">HASHES OF ARRAYS</a></h1>
+<h1><a name="hashes_of_arrays_x_hash_of_arrays__x_hoa_">HASHES OF ARRAYS
+ </a></h1>
 <p>
 </p>
 <h2><a name="declaration_of_a_hash_of_arrays">Declaration of a HASH OF ARRAYS</a></h2>
@@ -524,7 +538,8 @@ types of data structures.</p>
 <p>
 </p>
 <hr />
-<h1><a name="arrays_of_hashes">ARRAYS OF HASHES</a></h1>
+<h1><a name="arrays_of_hashes_x_array_of_hashes__x_aoh_">ARRAYS OF HASHES
+ </a></h1>
 <p>
 </p>
 <h2><a name="declaration_of_an_array_of_hashes">Declaration of an ARRAY OF HASHES</a></h2>
@@ -618,7 +633,8 @@ types of data structures.</p>
 <p>
 </p>
 <hr />
-<h1><a name="hashes_of_hashes">HASHES OF HASHES</a></h1>
+<h1><a name="hashes_of_hashes_x_hass_of_hashes__x_hoh_">HASHES OF HASHES
+ </a></h1>
 <p>
 </p>
 <h2><a name="declaration_of_a_hash_of_hashes">Declaration of a HASH OF HASHES</a></h2>
@@ -738,7 +754,8 @@ types of data structures.</p>
 <p>
 </p>
 <hr />
-<h1><a name="more_elaborate_records">MORE ELABORATE RECORDS</a></h1>
+<h1><a name="more_elaborate_records_x_record__x_structure__x_struct_">MORE ELABORATE RECORDS
+  </a></h1>
 <p>
 </p>
 <h2><a name="declaration_of_more_elaborate_records">Declaration of MORE ELABORATE RECORDS</a></h2>

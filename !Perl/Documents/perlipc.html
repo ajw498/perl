@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlipc - Perl interprocess communication</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -300,7 +302,11 @@ info to show that it works and should be replaced with the real code.</p>
 mechanism for processes communicating on the same machine.  It works
 just like a regular, connected anonymous pipes, except that the
 processes rendezvous using a filename and don't have to be related.</p>
-<p>To create a named pipe, use the Unix command <code>mknod(1)</code> or on some
+<p>To create a named pipe, use the <code>POSIX::mkfifo()</code> function.</p>
+<pre>
+    use POSIX qw(mkfifo);
+    mkfifo($path, 0700) or die &quot;mkfifo $path failed: $!&quot;;</pre>
+<p>You can also use the Unix command <code>mknod(1)</code> or on some
 systems, mkfifo(1).  These may not be in your normal path.</p>
 <pre>
     # system return val is backwards, so &amp;&amp; not ||
@@ -322,14 +328,14 @@ supply the new signature.  We'll use the pipe-checking file test <strong>-p</str
 to find out whether anyone (or anything) has accidentally removed our fifo.</p>
 <pre>
     chdir; # go home
-    $FIFO = '.signature';
-    $ENV{PATH} .= &quot;:/etc:/usr/games&quot;;</pre>
+    $FIFO = '.signature';</pre>
 <pre>
     while (1) {
         unless (-p $FIFO) {
             unlink $FIFO;
-            system('mknod', $FIFO, 'p')
-                &amp;&amp; die &quot;can't mknod $FIFO: $!&quot;;
+            require POSIX;
+            POSIX::mkfifo($FIFO, 0700)
+                or die &quot;can't mkfifo $FIFO: $!&quot;;
         }</pre>
 <pre>
         # next line blocks until there's a reader
@@ -372,19 +378,19 @@ state, and that we are not in a system library function when the
 handler is called.  However the implementation does differ from
 previous Perls in the following ways:</p>
 <dl>
-<dt><strong><a name="item_long_running_opcodes">Long running opcodes</a></strong><br />
-</dt>
+<dt><strong><a name="item_long_running_opcodes">Long running opcodes</a></strong>
+
 <dd>
-As Perl interpreter only looks at the signal flags when it about to
+<p>As Perl interpreter only looks at the signal flags when it about to
 execute a new opcode if a signal arrives during a long running opcode
 (e.g. a regular expression operation on a very large string) then
-signal will not be seen until operation completes.
+signal will not be seen until operation completes.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_interrupting_io">Interrupting IO</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_interrupting_io">Interrupting IO</a></strong>
+
 <dd>
-When a signal is delivered (e.g. INT control-C) the operating system
+<p>When a signal is delivered (e.g. INT control-C) the operating system
 breaks into IO operations like <code>read</code> (used to implement Perls
 &lt;&gt; operator). On older Perls the handler was called
 immediately (and as <code>read</code> is not ``unsafe'' this worked well). With
@@ -394,7 +400,7 @@ Perl is using system's <code>stdio</code> library that library may re-start the
 %SIG handler. If this happens on your system the solution is to use
 <code>:perlio</code> layer to do IO - at least on those handles which you want
 to be able to break into with signals. (The <code>:perlio</code> layer checks
-the signal flags and calls %SIG handlers before resuming IO operation.)
+the signal flags and calls %SIG handlers before resuming IO operation.)</p>
 </dd>
 <dd>
 <p>Note that the default in Perl 5.7.3 and later is to automatically use
@@ -423,28 +429,28 @@ possible memory corruption, as described above).  Instead of setting
                      POSIX::SigAction-&gt;new(sub { die &quot;alarm&quot; }))
           or die &quot;Error setting SIGALRM handler: $!\n&quot;;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_restartable_system_calls">Restartable system calls</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_restartable_system_calls">Restartable system calls</a></strong>
+
 <dd>
-On systems that supported it, older versions of Perl used the
+<p>On systems that supported it, older versions of Perl used the
 SA_RESTART flag when installing %SIG handlers.  This meant that
 restartable system calls would continue rather than returning when
 a signal arrived.  In order to deliver deferred signals promptly,
 Perl 5.7.3 and later do <em>not</em> use SA_RESTART.  Consequently, 
 restartable system calls can fail (with $! set to <code>EINTR</code>) in places
-where they previously would have succeeded.
+where they previously would have succeeded.</p>
 </dd>
 <dd>
 <p>Note that the default <code>:perlio</code> layer will retry <code>read</code>, <code>write</code>
 and <code>close</code> as described above and that interrupted <code>wait</code> and 
 <code>waitpid</code> calls will always be retried.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_signals_as__22faults_22">Signals as ``faults''</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_signals_as__22faults_22">Signals as ``faults''</a></strong>
+
 <dd>
-Certain signals e.g. SEGV, ILL, BUS are generated as a result of
+<p>Certain signals e.g. SEGV, ILL, BUS are generated as a result of
 virtual memory or other ``faults''. These are normally fatal and there
 is little a Perl-level handler can do with them. (In particular the
 old signal scheme was particularly unsafe in such cases.)  However if
@@ -455,22 +461,23 @@ will generate the signal again. The result of this is a rather odd
 ``loop''. In future Perl's signal mechanism may be changed to avoid this
 - perhaps by simply disallowing %SIG handlers on signals of that
 type. Until then the work-round is not to set a %SIG handler on those
-signals. (Which signals they are is operating system dependent.)
+signals. (Which signals they are is operating system dependent.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_signals_triggered_by_operating_system_state">Signals triggered by operating system state</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_signals_triggered_by_operating_system_state">Signals triggered by operating system state</a></strong>
+
 <dd>
-On some operating systems certain signal handlers are supposed to ``do
+<p>On some operating systems certain signal handlers are supposed to ``do
 something'' before returning. One example can be CHLD or CLD which
 indicates a child process has completed. On some operating systems the
 signal handler is expected to <code>wait</code> for the completed child
 process. On such systems the deferred signal scheme will not work for
 those signals (it does not do the <code>wait</code>). Again the failure will
 look like a loop as the operating system will re-issue the signal as
-there are un-waited-for completed child processes.
+there are un-waited-for completed child processes.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>If you want the old signal behaviour back regardless of possible
 memory corruption, set the environment variable <code>PERL_SIGNALS</code> to
 <code>&quot;unsafe&quot;</code> (a new feature since Perl 5.8.1).</p>
@@ -669,7 +676,7 @@ the syntax</p>
     open KID_PS, &quot;-|&quot;, &quot;ps&quot;, &quot;aux&quot; or die $!;</pre>
 <p>forks the <code>ps(1)</code> command (without spawning a shell, as there are more than
 three arguments to open()), and reads its standard output via the
-<code>KID_PS</code> filehandle.  The corresponding syntax to read from command
+<code>KID_PS</code> filehandle.  The corresponding syntax to write to command
 pipes (with <code>&quot;|-&quot;</code> in place of <code>&quot;-|&quot;</code>) is also implemented.</p>
 <p>Note that these operations are full Unix forks, which means they may not be
 correctly implemented on alien systems.  Additionally, these are not true
@@ -1037,7 +1044,7 @@ differ from the system on which it's being run:</p>
         my $rtime = '    ';
         read(SOCKET, $rtime, 4);
         close(SOCKET);
-        my $histime = unpack(&quot;N&quot;, $rtime) - $SECS_of_70_YEARS ;
+        my $histime = unpack(&quot;N&quot;, $rtime) - $SECS_of_70_YEARS;
         printf &quot;%8d %s\n&quot;, $histime - time, ctime($histime);
     }</pre>
 <p>
@@ -1189,38 +1196,39 @@ looks like this:</p>
     Wed May 14 08:40:46 MDT 1997</pre>
 <p>Here are what those parameters to the <code>new</code> constructor mean:</p>
 <dl>
-<dt><strong><a name="item_proto"><code>Proto</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_proto"><code>Proto</code></a></strong>
+
 <dd>
-This is which protocol to use.  In this case, the socket handle returned
+<p>This is which protocol to use.  In this case, the socket handle returned
 will be connected to a TCP socket, because we want a stream-oriented
 connection, that is, one that acts pretty much like a plain old file.
 Not all sockets are this of this type.  For example, the UDP protocol
-can be used to make a datagram socket, used for message-passing.
+can be used to make a datagram socket, used for message-passing.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_peeraddr"><code>PeerAddr</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_peeraddr"><code>PeerAddr</code></a></strong>
+
 <dd>
-This is the name or Internet address of the remote host the server is
+<p>This is the name or Internet address of the remote host the server is
 running on.  We could have specified a longer name like <code>&quot;www.perl.com&quot;</code>,
 or an address like <code>&quot;204.148.40.9&quot;</code>.  For demonstration purposes, we've
 used the special hostname <code>&quot;localhost&quot;</code>, which should always mean the
 current machine you're running on.  The corresponding Internet address
-for localhost is <code>&quot;127.1&quot;</code>, if you'd rather use that.
+for localhost is <code>&quot;127.1&quot;</code>, if you'd rather use that.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_peerport"><code>PeerPort</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_peerport"><code>PeerPort</code></a></strong>
+
 <dd>
-This is the service name or port number we'd like to connect to.
+<p>This is the service name or port number we'd like to connect to.
 We could have gotten away with using just <code>&quot;daytime&quot;</code> on systems with a
 well-configured system services file,[FOOTNOTE: The system services file
 is in <em>/etc/services</em> under Unix] but just in case, we've specified the
 port number (13) in parentheses.  Using just the number would also have
-worked, but constant numbers make careful programmers nervous.
+worked, but constant numbers make careful programmers nervous.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Notice how the return value from the <code>new</code> constructor is used as
 a filehandle in the <code>while</code> loop?  That's what's called an indirect
 filehandle, a scalar variable containing a filehandle.  You can use
@@ -1375,17 +1383,17 @@ does nothing but listen on a particular port for incoming connections.
 It does this by calling the <code>IO::Socket::INET-&gt;new()</code> method with
 slightly different arguments than the client did.</p>
 <dl>
-<dt><strong>Proto</strong><br />
-</dt>
+<dt><strong>Proto</strong>
+
 <dd>
-This is which protocol to use.  Like our clients, we'll
-still specify <code>&quot;tcp&quot;</code> here.
+<p>This is which protocol to use.  Like our clients, we'll
+still specify <code>&quot;tcp&quot;</code> here.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_localport">LocalPort</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_localport">LocalPort</a></strong>
+
 <dd>
-We specify a local
+<p>We specify a local
 port in the <a href="#item_localport"><code>LocalPort</code></a> argument, which we didn't do for the client.
 This is service name or port number for which you want to be the
 server. (Under Unix, ports under 1024 are restricted to the
@@ -1393,27 +1401,28 @@ superuser.)  In our sample, we'll use port 9000, but you can use
 any port that's not currently in use on your system.  If you try
 to use one already in used, you'll get an ``Address already in use''
 message.  Under Unix, the <code>netstat -a</code> command will show
-which services current have servers.
+which services current have servers.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_listen">Listen</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_listen">Listen</a></strong>
+
 <dd>
-The <a href="#item_listen"><code>Listen</code></a> parameter is set to the maximum number of
+<p>The <a href="#item_listen"><code>Listen</code></a> parameter is set to the maximum number of
 pending connections we can accept until we turn away incoming clients.
 Think of it as a call-waiting queue for your telephone.
 The low-level Socket module has a special symbol for the system maximum, which
-is SOMAXCONN.
+is SOMAXCONN.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_reuse">Reuse</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_reuse">Reuse</a></strong>
+
 <dd>
-The <a href="#item_reuse"><code>Reuse</code></a> parameter is needed so that we restart our server
+<p>The <a href="#item_reuse"><code>Reuse</code></a> parameter is needed so that we restart our server
 manually without waiting a few minutes to allow system buffers to
-clear out.
+clear out.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Once the generic server socket has been created using the parameters
 listed above, the server then waits for a new client to connect
 to it.  The server blocks in the <code>accept</code> method, which eventually accepts a
@@ -1524,7 +1533,7 @@ with TCP, you'd have to use a different socket handle for each host.</p>
         ($hispaddr = recv(SOCKET, $rtime, 4, 0))        || die &quot;recv: $!&quot;;
         ($port, $hisiaddr) = sockaddr_in($hispaddr);
         $host = gethostbyaddr($hisiaddr, AF_INET);
-        $histime = unpack(&quot;N&quot;, $rtime) - $SECS_of_70_YEARS ;
+        $histime = unpack(&quot;N&quot;, $rtime) - $SECS_of_70_YEARS;
         printf &quot;%-12s &quot;, $host;
         printf &quot;%8d %s\n&quot;, $histime - time, scalar localtime($histime);
         $count--;

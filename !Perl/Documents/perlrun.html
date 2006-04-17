@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlrun - how to execute the Perl interpreter</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -44,13 +46,13 @@
 <tr><td><td>[&nbsp;<strong>-hv</strong>&nbsp;]&nbsp;[&nbsp;<strong>-V</strong>[:<em>configvar</em>]&nbsp;]
 <tr><td><td>[&nbsp;<strong>-cw</strong>&nbsp;]&nbsp;[&nbsp;<strong>-d</strong>[<strong>t</strong>][:<em>debugger</em>]&nbsp;]&nbsp;[&nbsp;<strong>-D</strong>[<em>number/list</em>]&nbsp;]
 <tr><td><td>[&nbsp;<strong>-pna</strong>&nbsp;]&nbsp;[&nbsp;<strong>-F</strong><em>pattern</em>&nbsp;]&nbsp;[&nbsp;<strong>-l</strong>[<em>octal</em>]&nbsp;]&nbsp;[&nbsp;<strong>-0</strong>[<em>octal/hexadecimal</em>]&nbsp;]
-<tr><td><td>[&nbsp;<strong>-I</strong><em>dir</em>&nbsp;]&nbsp;[&nbsp;<strong>-m</strong>[<strong>-</strong>]<em>module</em>&nbsp;]&nbsp;[&nbsp;<strong>-M</strong>[<strong>-</strong>]<em>'module...'</em>&nbsp;]
+<tr><td><td>[&nbsp;<strong>-I</strong><em>dir</em>&nbsp;]&nbsp;[&nbsp;<strong>-m</strong>[<strong>-</strong>]<em>module</em>&nbsp;]&nbsp;[&nbsp;<strong>-M</strong>[<strong>-</strong>]<em>'module...'</em>&nbsp;]&nbsp;[&nbsp;<strong>-f</strong>&nbsp;]
+<tr><td><td>[&nbsp;<strong>-C&nbsp;[<em>number/list</em>]&nbsp;</strong>]
 <tr><td><td>[&nbsp;<strong>-P</strong>&nbsp;]
 <tr><td><td>[&nbsp;<strong>-S</strong>&nbsp;]
 <tr><td><td>[&nbsp;<strong>-x</strong>[<em>dir</em>]&nbsp;]
 <tr><td><td>[&nbsp;<strong>-i</strong>[<em>extension</em>]&nbsp;]
-<tr><td><td>[&nbsp;<strong>-e</strong>&nbsp;<em>'command'</em>&nbsp;]&nbsp;[&nbsp;<strong>--</strong>&nbsp;]&nbsp;[&nbsp;<em>programfile</em>&nbsp;]&nbsp;[&nbsp;<em>argument</em>&nbsp;]...
-<tr><td><td>[&nbsp;<strong>-C&nbsp;[<em>number/list</em>]&nbsp;</strong>] ]&gt;</table></p>
+<tr><td><td>[&nbsp;<strong>-e</strong>&nbsp;<em>'command'</em>&nbsp;]&nbsp;[&nbsp;<strong>--</strong>&nbsp;]&nbsp;[&nbsp;<em>programfile</em>&nbsp;]&nbsp;[&nbsp;<em>argument</em>&nbsp;]...</table></p>
 <p>
 </p>
 <hr />
@@ -62,19 +64,20 @@ is also possible--see <a href="perldebug.html">the perldebug manpage</a> for det
 Upon startup, Perl looks for your program in one of the following
 places:</p>
 <ol>
-<li></li>
-Specified line by line via <strong>-e</strong> switches on the command line.
-<p></p>
-<li></li>
-Contained in the file specified by the first filename on the command line.
+<li>
+<p>Specified line by line via <strong>-e</strong> switches on the command line.</p>
+</li>
+<li>
+<p>Contained in the file specified by the first filename on the command line.
 (Note that systems supporting the #! notation invoke interpreters this
-way. See <a href="#location_of_perl">Location of Perl</a>.)
-<p></p>
-<li></li>
-Passed in implicitly via standard input.  This works only if there are
+way. See <a href="#location_of_perl">Location of Perl</a>.)</p>
+</li>
+<li>
+<p>Passed in implicitly via standard input.  This works only if there are
 no filename arguments--to pass arguments to a STDIN-read program you
-must explicitly specify a ``-'' for the program name.
-<p></p></ol>
+must explicitly specify a ``-'' for the program name.</p>
+</li>
+</ol>
 <p>With methods 2 and 3, Perl starts parsing the input file from the
 beginning, unless you've specified a <strong>-x</strong> switch, in which case it
 scans for the first line starting with #! and containing the word
@@ -129,13 +132,14 @@ runs off the end without hitting an <code>exit()</code> or <code>die()</code> op
 <code>exit(0)</code> is provided to indicate successful completion.</p>
 <p>
 </p>
-<h2><a name="___and_quoting_on_nonunix_systems">#! and quoting on non-Unix systems</a></h2>
+<h2><a name="___and_quoting_on_nonunix_systems_x_hashbang__x____">#! and quoting on non-Unix systems
+ </a></h2>
 <p>Unix's #! technique can be simulated on other systems:</p>
 <dl>
-<dt><strong><a name="item_os_2f2">OS/2</a></strong><br />
-</dt>
+<dt><strong><a name="item_os_2f2">OS/2</a></strong>
+
 <dd>
-Put
+<p>Put</p>
 </dd>
 <dd>
 <pre>
@@ -145,37 +149,39 @@ Put
 <p>as the first line in <code>*.cmd</code> file (<strong>-S</strong> due to a bug in cmd.exe's
 `extproc' handling).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_ms_2ddos">MS-DOS</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_ms_2ddos">MS-DOS</a></strong>
+
 <dd>
-Create a batch file to run your program, and codify it in
+<p>Create a batch file to run your program, and codify it in
 <code>ALTERNATE_SHEBANG</code> (see the <em>dosish.h</em> file in the source
-distribution for more information).
+distribution for more information).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_win95_2fnt">Win95/NT</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_win95_2fnt">Win95/NT</a></strong>
+
 <dd>
-The Win95/NT installation, when using the ActiveState installer for Perl,
+<p>The Win95/NT installation, when using the ActiveState installer for Perl,
 will modify the Registry to associate the <em>.pl</em> extension with the perl
 interpreter.  If you install Perl by other means (including building from
 the sources), you may have to modify the Registry yourself.  Note that
 this means you can no longer tell the difference between an executable
-Perl program and a Perl library file.
+Perl program and a Perl library file.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_macintosh">Macintosh</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_macintosh">Macintosh</a></strong>
+
 <dd>
-A Macintosh perl program will have the appropriate Creator and
-Type, so that double-clicking them will invoke the perl application.
+<p>Under ``Classic'' MacOS, a perl program will have the appropriate Creator and
+Type, so that double-clicking them will invoke the MacPerl application.
+Under Mac OS X, clickable apps can be made from any <code>#!</code> script using Wil
+Sanchez' DropScript utility: <a href="http://www.wsanchez.net/software/">http://www.wsanchez.net/software/</a> .</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_vms">VMS</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_vms">VMS</a></strong>
+
 <dd>
-Put
+<p>Put</p>
 </dd>
 <dd>
 <pre>
@@ -192,7 +198,8 @@ via <em>DCL$PATH</em> by just using the name of the program).</p>
 <p>This incantation is a bit much to remember, but Perl will display it for
 you if you say <code>perl &quot;-V:startperl&quot;</code>.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Command-interpreters on non-Unix systems have rather different ideas
 on quoting than Unix shells.  You'll need to learn the special
 characters in your command-interpreter (<code>*</code>, <code>\</code> and <code>&quot;</code> are
@@ -230,7 +237,8 @@ characters as control characters.</p>
 <p>There is no general solution to all of this.  It's just a mess.</p>
 <p>
 </p>
-<h2><a name="location_of_perl">Location of Perl</a></h2>
+<h2><a name="location_of_perl_x_perl__location_of_interpreter_">Location of Perl
+</a></h2>
 <p>It may seem obvious to say, but Perl is useful only when users can
 easily find it.  When possible, it's good for both <em>/usr/bin/perl</em>
 and <em>/usr/local/bin/perl</em> to be symlinks to the actual binary.  If
@@ -249,21 +257,23 @@ like this at the top of your program:</p>
     use 5.005_54;</pre>
 <p>
 </p>
-<h2><a name="command_switches">Command Switches</a></h2>
+<h2><a name="command_switches_x_perl__command_switches__x_command_switches_">Command Switches
+ </a></h2>
 <p>As with all standard commands, a single-character switch may be
 clustered with the following switch, if any.</p>
 <pre>
     #!/usr/bin/perl -spi.orig   # same as -s -p -i.orig</pre>
 <p>Switches include:</p>
 <dl>
-<dt><strong><a name="item__2d0_5boctal_2fhexadecimal_5d"><strong>-0</strong>[<em>octal/hexadecimal</em>]</a></strong><br />
-</dt>
+<dt><strong><a name="item__2d0_5boctal_2fhexadecimal_5d_x_3c_2d0_3e_x_3c_24_"><strong>-0</strong>[<em>octal/hexadecimal</em>]
+ </a></strong>
+
 <dd>
-specifies the input record separator (<code>$/</code>) as an octal or
+<p>specifies the input record separator (<code>$/</code>) as an octal or
 hexadecimal number.  If there are no digits, the null character is the
 separator.  Other switches may precede or follow the digits.  For
 example, if you have a version of <strong>find</strong> which can print filenames
-terminated by the null character, you can say this:
+terminated by the null character, you can say this:</p>
 </dd>
 <dd>
 <pre>
@@ -277,16 +287,17 @@ legal byte with that value.</p>
 <dd>
 <p>If you want to specify any Unicode character, use the hexadecimal
 format: <code>-0xHHH...</code>, where the <code>H</code> are valid hexadecimal digits.
-(This means that you cannot use the <a href="#item__2dx"><code>-x</code></a> with a directory name that
+(This means that you cannot use the <code>-x</code> with a directory name that
 consists of hexadecimal digits.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2da"><strong>-a</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2da_x_3c_2da_3e_x_3cautosplit_3e"><strong>-a</strong>
+ </a></strong>
+
 <dd>
-turns on autosplit mode when used with a <strong>-n</strong> or <strong>-p</strong>.  An implicit
+<p>turns on autosplit mode when used with a <strong>-n</strong> or <strong>-p</strong>.  An implicit
 split command to the @F array is done as the first thing inside the
-implicit while loop produced by the <strong>-n</strong> or <strong>-p</strong>.
+implicit while loop produced by the <strong>-n</strong> or <strong>-p</strong>.</p>
 </dd>
 <dd>
 <pre>
@@ -305,11 +316,12 @@ implicit while loop produced by the <strong>-n</strong> or <strong>-p</strong>.
 <dd>
 <p>An alternate delimiter may be specified using <strong>-F</strong>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dc__5bnumber_2flist_5d"><strong>-C [<em>number/list</em>]</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dc__5bnumber_2flist_5d_x_3c_2dc_3e"><strong>-C [<em>number/list</em>]</strong>
+</a></strong>
+
 <dd>
-The <code>-C</code> flag controls some Unicode of the Perl Unicode features.
+<p>The <code>-C</code> flag controls some Unicode of the Perl Unicode features.</p>
 </dd>
 <dd>
 <p>As of 5.8.1, the <code>-C</code> can be followed either by a number or a list
@@ -339,7 +351,7 @@ nor toggling.</p>
 </dd>
 <dd>
 <p>The <code>io</code> options mean that any subsequent <code>open()</code> (or similar I/O
-operations) will have the <a href="#item__3autf8"><code>:utf8</code></a> PerlIO layer implicitly applied
+operations) will have the <code>:utf8</code> PerlIO layer implicitly applied
 to them, in other words, UTF-8 is expected from any input stream,
 and UTF-8 is produced to any output stream.  This is just the default,
 with explicit layers in <code>open()</code> and with <code>binmode()</code> one can manipulate
@@ -347,14 +359,14 @@ streams as usual.</p>
 </dd>
 <dd>
 <p><code>-C</code> on its own (not followed by any number or option list), or the
-empty string <code>&quot;&quot;</code> for the <a href="#item_perl_unicode"><code>PERL_UNICODE</code></a> environment variable, has the
+empty string <code>&quot;&quot;</code> for the <code>PERL_UNICODE</code> environment variable, has the
 same effect as <code>-CSDL</code>.  In other words, the standard I/O handles and
 the default <code>open()</code> layer are UTF-8-fied <strong>but</strong> only if the locale
 environment variables indicate a UTF-8 locale.  This behaviour follows
 the <em>implicit</em> (and problematic) UTF-8 behaviour of Perl 5.8.0.</p>
 </dd>
 <dd>
-<p>You can use <code>-C0</code> (or <code>&quot;0&quot;</code> for <a href="#item_perl_unicode"><code>PERL_UNICODE</code></a>) to explicitly
+<p>You can use <code>-C0</code> (or <code>&quot;0&quot;</code> for <code>PERL_UNICODE</code>) to explicitly
 disable all the above Unicode features.</p>
 </dd>
 <dd>
@@ -362,7 +374,7 @@ disable all the above Unicode features.</p>
 of this setting.  This is variable is set during Perl startup and is
 thereafter read-only.  If you want runtime effects, use the three-arg
 <code>open()</code> (see <a href="perlfunc.html#open">open in the perlfunc manpage</a>), the two-arg <code>binmode()</code> (see <a href="perlfunc.html#binmode">binmode in the perlfunc manpage</a>),
-and the <code>open</code> pragma (see <em>open</em>).</p>
+and the <code>open</code> pragma (see <a href="../../open.html">the open manpage</a>).</p>
 </dd>
 <dd>
 <p>(In Perls earlier than 5.8.1 the <code>-C</code> switch was a Win32-only switch
@@ -370,33 +382,36 @@ that enabled the use of Unicode-aware ``wide system call'' Win32 APIs.
 This feature was practically unused, however, and the command line
 switch was therefore ``recycled''.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dc"><strong>-c</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dc_x_3c_2dc_3e"><strong>-c</strong>
+</a></strong>
+
 <dd>
-causes Perl to check the syntax of the program and then exit without
+<p>causes Perl to check the syntax of the program and then exit without
 executing it.  Actually, it <em>will</em> execute <code>BEGIN</code>, <code>CHECK</code>, and
 <code>use</code> blocks, because these are considered as occurring outside the
 execution of your program.  <code>INIT</code> and <code>END</code> blocks, however, will
-be skipped.
+be skipped.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dd"><strong>-d</strong></a></strong><br />
-</dt>
-<dt><strong><a name="item__2ddt"><strong>-dt</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dd_x_3c_2dd_3e_x_3c_2ddt_3e"><strong>-d</strong>
+ </a></strong>
+
+<dt><strong><a name="item__2ddt"><strong>-dt</strong></a></strong>
+
 <dd>
-runs the program under the Perl debugger.  See <a href="perldebug.html">the perldebug manpage</a>.
+<p>runs the program under the Perl debugger.  See <a href="perldebug.html">the perldebug manpage</a>.
 If <strong>t</strong> is specified, it indicates to the debugger that threads
-will be used in the code being debugged.
+will be used in the code being debugged.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dd_3afoo_5b_3dbar_2cbaz_5d"><strong>-d:</strong><em>foo[=bar,baz]</em></a></strong><br />
-</dt>
-<dt><strong><a name="item__2ddt_3afoo_5b_3dbar_2cbaz_5d"><strong>-dt:</strong><em>foo[=bar,baz]</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dd_3afoo_5b_3dbar_2cbaz_5d_x_3c_2dd_3e_x_3c_2ddt"><strong>-d:</strong><em>foo[=bar,baz]</em>
+ </a></strong>
+
+<dt><strong><a name="item__2ddt_3afoo_5b_3dbar_2cbaz_5d"><strong>-dt:</strong><em>foo[=bar,baz]</em></a></strong>
+
 <dd>
-runs the program under the control of a debugging, profiling, or
+<p>runs the program under the control of a debugging, profiling, or
 tracing module installed as Devel::foo. E.g., <strong>-d:DProf</strong> executes
 the program using the Devel::DProf profiler.  As with the <strong>-M</strong>
 flag, options may be passed to the Devel::foo package where they
@@ -404,19 +419,20 @@ will be received and interpreted by the Devel::foo::import routine.
 The comma-separated list of options must follow a <code>=</code> character.
 If <strong>t</strong> is specified, it indicates to the debugger that threads
 will be used in the code being debugged.
-See <a href="perldebug.html">the perldebug manpage</a>.
+See <a href="perldebug.html">the perldebug manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2ddletters"><strong>-D</strong><em>letters</em></a></strong><br />
-</dt>
-<dt><strong><a name="item__2ddnumber"><strong>-D</strong><em>number</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2ddletters_x_3c_2dd_3e_x_3cdebugging_3e_x_3c_2ddd"><strong>-D</strong><em>letters</em>
+  </a></strong>
+
+<dt><strong><a name="item__2ddnumber"><strong>-D</strong><em>number</em></a></strong>
+
 <dd>
-sets debugging flags.  To watch how it executes your program, use
+<p>sets debugging flags.  To watch how it executes your program, use
 <strong>-Dtls</strong>.  (This works only if debugging is compiled into your
 Perl.)  Another nice value is <strong>-Dx</strong>, which lists your compiled
 syntax tree.  And <strong>-Dr</strong> displays compiled regular expressions;
-the format of the output is explained in <a href="perldebguts.html">the perldebguts manpage</a>.
+the format of the output is explained in <a href="perldebguts.html">the perldebguts manpage</a>.</p>
 </dd>
 <dd>
 <p>As an alternative, specify a number instead of list of letters (e.g.,
@@ -449,7 +465,7 @@ the format of the output is explained in <a href="perldebguts.html">the perldebg
 </dd>
 <dd>
 <p>All these flags require <strong>-DDEBUGGING</strong> when you compile the Perl
-executable (but see <a href="../Devel/Peek.html">the Devel::Peek manpage</a>, <em>re</em> which may change this).
+executable (but see <a href="../../Devel/Peek.html">the Devel::Peek manpage</a>, <a href="../../re.html">the re manpage</a> which may change this).
 See the <em>INSTALL</em> file in the Perl source distribution
 for how to do this.  This flag is automatically set if you include <strong>-g</strong>
 option when <code>Configure</code> asks you about optimizer/debugger flags.</p>
@@ -462,7 +478,7 @@ you can't use Perl's <strong>-D</strong> switch.  Instead do this</p>
 <dd>
 <pre>
   # If you have &quot;env&quot; utility
-  env=PERLDB_OPTS=&quot;NonStop=1 AutoTrace=1 frame=2&quot; perl -dS program</pre>
+  env PERLDB_OPTS=&quot;NonStop=1 AutoTrace=1 frame=2&quot; perl -dS program</pre>
 </dd>
 <dd>
 <pre>
@@ -477,39 +493,57 @@ you can't use Perl's <strong>-D</strong> switch.  Instead do this</p>
 <dd>
 <p>See <a href="perldebug.html">the perldebug manpage</a> for details and variations.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2de_commandline"><strong>-e</strong> <em>commandline</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2de_commandline_x_3c_2de_3e"><strong>-e</strong> <em>commandline</em>
+</a></strong>
+
 <dd>
-may be used to enter one line of program.  If <strong>-e</strong> is given, Perl
+<p>may be used to enter one line of program.  If <strong>-e</strong> is given, Perl
 will not look for a filename in the argument list.  Multiple <strong>-e</strong>
 commands may be given to build up a multi-line script.  Make sure
-to use semicolons where you would in a normal program.
+to use semicolons where you would in a normal program.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dfpattern"><strong>-F</strong><em>pattern</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2df_x_3c_2df_3e"><strong>-f</strong>
+</a></strong>
+
 <dd>
-specifies the pattern to split on if <strong>-a</strong> is also in effect.  The
+<p>Disable executing <em>$Config{sitelib}/sitecustomize.pl</em> at startup.</p>
+</dd>
+<dd>
+<p>Perl can be built so that it by default will try to execute
+<em>$Config{sitelib}/sitecustomize.pl</em> at startup.  This is a hook that
+allows the sysadmin to customize how perl behaves.  It can for
+instance be used to add entries to the @INC array to make perl find
+modules in non-standard locations.</p>
+</dd>
+</li>
+<dt><strong><a name="item__2dfpattern_x_3c_2df_3e"><strong>-F</strong><em>pattern</em>
+</a></strong>
+
+<dd>
+<p>specifies the pattern to split on if <strong>-a</strong> is also in effect.  The
 pattern may be surrounded by <code>//</code>, <code>&quot;&quot;</code>, or <code>''</code>, otherwise it will be
-put in single quotes.
+put in single quotes. You can't use literal whitespace in the pattern.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dh"><strong>-h</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dh_x_3c_2dh_3e"><strong>-h</strong>
+</a></strong>
+
 <dd>
-prints a summary of the options.
+<p>prints a summary of the options.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2di_5bextension_5d"><strong>-i</strong>[<em>extension</em>]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2di_5bextension_5d_x_3c_2di_3e_x_3cin_2dplace_3e"><strong>-i</strong>[<em>extension</em>]
+ </a></strong>
+
 <dd>
-specifies that files processed by the <code>&lt;&gt;</code> construct are to be
+<p>specifies that files processed by the <code>&lt;&gt;</code> construct are to be
 edited in-place.  It does this by renaming the input file, opening the
 output file by the original name, and selecting that output file as the
 default for <code>print()</code> statements.  The extension, if supplied, is used to
 modify the name of the old file to make a backup copy, following these
-rules:
+rules:</p>
 </dd>
 <dd>
 <p>If no extension is supplied, no backup is made and the current file is
@@ -650,26 +684,28 @@ files are given on the command line.  In this case, no backup is made
 (the original file cannot, of course, be determined) and processing
 proceeds from STDIN to STDOUT as might be expected.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2didirectory"><strong>-I</strong><em>directory</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2didirectory_x_3c_2di_3e_x_3c_40inc_3e"><strong>-I</strong><em>directory</em>
+ </a></strong>
+
 <dd>
-Directories specified by <strong>-I</strong> are prepended to the search path for
+<p>Directories specified by <strong>-I</strong> are prepended to the search path for
 modules (<code>@INC</code>), and also tells the C preprocessor where to search for
 include files.  The C preprocessor is invoked with <strong>-P</strong>; by default it
-searches /usr/include and /usr/lib/perl.
+searches /usr/include and /usr/lib/perl.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dl_5boctnum_5d"><strong>-l</strong>[<em>octnum</em>]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dl_5boctnum_5d_x_3c_2dl_3e_x_3c_24_2f_3e_x_3c_24"><strong>-l</strong>[<em>octnum</em>]
+  </a></strong>
+
 <dd>
-enables automatic line-ending processing.  It has two separate
+<p>enables automatic line-ending processing.  It has two separate
 effects.  First, it automatically chomps <code>$/</code> (the input record
 separator) when used with <strong>-n</strong> or <strong>-p</strong>.  Second, it assigns <code>$\</code>
 (the output record separator) to have the value of <em>octnum</em> so
 that any print statements will have that separator added back on.
 If <em>octnum</em> is omitted, sets <code>$\</code> to the current value of
-<code>$/</code>.  For instance, to trim lines to 80 columns:
+<code>$/</code>.  For instance, to trim lines to 80 columns:</p>
 </dd>
 <dd>
 <pre>
@@ -687,18 +723,19 @@ separator if the <strong>-l</strong> switch is followed by a <strong>-0</strong>
 <dd>
 <p>This sets <code>$\</code> to newline and then sets <code>$/</code> to the null character.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dm_5b_2d_5dmodule"><strong>-m</strong>[<strong>-</strong>]<em>module</em></a></strong><br />
-</dt>
-<dt><strong><a name="item__2dm_5b_2d_5dmodule"><strong>-M</strong>[<strong>-</strong>]<em>module</em></a></strong><br />
-</dt>
-<dt><strong><a name="item__2dm_5b_2d_5d_27module__2e_2e_2e_27"><strong>-M</strong>[<strong>-</strong>]<em>'module ...'</em></a></strong><br />
-</dt>
-<dt><strong><a name="item__2d_5bmm_5d_5b_2d_5dmodule_3darg_5b_2carg_5d_2e_2e"><strong>-[mM]</strong>[<strong>-</strong>]<em>module=arg[,arg]...</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dm_5b_2d_5dmodule_x_3c_2dm_3e_x_3c_2dm_3e"><strong>-m</strong>[<strong>-</strong>]<em>module</em>
+ </a></strong>
+
+<dt><strong><a name="item__2dm_5b_2d_5dmodule"><strong>-M</strong>[<strong>-</strong>]<em>module</em></a></strong>
+
+<dt><strong><a name="item__2dm_5b_2d_5d_27module__2e_2e_2e_27"><strong>-M</strong>[<strong>-</strong>]<em>'module ...'</em></a></strong>
+
+<dt><strong><a name="item__2d_5bmm_5d_5b_2d_5dmodule_3darg_5b_2carg_5d_2e_2e"><strong>-[mM]</strong>[<strong>-</strong>]<em>module=arg[,arg]...</em></a></strong>
+
 <dd>
-<strong>-m</strong><em>module</em> executes <code>use</code> <em>module</em> <code>();</code> before executing your
-program.
+<p><strong>-m</strong><em>module</em> executes <code>use</code> <em>module</em> <code>();</code> before executing your
+program.</p>
 </dd>
 <dd>
 <p><strong>-M</strong><em>module</em> executes <code>use</code> <em>module</em> <code>;</code> before executing your
@@ -717,13 +754,19 @@ importing symbols.  The actual code generated by <strong>-Mmodule=foo,bar</stron
 <code>use module split(/,/,q{foo,bar})</code>.  Note that the <code>=</code> form
 removes the distinction between <strong>-m</strong> and <strong>-M</strong>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dn"><strong>-n</strong></a></strong><br />
-</dt>
 <dd>
-causes Perl to assume the following loop around your program, which
+<p>A consequence of this is that <strong>-MFoo=number</strong> never does a version check
+(unless <code>Foo::import()</code> itself is set up to do a version check, which
+could happen for example if Foo inherits from Exporter.)</p>
+</dd>
+</li>
+<dt><strong><a name="item__2dn_x_3c_2dn_3e"><strong>-n</strong>
+</a></strong>
+
+<dd>
+<p>causes Perl to assume the following loop around your program, which
 makes it iterate over filename arguments somewhat like <strong>sed -n</strong> or
-<strong>awk</strong>:
+<strong>awk</strong>:</p>
 </dd>
 <dd>
 <pre>
@@ -755,12 +798,13 @@ you follow the example under <strong>-0</strong>.</p>
 <p><code>BEGIN</code> and <code>END</code> blocks may be used to capture control before or after
 the implicit program loop, just as in <strong>awk</strong>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dp"><strong>-p</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dp_x_3c_2dp_3e"><strong>-p</strong>
+</a></strong>
+
 <dd>
-causes Perl to assume the following loop around your program, which
-makes it iterate over filename arguments somewhat like <strong>sed</strong>:
+<p>causes Perl to assume the following loop around your program, which
+makes it iterate over filename arguments somewhat like <strong>sed</strong>:</p>
 </dd>
 <dd>
 <pre>
@@ -782,12 +826,13 @@ overrides a <strong>-n</strong> switch.</p>
 <p><code>BEGIN</code> and <code>END</code> blocks may be used to capture control before or after
 the implicit loop, just as in <strong>awk</strong>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dp"><strong>-P</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dp_x_3c_2dp_3e"><strong>-P</strong>
+</a></strong>
+
 <dd>
-<strong>NOTE: Use of -P is strongly discouraged because of its inherent
-problems, including poor portability.</strong>
+<p><strong>NOTE: Use of -P is strongly discouraged because of its inherent
+problems, including poor portability.</strong></p>
 </dd>
 <dd>
 <p>This option causes your program to be run through the C preprocessor before
@@ -796,28 +841,28 @@ with the # character, you should avoid starting comments with any words
 recognized by the C preprocessor such as <code>&quot;if&quot;</code>, <code>&quot;else&quot;</code>, or <code>&quot;define&quot;</code>.</p>
 </dd>
 <dd>
-<p>If you're considering using <a href="#item__2dp"><code>-P</code></a>, you might also want to look at the
+<p>If you're considering using <code>-P</code>, you might also want to look at the
 Filter::cpp module from CPAN.</p>
 </dd>
 <dd>
 <p>The problems of -P include, but are not limited to:</p>
 </dd>
 <ul>
-<li></li>
-The <code>#!</code> line is stripped, so any switches there don't apply.
-<p></p>
-<li></li>
-A <a href="#item__2dp"><code>-P</code></a> on a <code>#!</code> line doesn't work.
-<p></p>
-<li></li>
-<strong>All</strong> lines that begin with (whitespace and) a <code>#</code> but
+<li>
+<p>The <code>#!</code> line is stripped, so any switches there don't apply.</p>
+</li>
+<li>
+<p>A <code>-P</code> on a <code>#!</code> line doesn't work.</p>
+</li>
+<li>
+<p><strong>All</strong> lines that begin with (whitespace and) a <code>#</code> but
 do not look like cpp commands, are stripped, including anything
-inside Perl strings, regular expressions, and here-docs .
-<p></p>
-<li></li>
-In some platforms the C preprocessor knows too much: it knows about
+inside Perl strings, regular expressions, and here-docs .</p>
+</li>
+<li>
+<p>In some platforms the C preprocessor knows too much: it knows about
 the C++ -style until-end-of-line comments starting with <code>&quot;//&quot;</code>.
-This will cause problems with common Perl constructs like
+This will cause problems with common Perl constructs like</p>
 <pre>
     s/foo//;</pre>
 <p>because after -P this will became illegal code</p>
@@ -827,27 +872,28 @@ This will cause problems with common Perl constructs like
 like for example <code>&quot;!&quot;</code>:</p>
 <pre>
     s!foo!!;</pre>
-<p></p>
-<li></li>
-It requires not only a working C preprocessor but also a working
-<em>sed</em>.  If not on UNIX, you are probably out of luck on this.
-<p></p>
-<li></li>
-Script line numbers are not preserved.
-<p></p>
-<li></li>
-The <a href="#item__2dx"><code>-x</code></a> does not work with <a href="#item__2dp"><code>-P</code></a>.
-<p></p></ul>
-<dt><strong><a name="item__2ds"><strong>-s</strong></a></strong><br />
-</dt>
+</li>
+<li>
+<p>It requires not only a working C preprocessor but also a working
+<em>sed</em>.  If not on UNIX, you are probably out of luck on this.</p>
+</li>
+<li>
+<p>Script line numbers are not preserved.</p>
+</li>
+<li>
+<p>The <code>-x</code> does not work with <code>-P</code>.</p>
+</li>
+</ul>
+<dt><strong><a name="item__2ds_x_3c_2ds_3e"><strong>-s</strong>
+</a></strong>
+
 <dd>
-enables rudimentary switch parsing for switches on the command
+<p>enables rudimentary switch parsing for switches on the command
 line after the program name but before any filename arguments (or before
-an argument of <strong>--</strong>).  This means you can have switches with two leading
-dashes (<strong>--help</strong>).  Any switch found there is removed from @ARGV and sets the
+an argument of <strong>--</strong>).  Any switch found there is removed from @ARGV and sets the
 corresponding variable in the Perl program.  The following program
 prints ``1'' if the program is invoked with a <strong>-xyz</strong> switch, and ``abc''
-if it is invoked with <strong>-xyz=abc</strong>.
+if it is invoked with <strong>-xyz=abc</strong>.</p>
 </dd>
 <dd>
 <pre>
@@ -855,15 +901,17 @@ if it is invoked with <strong>-xyz=abc</strong>.
     if ($xyz) { print &quot;$xyz\n&quot; }</pre>
 </dd>
 <dd>
-<p>Do note that <strong>--help</strong> creates the variable ${-help}, which is not compliant
-with <code>strict refs</code>.</p>
+<p>Do note that a switch like <strong>--help</strong> creates the variable ${-help}, which is not compliant
+with <code>strict refs</code>.  Also, when using this option on a script with
+warnings enabled you may get a lot of spurious ``used only once'' warnings.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2ds"><strong>-S</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2ds_x_3c_2ds_3e"><strong>-S</strong>
+</a></strong>
+
 <dd>
-makes Perl use the PATH environment variable to search for the
-program (unless the name of the program contains directory separators).
+<p>makes Perl use the PATH environment variable to search for the
+program (unless the name of the program contains directory separators).</p>
 </dd>
 <dd>
 <p>On some platforms, this also makes Perl append suffixes to the
@@ -922,13 +970,14 @@ separators, it will first be searched for in the current directory
 before being searched for on the PATH.  On Unix platforms, the
 program will be searched for strictly on the PATH.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dt"><strong>-t</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dt_x_3c_2dt_3e"><strong>-t</strong>
+</a></strong>
+
 <dd>
-Like <strong>-T</strong>, but taint checks will issue warnings rather than fatal
+<p>Like <strong>-T</strong>, but taint checks will issue warnings rather than fatal
 errors.  These warnings can be controlled normally with <code>no warnings
-qw(taint)</code>.
+qw(taint)</code>.</p>
 </dd>
 <dd>
 <p><strong>NOTE: this is not a substitute for -T.</strong> This is meant only to be
@@ -936,11 +985,12 @@ used as a temporary development aid while securing legacy code:
 for real production code and for new secure code written from scratch
 always use the real <strong>-T</strong>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dt"><strong>-T</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dt_x_3c_2dt_3e"><strong>-T</strong>
+</a></strong>
+
 <dd>
-forces ``taint'' checks to be turned on so you can test them.  Ordinarily
+<p>forces ``taint'' checks to be turned on so you can test them.  Ordinarily
 these checks are done only when running setuid or setgid.  It's a
 good idea to turn them on explicitly for programs that run on behalf
 of someone else whom you might not necessarily trust, such as CGI
@@ -948,13 +998,14 @@ programs or any internet servers you might write in Perl.  See
 <a href="perlsec.html">the perlsec manpage</a> for details.  For security reasons, this option must be
 seen by Perl quite early; usually this means it must appear early
 on the command line or in the #! line for systems which support
-that construct.
+that construct.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2du"><strong>-u</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2du_x_3c_2du_3e"><strong>-u</strong>
+</a></strong>
+
 <dd>
-This obsolete switch causes Perl to dump core after compiling your
+<p>This obsolete switch causes Perl to dump core after compiling your
 program.  You can then in theory take this core dump and turn it
 into an executable file by using the <strong>undump</strong> program (not supplied).
 This speeds startup at the expense of some disk space (which you
@@ -962,44 +1013,47 @@ can minimize by stripping the executable).  (Still, a ``hello world''
 executable comes out to about 200K on my machine.)  If you want to
 execute a portion of your program before dumping, use the <code>dump()</code>
 operator instead.  Note: availability of <strong>undump</strong> is platform
-specific and may not be available for a specific port of Perl.
+specific and may not be available for a specific port of Perl.</p>
 </dd>
 <dd>
 <p>This switch has been superseded in favor of the new Perl code
-generator backends to the compiler.  See <em>B</em> and <a href="../B/Bytecode.html">the B::Bytecode manpage</a>
+generator backends to the compiler.  See <a href="../../B.html">the B manpage</a> and <a href="../../B/Bytecode.html">the B::Bytecode manpage</a>
 for details.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2du"><strong>-U</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2du_x_3c_2du_3e"><strong>-U</strong>
+</a></strong>
+
 <dd>
-allows Perl to do unsafe operations.  Currently the only ``unsafe''
-operations are the unlinking of directories while running as superuser,
-and running setuid programs with fatal taint checks turned into
-warnings.  Note that the <strong>-w</strong> switch (or the <code>$^W</code> variable) must
-be used along with this option to actually <em>generate</em> the
-taint-check warnings.
+<p>allows Perl to do unsafe operations.  Currently the only ``unsafe''
+operations are attempting to unlink directories while running as 
+superuser, and running setuid programs with fatal taint checks turned
+into warnings.  Note that the <strong>-w</strong> switch (or the <code>$^W</code> variable) 
+must be used along with this option to actually <em>generate</em> the
+taint-check warnings.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dv"><strong>-v</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dv_x_3c_2dv_3e"><strong>-v</strong>
+</a></strong>
+
 <dd>
-prints the version and patchlevel of your perl executable.
+<p>prints the version and patchlevel of your perl executable.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dv"><strong>-V</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dv_x_3c_2dv_3e"><strong>-V</strong>
+</a></strong>
+
 <dd>
-prints summary of the major perl configuration values and the current
-values of @INC.
+<p>prints summary of the major perl configuration values and the current
+values of @INC.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dv_3aconfigvar"><strong>-V:</strong><em>configvar</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dv_3aconfigvar"><strong>-V:</strong><em>configvar</em></a></strong>
+
 <dd>
-Prints to STDOUT the value of the named configuration variable(s),
+<p>Prints to STDOUT the value of the named configuration variable(s),
 with multiples when your configvar argument looks like a regex (has
-non-letters).  For example:
+non-letters).  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -1046,17 +1100,18 @@ below, the PERL_API params are returned in alphabetical order.</p>
     $ echo building_on `perl -V::osname: -V::PERL_API_.*:` now
     building_on 'linux' '5' '1' '9' now</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dw"><strong>-w</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dw_x_3c_2dw_3e"><strong>-w</strong>
+</a></strong>
+
 <dd>
-prints warnings about dubious constructs, such as variable names
+<p>prints warnings about dubious constructs, such as variable names
 that are mentioned only once and scalar variables that are used
 before being set, redefined subroutines, references to undefined
 filehandles or filehandles opened read-only that you are attempting
-to write on, values used as a number that doesn't look like numbers,
+to write on, values used as a number that don't look like numbers,
 using an array as though it were a scalar, if your subroutines
-recurse more than 100 deep, and innumerable other things.
+recurse more than 100 deep, and innumerable other things.</p>
 </dd>
 <dd>
 <p>This switch really just enables the internal <code>$^W</code> variable.  You
@@ -1064,29 +1119,32 @@ can disable or promote into fatal errors specific warnings using
 <code>__WARN__</code> hooks, as described in <a href="perlvar.html">the perlvar manpage</a> and <a href="perlfunc.html#warn">warn in the perlfunc manpage</a>.
 See also <a href="perldiag.html">the perldiag manpage</a> and <a href="perltrap.html">the perltrap manpage</a>.  A new, fine-grained warning
 facility is also available if you want to manipulate entire classes
-of warnings; see <em>warnings</em> or <a href="perllexwarn.html">the perllexwarn manpage</a>.</p>
+of warnings; see <a href="../../warnings.html">the warnings manpage</a> or <a href="perllexwarn.html">the perllexwarn manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dw"><strong>-W</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dw_x_3c_2dw_3e"><strong>-W</strong>
+</a></strong>
+
 <dd>
-Enables all warnings regardless of <code>no warnings</code> or <code>$^W</code>.
-See <a href="perllexwarn.html">the perllexwarn manpage</a>.
+<p>Enables all warnings regardless of <code>no warnings</code> or <code>$^W</code>.
+See <a href="perllexwarn.html">the perllexwarn manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dx"><strong>-X</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dx_x_3c_2dx_3e"><strong>-X</strong>
+</a></strong>
+
 <dd>
-Disables all warnings regardless of <code>use warnings</code> or <code>$^W</code>.
-See <a href="perllexwarn.html">the perllexwarn manpage</a>.
+<p>Disables all warnings regardless of <code>use warnings</code> or <code>$^W</code>.
+See <a href="perllexwarn.html">the perllexwarn manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dx"><strong>-x</strong></a></strong><br />
-</dt>
-<dt><strong><a name="item__2dx_directory"><strong>-x</strong> <em>directory</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dx_x_3c_2dx_3e"><strong>-x</strong>
+</a></strong>
+
+<dt><strong><a name="item__2dx_directory"><strong>-x</strong> <em>directory</em></a></strong>
+
 <dd>
-tells Perl that the program is embedded in a larger chunk of unrelated
+<p>tells Perl that the program is embedded in a larger chunk of unrelated
 ASCII text, such as in a mail message.  Leading garbage will be
 discarded until the first line that starts with #! and contains the
 string ``perl''.  Any meaningful switches on that line will be applied.
@@ -1095,43 +1153,49 @@ before running the program.  The <strong>-x</strong> switch controls only the
 disposal of leading garbage.  The program must be terminated with
 <code>__END__</code> if there is trailing garbage to be ignored (the program
 can process any or all of the trailing garbage via the DATA filehandle
-if desired).
+if desired).</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
-<h1><a name="environment">ENVIRONMENT</a></h1>
+<h1><a name="environment_x_perl__environment_variables_">ENVIRONMENT
+</a></h1>
 <dl>
-<dt><strong><a name="item_home">HOME</a></strong><br />
-</dt>
+<dt><strong><a name="item_home_x_3chome_3e">HOME
+</a></strong>
+
 <dd>
-Used if chdir has no argument.
+<p>Used if chdir has no argument.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_logdir">LOGDIR</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_logdir_x_3clogdir_3e">LOGDIR
+</a></strong>
+
 <dd>
-Used if chdir has no argument and HOME is not set.
+<p>Used if chdir has no argument and HOME is not set.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_path">PATH</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_path_x_3cpath_3e">PATH
+</a></strong>
+
 <dd>
-Used in executing subprocesses, and in finding the program if <strong>-S</strong> is
-used.
+<p>Used in executing subprocesses, and in finding the program if <strong>-S</strong> is
+used.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl5lib">PERL5LIB</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl5lib_x_3cperl5lib_3e">PERL5LIB
+</a></strong>
+
 <dd>
-A list of directories in which to look for Perl library
+<p>A list of directories in which to look for Perl library
 files before looking in the standard library and the current
 directory.  Any architecture-specific directories under the specified
 locations are automatically included if they exist.  If PERL5LIB is not
 defined, PERLLIB is used.  Directories are separated (like in PATH) by
 a colon on unixish platforms and by a semicolon on Windows (the proper
-path separator being given by the command <code>perl -V:path_sep</code>).
+path separator being given by the command <code>perl -V:path_sep</code>).</p>
 </dd>
 <dd>
 <p>When running taint checks (either because the program was running setuid
@@ -1142,132 +1206,145 @@ The program should instead say:</p>
 <pre>
     use lib &quot;/my/directory&quot;;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl5opt">PERL5OPT</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl5opt_x_3cperl5opt_3e">PERL5OPT
+</a></strong>
+
 <dd>
-Command-line options (switches).  Switches in this variable are taken
+<p>Command-line options (switches).  Switches in this variable are taken
 as if they were on every Perl command line.  Only the <strong>-[DIMUdmtw]</strong>
 switches are allowed.  When running taint checks (because the program
 was running setuid or setgid, or the <strong>-T</strong> switch was used), this
 variable is ignored.  If PERL5OPT begins with <strong>-T</strong>, tainting will be
-enabled, and any subsequent options ignored.
+enabled, and any subsequent options ignored.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlio">PERLIO</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlio_x_3cperlio_3e">PERLIO
+</a></strong>
+
 <dd>
-A space (or colon) separated list of PerlIO layers. If perl is built
-to use PerlIO system for IO (the default) these layers effect perl's IO.
+<p>A space (or colon) separated list of PerlIO layers. If perl is built
+to use PerlIO system for IO (the default) these layers effect perl's IO.</p>
 </dd>
 <dd>
-<p>It is conventional to start layer names with a colon e.g. <a href="#item__3aperlio"><code>:perlio</code></a> to
+<p>It is conventional to start layer names with a colon e.g. <code>:perlio</code> to
 emphasise their similarity to variable ``attributes''. But the code that parses
 layer specification strings (which is also used to decode the PERLIO
 environment variable) treats the colon as a separator.</p>
 </dd>
 <dd>
-<p>An unset or empty PERLIO is equivalent to <a href="#item__3astdio"><code>:stdio</code></a>.</p>
+<p>An unset or empty PERLIO is equivalent to <code>:stdio</code>.</p>
 </dd>
 <dd>
 <p>The list becomes the default for <em>all</em> perl's IO. Consequently only built-in
 layers can appear in this list, as external layers (such as :encoding()) need
-IO in  order to load them!. See <em>``open pragma''</em> for how to add external
+IO in  order to load them!. See <a href="../../open.html">``open pragma''</a> for how to add external
 encodings as defaults.</p>
 </dd>
 <dd>
 <p>The layers that it makes sense to include in the PERLIO environment
-variable are briefly summarised below. For more details see <em>PerlIO</em>.</p>
+variable are briefly summarised below. For more details see <a href="../../Encode/PerlIO.html">the PerlIO manpage</a>.</p>
 </dd>
 <dl>
-<dt><strong><a name="item__3abytes">:bytes</a></strong><br />
-</dt>
+<dt><strong><a name="item__3abytes_x_3c_3abytes_3e">:bytes
+</a></strong>
+
 <dd>
-A pseudolayer that turns <em>off</em> the <a href="#item__3autf8"><code>:utf8</code></a> flag for the layer below.
+<p>A pseudolayer that turns <em>off</em> the <code>:utf8</code> flag for the layer below.
 Unlikely to be useful on its own in the global PERLIO environment variable.
-You perhaps were thinking of <code>:crlf:bytes</code> or <code>:perlio:bytes</code>.
+You perhaps were thinking of <code>:crlf:bytes</code> or <code>:perlio:bytes</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3acrlf">:crlf</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3acrlf_x_3c_3acrlf_3e">:crlf
+</a></strong>
+
 <dd>
-A layer which does CRLF to ``\n'' translation distinguishing ``text'' and
+<p>A layer which does CRLF to ``\n'' translation distinguishing ``text'' and
 ``binary'' files in the manner of MS-DOS and similar operating systems.
 (It currently does <em>not</em> mimic MS-DOS as far as treating of Control-Z
-as being an end-of-file marker.)
+as being an end-of-file marker.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3ammap">:mmap</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3ammap_x_3c_3ammap_3e">:mmap
+</a></strong>
+
 <dd>
-A layer which implements ``reading'' of files by using <code>mmap()</code> to
+<p>A layer which implements ``reading'' of files by using <code>mmap()</code> to
 make (whole) file appear in the process's address space, and then
-using that as PerlIO's ``buffer''.
+using that as PerlIO's ``buffer''.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3aperlio">:perlio</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3aperlio_x_3c_3aperlio_3e">:perlio
+</a></strong>
+
 <dd>
-This is a re-implementation of ``stdio-like'' buffering written as a
+<p>This is a re-implementation of ``stdio-like'' buffering written as a
 PerlIO ``layer''.  As such it will call whatever layer is below it for
-its operations (typically <a href="#item__3aunix"><code>:unix</code></a>).
+its operations (typically <code>:unix</code>).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3apop">:pop</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3apop_x_3c_3apop_3e">:pop
+</a></strong>
+
 <dd>
-An experimental pseudolayer that removes the topmost layer.
-Use with the same care as is reserved for nitroglycerin.
+<p>An experimental pseudolayer that removes the topmost layer.
+Use with the same care as is reserved for nitroglycerin.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3araw">:raw</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3araw_x_3c_3araw_3e">:raw
+</a></strong>
+
 <dd>
-A pseudolayer that manipulates other layers.  Applying the <a href="#item__3araw"><code>:raw</code></a>
+<p>A pseudolayer that manipulates other layers.  Applying the <code>:raw</code>
 layer is equivalent to calling <code>binmode($fh)</code>.  It makes the stream
 pass each byte as-is without any translation.  In particular CRLF
-translation, and/or :utf8 intuited from locale are disabled.
+translation, and/or :utf8 intuited from locale are disabled.</p>
 </dd>
 <dd>
-<p>Unlike in the earlier versions of Perl <a href="#item__3araw"><code>:raw</code></a> is <em>not</em>
-just the inverse of <a href="#item__3acrlf"><code>:crlf</code></a> - other layers which would affect the
+<p>Unlike in the earlier versions of Perl <code>:raw</code> is <em>not</em>
+just the inverse of <code>:crlf</code> - other layers which would affect the
 binary nature of the stream are also removed or disabled.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3astdio">:stdio</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3astdio_x_3c_3astdio_3e">:stdio
+</a></strong>
+
 <dd>
-This layer provides PerlIO interface by wrapping system's ANSI C ``stdio''
+<p>This layer provides PerlIO interface by wrapping system's ANSI C ``stdio''
 library calls. The layer provides both buffering and IO.
-Note that <a href="#item__3astdio"><code>:stdio</code></a> layer does <em>not</em> do CRLF translation even if that
-is platforms normal behaviour. You will need a <a href="#item__3acrlf"><code>:crlf</code></a> layer above it
-to do that.
+Note that <code>:stdio</code> layer does <em>not</em> do CRLF translation even if that
+is platforms normal behaviour. You will need a <code>:crlf</code> layer above it
+to do that.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3aunix">:unix</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3aunix_x_3c_3aunix_3e">:unix
+</a></strong>
+
 <dd>
-Low level layer which calls <code>read</code>, <code>write</code> and <code>lseek</code> etc.
+<p>Low level layer which calls <code>read</code>, <code>write</code> and <code>lseek</code> etc.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3autf8">:utf8</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3autf8_x_3c_3autf8_3e">:utf8
+</a></strong>
+
 <dd>
-A pseudolayer that turns on a flag on the layer below to tell perl
+<p>A pseudolayer that turns on a flag on the layer below to tell perl
 that output should be in utf8 and that input should be regarded as
 already in utf8 form.  May be useful in PERLIO environment
 variable to make UTF-8 the default. (To turn off that behaviour
-use <a href="#item__3abytes"><code>:bytes</code></a> layer.)
+use <code>:bytes</code> layer.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3awin32">:win32</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3awin32_x_3c_3awin32_3e">:win32
+</a></strong>
+
 <dd>
-On Win32 platforms this <em>experimental</em> layer uses native ``handle'' IO
+<p>On Win32 platforms this <em>experimental</em> layer uses native ``handle'' IO
 rather than unix-like numeric file descriptor layer. Known to be
-buggy in this release.
+buggy in this release.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>On all platforms the default set of layers should give acceptable results.</p>
 <p>For UNIX platforms that will equivalent of ``unix perlio'' or ``stdio''.
 Configure is setup to prefer ``stdio'' implementation if system's library
@@ -1283,12 +1360,13 @@ buffering.</p>
 compiler's numeric file descriptor routines. There is an experimental native
 <code>win32</code> layer which is expected to be enhanced and should eventually be
 the default under Win32.</p>
-<dt><strong><a name="item_perlio_debug">PERLIO_DEBUG</a></strong><br />
-</dt>
+<dt><strong><a name="item_perlio_debug_x_3cperlio_debug_3e">PERLIO_DEBUG
+</a></strong>
+
 <dd>
-If set to the name of a file or device then certain operations of PerlIO
+<p>If set to the name of a file or device then certain operations of PerlIO
 sub-system will be logged to that file (opened as append). Typical uses
-are UNIX:
+are UNIX:</p>
 </dd>
 <dd>
 <pre>
@@ -1302,40 +1380,48 @@ are UNIX:
    set PERLIO_DEBUG=CON
    perl script ...</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_perllib">PERLLIB</a></strong><br />
-</dt>
 <dd>
-A list of directories in which to look for Perl library
-files before looking in the standard library and the current directory.
-If PERL5LIB is defined, PERLLIB is not used.
+<p>This functionality is disabled for setuid scripts and for scripts run
+with <strong>-T</strong>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl5db">PERL5DB</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perllib_x_3cperllib_3e">PERLLIB
+</a></strong>
+
 <dd>
-The command used to load the debugger code.  The default is:
+<p>A list of directories in which to look for Perl library
+files before looking in the standard library and the current directory.
+If PERL5LIB is defined, PERLLIB is not used.</p>
+</dd>
+</li>
+<dt><strong><a name="item_perl5db_x_3cperl5db_3e">PERL5DB
+</a></strong>
+
+<dd>
+<p>The command used to load the debugger code.  The default is:</p>
 </dd>
 <dd>
 <pre>
         BEGIN { require 'perl5db.pl' }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl5db_threaded">PERL5DB_THREADED</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl5db_threaded_x_3cperl5db_threaded_3e">PERL5DB_THREADED
+</a></strong>
+
 <dd>
-If set to a true value, indicates to the debugger that the code being
-debugged uses threads.
+<p>If set to a true value, indicates to the debugger that the code being
+debugged uses threads.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl5shell">PERL5SHELL (specific to the Win32 port)</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl5shell">PERL5SHELL (specific to the Win32 port)
+</a></strong>
+
 <dd>
-May be set to an alternative shell that perl must use internally for
+<p>May be set to an alternative shell that perl must use internally for
 executing ``backtick'' commands or system().  Default is <code>cmd.exe /x/d/c</code>
 on WindowsNT and <code>command.com /c</code> on Windows95.  The value is considered
 to be space-separated.  Precede any character that needs to be protected
-(like a space or backslash) with a backslash.
+(like a space or backslash) with a backslash.</p>
 </dd>
 <dd>
 <p>Note that Perl doesn't use COMSPEC for this purpose because
@@ -1345,11 +1431,12 @@ fit for interactive use, and setting COMSPEC to such a shell may
 interfere with the proper functioning of other programs (which usually
 look in COMSPEC to find a shell fit for interactive use).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_allow_non_ifs_lsp">PERL_ALLOW_NON_IFS_LSP (specific to the Win32 port)</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_allow_non_ifs_lsp">PERL_ALLOW_NON_IFS_LSP (specific to the Win32 port)
+</a></strong>
+
 <dd>
-Set to 1 to allow the use of non-IFS compatible LSP's.
+<p>Set to 1 to allow the use of non-IFS compatible LSP's.
 Perl normally searches for an IFS-compatible LSP because this is required
 for its emulation of Windows sockets as real filehandles.  However, this may
 cause problems if you have a firewall such as McAfee Guardian which requires
@@ -1359,52 +1446,57 @@ Setting this environment variable to 1 means that Perl will simply use the
 first suitable LSP enumerated in the catalog, which keeps McAfee Guardian
 happy (and in that particular case Perl still works too because McAfee
 Guardian's LSP actually plays some other games which allow applications
-requiring IFS compatibility to work).
+requiring IFS compatibility to work).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_debug_mstats">PERL_DEBUG_MSTATS</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_debug_mstats_x_3cperl_debug_mstats_3e">PERL_DEBUG_MSTATS
+</a></strong>
+
 <dd>
-Relevant only if perl is compiled with the malloc included with the perl
+<p>Relevant only if perl is compiled with the malloc included with the perl
 distribution (that is, if <code>perl -V:d_mymalloc</code> is 'define').
 If set, this causes memory statistics to be dumped after execution.  If set
 to an integer greater than one, also causes memory statistics to be dumped
-after compilation.
+after compilation.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_destruct_level">PERL_DESTRUCT_LEVEL</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_destruct_level_x_3cperl_destruct_level_3e">PERL_DESTRUCT_LEVEL
+</a></strong>
+
 <dd>
-Relevant only if your perl executable was built with <strong>-DDEBUGGING</strong>,
+<p>Relevant only if your perl executable was built with <strong>-DDEBUGGING</strong>,
 this controls the behavior of global destruction of objects and other
-references.  See <a href="perlhack.html#perl_destruct_level">PERL_DESTRUCT_LEVEL in the perlhack manpage</a> for more information.
+references.  See <a href="perlhack.html#perl_destruct_level">PERL_DESTRUCT_LEVEL in the perlhack manpage</a> for more information.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_dl_nonlazy">PERL_DL_NONLAZY</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_dl_nonlazy_x_3cperl_dl_nonlazy_3e">PERL_DL_NONLAZY
+</a></strong>
+
 <dd>
-Set to one to have perl resolve <strong>all</strong> undefined symbols when it loads
+<p>Set to one to have perl resolve <strong>all</strong> undefined symbols when it loads
 a dynamic library.  The default behaviour is to resolve symbols when
 they are used.  Setting this variable is useful during testing of
 extensions as it ensures that you get an error on misspelled function
-names even if the test suite doesn't call it.
+names even if the test suite doesn't call it.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_encoding">PERL_ENCODING</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_encoding_x_3cperl_encoding_3e">PERL_ENCODING
+</a></strong>
+
 <dd>
-If using the <code>encoding</code> pragma without an explicit encoding name, the
-PERL_ENCODING environment variable is consulted for an encoding name.
+<p>If using the <code>encoding</code> pragma without an explicit encoding name, the
+PERL_ENCODING environment variable is consulted for an encoding name.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_hash_seed">PERL_HASH_SEED</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_hash_seed_x_3cperl_hash_seed_3e">PERL_HASH_SEED
+</a></strong>
+
 <dd>
-(Since Perl 5.8.1.)  Used to randomise Perl's internal hash function.
+<p>(Since Perl 5.8.1.)  Used to randomise Perl's internal hash function.
 To emulate the pre-5.8.1 behaviour, set to an integer (zero means
 exactly the same order as 5.8.0).  ``Pre-5.8.1'' means, among other
 things, that hash keys will be ordered the same between different runs
-of Perl.
+of Perl.</p>
 </dd>
 <dd>
 <p>The default behaviour is to randomise unless the PERL_HASH_SEED is set.
@@ -1427,59 +1519,65 @@ completely lost.</p>
 <p>See <a href="perlsec.html#algorithmic_complexity_attacks">Algorithmic Complexity Attacks in the perlsec manpage</a> and
 <a href="#perl_hash_seed_debug">PERL_HASH_SEED_DEBUG</a> for more information.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_hash_seed_debug">PERL_HASH_SEED_DEBUG</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_hash_seed_debug_x_3cperl_hash_seed_debug_3e">PERL_HASH_SEED_DEBUG
+</a></strong>
+
 <dd>
-(Since Perl 5.8.1.)  Set to one to display (to STDERR) the value of
+<p>(Since Perl 5.8.1.)  Set to one to display (to STDERR) the value of
 the hash seed at the beginning of execution.  This, combined with
 <a href="#perl_hash_seed">PERL_HASH_SEED</a> is intended to aid in debugging nondeterministic
-behavior caused by hash randomization.
+behavior caused by hash randomization.</p>
 </dd>
 <dd>
 <p><strong>Note that the hash seed is sensitive information</strong>: by knowing it one
 can craft a denial-of-service attack against Perl code, even remotely,
 see <a href="perlsec.html#algorithmic_complexity_attacks">Algorithmic Complexity Attacks in the perlsec manpage</a> for more information.
 <strong>Do not disclose the hash seed</strong> to people who don't need to know it.
-See also <code>hash_seed()</code> of <a href="../Hash/Util.html">the Hash::Util manpage</a>.</p>
+See also <code>hash_seed()</code> of <a href="../../Hash/Util.html">the Hash::Util manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_root">PERL_ROOT (specific to the VMS port)</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_root">PERL_ROOT (specific to the VMS port)
+</a></strong>
+
 <dd>
-A translation concealed rooted logical name that contains perl and the
+<p>A translation concealed rooted logical name that contains perl and the
 logical device for the @INC path on VMS only.  Other logical names that
 affect perl on VMS include PERLSHR, PERL_ENV_TABLES, and
 SYS$TIMEZONE_DIFFERENTIAL but are optional and discussed further in
-<a href="perlvms.html">the perlvms manpage</a> and in <em>README.vms</em> in the Perl source distribution.
+<a href="perlvms.html">the perlvms manpage</a> and in <em>README.vms</em> in the Perl source distribution.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_signals">PERL_SIGNALS</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_signals_x_3cperl_signals_3e">PERL_SIGNALS
+</a></strong>
+
 <dd>
-In Perls 5.8.1 and later.  If set to <code>unsafe</code> the pre-Perl-5.8.0
+<p>In Perls 5.8.1 and later.  If set to <code>unsafe</code> the pre-Perl-5.8.0
 signals behaviour (immediate but unsafe) is restored.  If set to
 <code>safe</code> the safe (or deferred) signals are used.
-See <a href="perlipc.html#deferred_signals__safe_signals_">Deferred Signals (Safe Signals) in the perlipc manpage</a>.
+See <a href="perlipc.html#deferred_signals__safe_signals_">Deferred Signals (Safe Signals) in the perlipc manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perl_unicode">PERL_UNICODE</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perl_unicode_x_3cperl_unicode_3e">PERL_UNICODE
+</a></strong>
+
 <dd>
-Equivalent to the <strong>-C</strong> command-line switch.  Note that this is not
+<p>Equivalent to the <strong>-C</strong> command-line switch.  Note that this is not
 a boolean variable-- setting this to <code>&quot;1&quot;</code> is not the right way to
 ``enable Unicode'' (whatever that would mean).  You can use <code>&quot;0&quot;</code> to
 ``disable Unicode'', though (or alternatively unset PERL_UNICODE in
 your shell before starting Perl).  See the description of the <code>-C</code>
-switch for more information.
+switch for more information.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_login">SYS$LOGIN (specific to the VMS port)</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_login">SYS$LOGIN (specific to the VMS port)
+</a></strong>
+
 <dd>
-Used if chdir has no argument and HOME and LOGDIR are not set.
+<p>Used if chdir has no argument and HOME and LOGDIR are not set.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Perl also has environment variables that control how Perl handles data
 specific to particular natural languages.  See <a href="perllocale.html">the perllocale manpage</a>.</p>
 <p>Apart from these, Perl uses no other environment variables, except

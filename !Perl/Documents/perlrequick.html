@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlrequick - Perl regular expressions quick start</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -192,39 +194,40 @@ character, or the match fails.  Then</p>
     /[a^]at/;  # matches 'aat' or '^at'; here '^' is ordinary</pre>
 <p>Perl has several abbreviations for common character classes:</p>
 <ul>
-<li></li>
-\d is a digit and represents
+<li>
+<p>\d is a digit and represents</p>
 <pre>
     [0-9]</pre>
-<p></p>
-<li></li>
-\s is a whitespace character and represents
+</li>
+<li>
+<p>\s is a whitespace character and represents</p>
 <pre>
     [\ \t\r\n\f]</pre>
-<p></p>
-<li></li>
-\w is a word character (alphanumeric or _) and represents
+</li>
+<li>
+<p>\w is a word character (alphanumeric or _) and represents</p>
 <pre>
     [0-9a-zA-Z_]</pre>
-<p></p>
-<li></li>
-\D is a negated \d; it represents any character but a digit
+</li>
+<li>
+<p>\D is a negated \d; it represents any character but a digit</p>
 <pre>
     [^0-9]</pre>
-<p></p>
-<li></li>
-\S is a negated \s; it represents any non-whitespace character
+</li>
+<li>
+<p>\S is a negated \s; it represents any non-whitespace character</p>
 <pre>
     [^\s]</pre>
-<p></p>
-<li></li>
-\W is a negated \w; it represents any non-word character
+</li>
+<li>
+<p>\W is a negated \w; it represents any non-word character</p>
 <pre>
     [^\w]</pre>
-<p></p>
-<li></li>
-The period '.' matches any character but ``\n''
-<p></p></ul>
+</li>
+<li>
+<p>The period '.' matches any character but ``\n''</p>
+</li>
+</ul>
 <p>The <code>\d\s\w\D\S\W</code> abbreviations can be used both inside and outside
 of character classes.  Here are some in use:</p>
 <pre>
@@ -324,25 +327,26 @@ consider to be a match.  Quantifiers are put immediately after the
 character, character class, or grouping that we want to specify.  They
 have the following meanings:</p>
 <ul>
-<li></li>
-<code>a?</code> = match 'a' 1 or 0 times
-<p></p>
-<li></li>
-<code>a*</code> = match 'a' 0 or more times, i.e., any number of times
-<p></p>
-<li></li>
-<code>a+</code> = match 'a' 1 or more times, i.e., at least once
-<p></p>
-<li></li>
-<code>a{n,m}</code> = match at least <code>n</code> times, but not more than <code>m</code>
-times.
-<p></p>
-<li></li>
-<code>a{n,}</code> = match at least <code>n</code> or more times
-<p></p>
-<li></li>
-<code>a{n}</code> = match exactly <code>n</code> times
-<p></p></ul>
+<li>
+<p><code>a?</code> = match 'a' 1 or 0 times</p>
+</li>
+<li>
+<p><code>a*</code> = match 'a' 0 or more times, i.e., any number of times</p>
+</li>
+<li>
+<p><code>a+</code> = match 'a' 1 or more times, i.e., at least once</p>
+</li>
+<li>
+<p><code>a{n,m}</code> = match at least <code>n</code> times, but not more than <code>m</code>
+times.</p>
+</li>
+<li>
+<p><code>a{n,}</code> = match at least <code>n</code> or more times</p>
+</li>
+<li>
+<p><code>a{n}</code> = match exactly <code>n</code> times</p>
+</li>
+</ul>
 <p>Here are some examples:</p>
 <pre>
     /[a-z]+\s+\d*/;  # match a lowercase word, at least some space, and

@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlamiga - Perl under Amiga OS</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -89,13 +91,13 @@ section of the Aminet:</p>
 </p>
 <h2><a name="prerequisites_for_compiling_perl_on_amigaos">Prerequisites for Compiling Perl on AmigaOS</a></h2>
 <dl>
-<dt><strong><a name="item_unix_emulation_for_amigaos_3a_ixemul_2elibrary"><strong>Unix emulation for AmigaOS: ixemul.library</strong></a></strong><br />
-</dt>
+<dt><strong><a name="item_unix_emulation_for_amigaos_3a_ixemul_2elibrary"><strong>Unix emulation for AmigaOS: ixemul.library</strong></a></strong>
+
 <dd>
-You need the Unix emulation for AmigaOS, whose most important part is
+<p>You need the Unix emulation for AmigaOS, whose most important part is
 <strong>ixemul.library</strong>. For a minimum setup, get the latest versions
 of the following packages from the Aminet archives
-( <a href="http://www.aminet.net/~aminet/">http://www.aminet.net/~aminet/</a> ):
+( <a href="http://www.aminet.net/~aminet/">http://www.aminet.net/~aminet/</a> ):</p>
 </dd>
 <dd>
 <pre>
@@ -107,13 +109,14 @@ of the following packages from the Aminet archives
 <p>Note also that this is a minimum setup; you might want to add other
 packages of <strong>ADE</strong> (the <em>Amiga Developers Environment</em>).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_version_of_amiga_os"><strong>Version of Amiga OS</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_version_of_amiga_os"><strong>Version of Amiga OS</strong></a></strong>
+
 <dd>
-You need at the very least AmigaOS version 2.0. Recommended is version 3.1.
+<p>You need at the very least AmigaOS version 2.0. Recommended is version 3.1.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="starting_perl_programs_under_amigaos">Starting Perl programs under AmigaOS</a></h2>
@@ -139,19 +142,20 @@ easier to use your script under *nix.)</p>
 <p>Perl under AmigaOS lacks some features of perl under UNIX because of
 deficiencies in the UNIX-emulation, most notably:</p>
 <ul>
-<li></li>
-<code>fork()</code>
-<p></p>
-<li></li>
-some features of the UNIX filesystem regarding link count and file dates
-<p></p>
-<li></li>
-inplace operation (the -i switch) without backup file
-<p></p>
-<li></li>
-<code>umask()</code> works, but the correct permissions are only set when the file is
-finally close()d
-<p></p></ul>
+<li>
+<p><code>fork()</code></p>
+</li>
+<li>
+<p>some features of the UNIX filesystem regarding link count and file dates</p>
+</li>
+<li>
+<p>inplace operation (the -i switch) without backup file</p>
+</li>
+<li>
+<p><code>umask()</code> works, but the correct permissions are only set when the file is
+finally close()d</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />

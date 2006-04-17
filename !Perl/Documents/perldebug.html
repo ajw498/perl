@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perldebug - Perl debugging</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -42,7 +44,8 @@
 <hr />
 <p>
 </p>
-<h1><a name="name">NAME</a></h1>
+<h1><a name="name_x_debug__x_debugger_">NAME
+ </a></h1>
 <p>perldebug - Perl debugging</p>
 <p>
 </p>
@@ -61,7 +64,8 @@ environment, prompting for debugger commands that let you examine
 source code, set breakpoints, get stack backtraces, change the values of
 variables, etc.  This is so convenient that you often fire up
 the debugger all by itself just to test out Perl constructs
-interactively to see what they do.  For example:</p>
+interactively to see what they do.  For example:
+</p>
 <pre>
     $ perl -d -e 42</pre>
 <p>In Perl, the debugger is not a separate program the way it usually is in the
@@ -94,22 +98,23 @@ or braces.</p>
 <h2><a name="debugger_commands">Debugger Commands</a></h2>
 <p>The debugger understands the following commands:</p>
 <dl>
-<dt><strong><a name="item_h">h</a></strong><br />
-</dt>
+<dt><strong><a name="item_h_x_3cdebugger_command_2c_h_3e">h
+</a></strong>
+
 <dd>
-Prints out a summary help message
+<p>Prints out a summary help message</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_h__5bcommand_5d">h [command]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_h__5bcommand_5d">h [command]</a></strong>
+
 <dd>
-Prints out a help message for the given debugger command.
+<p>Prints out a help message for the given debugger command.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_h_h">h h</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_h_h">h h</a></strong>
+
 <dd>
-The special argument of <a href="#item_h_h"><code>h h</code></a> produces the entire help page, which is quite long.
+<p>The special argument of <a href="#item_h_h"><code>h h</code></a> produces the entire help page, which is quite long.</p>
 </dd>
 <dd>
 <p>If the output of the <a href="#item_h_h"><code>h h</code></a> command (or any command, for that matter) scrolls
@@ -123,27 +128,29 @@ that it's run through your pager, as in</p>
 <dd>
 <p>You may change the pager which is used via <code>o pager=...</code> command.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_p_expr">p expr</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_p_expr_x_3cdebugger_command_2c_p_3e">p expr
+</a></strong>
+
 <dd>
-Same as <code>print {$DB::OUT} expr</code> in the current package.  In particular,
+<p>Same as <code>print {$DB::OUT} expr</code> in the current package.  In particular,
 because this is just Perl's own <code>print</code> function, this means that nested
-data structures and objects are not dumped, unlike with the <code>x</code> command.
+data structures and objects are not dumped, unlike with the <code>x</code> command.</p>
 </dd>
 <dd>
 <p>The <code>DB::OUT</code> filehandle is opened to <em>/dev/tty</em>, regardless of
 where STDOUT may be redirected to.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_x__5bmaxdepth_5d_expr">x [maxdepth] expr</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_x__5bmaxdepth_5d_expr_x_3cdebugger_command_2c_x_3e">x [maxdepth] expr
+</a></strong>
+
 <dd>
-Evaluates its expression in list context and dumps out the result in a
+<p>Evaluates its expression in list context and dumps out the result in a
 pretty-printed fashion.  Nested data structures are printed out
 recursively, unlike the real <code>print</code> function in Perl.  When dumping
 hashes, you'll probably prefer 'x \%h' rather than 'x %h'.
-See <em>Dumpvalue</em> if you'd like to do this yourself.
+See <a href="../../Dumpvalue.html">the Dumpvalue manpage</a> if you'd like to do this yourself.</p>
 </dd>
 <dd>
 <p>The output format is governed by multiple options described under
@@ -151,18 +158,19 @@ See <em>Dumpvalue</em> if you'd like to do this yourself.
 </dd>
 <dd>
 <p>If the <code>maxdepth</code> is included, it must be a numeral <em>N</em>; the value is
-dumped only <em>N</em> levels deep, as if the <a href="#item_dumpdepth"><code>dumpDepth</code></a> option had been
+dumped only <em>N</em> levels deep, as if the <code>dumpDepth</code> option had been
 temporarily set to <em>N</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_v__5bpkg__5bvars_5d_5d">V [pkg [vars]]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_v__5bpkg__5bvars_5d_5d_x_3cdebugger_command_2c_v_3">V [pkg [vars]]
+</a></strong>
+
 <dd>
-Display all (or some) variables in package (defaulting to <code>main</code>) 
+<p>Display all (or some) variables in package (defaulting to <code>main</code>)
 using a data pretty-printer (hashes show their keys and values so
 you see what's what, control characters are made printable, etc.).
 Make sure you don't put the type specifier (like <code>$</code>) there, just
-the symbol names, like this:
+the symbol names, like this:</p>
 </dd>
 <dd>
 <pre>
@@ -174,124 +182,136 @@ the symbol names, like this:
 <dd>
 <p>This is similar to calling the <code>x</code> command on each applicable var.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_x__5bvars_5d">X [vars]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_x__5bvars_5d_x_3cdebugger_command_2c_x_3e">X [vars]
+</a></strong>
+
 <dd>
-Same as <code>V currentpackage [vars]</code>.
+<p>Same as <code>V currentpackage [vars]</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_y__5blevel__5bvars_5d_5d">y [level [vars]]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_y__5blevel__5bvars_5d_5d_x_3cdebugger_command_2c_y">y [level [vars]]
+</a></strong>
+
 <dd>
-Display all (or some) lexical variables (mnemonic: <code>mY</code> variables)
+<p>Display all (or some) lexical variables (mnemonic: <code>mY</code> variables)
 in the current scope or <em>level</em> scopes higher.  You can limit the
 variables that you see with <em>vars</em> which works exactly as it does
 for the <code>V</code> and <code>X</code> commands.  Requires the <code>PadWalker</code> module
 version 0.08 or higher; will warn if this isn't installed.  Output
 is pretty-printed in the same style as for <code>V</code> and the format is
-controlled by the same options.
+controlled by the same options.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_t">T</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_t_x_3cdebugger_command_2c_t_3e_x_3cbacktrace_3e_x_">T
+  </a></strong>
+
 <dd>
-Produce a stack backtrace.  See below for details on its output.
+<p>Produce a stack backtrace.  See below for details on its output.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s__5bexpr_5d">s [expr]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s__5bexpr_5d_x_3cdebugger_command_2c_s_3e_x_3cstep">s [expr]
+ </a></strong>
+
 <dd>
-Single step.  Executes until the beginning of another
+<p>Single step.  Executes until the beginning of another
 statement, descending into subroutine calls.  If an expression is
-supplied that includes function calls, it too will be single-stepped.
+supplied that includes function calls, it too will be single-stepped.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_n__5bexpr_5d">n [expr]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_n__5bexpr_5d_x_3cdebugger_command_2c_n_3e">n [expr]
+</a></strong>
+
 <dd>
-Next.  Executes over subroutine calls, until the beginning
+<p>Next.  Executes over subroutine calls, until the beginning
 of the next statement.  If an expression is supplied that includes
 function calls, those functions will be executed with stops before
-each statement.
+each statement.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_r">r</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_r_x_3cdebugger_command_2c_r_3e">r
+</a></strong>
+
 <dd>
-Continue until the return from the current subroutine.
-Dump the return value if the <a href="#item_printret"><code>PrintRet</code></a> option is set (default).
+<p>Continue until the return from the current subroutine.
+Dump the return value if the <code>PrintRet</code> option is set (default).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3ccr_3e">&lt;CR&gt;</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3ccr_3e">&lt;CR&gt;</a></strong>
+
 <dd>
-Repeat last <code>n</code> or <code>s</code> command.
+<p>Repeat last <code>n</code> or <code>s</code> command.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_c__5bline_7csub_5d">c [line|sub]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_c__5bline_7csub_5d_x_3cdebugger_command_2c_c_3e">c [line|sub]
+</a></strong>
+
 <dd>
-Continue, optionally inserting a one-time-only breakpoint
-at the specified line or subroutine.
+<p>Continue, optionally inserting a one-time-only breakpoint
+at the specified line or subroutine.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_l">l</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_l_x_3cdebugger_command_2c_l_3e">l
+</a></strong>
+
 <dd>
-List next window of lines.
+<p>List next window of lines.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_l_min_2bincr">l min+incr</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_l_min_2bincr">l min+incr</a></strong>
+
 <dd>
-List <code>incr+1</code> lines starting at <code>min</code>.
+<p>List <code>incr+1</code> lines starting at <code>min</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_l_min_2dmax">l min-max</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_l_min_2dmax">l min-max</a></strong>
+
 <dd>
-List lines <code>min</code> through <code>max</code>.  <code>l -</code> is synonymous to <a href="#item__2d"><code>-</code></a>.
+<p>List lines <code>min</code> through <code>max</code>.  <code>l -</code> is synonymous to <code>-</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_l_line">l line</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_l_line">l line</a></strong>
+
 <dd>
-List a single line.
+<p>List a single line.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_l_subname">l subname</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_l_subname">l subname</a></strong>
+
 <dd>
-List first window of lines from subroutine.  <em>subname</em> may
-be a variable that contains a code reference.
+<p>List first window of lines from subroutine.  <em>subname</em> may
+be a variable that contains a code reference.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d">-</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_x_3cdebugger_command_2c__2d_3e">-
+</a></strong>
+
 <dd>
-List previous window of lines.
+<p>List previous window of lines.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_v__5bline_5d">v [line]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_v__5bline_5d_x_3cdebugger_command_2c_v_3e">v [line]
+</a></strong>
+
 <dd>
-View a few lines of code around the current line.
+<p>View a few lines of code around the current line.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2e">.</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2e_x_3cdebugger_command_2c__2e_3e">.
+</a></strong>
+
 <dd>
-Return the internal debugger pointer to the line last
-executed, and print out that line.
+<p>Return the internal debugger pointer to the line last
+executed, and print out that line.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_f_filename">f filename</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_f_filename_x_3cdebugger_command_2c_f_3e">f filename
+</a></strong>
+
 <dd>
-Switch to viewing a different file or <code>eval</code> statement.  If <em>filename</em>
-is not a full pathname found in the values of %INC, it is considered 
-a regex.
+<p>Switch to viewing a different file or <code>eval</code> statement.  If <em>filename</em>
+is not a full pathname found in the values of %INC, it is considered
+a regex.</p>
 </dd>
 <dd>
 <p><code>eval</code>ed strings (when accessible) are considered to be filenames:
@@ -300,60 +320,68 @@ a regex.
 and of <code>eval</code>ed strings that define subroutines are saved and thus
 accessible.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2fpattern_2f">/pattern/</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2fpattern_2f">/pattern/</a></strong>
+
 <dd>
-Search forwards for pattern (a Perl regex); final / is optional.
-The search is case-insensitive by default.
+<p>Search forwards for pattern (a Perl regex); final / is optional.
+The search is case-insensitive by default.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3fpattern_3f">?pattern?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3fpattern_3f">?pattern?</a></strong>
+
 <dd>
-Search backwards for pattern; final ? is optional.
-The search is case-insensitive by default.
+<p>Search backwards for pattern; final ? is optional.
+The search is case-insensitive by default.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_l__5babw_5d">L [abw]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_l__5babw_5d_x_3cdebugger_command_2c_l_3e">L [abw]
+</a></strong>
+
 <dd>
-List (default all) actions, breakpoints and watch expressions
+<p>List (default all) actions, breakpoints and watch expressions</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_s__5b_5b_21_5dregex_5d">S [[!]regex]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_s__5b_5b_21_5dregex_5d_x_3cdebugger_command_2c_s_3">S [[!]regex]
+</a></strong>
+
 <dd>
-List subroutine names [not] matching the regex.
+<p>List subroutine names [not] matching the regex.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_t">t</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_t_x_3cdebugger_command_2c_t_3e">t
+</a></strong>
+
 <dd>
-Toggle trace mode (see also the <a href="#item_autotrace"><code>AutoTrace</code></a> option).
+<p>Toggle trace mode (see also the <code>AutoTrace</code> option).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_t_expr">t expr</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_t_expr_x_3cdebugger_command_2c_t_3e">t expr
+</a></strong>
+
 <dd>
-Trace through execution of <code>expr</code>.
-See <a href="perldebguts.html#frame_listing_output_examples">Frame Listing Output Examples in the perldebguts manpage</a> for examples.
+<p>Trace through execution of <code>expr</code>.
+See <a href="perldebguts.html#frame_listing_output_examples">Frame Listing Output Examples in the perldebguts manpage</a> for examples.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b">b</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b_x_3cbreakpoint_3e_x_3cdebugger_command_2c_b_3e">b
+
+</a></strong>
+
 <dd>
-Sets breakpoint on current line
+<p>Sets breakpoint on current line</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b__5bline_5d__5bcondition_5d">b [line] [condition]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b__5bline_5d__5bcondition_5d_x_3cbreakpoint_3e_x_3">b [line] [condition]
+
+</a></strong>
+
 <dd>
-Set a breakpoint before the given line.  If a condition
+<p>Set a breakpoint before the given line.  If a condition
 is specified, it's evaluated each time the statement is reached: a
 breakpoint is taken only if the condition is true.  Breakpoints may
 only be set on lines that begin an executable statement.  Conditions
-don't use <code>if</code>:
+don't use <code>if</code>:</p>
 </dd>
 <dd>
 <pre>
@@ -361,53 +389,66 @@ don't use <code>if</code>:
     b 237 ++$count237 &lt; 11
     b 33 /pattern/i</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_b_subname__5bcondition_5d">b subname [condition]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b_subname__5bcondition_5d_x_3cbreakpoint_3e_x_3cde">b subname [condition]
+
+</a></strong>
+
 <dd>
-Set a breakpoint before the first line of the named subroutine.  <em>subname</em> may
+<p>Set a breakpoint before the first line of the named subroutine.  <em>subname</em> may
 be a variable containing a code reference (in this case <em>condition</em>
-is not supported).
+is not supported).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b_postpone_subname__5bcondition_5d">b postpone subname [condition]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b_postpone_subname__5bcondition_5d_x_3cbreakpoint_">b postpone subname [condition]
+
+</a></strong>
+
 <dd>
-Set a breakpoint at first line of subroutine after it is compiled.
+<p>Set a breakpoint at first line of subroutine after it is compiled.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b_load_filename">b load filename</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b_load_filename_x_3cbreakpoint_3e_x_3cdebugger_com">b load filename
+
+</a></strong>
+
 <dd>
-Set a breakpoint before the first executed line of the <em>filename</em>,
-which should be a full pathname found amongst the %INC values.
+<p>Set a breakpoint before the first executed line of the <em>filename</em>,
+which should be a full pathname found amongst the %INC values.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b_compile_subname">b compile subname</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b_compile_subname_x_3cbreakpoint_3e_x_3cdebugger_c">b compile subname
+
+</a></strong>
+
 <dd>
-Sets a breakpoint before the first statement executed after the specified
-subroutine is compiled.
+<p>Sets a breakpoint before the first statement executed after the specified
+subroutine is compiled.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b_line">B line</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b_line_x_3cbreakpoint_3e_x_3cdebugger_command_2c_b">B line
+
+</a></strong>
+
 <dd>
-Delete a breakpoint from the specified <em>line</em>.
+<p>Delete a breakpoint from the specified <em>line</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b__2a">B *</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b__2a_x_3cbreakpoint_3e_x_3cdebugger_command_2c_b_">B *
+
+</a></strong>
+
 <dd>
-Delete all installed breakpoints.
+<p>Delete all installed breakpoints.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_a__5bline_5d_command">a [line] command</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_a__5bline_5d_command_x_3cdebugger_command_2c_a_3e">a [line] command
+</a></strong>
+
 <dd>
-Set an action to be done before the line is executed.  If <em>line</em> is
+<p>Set an action to be done before the line is executed.  If <em>line</em> is
 omitted, set an action on the line about to be executed.
-The sequence of steps taken by the debugger is
+The sequence of steps taken by the debugger is</p>
 </dd>
 <dd>
 <pre>
@@ -425,60 +466,69 @@ The sequence of steps taken by the debugger is
 <pre>
     a 53 print &quot;DB FOUND $foo\n&quot;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_a_line">A line</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_a_line_x_3cdebugger_command_2c_a_3e">A line
+</a></strong>
+
 <dd>
-Delete an action from the specified line.
+<p>Delete an action from the specified line.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_a__2a">A *</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_a__2a_x_3cdebugger_command_2c_a_3e">A *
+</a></strong>
+
 <dd>
-Delete all installed actions.
+<p>Delete all installed actions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_w_expr">w expr</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_w_expr_x_3cdebugger_command_2c_w_3e">w expr
+</a></strong>
+
 <dd>
-Add a global watch-expression.  We hope you know what one of these
-is, because they're supposed to be obvious.
+<p>Add a global watch-expression.  We hope you know what one of these
+is, because they're supposed to be obvious.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_w_expr">W expr</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_w_expr_x_3cdebugger_command_2c_w_3e">W expr
+</a></strong>
+
 <dd>
-Delete watch-expression
+<p>Delete watch-expression</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_w__2a">W *</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_w__2a_x_3cdebugger_command_2c_w_3e">W *
+</a></strong>
+
 <dd>
-Delete all watch-expressions.
+<p>Delete all watch-expressions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_o">o</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_o_x_3cdebugger_command_2c_o_3e">o
+</a></strong>
+
 <dd>
-Display all options
+<p>Display all options</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_o_booloption__2e_2e_2e">o booloption ...</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_o_booloption__2e_2e_2e_x_3cdebugger_command_2c_o_3">o booloption ...
+</a></strong>
+
 <dd>
-Set each listed Boolean option to the value <code>1</code>.
+<p>Set each listed Boolean option to the value <code>1</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_o_anyoption_3f__2e_2e_2e">o anyoption? ...</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_o_anyoption_3f__2e_2e_2e_x_3cdebugger_command_2c_o">o anyoption? ...
+</a></strong>
+
 <dd>
-Print out the value of one or more options.
+<p>Print out the value of one or more options.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_o_option_3dvalue__2e_2e_2e">o option=value ...</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_o_option_3dvalue__2e_2e_2e_x_3cdebugger_command_2c">o option=value ...
+</a></strong>
+
 <dd>
-Set the value of one or more options.  If the value has internal
+<p>Set the value of one or more options.  If the value has internal
 whitespace, it should be quoted.  For example, you could set <code>o
 pager=&quot;less -MQeicsNfr&quot;</code> to call <strong>less</strong> with those specific options.
 You may use either single or double quotes, but if you do, you must
@@ -487,189 +537,212 @@ as well as any escaping any escapes that immediately precede that
 quote but which are not meant to escape the quote itself.  In other
 words, you follow single-quoting rules irrespective of the quote;
 eg: <code>o option='this isn\'t bad'</code> or <code>o option=&quot;She said, \&quot;Isn't
-it?\&quot;&quot;</code>.
+it?\&quot;&quot;</code>.</p>
 </dd>
 <dd>
 <p>For historical reasons, the <code>=value</code> is optional, but defaults to
 1 only where it is safe to do so--that is, mostly for Boolean
 options.  It is always better to assign a specific value using <code>=</code>.
 The <code>option</code> can be abbreviated, but for clarity probably should
-not be.  Several options can be set together.  See <a href="#configurable_options">Configurable Options</a> 
+not be.  Several options can be set together.  See <a href="#configurable_options">Configurable Options</a>
 for a list of these.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3c__3f">&lt; ?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3c__3f_x_3c_3c_debugger_command_2c__3c__3e_3e">&lt; ?
+&gt;</a></strong>
+
 <dd>
-List out all pre-prompt Perl command actions.
+<p>List out all pre-prompt Perl command actions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3c__5b_command__5d">&lt; [ command ]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3c__5b_command__5d_x_3c_3c_debugger_command_2c__3">&lt; [ command ]
+&gt;</a></strong>
+
 <dd>
-Set an action (Perl command) to happen before every debugger prompt.
-A multi-line command may be entered by backslashing the newlines.
+<p>Set an action (Perl command) to happen before every debugger prompt.
+A multi-line command may be entered by backslashing the newlines.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3c__2a">&lt; *</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3c__2a_x_3c_3c_debugger_command_2c__3c__3e_3e">&lt; *
+&gt;</a></strong>
+
 <dd>
-Delete all pre-prompt Perl command actions.
+<p>Delete all pre-prompt Perl command actions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3c_3c_command">&lt;&lt; command</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3c_3c_command_x_3c_3c_debugger_command_2c__3c_3c_">&lt;&lt; command
+&gt;</a></strong>
+
 <dd>
-Add an action (Perl command) to happen before every debugger prompt.
-A multi-line command may be entered by backwhacking the newlines.
+<p>Add an action (Perl command) to happen before every debugger prompt.
+A multi-line command may be entered by backwhacking the newlines.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3e__3f">&gt; ?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3e__3f_x_3c_3c_debugger_command_2c__3e__3e_3e">&gt; ?
+ &gt;&gt;</a></strong>
+
 <dd>
-List out post-prompt Perl command actions.
+<p>List out post-prompt Perl command actions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3e_command">&gt; command</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3e_command_x_3c_3c_debugger_command_2c__3e__3e_3e">&gt; command
+ &gt;&gt;</a></strong>
+
 <dd>
-Set an action (Perl command) to happen after the prompt when you've
+<p>Set an action (Perl command) to happen after the prompt when you've
 just given a command to return to executing the script.  A multi-line
 command may be entered by backslashing the newlines (we bet you
-couldn't've guessed this by now).
+couldn't've guessed this by now).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3e__2a">&gt; *</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3e__2a_x_3c_3c_debugger_command_2c__3e__3e_3e">&gt; *
+ &gt;&gt;</a></strong>
+
 <dd>
-Delete all post-prompt Perl command actions.
+<p>Delete all post-prompt Perl command actions.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3e_3e_command">&gt;&gt; command</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3e_3e_command_x_3c_3c_3c_debugger_command_2c__3e_">&gt;&gt; command
+&gt; &gt;&gt;&gt;</a></strong>
+
 <dd>
-Adds an action (Perl command) to happen after the prompt when you've
+<p>Adds an action (Perl command) to happen after the prompt when you've
 just given a command to return to executing the script.  A multi-line
-command may be entered by backslashing the newlines.
+command may be entered by backslashing the newlines.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__7b__3f">{ ?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__7b__3f_x_3cdebugger_command_2c__7b_3e">{ ?
+</a></strong>
+
 <dd>
-List out pre-prompt debugger commands.
+<p>List out pre-prompt debugger commands.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__7b__5b_command__5d">{ [ command ]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__7b__5b_command__5d">{ [ command ]</a></strong>
+
 <dd>
-Set an action (debugger command) to happen before every debugger prompt.
-A multi-line command may be entered in the customary fashion.
+<p>Set an action (debugger command) to happen before every debugger prompt.
+A multi-line command may be entered in the customary fashion.</p>
 </dd>
 <dd>
 <p>Because this command is in some senses new, a warning is issued if
 you appear to have accidentally entered a block instead.  If that's
-what you mean to do, write it as with <code>;{ ... }</code> or even 
+what you mean to do, write it as with <code>;{ ... }</code> or even
 <code>do { ... }</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__7b__2a">{ *</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__7b__2a_x_3cdebugger_command_2c__7b_3e">{ *
+</a></strong>
+
 <dd>
-Delete all pre-prompt debugger commands.
+<p>Delete all pre-prompt debugger commands.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__7b_7b_command">{{ command</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__7b_7b_command_x_3cdebugger_command_2c__7b_7b_3e">{{ command
+</a></strong>
+
 <dd>
-Add an action (debugger command) to happen before every debugger prompt.
-A multi-line command may be entered, if you can guess how: see above.
+<p>Add an action (debugger command) to happen before every debugger prompt.
+A multi-line command may be entered, if you can guess how: see above.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__21_number">! number</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__21_number_x_3cdebugger_command_2c__21_3e">! number
+</a></strong>
+
 <dd>
-Redo a previous command (defaults to the previous command).
+<p>Redo a previous command (defaults to the previous command).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__21__2dnumber">! -number</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__21__2dnumber_x_3cdebugger_command_2c__21_3e">! -number
+</a></strong>
+
 <dd>
-Redo number'th previous command.
+<p>Redo number'th previous command.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__21_pattern">! pattern</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__21_pattern_x_3cdebugger_command_2c__21_3e">! pattern
+</a></strong>
+
 <dd>
-Redo last command that started with pattern.
-See <code>o recallCommand</code>, too.
+<p>Redo last command that started with pattern.
+See <code>o recallCommand</code>, too.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__21_21_cmd">!! cmd</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__21_21_cmd_x_3cdebugger_command_2c__21_21_3e">!! cmd
+</a></strong>
+
 <dd>
-Run cmd in a subprocess (reads from DB::IN, writes to DB::OUT) See
+<p>Run cmd in a subprocess (reads from DB::IN, writes to DB::OUT) See
 <code>o shellBang</code>, also.  Note that the user's current shell (well,
 their <code>$ENV{SHELL}</code> variable) will be used, which can interfere
 with proper interpretation of exit status or signal and coredump
-information.
+information.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_source_file">source file</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_source_file_x_3cdebugger_command_2c_source_3e">source file
+</a></strong>
+
 <dd>
-Read and execute debugger commands from <em>file</em>.
-<em>file</em> may itself contain <code>source</code> commands.
+<p>Read and execute debugger commands from <em>file</em>.
+<em>file</em> may itself contain <code>source</code> commands.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_h__2dnumber">H -number</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_h__2dnumber_x_3cdebugger_command_2c_h_3e">H -number
+</a></strong>
+
 <dd>
-Display last n commands.  Only commands longer than one character are
-listed.  If <em>number</em> is omitted, list them all.
+<p>Display last n commands.  Only commands longer than one character are
+listed.  If <em>number</em> is omitted, list them all.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_q_or__5ed">q or ^D</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_q_or__5ed_x_3cdebugger_command_2c_q_3e_x_3cdebugge">q or ^D
+
+</a></strong>
+
 <dd>
-Quit.  (``quit'' doesn't work for this, unless you've made an alias)
+<p>Quit.  (``quit'' doesn't work for this, unless you've made an alias)
 This is the only supported way to exit the debugger, though typing
-<code>exit</code> twice might work.
+<code>exit</code> twice might work.</p>
 </dd>
 <dd>
-<p>Set the <a href="#item_inhibit_exit"><code>inhibit_exit</code></a> option to 0 if you want to be able to step
-off the end the script.  You may also need to set $finished to 0 
+<p>Set the <code>inhibit_exit</code> option to 0 if you want to be able to step
+off the end the script.  You may also need to set $finished to 0
 if you want to step through global destruction.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_r">R</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_r_x_3cdebugger_command_2c_r_3e">R
+</a></strong>
+
 <dd>
-Restart the debugger by <code>exec()</code>ing a new session.  We try to maintain
+<p>Restart the debugger by <code>exec()</code>ing a new session.  We try to maintain
 your history across this, but internal settings and command-line options
-may be lost.
+may be lost.</p>
 </dd>
 <dd>
 <p>The following setting are currently preserved: history, breakpoints,
 actions, debugger options, and the Perl command-line
 options <strong>-w</strong>, <strong>-I</strong>, and <strong>-e</strong>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__7cdbcmd">|dbcmd</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__7cdbcmd_x_3cdebugger_command_2c__7c_3e">|dbcmd
+</a></strong>
+
 <dd>
-Run the debugger command, piping DB::OUT into your current pager.
+<p>Run the debugger command, piping DB::OUT into your current pager.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__7c_7cdbcmd">||dbcmd</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__7c_7cdbcmd_x_3cdebugger_command_2c__7c_7c_3e">||dbcmd
+</a></strong>
+
 <dd>
-Same as <a href="#item__7cdbcmd"><code>|dbcmd</code></a> but DB::OUT is temporarily <code>select</code>ed as well.
+<p>Same as <code>|dbcmd</code> but DB::OUT is temporarily <code>select</code>ed as well.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__3d__5balias_value_5d">= [alias value]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__3d__5balias_value_5d_x_3cdebugger_command_2c__3d_">= [alias value]
+</a></strong>
+
 <dd>
-Define a command alias, like
+<p>Define a command alias, like</p>
 </dd>
 <dd>
 <pre>
@@ -678,39 +751,42 @@ Define a command alias, like
 <dd>
 <p>or list current aliases.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_command">command</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_command">command</a></strong>
+
 <dd>
-Execute command as a Perl statement.  A trailing semicolon will be
+<p>Execute command as a Perl statement.  A trailing semicolon will be
 supplied.  If the Perl statement would otherwise be confused for a
-Perl debugger, use a leading semicolon, too.
+Perl debugger, use a leading semicolon, too.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_m_expr">m expr</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_m_expr_x_3cdebugger_command_2c_m_3e">m expr
+</a></strong>
+
 <dd>
-List which methods may be called on the result of the evaluated
-expression.  The expression may evaluated to a reference to a 
-blessed object, or to a package name.
+<p>List which methods may be called on the result of the evaluated
+expression.  The expression may evaluated to a reference to a
+blessed object, or to a package name.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_m">M</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_m_x_3cdebugger_command_2c_m_3e">M
+</a></strong>
+
 <dd>
-Displays all loaded modules and their versions
+<p>Displays all loaded modules and their versions</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_man__5bmanpage_5d">man [manpage]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_man__5bmanpage_5d_x_3cdebugger_command_2c_man_3e">man [manpage]
+</a></strong>
+
 <dd>
-Despite its name, this calls your system's default documentation
+<p>Despite its name, this calls your system's default documentation
 viewer on the given page, or on the viewer itself if <em>manpage</em> is
 omitted.  If that viewer is <strong>man</strong>, the current <code>Config</code> information
 is used to invoke <strong>man</strong> using the proper MANPATH or <strong>-M</strong>
 <em>manpath</em> option.  Failed lookups of the form <code>XXX</code> that match
 known manpages of the form <em>perlXXX</em> will be retried.  This lets
-you type <code>man debug</code> or <code>man op</code> from the debugger.
+you type <code>man debug</code> or <code>man op</code> from the debugger.</p>
 </dd>
 <dd>
 <p>On systems traditionally bereft of a usable <strong>man</strong> command, the
@@ -726,45 +802,52 @@ working example of something along the lines of:</p>
 <pre>
     $DB::doccmd = 'netscape -remote <a href="http://something.here/">http://something.here/</a>';</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="configurable_options">Configurable Options</a></h2>
-<p>The debugger has numerous options settable using the <a href="#item_o"><code>o</code></a> command,
+<p>The debugger has numerous options settable using the <code>o</code> command,
 either interactively or from the environment or an rc file.
 (./.perldb or ~/.perldb under Unix.)</p>
 <dl>
-<dt><strong><a name="item_recallcommand_2c_shellbang"><code>recallCommand</code>, <code>ShellBang</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_recallcommand_2c_shellbang_x_3cdebugger_option_2c_"><code>recallCommand</code>, <code>ShellBang</code>
+
+</a></strong>
+
 <dd>
-The characters used to recall command or spawn shell.  By
-default, both are set to <code>!</code>, which is unfortunate.
+<p>The characters used to recall command or spawn shell.  By
+default, both are set to <code>!</code>, which is unfortunate.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pager"><code>pager</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pager_x_3cdebugger_option_2c_pager_3e"><code>pager</code>
+</a></strong>
+
 <dd>
-Program to use for output of pager-piped commands (those beginning
+<p>Program to use for output of pager-piped commands (those beginning
 with a <code>|</code> character.)  By default, <code>$ENV{PAGER}</code> will be used.
 Because the debugger uses your current terminal characteristics
 for bold and underlining, if the chosen pager does not pass escape
 sequences through unchanged, the output of some debugger commands
-will not be readable when sent through the pager.
+will not be readable when sent through the pager.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_tkrunning"><code>tkRunning</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_tkrunning_x_3cdebugger_option_2c_tkrunning_3e"><code>tkRunning</code>
+</a></strong>
+
 <dd>
-Run Tk while prompting (with ReadLine).
+<p>Run Tk while prompting (with ReadLine).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_signallevel_2c_warnlevel_2c_dielevel"><code>signalLevel</code>, <code>warnLevel</code>, <code>dieLevel</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_signallevel_2c_warnlevel_2c_dielevel_x_3cdebugger_"><code>signalLevel</code>, <code>warnLevel</code>, <code>dieLevel</code>
+ 
+</a></strong>
+
 <dd>
-Level of verbosity.  By default, the debugger leaves your exceptions
+<p>Level of verbosity.  By default, the debugger leaves your exceptions
 and warnings alone, because altering them can break correctly running
 programs.  It will attempt to print a message when uncaught INT, BUS, or
-SEGV signals arrive.  (But see the mention of signals in <em>BUGS</em> below.)
+SEGV signals arrive.  (But see the mention of signals in <em>BUGS</em> below.)</p>
 </dd>
 <dd>
 <p>To disable this default safe mode, set these values to something higher
@@ -780,191 +863,216 @@ out a trace, then modifies all exceptions with its own embellishments.
 This may perhaps be useful for some tracing purposes, but tends to hopelessly
 destroy any program that takes its exception handling seriously.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_autotrace"><code>AutoTrace</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_autotrace_x_3cdebugger_option_2c_autotrace_3e"><code>AutoTrace</code>
+</a></strong>
+
 <dd>
-Trace mode (similar to <a href="#item_t"><code>t</code></a> command, but can be put into
-<code>PERLDB_OPTS</code>).
+<p>Trace mode (similar to <code>t</code> command, but can be put into
+<code>PERLDB_OPTS</code>).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lineinfo"><code>LineInfo</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lineinfo_x_3cdebugger_option_2c_lineinfo_3e"><code>LineInfo</code>
+</a></strong>
+
 <dd>
-File or pipe to print line number info to.  If it is a pipe (say,
+<p>File or pipe to print line number info to.  If it is a pipe (say,
 <code>|visual_perl_db</code>), then a short message is used.  This is the
 mechanism used to interact with a slave editor or visual debugger,
 such as the special <code>vi</code> or <code>emacs</code> hooks, or the <code>ddd</code> graphical
-debugger.
+debugger.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_inhibit_exit"><code>inhibit_exit</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_inhibit_exit_x_3cdebugger_option_2c_inhibit_exit_3"><code>inhibit_exit</code>
+</a></strong>
+
 <dd>
-If 0, allows <em>stepping off</em> the end of the script.
+<p>If 0, allows <em>stepping off</em> the end of the script.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_printret"><code>PrintRet</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_printret_x_3cdebugger_option_2c_printret_3e"><code>PrintRet</code>
+</a></strong>
+
 <dd>
-Print return value after <a href="#item_r"><code>r</code></a> command if set (default).
+<p>Print return value after <code>r</code> command if set (default).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_ornaments"><code>ornaments</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_ornaments_x_3cdebugger_option_2c_ornaments_3e"><code>ornaments</code>
+</a></strong>
+
 <dd>
-Affects screen appearance of the command line (see <a href="../Term/ReadLine.html">the Term::ReadLine manpage</a>).
+<p>Affects screen appearance of the command line (see <a href="../../Term/ReadLine.html">the Term::ReadLine manpage</a>).
 There is currently no way to disable these, which can render
 some output illegible on some displays, or with some pagers.
-This is considered a bug.
+This is considered a bug.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_frame"><code>frame</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_frame_x_3cdebugger_option_2c_frame_3e"><code>frame</code>
+</a></strong>
+
 <dd>
-Affects the printing of messages upon entry and exit from subroutines.  If
-<a href="#item_frame"><code>frame &amp; 2</code></a> is false, messages are printed on entry only. (Printing
-on exit might be useful if interspersed with other messages.)
+<p>Affects the printing of messages upon entry and exit from subroutines.  If
+<code>frame &amp; 2</code> is false, messages are printed on entry only. (Printing
+on exit might be useful if interspersed with other messages.)</p>
 </dd>
 <dd>
-<p>If <a href="#item_frame"><code>frame &amp; 4</code></a>, arguments to functions are printed, plus context
-and caller info.  If <a href="#item_frame"><code>frame &amp; 8</code></a>, overloaded <code>stringify</code> and
-<code>tie</code>d <code>FETCH</code> is enabled on the printed arguments.  If <a href="#item_frame"><code>frame
-&amp; 16</code></a>, the return value from the subroutine is printed.</p>
+<p>If <code>frame &amp; 4</code>, arguments to functions are printed, plus context
+and caller info.  If <code>frame &amp; 8</code>, overloaded <code>stringify</code> and
+<code>tie</code>d <code>FETCH</code> is enabled on the printed arguments.  If <code>frame
+&amp; 16</code>, the return value from the subroutine is printed.</p>
 </dd>
 <dd>
 <p>The length at which the argument list is truncated is governed by the
 next option:</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_maxtracelen"><code>maxTraceLen</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_maxtracelen_x_3cdebugger_option_2c_maxtracelen_3e"><code>maxTraceLen</code>
+</a></strong>
+
 <dd>
-Length to truncate the argument list when the <a href="#item_frame"><code>frame</code></a> option's
-bit 4 is set.
+<p>Length to truncate the argument list when the <code>frame</code> option's
+bit 4 is set.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_windowsize"><code>windowSize</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_windowsize_x_3cdebugger_option_2c_windowsize_3e"><code>windowSize</code>
+</a></strong>
+
 <dd>
-Change the size of code list window (default is 10 lines).
+<p>Change the size of code list window (default is 10 lines).</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>The following options affect what happens with <code>V</code>, <code>X</code>, and <code>x</code>
 commands:</p>
 <dl>
-<dt><strong><a name="item_arraydepth_2c_hashdepth"><code>arrayDepth</code>, <code>hashDepth</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_arraydepth_2c_hashdepth_x_3cdebugger_option_2c_arr"><code>arrayDepth</code>, <code>hashDepth</code>
+ </a></strong>
+
 <dd>
-Print only first N elements ('' for all).
+<p>Print only first N elements ('' for all).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_dumpdepth"><code>dumpDepth</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_dumpdepth_x_3cdebugger_option_2c_dumpdepth_3e"><code>dumpDepth</code>
+</a></strong>
+
 <dd>
-Limit recursion depth to N levels when dumping structures.
-Negative values are interpreted as infinity.  Default: infinity.
+<p>Limit recursion depth to N levels when dumping structures.
+Negative values are interpreted as infinity.  Default: infinity.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_compactdump_2c_verycompact"><code>compactDump</code>, <code>veryCompact</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_compactdump_2c_verycompact_x_3cdebugger_option_2c_"><code>compactDump</code>, <code>veryCompact</code>
+ </a></strong>
+
 <dd>
-Change the style of array and hash output.  If <code>compactDump</code>, short array
-may be printed on one line.
+<p>Change the style of array and hash output.  If <code>compactDump</code>, short array
+may be printed on one line.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_globprint"><code>globPrint</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_globprint_x_3cdebugger_option_2c_globprint_3e"><code>globPrint</code>
+</a></strong>
+
 <dd>
-Whether to print contents of globs.
+<p>Whether to print contents of globs.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_dumpdbfiles"><code>DumpDBFiles</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_dumpdbfiles_x_3cdebugger_option_2c_dumpdbfiles_3e"><code>DumpDBFiles</code>
+</a></strong>
+
 <dd>
-Dump arrays holding debugged files.
+<p>Dump arrays holding debugged files.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_dumppackages"><code>DumpPackages</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_dumppackages_x_3cdebugger_option_2c_dumppackages_3"><code>DumpPackages</code>
+</a></strong>
+
 <dd>
-Dump symbol tables of packages.
+<p>Dump symbol tables of packages.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_dumpreused"><code>DumpReused</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_dumpreused_x_3cdebugger_option_2c_dumpreused_3e"><code>DumpReused</code>
+</a></strong>
+
 <dd>
-Dump contents of ``reused'' addresses.
+<p>Dump contents of ``reused'' addresses.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_quote_2c_highbit_2c_undefprint"><code>quote</code>, <code>HighBit</code>, <code>undefPrint</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_quote_2c_highbit_2c_undefprint_x_3cdebugger_option"><code>quote</code>, <code>HighBit</code>, <code>undefPrint</code>
+ 
+</a></strong>
+
 <dd>
-Change the style of string dump.  The default value for <code>quote</code>
+<p>Change the style of string dump.  The default value for <code>quote</code>
 is <code>auto</code>; one can enable double-quotish or single-quotish format
 by setting it to <code>&quot;</code> or <code>'</code>, respectively.  By default, characters
-with their high bit set are printed verbatim.
+with their high bit set are printed verbatim.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_usageonly"><code>UsageOnly</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_usageonly_x_3cdebugger_option_2c_usageonly_3e"><code>UsageOnly</code>
+</a></strong>
+
 <dd>
-Rudimentary per-package memory usage dump.  Calculates total
+<p>Rudimentary per-package memory usage dump.  Calculates total
 size of strings found in variables in the package.  This does not
-include lexicals in a module's file scope, or lost in closures.
+include lexicals in a module's file scope, or lost in closures.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>After the rc file is read, the debugger reads the <code>$ENV{PERLDB_OPTS}</code>
-environment variable and parses this as the remainder of a `O ...'
+environment variable and parses this as the remainder of a ``O ...''
 line as one might enter at the debugger prompt.  You may place the
-initialization options <a href="#item_tty"><code>TTY</code></a>, <a href="#item_notty"><code>noTTY</code></a>, <a href="#item_readline"><code>ReadLine</code></a>, and <a href="#item_nonstop"><code>NonStop</code></a>
+initialization options <code>TTY</code>, <code>noTTY</code>, <code>ReadLine</code>, and <code>NonStop</code>
 there.</p>
 <p>If your rc file contains:</p>
 <pre>
   parse_options(&quot;NonStop=1 LineInfo=db.out AutoTrace&quot;);</pre>
 <p>then your script will run without human intervention, putting trace
 information into the file <em>db.out</em>.  (If you interrupt it, you'd
-better reset <a href="#item_lineinfo"><code>LineInfo</code></a> to <em>/dev/tty</em> if you expect to see anything.)</p>
+better reset <code>LineInfo</code> to <em>/dev/tty</em> if you expect to see anything.)</p>
 <dl>
-<dt><strong><a name="item_tty"><code>TTY</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_tty_x_3cdebugger_option_2c_tty_3e"><code>TTY</code>
+</a></strong>
+
 <dd>
-The TTY to use for debugging I/O.
+<p>The TTY to use for debugging I/O.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_notty"><code>noTTY</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_notty_x_3cdebugger_option_2c_notty_3e"><code>noTTY</code>
+</a></strong>
+
 <dd>
-If set, the debugger goes into <a href="#item_nonstop"><code>NonStop</code></a> mode and will not connect to a TTY.  If
+<p>If set, the debugger goes into <code>NonStop</code> mode and will not connect to a TTY.  If
 interrupted (or if control goes to the debugger via explicit setting of
 $DB::signal or $DB::single from the Perl script), it connects to a TTY
-specified in the <a href="#item_tty"><code>TTY</code></a> option at startup, or to a tty found at
-runtime using the <code>Term::Rendezvous</code> module of your choice.
+specified in the <code>TTY</code> option at startup, or to a tty found at
+runtime using the <code>Term::Rendezvous</code> module of your choice.</p>
 </dd>
 <dd>
 <p>This module should implement a method named <code>new</code> that returns an object
 with two methods: <code>IN</code> and <code>OUT</code>.  These should return filehandles to use
 for debugging input and output correspondingly.  The <code>new</code> method should
 inspect an argument containing the value of <code>$ENV{PERLDB_NOTTY}</code> at
-startup, or <code>&quot;.perldbtty$$&quot;</code> otherwise.  This file is not 
+startup, or <code>&quot;$ENV{HOME}/.perldbtty$$&quot;</code> otherwise.  This file is not
 inspected for proper ownership, so security hazards are theoretically
 possible.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_readline"><code>ReadLine</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_readline_x_3cdebugger_option_2c_readline_3e"><code>ReadLine</code>
+</a></strong>
+
 <dd>
-If false, readline support in the debugger is disabled in order
-to debug applications that themselves use ReadLine.
+<p>If false, readline support in the debugger is disabled in order
+to debug applications that themselves use ReadLine.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_nonstop"><code>NonStop</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_nonstop_x_3cdebugger_option_2c_nonstop_3e"><code>NonStop</code>
+</a></strong>
+
 <dd>
-If set, the debugger goes into non-interactive mode until interrupted, or
-programmatically by setting $DB::signal or $DB::single.
+<p>If set, the debugger goes into non-interactive mode until interrupted, or
+programmatically by setting $DB::signal or $DB::single.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Here's an example of using the <code>$ENV{PERLDB_OPTS}</code> variable:</p>
 <pre>
     $ PERLDB_OPTS=&quot;NonStop frame=2&quot; perl -d myprogram</pre>
@@ -979,7 +1087,7 @@ always spell them out in full for legibility and future compatibility.</p>
     $ PERLDB_OPTS=&quot;NonStop LineInfo=listing frame=2&quot; perl -d myprogram</pre>
 <p>which runs script non-interactively, printing info on each entry
 into a subroutine and each executed line into the file named <em>listing</em>.
-(If you interrupt it, you would better reset <a href="#item_lineinfo"><code>LineInfo</code></a> to something
+(If you interrupt it, you would better reset <code>LineInfo</code> to something
 ``interactive''!)</p>
 <p>Other examples include (using standard shell syntax to show environment
 variable settings):</p>
@@ -996,10 +1104,10 @@ corresponds to <em>/dev/ttyXX</em>, say, by issuing a command like</p>
 </p>
 <h2><a name="debugger_input_output">Debugger input/output</a></h2>
 <dl>
-<dt><strong><a name="item_prompt">Prompt</a></strong><br />
-</dt>
+<dt><strong><a name="item_prompt">Prompt</a></strong>
+
 <dd>
-The debugger prompt is something like
+<p>The debugger prompt is something like</p>
 </dd>
 <dd>
 <pre>
@@ -1022,14 +1130,14 @@ at a breakpoint and then printed the result of a function call that
 itself has a breakpoint, or you step into an expression via <code>s/n/t
 expression</code> command.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_multiline_commands">Multiline commands</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_multiline_commands">Multiline commands</a></strong>
+
 <dd>
-If you want to enter a multi-line command, such as a subroutine
+<p>If you want to enter a multi-line command, such as a subroutine
 definition with several statements or a format, escape the newline
 that would normally end the debugger command with a backslash.
-Here's an example:
+Here's an example:</p>
 </dd>
 <dd>
 <pre>
@@ -1045,12 +1153,13 @@ Here's an example:
 <p>Note that this business of escaping a newline is specific to interactive
 commands typed into the debugger.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_stack_backtrace">Stack backtrace</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_stack_backtrace_x_3cbacktrace_3e_x_3cstack_2c_back">Stack backtrace
+ </a></strong>
+
 <dd>
-Here's an example of what a stack backtrace via <a href="#item_t"><code>T</code></a> command might
-look like:
+<p>Here's an example of what a stack backtrace via <code>T</code> command might
+look like:</p>
 </dd>
 <dd>
 <pre>
@@ -1061,7 +1170,7 @@ look like:
 <dd>
 <p>The left-hand character up there indicates the context in which the
 function was called, with <code>$</code> and <code>@</code> meaning scalar or list
-contexts respectively, and <a href="#item__2e"><code>.</code></a> meaning void context (which is
+contexts respectively, and <code>.</code> meaning void context (which is
 actually a sort of scalar context).  The display above says
 that you were in the function <code>main::infested</code> when you ran the
 stack dump, and that it was called in scalar context from line
@@ -1073,15 +1182,15 @@ frame shows that <code>main::pests</code> was called in scalar context,
 also from <em>camel_flea</em>, but from line 4.</p>
 </dd>
 <dd>
-<p>If you execute the <a href="#item_t"><code>T</code></a> command from inside an active <code>use</code>
+<p>If you execute the <code>T</code> command from inside an active <code>use</code>
 statement, the backtrace will contain both a <code>require</code> frame and
 an <code>eval</code>) frame.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_line_listing_format">Line Listing Format</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_line_listing_format">Line Listing Format</a></strong>
+
 <dd>
-This shows the sorts of output the <a href="#item_l"><code>l</code></a> command can produce:
+<p>This shows the sorts of output the <code>l</code> command can produce:</p>
 </dd>
 <dd>
 <pre>
@@ -1099,7 +1208,7 @@ This shows the sorts of output the <a href="#item_l"><code>l</code></a> command 
 </dd>
 <dd>
 <p>Breakable lines are marked with <code>:</code>.  Lines with breakpoints are
-marked by <a href="#item_b"><code>b</code></a> and those with actions by <code>a</code>.  The line that's
+marked by <code>b</code> and those with actions by <code>a</code>.  The line that's
 about to be executed is marked by <code>==&gt;</code>.</p>
 </dd>
 <dd>
@@ -1108,22 +1217,23 @@ as your original source code.  Line directives and external source
 filters can alter the code before Perl sees it, causing code to move
 from its original positions or take on entirely different forms.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_frame_listing">Frame listing</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_frame_listing">Frame listing</a></strong>
+
 <dd>
-When the <a href="#item_frame"><code>frame</code></a> option is set, the debugger would print entered (and
+<p>When the <code>frame</code> option is set, the debugger would print entered (and
 optionally exited) subroutines in different styles.  See <a href="perldebguts.html">the perldebguts manpage</a>
-for incredibly long examples of these.
+for incredibly long examples of these.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="debugging_compiletime_statements">Debugging compile-time statements</a></h2>
 <p>If you have compile-time executable statements (such as code within
 BEGIN and CHECK blocks or <code>use</code> statements), these will <em>not</em> be
 stopped by debugger, although <code>require</code>s and INIT blocks will, and
-compile-time statements can be traced with <a href="#item_autotrace"><code>AutoTrace</code></a> option set
+compile-time statements can be traced with <code>AutoTrace</code> option set
 in <code>PERLDB_OPTS</code>).  From your own Perl code, however, you can
 transfer control back to the debugger using the following statement,
 which is harmless if the debugger is not running:</p>
@@ -1132,20 +1242,20 @@ which is harmless if the debugger is not running:</p>
 <p>If you set <code>$DB::single</code> to 2, it's equivalent to having
 just typed the <code>n</code> command, whereas a value of 1 means the <code>s</code>
 command.  The <code>$DB::trace</code>  variable should be set to 1 to simulate
-having typed the <a href="#item_t"><code>t</code></a> command.</p>
+having typed the <code>t</code> command.</p>
 <p>Another way to debug compile-time code is to start the debugger, set a
 breakpoint on the <em>load</em> of some module:</p>
 <pre>
     DB&lt;7&gt; b load f:/perllib/lib/Carp.pm
   Will stop on load of `f:/perllib/lib/Carp.pm'.</pre>
-<p>and then restart the debugger using the <a href="#item_r"><code>R</code></a> command (if possible).  One can use <a href="#item_b_compile_subname"><code>b
-compile subname</code></a> for the same purpose.</p>
+<p>and then restart the debugger using the <code>R</code> command (if possible).  One can use <code>b
+compile subname</code> for the same purpose.</p>
 <p>
 </p>
 <h2><a name="debugger_customization">Debugger Customization</a></h2>
 <p>The debugger probably contains enough configuration hooks that you
 won't ever have to modify it yourself.  You may change the behaviour
-of debugger from within the debugger using its <a href="#item_o"><code>o</code></a> command, from
+of debugger from within the debugger using its <code>o</code> command, from
 the command line via the <code>PERLDB_OPTS</code> environment variable, and
 from customization files.</p>
 <p>You can do some customization by setting up a <em>.perldb</em> file, which
@@ -1172,7 +1282,7 @@ by no one but its owner.</p>
 <pre>
     sub afterinit { push @DB::typeahead, &quot;b 4&quot;, &quot;b 6&quot;; }</pre>
 <p>Which would attempt to set breakpoints on lines 4 and 6 immediately
-after debugger initilization. Note that @DB::typeahead is not a supported
+after debugger initialization. Note that @DB::typeahead is not a supported
 interface and is subject to change in future releases.</p>
 <p>If you want to modify the debugger, copy <em>perl5db.pl</em> from the
 Perl library to another name and hack it to your heart's content.
@@ -1220,7 +1330,8 @@ fall somewhat short of the mark, especially if you don't program
 your Perl as a C programmer might.</p>
 <p>
 </p>
-<h2><a name="the_perl_profiler">The Perl Profiler</a></h2>
+<h2><a name="the_perl_profiler_x_profile__x_profiling__x_profiler_">The Perl Profiler
+  </a></h2>
 <p>If you wish to supply an alternative debugger for Perl to run, just
 invoke your script with a colon and a package argument given to the
 <strong>-d</strong> flag.  The most popular alternative debuggers for Perl is the
@@ -1236,7 +1347,9 @@ interpret the information in that profile.</p>
 <p>
 </p>
 <hr />
-<h1><a name="debugging_regular_expressions">Debugging regular expressions</a></h1>
+<h1><a name="debugging_regular_expressions_x_regular_expression__debugging__x_regex__debugging__x_regexp__debugging_">Debugging regular expressions
+
+ </a></h1>
 <p><code>use re 'debug'</code> enables you to see the gory details of how the Perl
 regular expression engine works. In order to understand this typically
 voluminous output, one must not only have some idea about how regular
@@ -1247,7 +1360,8 @@ are explored in some detail in
 <p>
 </p>
 <hr />
-<h1><a name="debugging_memory_usage">Debugging memory usage</a></h1>
+<h1><a name="debugging_memory_usage_x_memory_usage_">Debugging memory usage
+</a></h1>
 <p>Perl contains internal support for reporting its own memory usage,
 but this is a fairly advanced concept that requires some understanding
 of how memory allocation works.
@@ -1259,16 +1373,16 @@ See <a href="perldebguts.html#debugging_perl_memory_usage">Debugging Perl memory
 <p>You did try the <strong>-w</strong> switch, didn't you?</p>
 <p><a href="perldebtut.html">the perldebtut manpage</a>,
 <a href="perldebguts.html">the perldebguts manpage</a>,
-<em>re</em>,
-<em>DB</em>,
-<a href="../Devel/DProf.html">the Devel::DProf manpage</a>,
+<a href="../../re.html">the re manpage</a>,
+<a href="../../DB.html">the DB manpage</a>,
+<a href="../../Devel/DProf.html">the Devel::DProf manpage</a>,
 <em>dprofpp</em>,
-<em>Dumpvalue</em>,
+<a href="../../Dumpvalue.html">the Dumpvalue manpage</a>,
 and
 <a href="perlrun.html">the perlrun manpage</a>.</p>
 <p>When debugging a script that uses #! and is thus normally found in
 $PATH, the -S option causes perl to search $PATH for it, so you don't
-have to type the path or `which $scriptname`.</p>
+have to type the path or <code>which $scriptname</code>.</p>
 <pre>
   $ perl -Sd foo.pl</pre>
 <p>

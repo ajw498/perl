@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlvms - VMS-specific documentation for Perl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -179,7 +181,7 @@ directory, and the procedure for building the extension is simply</p>
 <p><em>N.B.</em> The procedure by which extensions are built and
 tested creates several levels (at least 4) under the
 directory in which the extension's source files live.
-For this reason if you are runnning a version of VMS prior
+For this reason if you are running a version of VMS prior
 to V7.1 you shouldn't nest the source directory
 too deeply in your directory structure lest you exceed RMS'
 maximum of 8 levels of subdirectory in a filespec.  (You
@@ -204,23 +206,24 @@ each <code>::</code> translated to <code>.</code>).  (See the MakeMaker document
 for more details on installation options for extensions.)
 However, it can be manually placed in any of several locations:</p>
 <ul>
-<li></li>
-the <em>[.Lib.Auto.</em><em>Arch</em><em>$PVers</em><em>Extname</em><em>]</em> subdirectory
+<li>
+<p>the <em>[.Lib.Auto.</em><em>Arch</em><em>$PVers</em><em>Extname</em><em>]</em> subdirectory
 of one of the directories in <code>@INC</code> (where <em>PVers</em>
 is the version of Perl you're using, as supplied in <code>$]</code>,
-with '.' converted to '_'), or
-<p></p>
-<li></li>
-one of the directories in <code>@INC</code>, or
-<p></p>
-<li></li>
-a directory which the extensions Perl library module
+with '.' converted to '_'), or</p>
+</li>
+<li>
+<p>one of the directories in <code>@INC</code>, or</p>
+</li>
+<li>
+<p>a directory which the extensions Perl library module
 passes to the DynaLoader when asking it to map
-the shareable image, or
-<p></p>
-<li></li>
-<em>Sys$Share</em> or <em>Sys$Library</em>.
-<p></p></ul>
+the shareable image, or</p>
+</li>
+<li>
+<p><em>Sys$Share</em> or <em>Sys$Library</em>.</p>
+</li>
+</ul>
 <p>If the shareable image isn't in any of these places, you'll need
 to define a logical name <em>Extshortname</em>, where <em>Extshortname</em>
 is the portion of the extension's name after the last <code>::</code>, which
@@ -337,24 +340,25 @@ directory specifications may use either VMS or Unix syntax.</p>
 <p>Perl for VMS supports redirection of input and output on the 
 command line, using a subset of Bourne shell syntax:</p>
 <ul>
-<li></li>
-<code>&lt;file</code> reads stdin from <code>file</code>,
-<p></p>
-<li></li>
-<code>&gt;file</code> writes stdout to <code>file</code>,
-<p></p>
-<li></li>
-<code>&gt;&gt;file</code> appends stdout to <code>file</code>,
-<p></p>
-<li></li>
-<code>2&gt;file</code> writes stderr to <code>file</code>,
-<p></p>
-<li></li>
-<code>2&gt;&gt;file</code> appends stderr to <code>file</code>, and
-<p></p>
-<li></li>
-<code>2&gt;&amp;1</code> redirects stderr to stdout.
-<p></p></ul>
+<li>
+<p><code>&lt;file</code> reads stdin from <code>file</code>,</p>
+</li>
+<li>
+<p><code>&gt;file</code> writes stdout to <code>file</code>,</p>
+</li>
+<li>
+<p><code>&gt;&gt;file</code> appends stdout to <code>file</code>,</p>
+</li>
+<li>
+<p><code>2&gt;file</code> writes stderr to <code>file</code>,</p>
+</li>
+<li>
+<p><code>2&gt;&gt;file</code> appends stderr to <code>file</code>, and</p>
+</li>
+<li>
+<p><code>2&gt;&amp;1</code> redirects stderr to stdout.</p>
+</li>
+</ul>
 <p>In addition, output may be piped to a subprocess, using the  
 character '|'.  Anything after this character on the command 
 line is passed to a subprocess for execution; the subprocess 
@@ -371,37 +375,38 @@ to pass uppercase switches to Perl, you need to enclose
 them in double-quotes on the command line, since the CRTL
 downcases all unquoted strings.</p>
 <dl>
-<dt><strong><a name="item__2di">-i</a></strong><br />
-</dt>
+<dt><strong><a name="item__2di">-i</a></strong>
+
 <dd>
-If the <a href="#item__2di"><code>-i</code></a> switch is present but no extension for a backup
+<p>If the <a href="#item__2di"><code>-i</code></a> switch is present but no extension for a backup
 copy is given, then inplace editing creates a new version of
 a file; the existing copy is not deleted.  (Note that if
 an extension is given, an existing file is renamed to the backup
 file, as is the case under other operating systems, so it does
-not remain as a previous version under the original filename.)
+not remain as a previous version under the original filename.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2ds">-S</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2ds">-S</a></strong>
+
 <dd>
-If the <code>&quot;-S&quot;</code> or <code>-&quot;S&quot;</code> switch is present <em>and</em> the script
+<p>If the <code>&quot;-S&quot;</code> or <code>-&quot;S&quot;</code> switch is present <em>and</em> the script
 name does not contain a directory, then Perl translates the
 logical name DCL$PATH as a searchlist, using each translation
 as a directory in which to look for the script.  In addition,
 if no file type is specified, Perl looks in each directory
 for a file matching the name specified, with a blank type,
-a type of <em>.pl</em>, and a type of <em>.com</em>, in that order.
+a type of <em>.pl</em>, and a type of <em>.com</em>, in that order.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2du">-u</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2du">-u</a></strong>
+
 <dd>
-The <a href="#item__2du"><code>-u</code></a> switch causes the VMS debugger to be invoked
+<p>The <a href="#item__2du"><code>-u</code></a> switch causes the VMS debugger to be invoked
 after the Perl program is compiled, but before it has
-run.  It does not create a core dump file.
+run.  It does not create a core dump file.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -461,10 +466,10 @@ your copy of Perl:</p>
     getsockopt, listen, recv, select(system call)*,
     send, setsockopt, shutdown, socket</pre>
 <dl>
-<dt><strong><a name="item_file_tests">File tests</a></strong><br />
-</dt>
+<dt><strong><a name="item_file_tests">File tests</a></strong>
+
 <dd>
-The tests <code>-b</code>, <code>-B</code>, <code>-c</code>, <code>-C</code>, <code>-d</code>, <code>-e</code>, <code>-f</code>,
+<p>The tests <code>-b</code>, <code>-B</code>, <code>-c</code>, <code>-C</code>, <code>-d</code>, <code>-e</code>, <code>-f</code>,
 <code>-o</code>, <code>-M</code>, <code>-s</code>, <a href="#item__2ds"><code>-S</code></a>, <code>-t</code>, <code>-T</code>, and <code>-z</code> work as
 advertised.  The return values for <code>-r</code>, <code>-w</code>, and <code>-x</code>
 tell you whether you can actually access the file; this may
@@ -477,7 +482,7 @@ VMS, and the values returned by these tests reflect whatever
 your CRTL <a href="#item_stat"><code>stat()</code></a> routine does to the equivalent bits in the
 st_mode field.  Finally, <code>-d</code> returns true if passed a device
 specification without an explicit directory (e.g. <code>DUA1:</code>), as
-well as if passed a directory.
+well as if passed a directory.</p>
 </dd>
 <dd>
 <p>Note: Some sites have reported problems when using the file-access
@@ -485,32 +490,32 @@ tests (<code>-r</code>, <code>-w</code>, and <code>-x</code>) on files accessed 
 Specifically, since DFS does not currently provide access to the
 extended file header of files on remote volumes, attempts to
 examine the ACL fail, and the file tests will return false,
-with <a href="#item__24_21"><code>$!</code></a> indicating that the file does not exist.  You can
+with <a href="#item___"><code>$!</code></a> indicating that the file does not exist.  You can
 use <a href="#item_stat"><code>stat</code></a> on these files, since that checks UIC-based protection
 only, and then manually check the appropriate bits, as defined by
 your C compiler's <em>stat.h</em>, in the mode value it returns, if you
 need an approximation of the file's protections.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_backticks">backticks</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_backticks">backticks</a></strong>
+
 <dd>
-Backticks create a subprocess, and pass the enclosed string
+<p>Backticks create a subprocess, and pass the enclosed string
 to it for execution as a DCL command.  Since the subprocess is
 created directly via <code>lib$spawn()</code>, any valid DCL command string
-may be specified.
+may be specified.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_binmode">binmode FILEHANDLE</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_binmode">binmode FILEHANDLE</a></strong>
+
 <dd>
-The <a href="#item_binmode"><code>binmode</code></a> operator will attempt to insure that no translation
+<p>The <a href="#item_binmode"><code>binmode</code></a> operator will attempt to insure that no translation
 of carriage control occurs on input from or output to this filehandle.
 Since this involves reopening the file and then restoring its
 file position indicator, if this function returns FALSE, the
 underlying filehandle may no longer point to an open file, or may
 point to a different position in the file than before <a href="#item_binmode"><code>binmode</code></a>
-was called.
+was called.</p>
 </dd>
 <dd>
 <p>Note that <a href="#item_binmode"><code>binmode</code></a> is generally not necessary when using normal
@@ -519,16 +524,16 @@ record-structured files when necessary.  You can also use the
 <code>vmsfopen</code> function in the VMS::Stdio extension to gain finer
 control of I/O to files and devices with different record structures.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_crypt">crypt PLAINTEXT, USER</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_crypt">crypt PLAINTEXT, USER</a></strong>
+
 <dd>
-The <a href="#item_crypt"><code>crypt</code></a> operator uses the <code>sys$hash_password</code> system
+<p>The <a href="#item_crypt"><code>crypt</code></a> operator uses the <code>sys$hash_password</code> system
 service to generate the hashed representation of PLAINTEXT.
 If USER is a valid username, the algorithm and salt values
 are taken from that user's UAF record.  If it is not, then
 the preferred algorithm and a salt of 0 are used.  The
-quadword encrypted value is returned as an 8-character string.
+quadword encrypted value is returned as an 8-character string.</p>
 </dd>
 <dd>
 <p>The value returned by <a href="#item_crypt"><code>crypt</code></a> may be compared against
@@ -551,24 +556,24 @@ password strings; you'll have to upcase the arguments to
         return 1;
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_dump">dump</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_dump">dump</a></strong>
+
 <dd>
-Rather than causing Perl to abort and dump core, the <a href="#item_dump"><code>dump</code></a>
+<p>Rather than causing Perl to abort and dump core, the <a href="#item_dump"><code>dump</code></a>
 operator invokes the VMS debugger.  If you continue to
 execute the Perl program under the debugger, control will
 be transferred to the label specified as the argument to
 <a href="#item_dump"><code>dump</code></a>, or, if no label was specified, back to the
 beginning of the program.  All other state of the program
 (<em>e.g.</em> values of variables, open file handles) are not
-affected by calling <a href="#item_dump"><code>dump</code></a>.
+affected by calling <a href="#item_dump"><code>dump</code></a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_exec">exec LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_exec">exec LIST</a></strong>
+
 <dd>
-A call to <a href="#item_exec"><code>exec</code></a> will cause Perl to exit, and to invoke the command
+<p>A call to <a href="#item_exec"><code>exec</code></a> will cause Perl to exit, and to invoke the command
 given as an argument to <a href="#item_exec"><code>exec</code></a> via <code>lib$do_command</code>.  If the
 argument begins with '@' or '$' (other than as part of a filespec),
 then it is executed as a DCL command.  Otherwise, the first token on
@@ -579,13 +584,13 @@ argument to it as parameters.  If the token has no file type, and
 matches a file with null type, then an attempt is made to determine
 whether the file is an executable image which should be invoked
 using <code>MCR</code> or a text file which should be passed to DCL as a
-command procedure.
+command procedure.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_fork">fork</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_fork">fork</a></strong>
+
 <dd>
-While in principle the <a href="#item_fork"><code>fork</code></a> operator could be implemented via
+<p>While in principle the <a href="#item_fork"><code>fork</code></a> operator could be implemented via
 (and with the same rather severe limitations as) the CRTL <code>vfork()</code>
 routine, and while some internal support to do just that is in
 place, the implementation has never been completed, making <a href="#item_fork"><code>fork</code></a>
@@ -593,87 +598,87 @@ currently unavailable.  A true kernel <a href="#item_fork"><code>fork()</code></
 future version of VMS, and the pseudo-fork based on interpreter
 threads may be available in a future version of Perl on VMS (see
 <a href="perlfork.html">the perlfork manpage</a>).  In the meantime, use <a href="#item_system"><code>system</code></a>, backticks, or piped
-filehandles to create subprocesses.
+filehandles to create subprocesses.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_getpwent">getpwent</a></strong><br />
-</dt>
-<dt><strong><a name="item_getpwnam">getpwnam</a></strong><br />
-</dt>
-<dt><strong><a name="item_getpwuid">getpwuid</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_getpwent">getpwent</a></strong>
+
+<dt><strong><a name="item_getpwnam">getpwnam</a></strong>
+
+<dt><strong><a name="item_getpwuid">getpwuid</a></strong>
+
 <dd>
-These operators obtain the information described in <a href="perlfunc.html">the perlfunc manpage</a>,
+<p>These operators obtain the information described in <a href="perlfunc.html">the perlfunc manpage</a>,
 if you have the privileges necessary to retrieve the named user's
 UAF information via <code>sys$getuai</code>.  If not, then only the <code>$name</code>,
 <code>$uid</code>, and <code>$gid</code> items are returned.  The <code>$dir</code> item contains
 the login directory in VMS syntax, while the <code>$comment</code> item
 contains the login directory in Unix syntax. The <code>$gcos</code> item
 contains the owner field from the UAF record.  The <code>$quota</code>
-item is not used.
+item is not used.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_gmtime">gmtime</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_gmtime">gmtime</a></strong>
+
 <dd>
-The <a href="#item_gmtime"><code>gmtime</code></a> operator will function properly if you have a
+<p>The <a href="#item_gmtime"><code>gmtime</code></a> operator will function properly if you have a
 working CRTL <a href="#item_gmtime"><code>gmtime()</code></a> routine, or if the logical name
 SYS$TIMEZONE_DIFFERENTIAL is defined as the number of seconds
 which must be added to UTC to yield local time.  (This logical
 name is defined automatically if you are running a version of
 VMS with built-in UTC support.)  If neither of these cases is
-true, a warning message is printed, and <code>undef</code> is returned.
+true, a warning message is printed, and <code>undef</code> is returned.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_kill">kill</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_kill">kill</a></strong>
+
 <dd>
-In most cases, <a href="#item_kill"><code>kill</code></a> is implemented via the CRTL's <a href="#item_kill"><code>kill()</code></a>
+<p>In most cases, <a href="#item_kill"><code>kill</code></a> is implemented via the CRTL's <a href="#item_kill"><code>kill()</code></a>
 function, so it will behave according to that function's
 documentation.  If you send a SIGKILL, however, the $DELPRC system
 service is called directly.  This insures that the target
 process is actually deleted, if at all possible.  (The CRTL's <a href="#item_kill"><code>kill()</code></a>
 function is presently implemented via $FORCEX, which is ignored by
-supervisor-mode images like DCL.)
+supervisor-mode images like DCL.)</p>
 </dd>
 <dd>
 <p>Also, negative signal values don't do anything special under
 VMS; they're just converted to the corresponding positive value.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_qx_">qx//</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_qx_">qx//</a></strong>
+
 <dd>
-See the entry on <a href="#item_backticks"><code>backticks</code></a> above.
+<p>See the entry on <a href="#item_backticks"><code>backticks</code></a> above.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_select">select (system call)</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_select">select (system call)</a></strong>
+
 <dd>
-If Perl was not built with socket support, the system call
+<p>If Perl was not built with socket support, the system call
 version of <a href="#item_select"><code>select</code></a> is not available at all.  If socket
 support is present, then the system call version of
 <a href="#item_select"><code>select</code></a> functions only for file descriptors attached
 to sockets.  It will not provide information about regular
 files or pipes, since the CRTL <a href="#item_select"><code>select()</code></a> routine does not
-provide this functionality.
+provide this functionality.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_stat">stat EXPR</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_stat">stat EXPR</a></strong>
+
 <dd>
-Since VMS keeps track of files according to a different scheme
+<p>Since VMS keeps track of files according to a different scheme
 than Unix, it's not really possible to represent the file's ID
 in the <code>st_dev</code> and <code>st_ino</code> fields of a <code>struct stat</code>.  Perl
 tries its best, though, and the values it uses are pretty unlikely
 to be the same for two different files.  We can't guarantee this,
-though, so caveat scriptor.
+though, so caveat scriptor.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_system">system LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_system">system LIST</a></strong>
+
 <dd>
-The <a href="#item_system"><code>system</code></a> operator creates a subprocess, and passes its 
+<p>The <a href="#item_system"><code>system</code></a> operator creates a subprocess, and passes its 
 arguments to the subprocess for execution as a DCL command.  
 Since the subprocess is created directly via <code>lib$spawn()</code>, any 
 valid DCL command string may be specified.  If the string begins with
@@ -687,7 +692,7 @@ to <a href="#item_system"><code>system</code></a>, a common Unixish idiom.  If t
 and matches a file with null type, then an attempt is made to
 determine whether the file is an executable image which should be
 invoked using <code>MCR</code> or a text file which should be passed to DCL
-as a command procedure.
+as a command procedure.</p>
 </dd>
 <dd>
 <p>If LIST consists of the empty string, <a href="#item_system"><code>system</code></a> spawns an
@@ -699,22 +704,22 @@ interactive DCL subprocess, in the same fashion as typing
 execution in the current process.  As described in <a href="perlfunc.html">the perlfunc manpage</a>,
 the return value of <a href="#item_system"><code>system</code></a> is a fake ``status'' which follows
 POSIX semantics unless the pragma <code>use vmsish 'status'</code> is in
-effect; see the description of <a href="#item__24_3f"><code>$?</code></a> in this document for more 
+effect; see the description of <a href="#item__"><code>$?</code></a> in this document for more 
 detail.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_time">time</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_time">time</a></strong>
+
 <dd>
-The value returned by <a href="#item_time"><code>time</code></a> is the offset in seconds from
+<p>The value returned by <a href="#item_time"><code>time</code></a> is the offset in seconds from
 01-JAN-1970 00:00:00 (just like the CRTL's <a href="#item_times"><code>times()</code></a> routine), in order
-to make life easier for code coming in from the POSIX/Unix world.
+to make life easier for code coming in from the POSIX/Unix world.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_times">times</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_times">times</a></strong>
+
 <dd>
-The array returned by the <a href="#item_times"><code>times</code></a> operator is divided up 
+<p>The array returned by the <a href="#item_times"><code>times</code></a> operator is divided up 
 according to the same rules the CRTL <a href="#item_times"><code>times()</code></a> routine.  
 Therefore, the ``system time'' elements will always be 0, since 
 there is no difference between ``user time'' and ``system'' time 
@@ -724,14 +729,14 @@ whether <a href="#item_times">times</a> keeps track of subprocesses separately. 
 especially that the VAXCRTL (at least) keeps track only of
 subprocesses spawned using <a href="#item_fork">fork</a> and <a href="#item_exec">exec</a>; it will not
 accumulate the times of subprocesses spawned via pipes, <a href="#item_system">system</a>,
-or backticks.
+or backticks.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_unlink">unlink LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unlink">unlink LIST</a></strong>
+
 <dd>
-<a href="#item_unlink"><code>unlink</code></a> will delete the highest version of a file only; in
-order to delete all versions, you need to say
+<p><a href="#item_unlink"><code>unlink</code></a> will delete the highest version of a file only; in
+order to delete all versions, you need to say</p>
 </dd>
 <dd>
 <pre>
@@ -773,31 +778,32 @@ change the file protection to delete the file, and you interrupt it
 in midstream, the file may be left intact, but with a changed ACL
 allowing you delete access.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_utime">utime LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_utime">utime LIST</a></strong>
+
 <dd>
-Since ODS-2, the VMS file structure for disk files, does not keep
+<p>Since ODS-2, the VMS file structure for disk files, does not keep
 track of access times, this operator changes only the modification
-time of the file (VMS revision date).
+time of the file (VMS revision date).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_waitpid">waitpid PID,FLAGS</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_waitpid">waitpid PID,FLAGS</a></strong>
+
 <dd>
-If PID is a subprocess started by a piped <code>open()</code> (see <em>open</em>), 
+<p>If PID is a subprocess started by a piped <code>open()</code> (see <a href="../../open.html">the open manpage</a>), 
 <a href="#item_waitpid"><code>waitpid</code></a> will wait for that subprocess, and return its final status
-value in <a href="#item__24_3f"><code>$?</code></a>.  If PID is a subprocess created in some other way (e.g.
+value in <a href="#item__"><code>$?</code></a>.  If PID is a subprocess created in some other way (e.g.
 SPAWNed before Perl was invoked), <a href="#item_waitpid"><code>waitpid</code></a> will simply check once per
 second whether the process has completed, and return when it has.  (If
 PID specifies a process that isn't a subprocess of the current process,
-and you invoked Perl with the <code>-w</code> switch, a warning will be issued.)
+and you invoked Perl with the <code>-w</code> switch, a warning will be issued.)</p>
 </dd>
 <dd>
 <p>Returns PID on success, -1 on error.  The FLAGS argument is ignored
 in all cases.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -807,49 +813,50 @@ in all cases.</p>
 in <a href="perlvar.html">the perlvar manpage</a>.  Where there is a conflict, this information
 takes precedence.</p>
 <dl>
-<dt><strong><a name="item__env">%ENV</a></strong><br />
-</dt>
+<dt><strong><a name="item__env">%ENV</a></strong>
+
 <dd>
-The operation of the <a href="#item__env"><code>%ENV</code></a> array depends on the translation
+<p>The operation of the <a href="#item__env"><code>%ENV</code></a> array depends on the translation
 of the logical name <em>PERL_ENV_TABLES</em>.  If defined, it should
 be a search list, each element of which specifies a location
 for <a href="#item__env"><code>%ENV</code></a> elements.  If you tell Perl to read or set the
 element <code>$ENV{</code><em>name</em><code>}</code>, then Perl uses the translations of
-<em>PERL_ENV_TABLES</em> as follows:
+<em>PERL_ENV_TABLES</em> as follows:</p>
 </dd>
 <dl>
-<dt><strong><a name="item_crtl_env">CRTL_ENV</a></strong><br />
-</dt>
+<dt><strong><a name="item_crtl_env">CRTL_ENV</a></strong>
+
 <dd>
-This string tells Perl to consult the CRTL's internal <code>environ</code>
+<p>This string tells Perl to consult the CRTL's internal <code>environ</code>
 array of key-value pairs, using <em>name</em> as the key.  In most cases,
 this contains only a few keys, but if Perl was invoked via the C
 <code>exec[lv]e()</code> function, as is the case for CGI processing by some
 HTTP servers, then the <code>environ</code> array may have been populated by
-the calling program.
+the calling program.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_clisym__5blocal_5d">CLISYM_[LOCAL]</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_clisym__5blocal_5d">CLISYM_[LOCAL]</a></strong>
+
 <dd>
-A string beginning with <code>CLISYM_</code>tells Perl to consult the CLI's
+<p>A string beginning with <code>CLISYM_</code>tells Perl to consult the CLI's
 symbol tables, using <em>name</em> as the name of the symbol.  When reading
 an element of <a href="#item__env"><code>%ENV</code></a>, the local symbol table is scanned first, followed
 by the global symbol table..  The characters following <code>CLISYM_</code> are
 significant when an element of <a href="#item__env"><code>%ENV</code></a> is set or deleted: if the
 complete string is <code>CLISYM_LOCAL</code>, the change is made in the local
-symbol table; otherwise the global symbol table is changed.
+symbol table; otherwise the global symbol table is changed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_any_other_string">Any other string</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_any_other_string">Any other string</a></strong>
+
 <dd>
-If an element of <em>PERL_ENV_TABLES</em> translates to any other string,
+<p>If an element of <em>PERL_ENV_TABLES</em> translates to any other string,
 that string is used as the name of a logical name table, which is
 consulted using <em>name</em> as the logical name.  The normal search
-order of access modes is used.
+order of access modes is used.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p><em>PERL_ENV_TABLES</em> is translated once when Perl starts up; any changes
 you make while Perl is running do not affect the behavior of <a href="#item__env"><code>%ENV</code></a>.
 If <em>PERL_ENV_TABLES</em> is not defined, then Perl defaults to consulting
@@ -940,39 +947,39 @@ logicals are prepended with a two-byte binary value (0x1B 0x00) that needs to be
 stripped off if you want to use it. (In previous versions of Perl it wasn't
 possible to get the values of these logicals, as the null byte acted as an
 end-of-string marker)</p>
-<dt><strong><a name="item__24_21">$!</a></strong><br />
-</dt>
+<dt><strong><a name="item___">$!</a></strong>
+
 <dd>
-The string value of <a href="#item__24_21"><code>$!</code></a> is that returned by the CRTL's
+<p>The string value of <a href="#item___"><code>$!</code></a> is that returned by the CRTL's
 <code>strerror()</code> function, so it will include the VMS message for
-VMS-specific errors.  The numeric value of <a href="#item__24_21"><code>$!</code></a> is the
+VMS-specific errors.  The numeric value of <a href="#item___"><code>$!</code></a> is the
 value of <code>errno</code>, except if errno is EVMSERR, in which
-case <a href="#item__24_21"><code>$!</code></a> contains the value of vaxc$errno.  Setting <a href="#item__24_21"><code>$!</code></a>
+case <a href="#item___"><code>$!</code></a> contains the value of vaxc$errno.  Setting <a href="#item___"><code>$!</code></a>
 always sets errno to the value specified.  If this value is
 EVMSERR, it also sets vaxc$errno to 4 (NONAME-F-NOMSG), so
-that the string value of <a href="#item__24_21"><code>$!</code></a> won't reflect the VMS error
-message from before <a href="#item__24_21"><code>$!</code></a> was set.
+that the string value of <a href="#item___"><code>$!</code></a> won't reflect the VMS error
+message from before <a href="#item___"><code>$!</code></a> was set.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__24_5ee">$^E</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item___e">$^E</a></strong>
+
 <dd>
-This variable provides direct access to VMS status values
+<p>This variable provides direct access to VMS status values
 in vaxc$errno, which are often more specific than the
-generic Unix-style error messages in <a href="#item__24_21"><code>$!</code></a>.  Its numeric value
+generic Unix-style error messages in <a href="#item___"><code>$!</code></a>.  Its numeric value
 is the value of vaxc$errno, and its string value is the
 corresponding VMS message string, as retrieved by sys$getmsg().
-Setting <a href="#item__24_5ee"><code>$^E</code></a> sets vaxc$errno to the value specified.
+Setting <a href="#item___e"><code>$^E</code></a> sets vaxc$errno to the value specified.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__24_3f">$?</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__">$?</a></strong>
+
 <dd>
-The ``status value'' returned in <a href="#item__24_3f"><code>$?</code></a> is synthesized from the
+<p>The ``status value'' returned in <a href="#item__"><code>$?</code></a> is synthesized from the
 actual exit status of the subprocess in a way that approximates
 POSIX <code>wait(5)</code> semantics, in order to allow Perl programs to
 portably test for successful completion of subprocesses.  The
-low order 8 bits of <a href="#item__24_3f"><code>$?</code></a> are always 0 under VMS, since the
+low order 8 bits of <a href="#item__"><code>$?</code></a> are always 0 under VMS, since the
 termination status of a process may or may not have been
 generated by an exception.  The next 8 bits are derived from
 the severity portion of the subprocess' exit status: if the
@@ -980,36 +987,37 @@ severity was success or informational, these bits are all 0;
 if the severity was warning, they contain a value of 1; if the
 severity was error or fatal error, they contain the actual
 severity bits, which turns out to be a value of 2 for error
-and 4 for fatal error.
+and 4 for fatal error.</p>
 </dd>
 <dd>
-<p>As a result, <a href="#item__24_3f"><code>$?</code></a> will always be zero if the subprocess' exit
+<p>As a result, <a href="#item__"><code>$?</code></a> will always be zero if the subprocess' exit
 status indicated successful completion, and non-zero if a
-warning or error occurred.  Conversely, when setting <a href="#item__24_3f"><code>$?</code></a> in
+warning or error occurred.  Conversely, when setting <a href="#item__"><code>$?</code></a> in
 an END block, an attempt is made to convert the POSIX value
 into a native status intelligible to the operating system upon
-exiting Perl.  What this boils down to is that setting <a href="#item__24_3f"><code>$?</code></a>
+exiting Perl.  What this boils down to is that setting <a href="#item__"><code>$?</code></a>
 to zero results in the generic success value SS$_NORMAL, and
-setting <a href="#item__24_3f"><code>$?</code></a> to a non-zero value results in the generic
+setting <a href="#item__"><code>$?</code></a> to a non-zero value results in the generic
 failure status SS$_ABORT.  See also <a href="perlport.html#exit">exit in the perlport manpage</a>.</p>
 </dd>
 <dd>
-<p>The pragma <code>use vmsish 'status'</code> makes <a href="#item__24_3f"><code>$?</code></a> reflect the actual 
+<p>The pragma <code>use vmsish 'status'</code> makes <a href="#item__"><code>$?</code></a> reflect the actual 
 VMS exit status instead of the default emulation of POSIX status 
 described above.  This pragma also disables the conversion of
-non-zero values to SS$_ABORT when setting <a href="#item__24_3f"><code>$?</code></a> in an END
+non-zero values to SS$_ABORT when setting <a href="#item__"><code>$?</code></a> in an END
 block (but zero will still be converted to SS$_NORMAL).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__24_7c">$|</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item___">$|</a></strong>
+
 <dd>
-Setting <a href="#item__24_7c"><code>$|</code></a> for an I/O stream causes data to be flushed
+<p>Setting <a href="#item___"><code>$|</code></a> for an I/O stream causes data to be flushed
 all the way to disk on each write (<em>i.e.</em> not just to
 the underlying RMS buffers for a file).  In other words,
-it's equivalent to calling <code>fflush()</code> and <code>fsync()</code> from C.
+it's equivalent to calling <code>fflush()</code> and <code>fsync()</code> from C.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />

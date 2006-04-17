@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlbot - Bag'o Object Tricks</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -57,51 +59,52 @@ be sure to read <a href="perlboot.html">the perlboot manpage</a>, <a href="perlt
 <hr />
 <h1><a name="oo_scaling_tips">OO SCALING TIPS</a></h1>
 <ol>
-<li></li>
-Do not attempt to verify the type of $self.  That'll break if the class is
+<li>
+<p>Do not attempt to verify the type of $self.  That'll break if the class is
 inherited, when the type of $self is valid but its package isn't what you
-expect.  See rule 5.
-<p></p>
-<li></li>
-If an object-oriented (OO) or indirect-object (IO) syntax was used, then the
+expect.  See rule 5.</p>
+</li>
+<li>
+<p>If an object-oriented (OO) or indirect-object (IO) syntax was used, then the
 object is probably the correct type and there's no need to become paranoid
 about it.  Perl isn't a paranoid language anyway.  If people subvert the OO
 or IO syntax then they probably know what they're doing and you should let
-them do it.  See rule 1.
-<p></p>
-<li></li>
-Use the two-argument form of bless().  Let a subclass use your constructor.
-See <a href="#inheriting_a_constructor">INHERITING A CONSTRUCTOR</a>.
-<p></p>
-<li></li>
-The subclass is allowed to know things about its immediate superclass, the
-superclass is allowed to know nothing about a subclass.
-<p></p>
-<li></li>
-Don't be trigger happy with inheritance.  A ``using'', ``containing'', or
+them do it.  See rule 1.</p>
+</li>
+<li>
+<p>Use the two-argument form of bless().  Let a subclass use your constructor.
+See <a href="#inheriting_a_constructor">INHERITING A CONSTRUCTOR</a>.</p>
+</li>
+<li>
+<p>The subclass is allowed to know things about its immediate superclass, the
+superclass is allowed to know nothing about a subclass.</p>
+</li>
+<li>
+<p>Don't be trigger happy with inheritance.  A ``using'', ``containing'', or
 ``delegation'' relationship (some sort of aggregation, at least) is often more
 appropriate.  See <a href="#object_relationships">OBJECT RELATIONSHIPS</a>, <a href="#using_relationship_with_sdbm">USING RELATIONSHIP WITH SDBM</a>,
-and <a href="#delegation">DELEGATION</a>.
-<p></p>
-<li></li>
-The object is the namespace.  Make package globals accessible via the
+and <a href="#delegation">DELEGATION</a>.</p>
+</li>
+<li>
+<p>The object is the namespace.  Make package globals accessible via the
 object.  This will remove the guess work about the symbol's home package.
-See <a href="#class_context_and_the_object">CLASS CONTEXT AND THE OBJECT</a>.
-<p></p>
-<li></li>
-IO syntax is certainly less noisy, but it is also prone to ambiguities that
+See <a href="#class_context_and_the_object">CLASS CONTEXT AND THE OBJECT</a>.</p>
+</li>
+<li>
+<p>IO syntax is certainly less noisy, but it is also prone to ambiguities that
 can cause difficult-to-find bugs.  Allow people to use the sure-thing OO
-syntax, even if you don't like it.
-<p></p>
-<li></li>
-Do not use function-call syntax on a method.  You're going to be bitten
+syntax, even if you don't like it.</p>
+</li>
+<li>
+<p>Do not use function-call syntax on a method.  You're going to be bitten
 someday.  Someone might move that method into a superclass and your code
-will be broken.  On top of that you're feeding the paranoia in rule 2.
-<p></p>
-<li></li>
-Don't assume you know the home package of a method.  You're making it
-difficult for someone to override that method.  See <a href="#thinking_of_code_reuse">THINKING OF CODE REUSE</a>.
-<p></p></ol>
+will be broken.  On top of that you're feeding the paranoia in rule 2.</p>
+</li>
+<li>
+<p>Don't assume you know the home package of a method.  You're making it
+difficult for someone to override that method.  See <a href="#thinking_of_code_reuse">THINKING OF CODE REUSE</a>.</p>
+</li>
+</ol>
 <p>
 </p>
 <hr />

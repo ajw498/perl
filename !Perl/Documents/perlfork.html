@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlfork - Perl's fork emulation</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -83,83 +85,84 @@ it is the child pseudo-process.</p>
 <h2><a name="behavior_of_other_perl_features_in_forked_pseudoprocesses">Behavior of other Perl features in forked pseudo-processes</a></h2>
 <p>Most Perl features behave in a natural way within pseudo-processes.</p>
 <dl>
-<dt><strong><a name="item__24_24_or__24process_id">$$ or $PROCESS_ID</a></strong><br />
-</dt>
+<dt><strong><a name="item___">$$ or $PROCESS_ID</a></strong>
+
 <dd>
-This special variable is correctly set to the pseudo-process ID.
+<p>This special variable is correctly set to the pseudo-process ID.
 It can be used to identify pseudo-processes within a particular
 session.  Note that this value is subject to recycling if any
-pseudo-processes are launched after others have been wait()-ed on.
+pseudo-processes are launched after others have been wait()-ed on.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__env">%ENV</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__env">%ENV</a></strong>
+
 <dd>
-Each pseudo-process maintains its own virtual environment.  Modifications
+<p>Each pseudo-process maintains its own virtual environment.  Modifications
 to %ENV affect the virtual environment, and are only visible within that
 pseudo-process, and in any processes (or pseudo-processes) launched from
-it.
+it.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_chdir"><code>chdir()</code> and all other builtins that accept filenames</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_chdir"><code>chdir()</code> and all other builtins that accept filenames</a></strong>
+
 <dd>
-Each pseudo-process maintains its own virtual idea of the current directory.
+<p>Each pseudo-process maintains its own virtual idea of the current directory.
 Modifications to the current directory using <a href="#item_chdir"><code>chdir()</code></a> are only visible within
 that pseudo-process, and in any processes (or pseudo-processes) launched from
 it.  All file and directory accesses from the pseudo-process will correctly
-map the virtual working directory to the real working directory appropriately.
+map the virtual working directory to the real working directory appropriately.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_wait"><code>wait()</code> and <code>waitpid()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_wait"><code>wait()</code> and <code>waitpid()</code></a></strong>
+
 <dd>
-<a href="#item_wait"><code>wait()</code></a> and <code>waitpid()</code> can be passed a pseudo-process ID returned by fork().
+<p><a href="#item_wait"><code>wait()</code></a> and <code>waitpid()</code> can be passed a pseudo-process ID returned by fork().
 These calls will properly wait for the termination of the pseudo-process
-and return its status.
+and return its status.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_kill"><code>kill()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_kill"><code>kill()</code></a></strong>
+
 <dd>
-<a href="#item_kill"><code>kill()</code></a> can be used to terminate a pseudo-process by passing it the ID returned
+<p><a href="#item_kill"><code>kill()</code></a> can be used to terminate a pseudo-process by passing it the ID returned
 by fork().  This should not be used except under dire circumstances, because
 the operating system may not guarantee integrity of the process resources
 when a running thread is terminated.  Note that using <a href="#item_kill"><code>kill()</code></a> on a
 pseudo-process() may typically cause memory leaks, because the thread that
-implements the pseudo-process does not get a chance to clean up its resources.
+implements the pseudo-process does not get a chance to clean up its resources.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_exec"><code>exec()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_exec"><code>exec()</code></a></strong>
+
 <dd>
-Calling <a href="#item_exec"><code>exec()</code></a> within a pseudo-process actually spawns the requested
+<p>Calling <a href="#item_exec"><code>exec()</code></a> within a pseudo-process actually spawns the requested
 executable in a separate process and waits for it to complete before
 exiting with the same exit status as that process.  This means that the
 process ID reported within the running executable will be different from
 what the earlier Perl <code>fork()</code> might have returned.  Similarly, any process
 manipulation functions applied to the ID returned by <code>fork()</code> will affect the
 waiting pseudo-process that called exec(), not the real process it is
-waiting for after the exec().
+waiting for after the exec().</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_exit"><code>exit()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_exit"><code>exit()</code></a></strong>
+
 <dd>
-<a href="#item_exit"><code>exit()</code></a> always exits just the executing pseudo-process, after automatically
+<p><a href="#item_exit"><code>exit()</code></a> always exits just the executing pseudo-process, after automatically
 wait()-ing for any outstanding child pseudo-processes.  Note that this means
 that the process as a whole will not exit unless all running pseudo-processes
-have exited.
+have exited.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_open_handles_to_files_2c_directories_and_network_s">Open handles to files, directories and network sockets</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_open_handles_to_files_2c_directories_and_network_s">Open handles to files, directories and network sockets</a></strong>
+
 <dd>
-All open handles are dup()-ed in pseudo-processes, so that closing
+<p>All open handles are dup()-ed in pseudo-processes, so that closing
 any handles in one process does not affect the others.  See below for
-some limitations.
+some limitations.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="resource_limits">Resource limits</a></h2>
@@ -191,13 +194,13 @@ will be provided in future.</p>
 </p>
 <h2><a name="caveats_and_limitations">CAVEATS AND LIMITATIONS</a></h2>
 <dl>
-<dt><strong><a name="item_begin_blocks">BEGIN blocks</a></strong><br />
-</dt>
+<dt><strong><a name="item_begin_blocks">BEGIN blocks</a></strong>
+
 <dd>
-The <code>fork()</code> emulation will not work entirely correctly when called from
+<p>The <code>fork()</code> emulation will not work entirely correctly when called from
 within a BEGIN block.  The forked copy will run the contents of the
 BEGIN block, but will not continue parsing the source stream after the
-BEGIN block.  For example, consider the following code:
+BEGIN block.  For example, consider the following code:</p>
 </dd>
 <dd>
 <pre>
@@ -227,25 +230,25 @@ BEGIN block.  For example, consider the following code:
 cloning and restarting the stacks used by the Perl parser in the
 middle of a parse.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_open_filehandles">Open filehandles</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_open_filehandles">Open filehandles</a></strong>
+
 <dd>
-Any filehandles open at the time of the <code>fork()</code> will be dup()-ed.  Thus,
+<p>Any filehandles open at the time of the <code>fork()</code> will be dup()-ed.  Thus,
 the files can be closed independently in the parent and child, but beware
 that the dup()-ed handles will still share the same seek pointer.  Changing
 the seek position in the parent will change it in the child and vice-versa.
 One can avoid this by opening files that need distinct seek pointers
-separately in the child.
+separately in the child.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_open">Forking pipe <code>open()</code> not yet implemented</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_open">Forking pipe <code>open()</code> not yet implemented</a></strong>
+
 <dd>
-The <a href="#item_open"><code>open(FOO, &quot;|-&quot;)</code></a> and <a href="#item_open"><code>open(BAR, &quot;-|&quot;)</code></a> constructs are not yet
+<p>The <a href="#item_open"><code>open(FOO, &quot;|-&quot;)</code></a> and <a href="#item_open"><code>open(BAR, &quot;-|&quot;)</code></a> constructs are not yet
 implemented.  This limitation can be easily worked around in new code
 by creating a pipe explicitly.  The following example shows how to
-write to a forked child:
+write to a forked child:</p>
 </dd>
 <dd>
 <pre>
@@ -315,63 +318,65 @@ write to a forked child:
 <dd>
 <p>Forking pipe <a href="#item_open"><code>open()</code></a> constructs will be supported in future.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_global_state_maintained_by_xsubs">Global state maintained by XSUBs</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_global_state_maintained_by_xsubs">Global state maintained by XSUBs</a></strong>
+
 <dd>
-External subroutines (XSUBs) that maintain their own global state may
+<p>External subroutines (XSUBs) that maintain their own global state may
 not work correctly.  Such XSUBs will either need to maintain locks to
 protect simultaneous access to global data from different pseudo-processes,
 or maintain all their state on the Perl symbol table, which is copied
 naturally when <code>fork()</code> is called.  A callback mechanism that provides
 extensions an opportunity to clone their state will be provided in the
-near future.
+near future.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_interpreter_embedded_in_larger_application">Interpreter embedded in larger application</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_interpreter_embedded_in_larger_application">Interpreter embedded in larger application</a></strong>
+
 <dd>
-The <code>fork()</code> emulation may not behave as expected when it is executed in an
+<p>The <code>fork()</code> emulation may not behave as expected when it is executed in an
 application which embeds a Perl interpreter and calls Perl APIs that can
 evaluate bits of Perl code.  This stems from the fact that the emulation
 only has knowledge about the Perl interpreter's own data structures and
 knows nothing about the containing application's state.  For example, any
-state carried on the application's own call stack is out of reach.
+state carried on the application's own call stack is out of reach.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_thread_2dsafety_of_extensions">Thread-safety of extensions</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_thread_2dsafety_of_extensions">Thread-safety of extensions</a></strong>
+
 <dd>
-Since the <code>fork()</code> emulation runs code in multiple threads, extensions
+<p>Since the <code>fork()</code> emulation runs code in multiple threads, extensions
 calling into non-thread-safe libraries may not work reliably when
 calling fork().  As Perl's threading support gradually becomes more
 widely adopted even on platforms with a native fork(), such extensions
-are expected to be fixed for thread-safety.
+are expected to be fixed for thread-safety.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
 <h1><a name="bugs">BUGS</a></h1>
 <ul>
-<li></li>
-Having pseudo-process IDs be negative integers breaks down for the integer
+<li>
+<p>Having pseudo-process IDs be negative integers breaks down for the integer
 <code>-1</code> because the <a href="#item_wait"><code>wait()</code></a> and <code>waitpid()</code> functions treat this number as
 being special.  The tacit assumption in the current implementation is that
 the system never allocates a thread ID of <code>1</code> for user threads.  A better
-representation for pseudo-process IDs will be implemented in future.
-<p></p>
-<li></li>
-In certain cases, the OS-level handles created by the pipe(), socket(),
+representation for pseudo-process IDs will be implemented in future.</p>
+</li>
+<li>
+<p>In certain cases, the OS-level handles created by the pipe(), socket(),
 and <code>accept()</code> operators are apparently not duplicated accurately in
 pseudo-processes.  This only happens in some situations, but where it
 does happen, it may result in deadlocks between the read and write ends
 of pipe handles, or inability to send or receive data across socket
-handles.
-<p></p>
-<li></li>
-This document may be incomplete in some respects.
-<p></p></ul>
+handles.</p>
+</li>
+<li>
+<p>This document may be incomplete in some respects.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />

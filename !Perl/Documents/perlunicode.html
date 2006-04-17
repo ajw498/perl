@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlunicode - Unicode support in Perl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -67,62 +69,62 @@
 implement the Unicode standard or the accompanying technical reports
 from cover to cover, Perl does support many Unicode features.</p>
 <dl>
-<dt><strong><a name="item_input_and_output_layers">Input and Output Layers</a></strong><br />
-</dt>
+<dt><strong><a name="item_input_and_output_layers">Input and Output Layers</a></strong>
+
 <dd>
-Perl knows when a filehandle uses Perl's internal Unicode encodings
+<p>Perl knows when a filehandle uses Perl's internal Unicode encodings
 (UTF-8, or UTF-EBCDIC if in EBCDIC) if the filehandle is opened with
 the ``:utf8'' layer.  Other encodings can be converted to Perl's
 encoding on input or from Perl's encoding on output by use of the
-``:encoding(...)''  layer.  See <em>open</em>.
+``:encoding(...)''  layer.  See <a href="../../open.html">the open manpage</a>.</p>
 </dd>
 <dd>
 <p>To indicate that Perl source itself is using a particular encoding,
-see <em>encoding</em>.</p>
+see <a href="../../encoding.html">the encoding manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_regular_expressions">Regular Expressions</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_regular_expressions">Regular Expressions</a></strong>
+
 <dd>
-The regular expression compiler produces polymorphic opcodes.  That is,
+<p>The regular expression compiler produces polymorphic opcodes.  That is,
 the pattern adapts to the data and automatically switches to the Unicode
 character scheme when presented with Unicode data--or instead uses
-a traditional byte scheme when presented with byte data.
+a traditional byte scheme when presented with byte data.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_use_utf8_still_needed_to_enable_utf_2d8_2futf_2deb"><code>use utf8</code> still needed to enable UTF-8/UTF-EBCDIC in scripts</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_use_utf8_still_needed_to_enable_utf_2d8_2futf_2deb"><code>use utf8</code> still needed to enable UTF-8/UTF-EBCDIC in scripts</a></strong>
+
 <dd>
-As a compatibility measure, the <code>use utf8</code> pragma must be explicitly
+<p>As a compatibility measure, the <code>use utf8</code> pragma must be explicitly
 included to enable recognition of UTF-8 in the Perl scripts themselves
 (in string or regular expression literals, or in identifier names) on
 ASCII-based machines or to recognize UTF-EBCDIC on EBCDIC-based
 machines.  <strong>These are the only times when an explicit <code>use utf8</code>
-is needed.</strong>  See <em>utf8</em>.
+is needed.</strong>  See <a href="../../utf8.html">the utf8 manpage</a>.</p>
 </dd>
 <dd>
 <p>You can also use the <code>encoding</code> pragma to change the default encoding
-of the data in your script; see <em>encoding</em>.</p>
+of the data in your script; see <a href="../../encoding.html">the encoding manpage</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_bom_2dmarked_scripts_and_utf_2d16_scripts_autodete">BOM-marked scripts and UTF-16 scripts autodetected</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_bom_2dmarked_scripts_and_utf_2d16_scripts_autodete">BOM-marked scripts and UTF-16 scripts autodetected</a></strong>
+
 <dd>
-If a Perl script begins marked with the Unicode BOM (UTF-16LE, UTF16-BE,
+<p>If a Perl script begins marked with the Unicode BOM (UTF-16LE, UTF16-BE,
 or UTF-8), or if the script looks like non-BOM-marked UTF-16 of either
 endianness, Perl will correctly read in the script as Unicode.
 (BOMless UTF-8 cannot be effectively recognized or differentiated from
-ISO 8859-1 or other eight-bit encodings.)
+ISO 8859-1 or other eight-bit encodings.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_use_encoding_needed_to_upgrade_non_2dlatin_2d1_byt"><code>use encoding</code> needed to upgrade non-Latin-1 byte strings</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_use_encoding_needed_to_upgrade_non_2dlatin_2d1_byt"><code>use encoding</code> needed to upgrade non-Latin-1 byte strings</a></strong>
+
 <dd>
-By default, there is a fundamental asymmetry in Perl's unicode model:
+<p>By default, there is a fundamental asymmetry in Perl's unicode model:
 implicit upgrading from byte strings to Unicode strings assumes that
 they were encoded in <em>ISO 8859-1 (Latin-1)</em>, but Unicode strings are
 downgraded with UTF-8 encoding.  This happens because the first 256
-codepoints in Unicode happens to agree with Latin-1.
+codepoints in Unicode happens to agree with Latin-1.</p>
 </dd>
 <dd>
 <p>If you wish to interpret byte strings as UTF-8 instead, use the
@@ -135,7 +137,8 @@ codepoints in Unicode happens to agree with Latin-1.
 <dd>
 <p>See <a href="#byte_and_character_semantics">Byte and Character Semantics</a> for more details.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="byte_and_character_semantics">Byte and Character Semantics</a></h2>
@@ -157,12 +160,12 @@ character data.  Such data may come from filehandles, from calls to
 external programs, from information provided by the system (such as %ENV),
 or from literals and constants in the source text.</p>
 <p>The <code>bytes</code> pragma will always, regardless of platform, force byte
-semantics in a particular lexical scope.  See <em>bytes</em>.</p>
+semantics in a particular lexical scope.  See <a href="../../bytes.html">the bytes manpage</a>.</p>
 <p>The <code>utf8</code> pragma is primarily a compatibility device that enables
 recognition of UTF-(8|EBCDIC) in literals encountered by the parser.
 Note that this pragma is only required while Perl defaults to byte
 semantics; when character semantics become the default, this pragma
-may become a no-op.  See <em>utf8</em>.</p>
+may become a no-op.  See <a href="../../utf8.html">the utf8 manpage</a>.</p>
 <p>Unless explicitly stated, Perl operators use character semantics
 for Unicode data and byte semantics for non-Unicode data.
 The decision to use character semantics is made transparently.  If
@@ -177,7 +180,7 @@ decoding the byte strings as <em>ISO 8859-1 (Latin-1)</em>, even if the
 old Unicode string used EBCDIC.  This translation is done without
 regard to the system's native 8-bit encoding.  To change this for
 systems with non-Latin-1 and non-EBCDIC native encodings, use the
-<code>encoding</code> pragma.  See <em>encoding</em>.</p>
+<code>encoding</code> pragma.  See <a href="../../encoding.html">the encoding manpage</a>.</p>
 <p>Under character semantics, many operations that formerly operated on
 bytes now operate on characters. A character in Perl is
 logically just a number ranging from 0 to 2**31 or so. Larger
@@ -189,14 +192,14 @@ See <a href="perluniintro.html">the perluniintro manpage</a> for more.</p>
 <h2><a name="effects_of_character_semantics">Effects of Character Semantics</a></h2>
 <p>Character semantics have the following effects:</p>
 <ul>
-<li></li>
-Strings--including hash keys--and regular expression patterns may
-contain characters that have an ordinal value larger than 255.
+<li>
+<p>Strings--including hash keys--and regular expression patterns may
+contain characters that have an ordinal value larger than 255.</p>
 <p>If you use a Unicode editor to edit your program, Unicode characters
 may occur directly within the literal strings in one of the various
 Unicode encodings (UTF-8, UTF-EBCDIC, UCS-2, etc.), but will be recognized
 as such and converted to Perl's internal representation only if the
-appropriate <em>encoding</em> is specified.</p>
+appropriate <a href="../../encoding.html">the encoding manpage</a> is specified.</p>
 <p>Unicode characters can also be added to a string by using the
 <code>\x{...}</code> notation.  The Unicode code for the desired character, in
 hexadecimal, should be placed in the braces. For instance, a smiley
@@ -207,31 +210,31 @@ with a code of 0x100 or above.</p>
    use charnames ':full';</pre>
 <p>you can use the <code>\N{...}</code> notation and put the official Unicode
 character name within the braces, such as <code>\N{WHITE SMILING FACE}</code>.</p>
-<p></p>
-<li></li>
-If an appropriate <em>encoding</em> is specified, identifiers within the
+</li>
+<li>
+<p>If an appropriate <a href="../../encoding.html">the encoding manpage</a> is specified, identifiers within the
 Perl script may contain Unicode alphanumeric characters, including
 ideographs.  Perl does not currently attempt to canonicalize variable
-names.
-<p></p>
-<li></li>
-Regular expressions match characters instead of bytes.  ``.'' matches
+names.</p>
+</li>
+<li>
+<p>Regular expressions match characters instead of bytes.  ``.'' matches
 a character instead of a byte.  The <code>\C</code> pattern is provided to force
-a match a single byte--a <code>char</code> in C, hence <code>\C</code>.
-<p></p>
-<li></li>
-Character classes in regular expressions match characters instead of
+a match a single byte--a <code>char</code> in C, hence <code>\C</code>.</p>
+</li>
+<li>
+<p>Character classes in regular expressions match characters instead of
 bytes and match against the character properties specified in the
 Unicode properties database.  <code>\w</code> can be used to match a Japanese
-ideograph, for instance.
+ideograph, for instance.</p>
 <p>(However, and as a limitation of the current implementation, using
 <code>\w</code> or <code>\W</code> <em>inside</em> a <code>[...]</code> character class will still match
 with byte semantics.)</p>
-<p></p>
-<li></li>
-Named Unicode properties, scripts, and block ranges may be used like
+</li>
+<li>
+<p>Named Unicode properties, scripts, and block ranges may be used like
 character classes via the <code>\p{}</code> ``matches property'' construct and
-the  <code>\P{}</code> negation, ``doesn't match property''.
+the  <code>\P{}</code> negation, ``doesn't match property''.</p>
 <p>For instance, <code>\p{Lu}</code> matches any character with the Unicode ``Lu''
 (Letter, uppercase) property, while <code>\p{M}</code> matches any character
 with an ``M'' (mark--accents and such) property.  Brackets are not
@@ -339,7 +342,8 @@ the BidiClass class:</p>
     ON          Other Neutrals</pre>
 <p>For example, <code>\p{BidiClass:R}</code> matches characters that are normally
 written right to left.</p>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="scripts">Scripts</a></h2>
@@ -574,52 +578,52 @@ for block tests to avoid confusion.</p>
     InYiRadicals
     InYiSyllables</pre>
 <ul>
-<li></li>
-The special pattern <code>\X</code> matches any extended Unicode
+<li>
+<p>The special pattern <code>\X</code> matches any extended Unicode
 sequence--``a combining character sequence'' in Standardese--where the
 first character is a base character and subsequent characters are mark
 characters that apply to the base character.  <code>\X</code> is equivalent to
-<code>(?:\PM\pM*)</code>.
-<p></p>
-<li></li>
-The <code>tr///</code> operator translates characters instead of bytes.  Note
+<code>(?:\PM\pM*)</code>.</p>
+</li>
+<li>
+<p>The <code>tr///</code> operator translates characters instead of bytes.  Note
 that the <code>tr///CU</code> functionality has been removed.  For similar
-functionality see pack('U0', ...) and pack('C0', ...).
-<p></p>
-<li></li>
-Case translation operators use the Unicode case translation tables
+functionality see pack('U0', ...) and pack('C0', ...).</p>
+</li>
+<li>
+<p>Case translation operators use the Unicode case translation tables
 when character input is provided.  Note that <code>uc()</code>, or <code>\U</code> in
 interpolated strings, translates to uppercase, while <code>ucfirst</code>,
 or <code>\u</code> in interpolated strings, translates to titlecase in languages
-that make the distinction.
-<p></p>
-<li></li>
-Most operators that deal with positions or lengths in a string will
+that make the distinction.</p>
+</li>
+<li>
+<p>Most operators that deal with positions or lengths in a string will
 automatically switch to using character positions, including
 <code>chop()</code>, <code>chomp()</code>, <code>substr()</code>, <code>pos()</code>, <code>index()</code>, <code>rindex()</code>,
 <code>sprintf()</code>, <code>write()</code>, and <code>length()</code>.  Operators that
 specifically do not switch include <code>vec()</code>, <code>pack()</code>, and
 <code>unpack()</code>.  Operators that really don't care include
 operators that treats strings as a bucket of bits such as <code>sort()</code>,
-and operators dealing with filenames.
-<p></p>
-<li></li>
-The <code>pack()</code>/<code>unpack()</code> letters <code>c</code> and <code>C</code> do <em>not</em> change,
+and operators dealing with filenames.</p>
+</li>
+<li>
+<p>The <code>pack()</code>/<code>unpack()</code> letters <code>c</code> and <code>C</code> do <em>not</em> change,
 since they are often used for byte-oriented formats.  Again, think
-<code>char</code> in the C language.
+<code>char</code> in the C language.</p>
 <p>There is a new <code>U</code> specifier that converts between Unicode characters
 and code points.</p>
-<p></p>
-<li></li>
-The <code>chr()</code> and <code>ord()</code> functions work on characters, similar to
+</li>
+<li>
+<p>The <code>chr()</code> and <code>ord()</code> functions work on characters, similar to
 <code>pack(&quot;U&quot;)</code> and <code>unpack(&quot;U&quot;)</code>, <em>not</em> <code>pack(&quot;C&quot;)</code> and
 <code>unpack(&quot;C&quot;)</code>.  <code>pack(&quot;C&quot;)</code> and <code>unpack(&quot;C&quot;)</code> are methods for
 emulating byte-oriented <code>chr()</code> and <code>ord()</code> on Unicode strings.
 While these methods reveal the internal encoding of Unicode strings,
-that is not something one normally needs to care about at all.
-<p></p>
-<li></li>
-The bit string operators, <code>&amp; | ^ ~</code>, can operate on character data.
+that is not something one normally needs to care about at all.</p>
+</li>
+<li>
+<p>The bit string operators, <code>&amp; | ^ ~</code>, can operate on character data.
 However, for backward compatibility, such as when using bit string
 operations when characters are all less than 256 in ordinal value, one
 should not use <code>~</code> (the bit complement) with characters of both
@@ -627,27 +631,29 @@ values less than 256 and values greater than 256.  Most importantly,
 DeMorgan's laws (<code>~($x|$y) eq ~$x&amp;~$y</code> and <code>~($x&amp;$y) eq ~$x|~$y</code>)
 will not hold.  The reason for this mathematical <em>faux pas</em> is that
 the complement cannot return <strong>both</strong> the 8-bit (byte-wide) bit
-complement <strong>and</strong> the full character-wide bit complement.
-<p></p>
-<li></li>
-lc(), uc(), lcfirst(), and <code>ucfirst()</code> work for the following cases:
+complement <strong>and</strong> the full character-wide bit complement.</p>
+</li>
+<li>
+<p>lc(), uc(), lcfirst(), and <code>ucfirst()</code> work for the following cases:</p>
 <ul>
-<li></li>
-the case mapping is from a single Unicode character to another
-single Unicode character, or
-<p></p>
-<li></li>
-the case mapping is from a single Unicode character to more
-than one Unicode character.
-<p></p></ul>
+<li>
+<p>the case mapping is from a single Unicode character to another
+single Unicode character, or</p>
+</li>
+<li>
+<p>the case mapping is from a single Unicode character to more
+than one Unicode character.</p>
+</li>
+</ul>
 <p>Things to do with locales (Lithuanian, Turkish, Azeri) do <strong>not</strong> work
 since Perl does not understand the concept of Unicode locales.</p>
 <p>See the Unicode Technical Report #21, Case Mappings, for more details.</p>
 </ul>
 <ul>
-<li></li>
-And finally, <code>scalar reverse()</code> reverses by character rather than by byte.
-<p></p></ul>
+<li>
+<p>And finally, <code>scalar reverse()</code> reverses by character rather than by byte.</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="userdefined_character_properties">User-Defined Character Properties</a></h2>
@@ -668,34 +674,35 @@ its package in the <code>\p</code> or <code>\P</code> construct.</p>
 <p>The subroutines must return a specially-formatted string, with one
 or more newline-separated lines.  Each line must be one of the following:</p>
 <ul>
-<li></li>
-Two hexadecimal numbers separated by horizontal whitespace (space or
-tabular characters) denoting a range of Unicode code points to include.
-<p></p>
-<li></li>
-Something to include, prefixed by ``+'': a built-in character
+<li>
+<p>Two hexadecimal numbers separated by horizontal whitespace (space or
+tabular characters) denoting a range of Unicode code points to include.</p>
+</li>
+<li>
+<p>Something to include, prefixed by ``+'': a built-in character
 property (prefixed by ``utf8::'') or a user-defined character property,
 to represent all the characters in that property; two hexadecimal code
-points for a range; or a single hexadecimal code point.
-<p></p>
-<li></li>
-Something to exclude, prefixed by ``-'': an existing character
+points for a range; or a single hexadecimal code point.</p>
+</li>
+<li>
+<p>Something to exclude, prefixed by ``-'': an existing character
 property (prefixed by ``utf8::'') or a user-defined character property,
 to represent all the characters in that property; two hexadecimal code
-points for a range; or a single hexadecimal code point.
-<p></p>
-<li></li>
-Something to negate, prefixed ``!'': an existing character
+points for a range; or a single hexadecimal code point.</p>
+</li>
+<li>
+<p>Something to negate, prefixed ``!'': an existing character
 property (prefixed by ``utf8::'') or a user-defined character property,
 to represent all the characters in that property; two hexadecimal code
-points for a range; or a single hexadecimal code point.
-<p></p>
-<li></li>
-Something to intersect with, prefixed by ``&amp;'': an existing character
+points for a range; or a single hexadecimal code point.</p>
+</li>
+<li>
+<p>Something to intersect with, prefixed by ``&amp;'': an existing character
 property (prefixed by ``utf8::'') or a user-defined character property,
 for all the characters except the characters in the property; two
-hexadecimal code points for a range; or a single hexadecimal code point.
-<p></p></ul>
+hexadecimal code points for a range; or a single hexadecimal code point.</p>
+</li>
+</ul>
 <p>For example, to define a property that covers both the Japanese
 syllabaries (hiragana and katakana), you can define</p>
 <pre>
@@ -792,7 +799,7 @@ characters.  Old byte-style strings will not be affected.</p>
 <p>
 </p>
 <h2><a name="character_encodings_for_input_and_output">Character Encodings for Input and Output</a></h2>
-<p>See <em>Encode</em>.</p>
+<p>See <a href="../../Encode.html">the Encode manpage</a>.</p>
 <p>
 </p>
 <h2><a name="unicode_regular_expression_support_level">Unicode Regular Expression Support Level</a></h2>
@@ -802,8 +809,8 @@ and the section numbers refer to the Unicode Technical Report 18,
 ``Unicode Regular Expression Guidelines'', version 6 (Unicode 3.2.0,
 Perl 5.8.0).</p>
 <ul>
-<li></li>
-Level 1 - Basic Unicode Support
+<li>
+<p>Level 1 - Basic Unicode Support</p>
 <pre>
         2.1 Hex Notation                        - done          [1]
             Named Notation                      - done          [2]
@@ -848,9 +855,9 @@ For example, what UTR #18 might write as</p>
 <p>Also see the Unicode::Regex::Set module, it does implement the full
 UTR #18 grouping, intersection, union, and removal (subtraction) syntax.</p>
 <p>[b] See <a href="#userdefined_character_properties">User-Defined Character Properties</a>.</p>
-<p></p>
-<li></li>
-Level 2 - Extended Unicode Support
+</li>
+<li>
+<p>Level 2 - Extended Unicode Support</p>
 <pre>
         3.1 Surrogates                          - MISSING       [11]
         3.2 Canonical Equivalents               - MISSING       [12][13]
@@ -865,9 +872,9 @@ Level 2 - Extended Unicode Support
         [14] have \X but at this level . should equal that
         [15] need three classes, not just \w and \W
         [16] see UTR#21 Case Mappings</pre>
-<p></p>
-<li></li>
-Level 3 - Locale-Sensitive Support
+</li>
+<li>
+<p>Level 3 - Locale-Sensitive Support</p>
 <pre>
         4.1 Locale-Dependent Categories         - MISSING
         4.2 Locale-Dependent Graphemes          - MISSING       [16][17]
@@ -877,15 +884,16 @@ Level 3 - Locale-Sensitive Support
 <pre>
         [16] see UTR#10 Unicode Collation Algorithms
         [17] have Unicode::Collate but not integrated to regexes</pre>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="unicode_encodings">Unicode Encodings</a></h2>
 <p>Unicode characters are assigned to <em>code points</em>, which are abstract
 numbers.  To use these numbers, various encodings are needed.</p>
 <ul>
-<li></li>
-UTF-8
+<li>
+<p>UTF-8</p>
 <p>UTF-8 is a variable-length (1 to 6 bytes, current character allocations
 require 4 bytes), byte-order independent encoding. For ASCII (and we
 really do mean 7-bit ASCII, not another 8-bit encoding), UTF-8 is
@@ -922,13 +930,13 @@ be used.  So that's what Perl does.</p>
 <p>As you can see, the continuation bytes all begin with <code>10</code>, and the
 leading bits of the start byte tell how many bytes the are in the
 encoded character.</p>
-<p></p>
-<li></li>
-UTF-EBCDIC
+</li>
+<li>
+<p>UTF-EBCDIC</p>
 <p>Like UTF-8 but EBCDIC-safe, in the way that UTF-8 is ASCII-safe.</p>
-<p></p>
-<li></li>
-UTF-16, UTF-16BE, UTF-16LE, Surrogates, and BOMs (Byte Order Marks)
+</li>
+<li>
+<p>UTF-16, UTF-16BE, UTF-16LE, Surrogates, and BOMs (Byte Order Marks)</p>
 <p>The followings items are mostly for reference and general Unicode
 knowledge, Perl doesn't use these constructs internally.</p>
 <p>UTF-16 is a 2 or 4 byte encoding.  The Unicode code points
@@ -968,32 +976,33 @@ was writing in UTF-8, you will read the bytes <code>0xEF 0xBB 0xBF</code>.)</p>
 sequence of bytes <code>0xFF 0xFE</code> is unambiguously ``BOM, represented in
 little-endian format'' and cannot be <code>U+FFFE</code>, represented in big-endian
 format``.</p>
-<p></p>
-<li></li>
-UTF-32, UTF-32BE, UTF-32LE
+</li>
+<li>
+<p>UTF-32, UTF-32BE, UTF-32LE</p>
 <p>The UTF-32 family is pretty much like the UTF-16 family, expect that
 the units are 32-bit, and therefore the surrogate scheme is not
 needed.  The BOM signatures will be <code>0x00 0x00 0xFE 0xFF</code> for BE and
 <code>0xFF 0xFE 0x00 0x00</code> for LE.</p>
-<p></p>
-<li></li>
-UCS-2, UCS-4
+</li>
+<li>
+<p>UCS-2, UCS-4</p>
 <p>Encodings defined by the ISO 10646 standard.  UCS-2 is a 16-bit
 encoding.  Unlike UTF-16, UCS-2 is not extensible beyond <code>U+FFFF</code>,
 because it does not use surrogates.  UCS-4 is a 32-bit encoding,
 functionally identical to UTF-32.</p>
-<p></p>
-<li></li>
-UTF-7
+</li>
+<li>
+<p>UTF-7</p>
 <p>A seven-bit safe (non-eight-bit) encoding, which is useful if the
 transport or storage is not eight-bit safe.  Defined by RFC 2152.</p>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="security_implications_of_unicode">Security Implications of Unicode</a></h2>
 <ul>
-<li></li>
-Malformed UTF-8
+<li>
+<p>Malformed UTF-8</p>
 <p>Unfortunately, the specification of UTF-8 leaves some room for
 interpretation of how many bytes of encoded output one should generate
 from one input Unicode character.  Strictly speaking, the shortest
@@ -1003,12 +1012,12 @@ the receiving end of a UTF-8 connection.  Perl always generates the
 shortest length UTF-8, and with warnings on Perl will warn about
 non-shortest length UTF-8 along with other malformations, such as the
 surrogates, which are not real Unicode code points.</p>
-<p></p>
-<li></li>
-Regular expressions behave slightly differently between byte data and
+</li>
+<li>
+<p>Regular expressions behave slightly differently between byte data and
 character (Unicode) data.  For example, the ``word character'' character
 class <code>\w</code> will work differently depending on if data is eight-bit bytes
-or Unicode.
+or Unicode.</p>
 <p>In the first case, the set of <code>\w</code> characters is either small--the
 default set of alphabetic characters, digits, and the ``_''--or, if you
 are using a locale (see <a href="perllocale.html">the perllocale manpage</a>), the <code>\w</code> might contain a few
@@ -1029,7 +1038,8 @@ downgraded to bytes, either.  It is possible to accidentally mix bytes
 and characters, however (see <a href="perluniintro.html">the perluniintro manpage</a>), in which case <code>\w</code> in
 regular expressions might start behaving differently.  Review your
 code.  Use warnings and the <code>strict</code> pragma.</p>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="unicode_in_perl_on_ebcdic">Unicode in Perl on EBCDIC</a></h2>
@@ -1047,17 +1057,18 @@ for more discussion of the issues.</p>
 <p>Usually locale settings and Unicode do not affect each other, but
 there are a couple of exceptions:</p>
 <ul>
-<li></li>
-You can enable automatic UTF-8-ification of your standard file
+<li>
+<p>You can enable automatic UTF-8-ification of your standard file
 handles, default <code>open()</code> layer, and <code>@ARGV</code> by using either
 the <code>-C</code> command line switch or the <code>PERL_UNICODE</code> environment
-variable, see <a href="perlrun.html">the perlrun manpage</a> for the documentation of the <code>-C</code> switch.
-<p></p>
-<li></li>
-Perl tries really hard to work both with Unicode and the old
+variable, see <a href="perlrun.html">the perlrun manpage</a> for the documentation of the <code>-C</code> switch.</p>
+</li>
+<li>
+<p>Perl tries really hard to work both with Unicode and the old
 byte-oriented world. Most often this is nice, but sometimes Perl's
-straddling of the proverbial fence causes problems.
-<p></p></ul>
+straddling of the proverbial fence causes problems.</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="when_unicode_does_not_happen">When Unicode Does Not Happen</a></h2>
@@ -1076,25 +1087,26 @@ in Unicode, and in exactly what kind of encoding, is not exactly a
 portable concept.  Similarly for the qx and system: how well will the
 'command line interface' (and which of them?) handle Unicode?</p>
 <ul>
-<li></li>
-chmod, chmod, chown, chroot, exec, link, lstat, mkdir, 
-rename, rmdir, stat, symlink, truncate, unlink, utime, -X
-<p></p>
-<li></li>
-%ENV
-<p></p>
-<li></li>
-glob (aka the &lt;*&gt;)
-<p></p>
-<li></li>
-open, opendir, sysopen
-<p></p>
-<li></li>
-qx (aka the backtick operator), system
-<p></p>
-<li></li>
-readdir, readlink
-<p></p></ul>
+<li>
+<p>chdir, chmod, chown, chroot, exec, link, lstat, mkdir, 
+rename, rmdir, stat, symlink, truncate, unlink, utime, -X</p>
+</li>
+<li>
+<p>%ENV</p>
+</li>
+<li>
+<p>glob (aka the &lt;*&gt;)</p>
+</li>
+<li>
+<p>open, opendir, sysopen</p>
+</li>
+<li>
+<p>qx (aka the backtick operator), system</p>
+</li>
+<li>
+<p>readdir, readlink</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="forcing_unicode_in_perl__or_unforcing_unicode_in_perl_">Forcing Unicode in Perl (Or Unforcing Unicode in Perl)</a></h2>
@@ -1115,8 +1127,8 @@ following C APIs useful.  See also <a href="perlguts.html#unicode_support">Unico
 explanation about Unicode at the XS level, and <a href="perlapi.html">the perlapi manpage</a> for the API
 details.</p>
 <ul>
-<li></li>
-<code>DO_UTF8(sv)</code> returns true if the <code>UTF8</code> flag is on and the bytes
+<li>
+<p><code>DO_UTF8(sv)</code> returns true if the <code>UTF8</code> flag is on and the bytes
 pragma is not in effect.  <code>SvUTF8(sv)</code> returns true is the <code>UTF8</code>
 flag is on; the bytes pragma is ignored.  The <code>UTF8</code> flag being on
 does <strong>not</strong> mean that there are any characters of code points greater
@@ -1126,25 +1138,25 @@ octets in the representation of the scalar is the sequence of UTF-8
 encoded code points of the characters of a string.  The <code>UTF8</code> flag
 being off means that each octet in this representation encodes a
 single character with code point 0..255 within the string.  Perl's
-Unicode model is not to use UTF-8 until it is absolutely necessary.
-<p></p>
-<li></li>
-<code>uvuni_to_utf8(buf, chr)</code> writes a Unicode character code point into
+Unicode model is not to use UTF-8 until it is absolutely necessary.</p>
+</li>
+<li>
+<p><code>uvuni_to_utf8(buf, chr)</code> writes a Unicode character code point into
 a buffer encoding the code point as UTF-8, and returns a pointer
-pointing after the UTF-8 bytes.
-<p></p>
-<li></li>
-<code>utf8_to_uvuni(buf, lenp)</code> reads UTF-8 encoded bytes from a buffer and
+pointing after the UTF-8 bytes.</p>
+</li>
+<li>
+<p><code>utf8_to_uvuni(buf, lenp)</code> reads UTF-8 encoded bytes from a buffer and
 returns the Unicode character code point and, optionally, the length of
-the UTF-8 byte sequence.
-<p></p>
-<li></li>
-<code>utf8_length(start, end)</code> returns the length of the UTF-8 encoded buffer
+the UTF-8 byte sequence.</p>
+</li>
+<li>
+<p><code>utf8_length(start, end)</code> returns the length of the UTF-8 encoded buffer
 in characters.  <code>sv_len_utf8(sv)</code> returns the length of the UTF-8 encoded
-scalar.
-<p></p>
-<li></li>
-<code>sv_utf8_upgrade(sv)</code> converts the string of the scalar to its UTF-8
+scalar.</p>
+</li>
+<li>
+<p><code>sv_utf8_upgrade(sv)</code> converts the string of the scalar to its UTF-8
 encoded form.  <code>sv_utf8_downgrade(sv)</code> does the opposite, if
 possible.  <code>sv_utf8_encode(sv)</code> is like sv_utf8_upgrade except that
 it does not set the <code>UTF8</code> flag.  <code>sv_utf8_decode()</code> does the
@@ -1152,49 +1164,50 @@ opposite of <code>sv_utf8_encode()</code>.  Note that none of these are to be
 used as general-purpose encoding or decoding interfaces: <code>use Encode</code>
 for that.  <code>sv_utf8_upgrade()</code> is affected by the encoding pragma
 but <code>sv_utf8_downgrade()</code> is not (since the encoding pragma is
-designed to be a one-way street).
-<p></p>
-<li></li>
-<code>is_utf8_char(s)</code> returns true if the pointer points to a valid UTF-8
-character.
-<p></p>
-<li></li>
-<code>is_utf8_string(buf, len)</code> returns true if <code>len</code> bytes of the buffer
-are valid UTF-8.
-<p></p>
-<li></li>
-<code>UTF8SKIP(buf)</code> will return the number of bytes in the UTF-8 encoded
+designed to be a one-way street).</p>
+</li>
+<li>
+<p><code>is_utf8_char(s)</code> returns true if the pointer points to a valid UTF-8
+character.</p>
+</li>
+<li>
+<p><code>is_utf8_string(buf, len)</code> returns true if <code>len</code> bytes of the buffer
+are valid UTF-8.</p>
+</li>
+<li>
+<p><code>UTF8SKIP(buf)</code> will return the number of bytes in the UTF-8 encoded
 character in the buffer.  <code>UNISKIP(chr)</code> will return the number of bytes
 required to UTF-8-encode the Unicode character code point.  <code>UTF8SKIP()</code>
 is useful for example for iterating over the characters of a UTF-8
 encoded buffer; <code>UNISKIP()</code> is useful, for example, in computing
-the size required for a UTF-8 encoded buffer.
-<p></p>
-<li></li>
-<code>utf8_distance(a, b)</code> will tell the distance in characters between the
-two pointers pointing to the same UTF-8 encoded buffer.
-<p></p>
-<li></li>
-<code>utf8_hop(s, off)</code> will return a pointer to an UTF-8 encoded buffer
+the size required for a UTF-8 encoded buffer.</p>
+</li>
+<li>
+<p><code>utf8_distance(a, b)</code> will tell the distance in characters between the
+two pointers pointing to the same UTF-8 encoded buffer.</p>
+</li>
+<li>
+<p><code>utf8_hop(s, off)</code> will return a pointer to an UTF-8 encoded buffer
 that is <code>off</code> (positive or negative) Unicode characters displaced
 from the UTF-8 buffer <code>s</code>.  Be careful not to overstep the buffer:
 <code>utf8_hop()</code> will merrily run off the end or the beginning of the
-buffer if told to do so.
-<p></p>
-<li></li>
-<code>pv_uni_display(dsv, spv, len, pvlim, flags)</code> and
+buffer if told to do so.</p>
+</li>
+<li>
+<p><code>pv_uni_display(dsv, spv, len, pvlim, flags)</code> and
 <code>sv_uni_display(dsv, ssv, pvlim, flags)</code> are useful for debugging the
 output of Unicode strings and scalars.  By default they are useful
 only for debugging--they display <strong>all</strong> characters as hexadecimal code
 points--but with the flags <code>UNI_DISPLAY_ISPRINT</code>,
 <code>UNI_DISPLAY_BACKSLASH</code>, and <code>UNI_DISPLAY_QQ</code> you can make the
-output more readable.
-<p></p>
-<li></li>
-<code>ibcmp_utf8(s1, pe1, u1, l1, u1, s2, pe2, l2, u2)</code> can be used to
+output more readable.</p>
+</li>
+<li>
+<p><code>ibcmp_utf8(s1, pe1, u1, l1, u1, s2, pe2, l2, u2)</code> can be used to
 compare two strings case-insensitively in Unicode.  For case-sensitive
-comparisons you can just use <code>memEQ()</code> and <code>memNE()</code> as usual.
-<p></p></ul>
+comparisons you can just use <code>memEQ()</code> and <code>memNE()</code> as usual.</p>
+</li>
+</ul>
 <p>For more information, see <a href="perlapi.html">the perlapi manpage</a>, and <em>utf8.c</em> and <em>utf8.h</em>
 in the Perl source code distribution.</p>
 <p>
@@ -1294,15 +1307,15 @@ working with 5.6, you will need some of the following adjustments to
 your code. The examples are written such that the code will continue
 to work under 5.6, so you should be safe to try them out.</p>
 <ul>
-<li></li>
-A filehandle that should read or write UTF-8
+<li>
+<p>A filehandle that should read or write UTF-8</p>
 <pre>
   if ($] &gt; 5.007) {
     binmode $fh, &quot;:utf8&quot;;
   }</pre>
-<p></p>
-<li></li>
-A scalar that is going to be passed to some extension
+</li>
+<li>
+<p>A scalar that is going to be passed to some extension</p>
 <p>Be it Compress::Zlib, Apache::Request or any extension that has no
 mention of Unicode in the manpage, you need to make sure that the
 UTF-8 flag is stripped off. Note that at the time of this writing
@@ -1313,9 +1326,9 @@ check the documentation to verify if this is still true.</p>
     require Encode;
     $val = Encode::encode_utf8($val); # make octets
   }</pre>
-<p></p>
-<li></li>
-A scalar we got back from an extension
+</li>
+<li>
+<p>A scalar we got back from an extension</p>
 <p>If you believe the scalar comes back as UTF-8, you will most likely
 want the UTF-8 flag restored:</p>
 <pre>
@@ -1323,17 +1336,17 @@ want the UTF-8 flag restored:</p>
     require Encode;
     $val = Encode::decode_utf8($val);
   }</pre>
-<p></p>
-<li></li>
-Same thing, if you are really sure it is UTF-8
+</li>
+<li>
+<p>Same thing, if you are really sure it is UTF-8</p>
 <pre>
   if ($] &gt; 5.007) {
     require Encode;
     Encode::_utf8_on($val);
   }</pre>
-<p></p>
-<li></li>
-A wrapper for fetchrow_array and fetchrow_hashref
+</li>
+<li>
+<p>A wrapper for fetchrow_array and fetchrow_hashref</p>
 <p>When the database contains only UTF-8, a wrapper function or method is
 a convenient way to replace all your fetchrow_array and
 fetchrow_hashref calls. A wrapper function will also make it easier to
@@ -1368,20 +1381,21 @@ that is still true.</p>
       }
     }
   }</pre>
-<p></p>
-<li></li>
-A large scalar that you know can only contain ASCII
+</li>
+<li>
+<p>A large scalar that you know can only contain ASCII</p>
 <p>Scalars that contain only ASCII and are marked as UTF-8 are sometimes
 a drag to your program. If you recognize such a situation, just remove
 the UTF-8 flag:</p>
 <pre>
   utf8::downgrade($val) if $] &gt; 5.007;</pre>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
-<p><a href="perluniintro.html">the perluniintro manpage</a>, <em>encoding</em>, <em>Encode</em>, <em>open</em>, <em>utf8</em>, <em>bytes</em>,
+<p><a href="perluniintro.html">the perluniintro manpage</a>, <a href="../../encoding.html">the encoding manpage</a>, <a href="../../Encode.html">the Encode manpage</a>, <a href="../../open.html">the open manpage</a>, <a href="../../utf8.html">the utf8 manpage</a>, <a href="../../bytes.html">the bytes manpage</a>,
 <a href="perlretut.html">the perlretut manpage</a>, <a href="perlvar.html#___unicode_">${^UNICODE} in the perlvar manpage</a></p>
 <table border="0" width="100%" cellspacing="0" cellpadding="3">
 <tr><td class="block" style="background-color: #cccccc" valign="middle">

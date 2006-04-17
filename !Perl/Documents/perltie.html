@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perltie - how to hide an object class in a simple variable</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -39,7 +41,8 @@
 <hr />
 <p>
 </p>
-<h1><a name="name">NAME</a></h1>
+<h1><a name="name_x_tie_">NAME
+</a></h1>
 <p>perltie - how to hide an object class in a simple variable</p>
 <p>
 </p>
@@ -85,7 +88,8 @@ using the <code>tied()</code> function.</p>
 for you--you need to do that explicitly yourself.</p>
 <p>
 </p>
-<h2><a name="tying_scalars">Tying Scalars</a></h2>
+<h2><a name="tying_scalars_x_scalar__tying_">Tying Scalars
+</a></h2>
 <p>A class implementing a tied scalar should define the following methods:
 TIESCALAR, FETCH, STORE, and possibly UNTIE and/or DESTROY.</p>
 <p>Let's look at each in turn, using as an example a tie class for
@@ -107,12 +111,13 @@ calls.  Here's the preamble of the class.</p>
     use strict;
     $Nice::DEBUG = 0 unless defined $Nice::DEBUG;</pre>
 <dl>
-<dt><strong><a name="item_tiescalar_classname_2c_list">TIESCALAR classname, LIST</a></strong><br />
-</dt>
+<dt><strong><a name="item_tiescalar_classname_2c_list_x_3ctiescalar_3e">TIESCALAR classname, LIST
+</a></strong>
+
 <dd>
-This is the constructor for the class.  That means it is
+<p>This is the constructor for the class.  That means it is
 expected to return a blessed reference to a new scalar
-(probably anonymous) that it's creating.  For example:
+(probably anonymous) that it's creating.  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -145,16 +150,17 @@ exception if its constructor should fail.  While this is how <code>dbmopen()</co
 other classes may well not wish to be so forgiving.  It checks the global
 variable <code>$^W</code> to see whether to emit a bit of noise anyway.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_fetch_this">FETCH this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_fetch_this_x_3cfetch_3e">FETCH this
+</a></strong>
+
 <dd>
-This method will be triggered every time the tied variable is accessed
+<p>This method will be triggered every time the tied variable is accessed
 (read).  It takes no arguments beyond its self reference, which is the
 object representing the scalar we're dealing with.  Because in this case
 we're using just a SCALAR ref for the tied scalar object, a simple $$self
 allows the method to get at the real value stored there.  In our example
-below, that real value is the process ID to which we've tied our variable.
+below, that real value is the process ID to which we've tied our variable.</p>
 </dd>
 <dd>
 <pre>
@@ -174,15 +180,16 @@ below, that real value is the process ID to which we've tied our variable.
 fails--there's no place for us to return an error otherwise, and it's
 probably the right thing to do.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_store_this_2c_value">STORE this, value</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_store_this_2c_value_x_3cstore_3e">STORE this, value
+</a></strong>
+
 <dd>
-This method will be triggered every time the tied variable is set
+<p>This method will be triggered every time the tied variable is set
 (assigned).  Beyond its self reference, it also expects one (and only one)
 argument--the new value the user is trying to assign. Don't worry about
 returning a value from STORE -- the semantic of assignment returning the
-assigned value is implemented with FETCH.
+assigned value is implemented with FETCH.</p>
 </dd>
 <dd>
 <pre>
@@ -217,22 +224,24 @@ assigned value is implemented with FETCH.
         }
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_untie_this">UNTIE this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_untie_this_x_3cuntie_3e">UNTIE this
+</a></strong>
+
 <dd>
-This method will be triggered when the <code>untie</code> occurs. This can be useful
+<p>This method will be triggered when the <code>untie</code> occurs. This can be useful
 if the class needs to know when no further calls will be made. (Except DESTROY
-of course.) See <a href="#the_c_untie__gotcha">The <code>untie</code> Gotcha</a> below for more details.
+of course.) See <a href="#the_c_untie__gotcha">The <code>untie</code> Gotcha</a> below for more details.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_destroy_this">DESTROY this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_destroy_this_x_3cdestroy_3e">DESTROY this
+</a></strong>
+
 <dd>
-This method will be triggered when the tied variable needs to be destructed.
+<p>This method will be triggered when the tied variable needs to be destructed.
 As with other object classes, such a method is seldom necessary, because Perl
 deallocates its moribund object's memory for you automatically--this isn't
-C++, you know.  We'll use a DESTROY method here for debugging purposes only.
+C++, you know.  We'll use a DESTROY method here for debugging purposes only.</p>
 </dd>
 <dd>
 <pre>
@@ -242,14 +251,16 @@ C++, you know.  We'll use a DESTROY method here for debugging purposes only.
         carp &quot;[ Nice::DESTROY pid $$self ]&quot; if $Nice::DEBUG;
     }</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>That's about all there is to it.  Actually, it's more than all there
 is to it, because we've done a few nice things here for the sake
 of completeness, robustness, and general aesthetics.  Simpler
 TIESCALAR classes are certainly possible.</p>
 <p>
 </p>
-<h2><a name="tying_arrays">Tying Arrays</a></h2>
+<h2><a name="tying_arrays_x_array__tying_">Tying Arrays
+</a></h2>
 <p>A class implementing a tied ordinary array should define the following
 methods: TIEARRAY, FETCH, STORE, FETCHSIZE, STORESIZE and perhaps UNTIE and/or DESTROY.</p>
 <p>FETCHSIZE and STORESIZE are used to provide <code>$#array</code> and
@@ -276,12 +287,13 @@ size, you'll take an exception.  For example:</p>
     use Carp;
     use strict;</pre>
 <dl>
-<dt><strong><a name="item_tiearray_classname_2c_list">TIEARRAY classname, LIST</a></strong><br />
-</dt>
+<dt><strong><a name="item_tiearray_classname_2c_list_x_3ctiearray_3e">TIEARRAY classname, LIST
+</a></strong>
+
 <dd>
-This is the constructor for the class.  That means it is expected to
+<p>This is the constructor for the class.  That means it is expected to
 return a blessed reference through which the new array (probably an
-anonymous ARRAY ref) will be accessed.
+anonymous ARRAY ref) will be accessed.</p>
 </dd>
 <dd>
 <p>In our example, just to show you that you don't <em>really</em> have to return an
@@ -306,13 +318,14 @@ This just goes to show you that you should respect an object's privacy.</p>
       }, $class;
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_fetch_this_2c_index">FETCH this, index</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_fetch_this_2c_index_x_3cfetch_3e">FETCH this, index
+</a></strong>
+
 <dd>
-This method will be triggered every time an individual element the tied array
+<p>This method will be triggered every time an individual element the tied array
 is accessed (read).  It takes one argument beyond its self reference: the
-index whose value we're trying to fetch.
+index whose value we're trying to fetch.</p>
 </dd>
 <dd>
 <pre>
@@ -336,14 +349,15 @@ vs TIEARRAY).  While in theory you could have the same class servicing
 several tied types, in practice this becomes cumbersome, and it's easiest
 to keep them at simply one tie type per class.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_store_this_2c_index_2c_value">STORE this, index, value</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_store_this_2c_index_2c_value_x_3cstore_3e">STORE this, index, value
+</a></strong>
+
 <dd>
-This method will be triggered every time an element in the tied array is set
+<p>This method will be triggered every time an element in the tied array is set
 (written).  It takes two arguments beyond its self reference: the index at
 which we're trying to store something and the value we're trying to put
-there.
+there.</p>
 </dd>
 <dd>
 <p>In our example, <code>undef</code> is really <code>$self-&gt;{ELEMSIZE}</code> number of
@@ -366,12 +380,13 @@ spaces so we have a little more work to do here:</p>
 <dd>
 <p>Negative indexes are treated the same as with FETCH.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_fetchsize_this">FETCHSIZE this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_fetchsize_this_x_3cfetchsize_3e">FETCHSIZE this
+</a></strong>
+
 <dd>
-Returns the total number of items in the tied array associated with
-object <em>this</em>. (Equivalent to <code>scalar(@array)</code>).  For example:
+<p>Returns the total number of items in the tied array associated with
+object <em>this</em>. (Equivalent to <code>scalar(@array)</code>).  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -380,15 +395,16 @@ object <em>this</em>. (Equivalent to <code>scalar(@array)</code>).  For example:
       return scalar @{$self-&gt;{ARRAY}};
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_storesize_this_2c_count">STORESIZE this, count</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_storesize_this_2c_count_x_3cstoresize_3e">STORESIZE this, count
+</a></strong>
+
 <dd>
-Sets the total number of items in the tied array associated with
+<p>Sets the total number of items in the tied array associated with
 object <em>this</em> to be <em>count</em>. If this makes the array larger then
 class's mapping of <code>undef</code> should be returned for new positions.
 If the array becomes smaller then entries beyond count should be
-deleted.
+deleted.</p>
 </dd>
 <dd>
 <p>In our example, 'undef' is really an element containing
@@ -410,12 +426,13 @@ deleted.
       }
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_extend_this_2c_count">EXTEND this, count</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_extend_this_2c_count_x_3cextend_3e">EXTEND this, count
+</a></strong>
+
 <dd>
-Informative call that array is likely to grow to have <em>count</em> entries.
-Can be used to optimize allocation. This method need do nothing.
+<p>Informative call that array is likely to grow to have <em>count</em> entries.
+Can be used to optimize allocation. This method need do nothing.</p>
 </dd>
 <dd>
 <p>In our example, we want to make sure there are no blank (<code>undef</code>)
@@ -430,11 +447,12 @@ as needed:</p>
       $self-&gt;STORESIZE( $count );
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_exists_this_2c_key">EXISTS this, key</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_exists_this_2c_key_x_3cexists_3e">EXISTS this, key
+</a></strong>
+
 <dd>
-Verify that the element at index <em>key</em> exists in the tied array <em>this</em>.
+<p>Verify that the element at index <em>key</em> exists in the tied array <em>this</em>.</p>
 </dd>
 <dd>
 <p>In our example, we will determine that if an element consists of
@@ -450,11 +468,12 @@ Verify that the element at index <em>key</em> exists in the tied array <em>this<
       return 1;
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_delete_this_2c_key">DELETE this, key</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_delete_this_2c_key_x_3cdelete_3e">DELETE this, key
+</a></strong>
+
 <dd>
-Delete the element at index <em>key</em> from the tied array <em>this</em>.
+<p>Delete the element at index <em>key</em> from the tied array <em>this</em>.</p>
 </dd>
 <dd>
 <p>In our example, a deleted item is <code>$self-&gt;{ELEMSIZE}</code> spaces:</p>
@@ -467,12 +486,13 @@ Delete the element at index <em>key</em> from the tied array <em>this</em>.
       return $self-&gt;STORE( $index, '' );
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_clear_this">CLEAR this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_clear_this_x_3cclear_3e">CLEAR this
+</a></strong>
+
 <dd>
-Clear (remove, delete, ...) all values from the tied array associated with
-object <em>this</em>.  For example:
+<p>Clear (remove, delete, ...) all values from the tied array associated with
+object <em>this</em>.  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -481,11 +501,12 @@ object <em>this</em>.  For example:
       return $self-&gt;{ARRAY} = [];
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_push_this_2c_list">PUSH this, LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_push_this_2c_list_x_3cpush_3e">PUSH this, LIST 
+</a></strong>
+
 <dd>
-Append elements of <em>LIST</em> to the array.  For example:
+<p>Append elements of <em>LIST</em> to the array.  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -497,11 +518,12 @@ Append elements of <em>LIST</em> to the array.  For example:
       return $self-&gt;FETCHSIZE();
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_pop_this">POP this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pop_this_x_3cpop_3e">POP this
+</a></strong>
+
 <dd>
-Remove last element of the array and return it.  For example:
+<p>Remove last element of the array and return it.  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -510,12 +532,13 @@ Remove last element of the array and return it.  For example:
       return pop @{$self-&gt;{ARRAY}};
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_shift_this">SHIFT this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_shift_this_x_3cshift_3e">SHIFT this
+</a></strong>
+
 <dd>
-Remove the first element of the array (shifting other elements down)
-and return it.  For example:
+<p>Remove the first element of the array (shifting other elements down)
+and return it.  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -524,12 +547,13 @@ and return it.  For example:
       return shift @{$self-&gt;{ARRAY}};
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_unshift_this_2c_list">UNSHIFT this, LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unshift_this_2c_list_x_3cunshift_3e">UNSHIFT this, LIST 
+</a></strong>
+
 <dd>
-Insert LIST elements at the beginning of the array, moving existing elements
-up to make room.  For example:
+<p>Insert LIST elements at the beginning of the array, moving existing elements
+up to make room.  For example:</p>
 </dd>
 <dd>
 <pre>
@@ -543,11 +567,12 @@ up to make room.  For example:
       $self-&gt;STORE( $_, $list[$_] ) foreach 0 .. $#list;
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_splice_this_2c_offset_2c_length_2c_list">SPLICE this, offset, length, LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_splice_this_2c_offset_2c_length_2c_list_x_3csplice">SPLICE this, offset, length, LIST
+</a></strong>
+
 <dd>
-Perform the equivalent of <code>splice</code> on the array.
+<p>Perform the equivalent of <code>splice</code> on the array.</p>
 </dd>
 <dd>
 <p><em>offset</em> is optional and defaults to zero, negative values count back 
@@ -579,25 +604,29 @@ from the end of the array.</p>
       return splice @{$self-&gt;{ARRAY}}, $offset, $length, @list;
     }</pre>
 </dd>
-<p></p>
-<dt><strong>UNTIE this</strong><br />
-</dt>
+</li>
+<dt><strong>UNTIE this
+</strong>
+
 <dd>
-Will be called when <code>untie</code> happens. (See <a href="#the_c_untie__gotcha">The <code>untie</code> Gotcha</a> below.)
+<p>Will be called when <code>untie</code> happens. (See <a href="#the_c_untie__gotcha">The <code>untie</code> Gotcha</a> below.)</p>
 </dd>
-<p></p>
-<dt><strong>DESTROY this</strong><br />
-</dt>
+</li>
+<dt><strong>DESTROY this
+</strong>
+
 <dd>
-This method will be triggered when the tied variable needs to be destructed.
+<p>This method will be triggered when the tied variable needs to be destructed.
 As with the scalar tie class, this is almost never needed in a
 language that does its own garbage collection, so this time we'll
-just leave it out.
+just leave it out.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
-<h2><a name="tying_hashes">Tying Hashes</a></h2>
+<h2><a name="tying_hashes_x_hash__tying_">Tying Hashes
+</a></h2>
 <p>Hashes were the first Perl data type to be tied (see dbmopen()).  A class
 implementing a tied hash should define the following methods: TIEHASH is
 the constructor.  FETCH and STORE access the key and value pairs.  EXISTS
@@ -609,7 +638,7 @@ context. UNTIE is called when <code>untie</code> happens, and DESTROY is called 
 the tied variable is garbage collected.</p>
 <p>If this seems like a lot, then feel free to inherit from merely the
 standard Tie::StdHash module for most of your methods, redefining only the
-interesting ones.  See <a href="../Tie/Hash.html">the Tie::Hash manpage</a> for details.</p>
+interesting ones.  See <a href="../../Tie/Hash.html">the Tie::Hash manpage</a> for details.</p>
 <p>Remember that Perl distinguishes between a key not existing in the hash,
 and the key existing in the hash but having a corresponding value of
 <code>undef</code>.  The two possibilities can be tested with the <code>exists()</code> and
@@ -639,30 +668,31 @@ hash for the object containing several important
 fields, of which only the <code>{LIST}</code> field will be what the
 user thinks of as the real hash.</p>
 <dl>
-<dt><strong><a name="item_user">USER</a></strong><br />
-</dt>
+<dt><strong><a name="item_user">USER</a></strong>
+
 <dd>
-whose dot files this object represents
+<p>whose dot files this object represents</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_home">HOME</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_home">HOME</a></strong>
+
 <dd>
-where those dot files live
+<p>where those dot files live</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_clobber">CLOBBER</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_clobber">CLOBBER</a></strong>
+
 <dd>
-whether we should try to change or remove those dot files
+<p>whether we should try to change or remove those dot files</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_list">LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_list">LIST</a></strong>
+
 <dd>
-the hash of dot file names and content mappings
+<p>the hash of dot file names and content mappings</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Here's the start of <em>Dotfiles.pm</em>:</p>
 <pre>
     package DotFiles;
@@ -676,12 +706,13 @@ internally to help print out warnings; <code>whowasi()</code> returns the functi
 that calls it.</p>
 <p>Here are the methods for the DotFiles tied hash.</p>
 <dl>
-<dt><strong><a name="item_tiehash_classname_2c_list">TIEHASH classname, LIST</a></strong><br />
-</dt>
+<dt><strong><a name="item_tiehash_classname_2c_list_x_3ctiehash_3e">TIEHASH classname, LIST
+</a></strong>
+
 <dd>
-This is the constructor for the class.  That means it is expected to
+<p>This is the constructor for the class.  That means it is expected to
 return a blessed reference through which the new object (probably but not
-necessarily an anonymous hash) will be accessed.
+necessarily an anonymous hash) will be accessed.</p>
 </dd>
 <dd>
 <p>Here's the constructor:</p>
@@ -725,13 +756,14 @@ return values out of a readdir, you'd better prepend the directory
 in question.  Otherwise, because we didn't <code>chdir()</code> there, it would
 have been testing the wrong file.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_fetch_this_2c_key">FETCH this, key</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_fetch_this_2c_key_x_3cfetch_3e">FETCH this, key
+</a></strong>
+
 <dd>
-This method will be triggered every time an element in the tied hash is
+<p>This method will be triggered every time an element in the tied hash is
 accessed (read).  It takes one argument beyond its self reference: the key
-whose value we're trying to fetch.
+whose value we're trying to fetch.</p>
 </dd>
 <dd>
 <p>Here's the fetch for our DotFiles example.</p>
@@ -767,14 +799,15 @@ would probably be more portable to open the file manually (and somewhat
 more efficient).  Of course, because dot files are a Unixy concept, we're
 not that concerned.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_store_this_2c_key_2c_value">STORE this, key, value</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_store_this_2c_key_2c_value_x_3cstore_3e">STORE this, key, value
+</a></strong>
+
 <dd>
-This method will be triggered every time an element in the tied hash is set
+<p>This method will be triggered every time an element in the tied hash is set
 (written).  It takes two arguments beyond its self reference: the index at
 which we're trying to store something, and the value we're trying to put
-there.
+there.</p>
 </dd>
 <dd>
 <p>Here in our DotFiles example, we'll be careful not to let
@@ -832,13 +865,14 @@ using:</p>
         $self-&gt;{CLOBBER} = @_ ? shift : 1;
     }</pre>
 </dd>
-<p></p>
-<dt><strong>DELETE this, key</strong><br />
-</dt>
+</li>
+<dt><strong>DELETE this, key
+</strong>
+
 <dd>
-This method is triggered when we remove an element from the hash,
+<p>This method is triggered when we remove an element from the hash,
 typically by using the <code>delete()</code> function.  Again, we'll
-be careful to check whether they really want to clobber files.
+be careful to check whether they really want to clobber files.</p>
 </dd>
 <dd>
 <pre>
@@ -865,12 +899,13 @@ you should return whatever FETCH would have returned for this key.
 In this example, we have chosen instead to return a value which tells
 the caller whether the file was successfully deleted.</p>
 </dd>
-<p></p>
-<dt><strong>CLEAR this</strong><br />
-</dt>
+</li>
+<dt><strong>CLEAR this
+</strong>
+
 <dd>
-This method is triggered when the whole hash is to be cleared, usually by
-assigning the empty list to it.
+<p>This method is triggered when the whole hash is to be cleared, usually by
+assigning the empty list to it.</p>
 </dd>
 <dd>
 <p>In our example, that would remove all the user's dot files!  It's such a
@@ -890,13 +925,14 @@ dangerous thing that they'll have to set CLOBBER to something higher than
         }
     }</pre>
 </dd>
-<p></p>
-<dt><strong>EXISTS this, key</strong><br />
-</dt>
+</li>
+<dt><strong>EXISTS this, key
+</strong>
+
 <dd>
-This method is triggered when the user uses the <code>exists()</code> function
+<p>This method is triggered when the user uses the <code>exists()</code> function
 on a particular hash.  In our example, we'll look at the <code>{LIST}</code>
-hash element for this:
+hash element for this:</p>
 </dd>
 <dd>
 <pre>
@@ -907,13 +943,14 @@ hash element for this:
         return exists $self-&gt;{LIST}-&gt;{$dot};
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_firstkey_this">FIRSTKEY this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_firstkey_this_x_3cfirstkey_3e">FIRSTKEY this
+</a></strong>
+
 <dd>
-This method will be triggered when the user is going
+<p>This method will be triggered when the user is going
 to iterate through the hash, such as via a <code>keys()</code> or <code>each()</code>
-call.
+call.</p>
 </dd>
 <dd>
 <pre>
@@ -924,14 +961,15 @@ call.
         each %{$self-&gt;{LIST}}
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_nextkey_this_2c_lastkey">NEXTKEY this, lastkey</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_nextkey_this_2c_lastkey_x_3cnextkey_3e">NEXTKEY this, lastkey
+</a></strong>
+
 <dd>
-This method gets triggered during a <code>keys()</code> or <code>each()</code> iteration.  It has a
+<p>This method gets triggered during a <code>keys()</code> or <code>each()</code> iteration.  It has a
 second argument which is the last key that had been accessed.  This is
 useful if you're carrying about ordering or calling the iterator from more
-than one sequence, or not really storing things in a hash anywhere.
+than one sequence, or not really storing things in a hash anywhere.</p>
 </dd>
 <dd>
 <p>For our example, we're using a real hash so we'll do just the simple
@@ -945,17 +983,18 @@ thing, but we'll have to go through the LIST field indirectly.</p>
         return each %{ $self-&gt;{LIST} }
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_scalar_this">SCALAR this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_scalar_this_x_3cscalar_3e">SCALAR this
+</a></strong>
+
 <dd>
-This is called when the hash is evaluated in scalar context. In order
+<p>This is called when the hash is evaluated in scalar context. In order
 to mimic the behaviour of untied hashes, this method should return a
 false value when the tied hash is considered empty. If this method does
 not exist, perl will make some educated guesses and return true when
 the hash is inside an iteration. If this isn't the case, FIRSTKEY is
 called, and the result will be a false value if FIRSTKEY returns the empty
-list, true otherwise.
+list, true otherwise.</p>
 </dd>
 <dd>
 <p>However, you should <strong>not</strong> blindly rely on perl always doing the right 
@@ -976,19 +1015,21 @@ referenced by <code>$self-&gt;{LIST}</code>:</p>
         return scalar %{ $self-&gt;{LIST} }
     }</pre>
 </dd>
-<p></p>
-<dt><strong>UNTIE this</strong><br />
-</dt>
+</li>
+<dt><strong>UNTIE this
+</strong>
+
 <dd>
-This is called when <code>untie</code> occurs.  See <a href="#the_c_untie__gotcha">The <code>untie</code> Gotcha</a> below.
+<p>This is called when <code>untie</code> occurs.  See <a href="#the_c_untie__gotcha">The <code>untie</code> Gotcha</a> below.</p>
 </dd>
-<p></p>
-<dt><strong>DESTROY this</strong><br />
-</dt>
+</li>
+<dt><strong>DESTROY this
+</strong>
+
 <dd>
-This method is triggered when a tied hash is about to go out of
+<p>This method is triggered when a tied hash is about to go out of
 scope.  You don't really need it unless you're trying to add debugging
-or have auxiliary state to clean up.  Here's a very simple function:
+or have auxiliary state to clean up.  Here's a very simple function:</p>
 </dd>
 <dd>
 <pre>
@@ -996,7 +1037,8 @@ or have auxiliary state to clean up.  Here's a very simple function:
         carp &amp;whowasi if $DEBUG;
     }</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Note that functions such as <code>keys()</code> and <code>values()</code> may return huge lists
 when used on large objects, like DBM files.  You may prefer to use the
 <code>each()</code> function to iterate over such.  Example:</p>
@@ -1010,7 +1052,8 @@ when used on large objects, like DBM files.  You may prefer to use the
     untie(%HIST);</pre>
 <p>
 </p>
-<h2><a name="tying_filehandles">Tying FileHandles</a></h2>
+<h2><a name="tying_filehandles_x_filehandle__tying_">Tying FileHandles
+</a></h2>
 <p>This is partially implemented now.</p>
 <p>A class implementing a tied filehandle should define the following
 methods: TIEHANDLE, at least one of PRINT, PRINTF, WRITE, READLINE, GETC,
@@ -1030,23 +1073,25 @@ in some special way.  See nvi and the Apache module for examples.</p>
 <pre>
     package Shout;</pre>
 <dl>
-<dt><strong><a name="item_tiehandle_classname_2c_list">TIEHANDLE classname, LIST</a></strong><br />
-</dt>
+<dt><strong><a name="item_tiehandle_classname_2c_list_x_3ctiehandle_3e">TIEHANDLE classname, LIST
+</a></strong>
+
 <dd>
-This is the constructor for the class.  That means it is expected to
+<p>This is the constructor for the class.  That means it is expected to
 return a blessed reference of some sort. The reference can be used to
-hold some internal information.
+hold some internal information.</p>
 </dd>
 <dd>
 <pre>
     sub TIEHANDLE { print &quot;&lt;shout&gt;\n&quot;; my $i; bless \$i, shift }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_write_this_2c_list">WRITE this, LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_write_this_2c_list_x_3cwrite_3e">WRITE this, LIST
+</a></strong>
+
 <dd>
-This method will be called when the handle is written to via the
-<code>syswrite</code> function.
+<p>This method will be called when the handle is written to via the
+<code>syswrite</code> function.</p>
 </dd>
 <dd>
 <pre>
@@ -1056,27 +1101,29 @@ This method will be called when the handle is written to via the
         print &quot;WRITE called, \$buf=$buf, \$len=$len, \$offset=$offset&quot;;
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_print_this_2c_list">PRINT this, LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_print_this_2c_list_x_3cprint_3e">PRINT this, LIST
+</a></strong>
+
 <dd>
-This method will be triggered every time the tied handle is printed to
+<p>This method will be triggered every time the tied handle is printed to
 with the <code>print()</code> function.
 Beyond its self reference it also expects the list that was passed to
-the print function.
+the print function.</p>
 </dd>
 <dd>
 <pre>
     sub PRINT { $r = shift; $$r++; print join($,,map(uc($_),@_)),$\ }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_printf_this_2c_list">PRINTF this, LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_printf_this_2c_list_x_3cprintf_3e">PRINTF this, LIST
+</a></strong>
+
 <dd>
-This method will be triggered every time the tied handle is printed to
+<p>This method will be triggered every time the tied handle is printed to
 with the <code>printf()</code> function.
 Beyond its self reference it also expects the format and list that was
-passed to the printf function.
+passed to the printf function.</p>
 </dd>
 <dd>
 <pre>
@@ -1086,12 +1133,13 @@ passed to the printf function.
         print sprintf($fmt, @_);
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_read_this_2c_list">READ this, LIST</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_read_this_2c_list_x_3cread_3e">READ this, LIST
+</a></strong>
+
 <dd>
-This method will be called when the handle is read from via the <code>read</code>
-or <code>sysread</code> functions.
+<p>This method will be called when the handle is read from via the <code>read</code>
+or <code>sysread</code> functions.</p>
 </dd>
 <dd>
 <pre>
@@ -1104,59 +1152,65 @@ or <code>sysread</code> functions.
         $len;
     }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_readline_this">READLINE this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_readline_this_x_3creadline_3e">READLINE this
+</a></strong>
+
 <dd>
-This method will be called when the handle is read from via &lt;HANDLE&gt;.
-The method should return undef when there is no more data.
+<p>This method will be called when the handle is read from via &lt;HANDLE&gt;.
+The method should return undef when there is no more data.</p>
 </dd>
 <dd>
 <pre>
     sub READLINE { $r = shift; &quot;READLINE called $$r times\n&quot;; }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_getc_this">GETC this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_getc_this_x_3cgetc_3e">GETC this
+</a></strong>
+
 <dd>
-This method will be called when the <code>getc</code> function is called.
+<p>This method will be called when the <code>getc</code> function is called.</p>
 </dd>
 <dd>
 <pre>
     sub GETC { print &quot;Don't GETC, Get Perl&quot;; return &quot;a&quot;; }</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_close_this">CLOSE this</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_close_this_x_3cclose_3e">CLOSE this
+</a></strong>
+
 <dd>
-This method will be called when the handle is closed via the <code>close</code>
-function.
+<p>This method will be called when the handle is closed via the <code>close</code>
+function.</p>
 </dd>
 <dd>
 <pre>
     sub CLOSE { print &quot;CLOSE called.\n&quot; }</pre>
 </dd>
-<p></p>
-<dt><strong>UNTIE this</strong><br />
-</dt>
+</li>
+<dt><strong>UNTIE this
+</strong>
+
 <dd>
-As with the other types of ties, this method will be called when <code>untie</code> happens.
+<p>As with the other types of ties, this method will be called when <code>untie</code> happens.
 It may be appropriate to ``auto CLOSE'' when this occurs.  See
-<a href="#the_c_untie__gotcha">The <code>untie</code> Gotcha</a> below.
+<a href="#the_c_untie__gotcha">The <code>untie</code> Gotcha</a> below.</p>
 </dd>
-<p></p>
-<dt><strong>DESTROY this</strong><br />
-</dt>
+</li>
+<dt><strong>DESTROY this
+</strong>
+
 <dd>
-As with the other types of ties, this method will be called when the
+<p>As with the other types of ties, this method will be called when the
 tied handle is about to be destroyed. This is useful for debugging and
-possibly cleaning up.
+possibly cleaning up.</p>
 </dd>
 <dd>
 <pre>
     sub DESTROY { print &quot;&lt;/shout&gt;\n&quot; }</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Here's how to use our little example:</p>
 <pre>
     tie(*FOO,'Shout');
@@ -1166,12 +1220,14 @@ possibly cleaning up.
     print &lt;FOO&gt;;</pre>
 <p>
 </p>
-<h2><a name="untie_this">UNTIE this</a></h2>
+<h2><a name="untie_this_x_untie_">UNTIE this
+</a></h2>
 <p>You can define for all tie types an UNTIE method that will be called
 at untie().  See <a href="#the_c_untie__gotcha">The <code>untie</code> Gotcha</a> below.</p>
 <p>
 </p>
-<h2><a name="the_untie_gotcha">The <code>untie</code> Gotcha</a></h2>
+<h2><a name="the_untie_gotcha_x_untie_">The <code>untie</code> Gotcha
+</a></h2>
 <p>If you intend making use of the object returned from either <code>tie()</code> or
 tied(), and if the tie's target class defines a destructor, there is a
 subtle gotcha you <em>must</em> guard against.</p>
@@ -1310,9 +1366,9 @@ be used:</p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
-<p>See <em>DB_File</em> or <em>Config</em> for some interesting <code>tie()</code> implementations.
+<p>See <em>DB_File</em> or <a href="../../Config.html">the Config manpage</a> for some interesting <code>tie()</code> implementations.
 A good starting point for many <code>tie()</code> implementations is with one of the
-modules <a href="../Tie/Scalar.html">the Tie::Scalar manpage</a>, <a href="../Tie/Array.html">the Tie::Array manpage</a>, <a href="../Tie/Hash.html">the Tie::Hash manpage</a>, or <a href="../Tie/Handle.html">the Tie::Handle manpage</a>.</p>
+modules <a href="../../Tie/Scalar.html">the Tie::Scalar manpage</a>, <a href="../../Tie/Array.html">the Tie::Array manpage</a>, <a href="../../Tie/Hash.html">the Tie::Hash manpage</a>, or <a href="../../Tie/Handle.html">the Tie::Handle manpage</a>.</p>
 <p>
 </p>
 <hr />

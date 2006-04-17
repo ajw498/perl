@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perldoc - Look up Perl documentation in Pod format.</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -66,57 +68,57 @@ documentation, see the <a href="perltoc.html">the perltoc manpage</a> page.</p>
 <hr />
 <h1><a name="options">OPTIONS</a></h1>
 <dl>
-<dt><strong><a name="item__2dh"><strong>-h</strong></a></strong><br />
-</dt>
+<dt><strong><a name="item__2dh"><strong>-h</strong></a></strong>
+
 <dd>
-Prints out a brief <strong>h</strong>elp message.
+<p>Prints out a brief <strong>h</strong>elp message.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dv"><strong>-v</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dv"><strong>-v</strong></a></strong>
+
 <dd>
-Describes search for the item in detail (<strong>v</strong>erbosely).
+<p>Describes search for the item in detail (<strong>v</strong>erbosely).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dt"><strong>-t</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dt"><strong>-t</strong></a></strong>
+
 <dd>
-Display docs using plain <strong>t</strong>ext converter, instead of nroff. This may be faster,
-but it probably won't look as nice.
+<p>Display docs using plain <strong>t</strong>ext converter, instead of nroff. This may be faster,
+but it probably won't look as nice.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2du"><strong>-u</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2du"><strong>-u</strong></a></strong>
+
 <dd>
-Skip the real Pod formatting, and just show the raw Pod source (<strong>U</strong>nformatted)
+<p>Skip the real Pod formatting, and just show the raw Pod source (<strong>U</strong>nformatted)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dm_module"><strong>-m</strong> <em>module</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dm_module"><strong>-m</strong> <em>module</em></a></strong>
+
 <dd>
-Display the entire module: both code and unformatted pod documentation.
+<p>Display the entire module: both code and unformatted pod documentation.
 This may be useful if the docs don't explain a function in the detail
 you need, and you'd like to inspect the code directly; perldoc will find
-the file for you and simply hand it off for display.
+the file for you and simply hand it off for display.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dl"><strong>-l</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dl"><strong>-l</strong></a></strong>
+
 <dd>
-Display on<strong>l</strong>y the file name of the module found.
+<p>Display on<strong>l</strong>y the file name of the module found.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2df"><strong>-F</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2df"><strong>-F</strong></a></strong>
+
 <dd>
-Consider arguments as file names; no search in directories will be performed.
+<p>Consider arguments as file names; no search in directories will be performed.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2df_perlfunc"><strong>-f</strong> <em>perlfunc</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2df_perlfunc"><strong>-f</strong> <em>perlfunc</em></a></strong>
+
 <dd>
-The <strong>-f</strong> option followed by the name of a perl built in function will
-extract the documentation of this function from <a href="perlfunc.html">the perlfunc manpage</a>.
+<p>The <strong>-f</strong> option followed by the name of a perl built in function will
+extract the documentation of this function from <a href="perlfunc.html">the perlfunc manpage</a>.</p>
 </dd>
 <dd>
 <p>Example:</p>
@@ -125,39 +127,39 @@ extract the documentation of this function from <a href="perlfunc.html">the perl
 <pre>
       <a href="perldoc.html">perldoc</a> -f sprintf</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dq_perlfaq_2dsearch_2dregexp"><strong>-q</strong> <em>perlfaq-search-regexp</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dq_perlfaq_2dsearch_2dregexp"><strong>-q</strong> <em>perlfaq-search-regexp</em></a></strong>
+
 <dd>
-The <strong>-q</strong> option takes a regular expression as an argument.  It will search
+<p>The <strong>-q</strong> option takes a regular expression as an argument.  It will search
 the <strong>q</strong>uestion headings in perlfaq[1-9] and print the entries matching
-the regular expression.  Example: <code>perldoc -q shuffle</code>
+the regular expression.  Example: <code>perldoc -q shuffle</code></p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dt"><strong>-T</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dt"><strong>-T</strong></a></strong>
+
 <dd>
-This specifies that the output is not to be sent to a pager, but is to
-be sent right to STDOUT.
+<p>This specifies that the output is not to be sent to a pager, but is to
+be sent right to STDOUT.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dd_destination_2dfilename"><strong>-d</strong> <em>destination-filename</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dd_destination_2dfilename"><strong>-d</strong> <em>destination-filename</em></a></strong>
+
 <dd>
-This specifies that the output is to be sent neither to a pager nor
+<p>This specifies that the output is to be sent neither to a pager nor
 to STDOUT, but is to be saved to the specified filename.  Example:
-<code>perldoc -oLaTeX -dtextwrapdocs.tex Text::Wrap</code>
+<code>perldoc -oLaTeX -dtextwrapdocs.tex Text::Wrap</code></p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2do_output_2dformatname"><strong>-o</strong> <em>output-formatname</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2do_output_2dformatname"><strong>-o</strong> <em>output-formatname</em></a></strong>
+
 <dd>
-This specifies that you want Perldoc to try using a Pod-formatting
+<p>This specifies that you want Perldoc to try using a Pod-formatting
 class for the output format that you specify.  For example:
 <code>-oman</code>.  This is actually just a wrapper around the <code>-M</code> switch;
 using <code>-oformatname</code> just looks for a loadable class by adding
 that format name (with different capitalizations) to the end of
-different classname prefixes.
+different classname prefixes.</p>
 </dd>
 <dd>
 <p>For example, <code>-oLaTeX</code> currently tries all of the following classes:
@@ -166,29 +168,29 @@ Pod::Perldoc::ToLATEX Pod::Simple::LaTeX Pod::Simple::latex
 Pod::Simple::Latex Pod::Simple::LATEX Pod::LaTeX Pod::latex Pod::Latex
 Pod::LATEX.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dm_module_2dname"><strong>-M</strong> <em>module-name</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dm_module_2dname"><strong>-M</strong> <em>module-name</em></a></strong>
+
 <dd>
-This specifies the module that you want to try using for formatting the
-pod.  The class must must at least provide a <code>parse_from_file</code> method.
-For example: <code>perldoc -MPod::Perldoc::ToChecker</code>.
+<p>This specifies the module that you want to try using for formatting the
+pod.  The class must at least provide a <code>parse_from_file</code> method.
+For example: <code>perldoc -MPod::Perldoc::ToChecker</code>.</p>
 </dd>
 <dd>
 <p>You can specify several classes to try by joining them with commas
 or semicolons, as in <code>-MTk::SuperPod;Tk::Pod</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dw_option_3avalue_or__2dw_option"><strong>-w</strong> <em>option:value</em> or <strong>-w</strong> <em>option</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dw_option_3avalue_or__2dw_option"><strong>-w</strong> <em>option:value</em> or <strong>-w</strong> <em>option</em></a></strong>
+
 <dd>
-This specifies an option to call the formatter <strong>w</strong>ith.  For example,
+<p>This specifies an option to call the formatter <strong>w</strong>ith.  For example,
 <code>-w textsize:15</code> will call
 <code>$formatter-&gt;textsize(15)</code> on the formatter object before it is
 used to format the object.  For this to be valid, the formatter class
 must provide such a method, and the value you pass should be valid.
 (So if <code>textsize</code> expects an integer, and you do <code>-w textsize:big</code>,
-expect trouble.)
+expect trouble.)</p>
 </dd>
 <dd>
 <p>You can use <code>-w optionname</code> (without a value) as shorthand for
@@ -199,48 +201,49 @@ features like: <code>-w page_numbering</code>.</p>
 <p>You can use a ``='' instead of the ``:'', as in: <code>-w textsize=15</code>.  This
 might be more (or less) convenient, depending on what shell you use.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dx"><strong>-X</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dx"><strong>-X</strong></a></strong>
+
 <dd>
-Use an index if it is present -- the <strong>-X</strong> option looks for an entry
+<p>Use an index if it is present -- the <strong>-X</strong> option looks for an entry
 whose basename matches the name given on the command line in the file
 <code>$Config{archlib}/pod.idx</code>. The <em>pod.idx</em> file should contain fully
-qualified filenames, one per line.
+qualified filenames, one per line.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pagename_7cmodulename_7cprogramname"><strong>PageName|ModuleName|ProgramName</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pagename_7cmodulename_7cprogramname"><strong>PageName|ModuleName|ProgramName</strong></a></strong>
+
 <dd>
-The item you want to look up.  Nested modules (such as <code>File::Basename</code>)
+<p>The item you want to look up.  Nested modules (such as <code>File::Basename</code>)
 are specified either as <code>File::Basename</code> or <code>File/Basename</code>.  You may also
-give a descriptive name of a page, such as <code>perlfunc</code>.
+give a descriptive name of a page, such as <code>perlfunc</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dn_some_2dformatter"><strong>-n</strong> <em>some-formatter</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dn_some_2dformatter"><strong>-n</strong> <em>some-formatter</em></a></strong>
+
 <dd>
-Specify replacement for nroff
+<p>Specify replacement for nroff</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dr"><strong>-r</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dr"><strong>-r</strong></a></strong>
+
 <dd>
-Recursive search.
+<p>Recursive search.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2di"><strong>-i</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2di"><strong>-i</strong></a></strong>
+
 <dd>
-Ignore case.
+<p>Ignore case.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dv"><strong>-V</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dv"><strong>-V</strong></a></strong>
+
 <dd>
-Displays the version of perldoc you're running.
+<p>Displays the version of perldoc you're running.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />

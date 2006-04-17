@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlebcdic - Considerations for running Perl on EBCDIC platforms</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -211,16 +213,17 @@ equal <em>A with acute</em> or chr(101), and unpack(``U'', ``A'') would equal
 </p>
 <h2><a name="remaining_perl_unicode_problems_in_ebcdic">Remaining Perl Unicode problems in EBCDIC</a></h2>
 <ul>
-<li></li>
-Many of the remaining seem to be related to case-insensitive matching:
+<li>
+<p>Many of the remaining seem to be related to case-insensitive matching:
 for example, <code>/[\x{131}]/</code> (LATIN SMALL LETTER DOTLESS I) does
 not match ``I'' case-insensitively, as it should under Unicode.
-(The match succeeds in ASCII-derived platforms.)
-<p></p>
-<li></li>
-The extensions Unicode::Collate and Unicode::Normalized are not
-supported under EBCDIC, likewise for the encoding pragma.
-<p></p></ul>
+(The match succeeds in ASCII-derived platforms.)</p>
+</li>
+<li>
+<p>The extensions Unicode::Collate and Unicode::Normalized are not
+supported under EBCDIC, likewise for the encoding pragma.</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="unicode_and_utf">Unicode and UTF</a></h2>
@@ -292,8 +295,8 @@ would rather see this table listing octal values then run the table
 (that is, the pod version of this document since this recipe may not 
 work with a pod2_other_format translation) through:</p>
 <dl>
-<dt><strong><a name="item_recipe">recipe 0</a></strong><br />
-</dt>
+<dt><strong><a name="item_recipe">recipe 0</a></strong>
+
 </dl>
 <pre>
     perl -ne 'if(/(.{33})(\d+)\s+(\d+)\s+(\d+)\s+(\d+)/)' \
@@ -301,8 +304,8 @@ work with a pod2_other_format translation) through:</p>
 <p>If you want to retain the UTF-x code points then in script form you
 might want to write:</p>
 <dl>
-<dt><strong>recipe 1</strong><br />
-</dt>
+<dt><strong>recipe 1</strong>
+
 </dl>
 <pre>
     open(FH,&quot;&lt;<a href="perlebcdic.html">perlebcdic</a>.pod&quot;) or die &quot;Could not open <a href="perlebcdic.html">perlebcdic</a>.pod: $!&quot;;
@@ -322,16 +325,16 @@ might want to write:</p>
 <p>If you would rather see this table listing hexadecimal values then
 run the table through:</p>
 <dl>
-<dt><strong>recipe 2</strong><br />
-</dt>
+<dt><strong>recipe 2</strong>
+
 </dl>
 <pre>
     perl -ne 'if(/(.{33})(\d+)\s+(\d+)\s+(\d+)\s+(\d+)/)' \
      -e '{printf(&quot;%s%-9X%-9X%-9X%X\n&quot;,$1,$2,$3,$4,$5)}' <a href="perlebcdic.html">perlebcdic</a>.pod</pre>
 <p>Or, in order to retain the UTF-x code points in hexadecimal:</p>
 <dl>
-<dt><strong>recipe 3</strong><br />
-</dt>
+<dt><strong>recipe 3</strong>
+
 </dl>
 <pre>
     open(FH,&quot;&lt;<a href="perlebcdic.html">perlebcdic</a>.pod&quot;) or die &quot;Could not open <a href="perlebcdic.html">perlebcdic</a>.pod: $!&quot;;
@@ -612,8 +615,8 @@ run the table through:</p>
 <p>If you would rather see the above table in CCSID 0037 order rather than
 ASCII + Latin-1 order then run the table through:</p>
 <dl>
-<dt><strong>recipe 4</strong><br />
-</dt>
+<dt><strong>recipe 4</strong>
+
 </dl>
 <pre>
     perl -ne 'if(/.{33}\d{1,3}\s{6,8}\d{1,3}\s{6,8}\d{1,3}\s{6,8}\d{1,3}/)'\
@@ -624,8 +627,8 @@ ASCII + Latin-1 order then run the table through:</p>
 <p>If you would rather see it in CCSID 1047 order then change the digit
 42 in the last line to 51, like this:</p>
 <dl>
-<dt><strong>recipe 5</strong><br />
-</dt>
+<dt><strong>recipe 5</strong>
+
 </dl>
 <pre>
     perl -ne 'if(/.{33}\d{1,3}\s{6,8}\d{1,3}\s{6,8}\d{1,3}\s{6,8}\d{1,3}/)'\
@@ -636,8 +639,8 @@ ASCII + Latin-1 order then run the table through:</p>
 <p>If you would rather see it in POSIX-BC order then change the digit
 51 in the last line to 60, like this:</p>
 <dl>
-<dt><strong>recipe 6</strong><br />
-</dt>
+<dt><strong>recipe 6</strong>
+
 </dl>
 <pre>
     perl -ne 'if(/.{33}\d{1,3}\s{6,8}\d{1,3}\s{6,8}\d{1,3}\s{6,8}\d{1,3}/)'\
@@ -828,33 +831,33 @@ not one.</p>
 <hr />
 <h1><a name="function_differences">FUNCTION DIFFERENCES</a></h1>
 <dl>
-<dt><strong><a name="item_chr"><code>chr()</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_chr"><code>chr()</code></a></strong>
+
 <dd>
-<a href="#item_chr"><code>chr()</code></a> must be given an EBCDIC code number argument to yield a desired 
-character return value on an EBCDIC machine.  For example:
+<p><a href="#item_chr"><code>chr()</code></a> must be given an EBCDIC code number argument to yield a desired 
+character return value on an EBCDIC machine.  For example:</p>
 </dd>
 <dd>
 <pre>
     $CAPITAL_LETTER_A = chr(193);</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_ord"><code>ord()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_ord"><code>ord()</code></a></strong>
+
 <dd>
-<a href="#item_ord"><code>ord()</code></a> will return EBCDIC code number values on an EBCDIC machine.
-For example:
+<p><a href="#item_ord"><code>ord()</code></a> will return EBCDIC code number values on an EBCDIC machine.
+For example:</p>
 </dd>
 <dd>
 <pre>
     $the_number_193 = ord(&quot;A&quot;);</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_pack"><code>pack()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pack"><code>pack()</code></a></strong>
+
 <dd>
-The c and C templates for <a href="#item_pack"><code>pack()</code></a> are dependent upon character set 
-encoding.  Examples of usage on EBCDIC include:
+<p>The c and C templates for <a href="#item_pack"><code>pack()</code></a> are dependent upon character set 
+encoding.  Examples of usage on EBCDIC include:</p>
 </dd>
 <dd>
 <pre>
@@ -868,15 +871,15 @@ encoding.  Examples of usage on EBCDIC include:
     $foo = pack(&quot;ccxxcc&quot;,193,194,195,196);
     # $foo eq &quot;AB\0\0CD&quot;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_print"><code>print()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_print"><code>print()</code></a></strong>
+
 <dd>
-One must be careful with scalars and strings that are passed to
+<p>One must be careful with scalars and strings that are passed to
 print that contain ASCII encodings.  One common place
 for this to occur is in the output of the MIME type header for
 CGI script writing.  For example, many perl programming guides 
-recommend something similar to:
+recommend something similar to:</p>
 </dd>
 <dd>
 <pre>
@@ -897,43 +900,44 @@ by the web server in this case (such code will not be appropriate for
 the Macintosh however).  Consult your web server's documentation for 
 further details.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_printf"><code>printf()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_printf"><code>printf()</code></a></strong>
+
 <dd>
-The formats that can convert characters to numbers and vice versa
+<p>The formats that can convert characters to numbers and vice versa
 will be different from their ASCII counterparts when executed
-on an EBCDIC machine.  Examples include:
+on an EBCDIC machine.  Examples include:</p>
 </dd>
 <dd>
 <pre>
     printf(&quot;%c%c%c&quot;,193,194,195);  # prints ABC</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_sort"><code>sort()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_sort"><code>sort()</code></a></strong>
+
 <dd>
-EBCDIC sort results may differ from ASCII sort results especially for 
-mixed case strings.  This is discussed in more detail below.
+<p>EBCDIC sort results may differ from ASCII sort results especially for 
+mixed case strings.  This is discussed in more detail below.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_sprintf"><code>sprintf()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_sprintf"><code>sprintf()</code></a></strong>
+
 <dd>
-See the discussion of <a href="#item_printf"><code>printf()</code></a> above.  An example of the use
-of sprintf would be:
+<p>See the discussion of <a href="#item_printf"><code>printf()</code></a> above.  An example of the use
+of sprintf would be:</p>
 </dd>
 <dd>
 <pre>
     $CAPITAL_LETTER_A = sprintf(&quot;%c&quot;,193);</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_unpack"><code>unpack()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_unpack"><code>unpack()</code></a></strong>
+
 <dd>
-See the discussion of <a href="#item_pack"><code>pack()</code></a> above.
+<p>See the discussion of <a href="#item_pack"><code>pack()</code></a> above.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -1340,36 +1344,37 @@ of concern to EBCDIC Perl programmers.</p>
 </p>
 <h2><a name="os_400">OS/400</a></h2>
 <dl>
-<dt><strong><a name="item_pase">PASE</a></strong><br />
-</dt>
+<dt><strong><a name="item_pase">PASE</a></strong>
+
 <dd>
-The PASE environment is runtime environment for OS/400 that can run
+<p>The PASE environment is runtime environment for OS/400 that can run
 executables built for PowerPC AIX in OS/400, see <a href="perlos400.html">the perlos400 manpage</a>.  PASE
-is ASCII-based, not EBCDIC-based as the ILE.
+is ASCII-based, not EBCDIC-based as the ILE.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_ifs_access">IFS access</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_ifs_access">IFS access</a></strong>
+
 <dd>
-XXX.
+<p>XXX.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="os_390__z_os">OS/390, z/OS</a></h2>
 <p>Perl runs under Unix Systems Services or USS.</p>
 <dl>
-<dt><strong><a name="item_chcp">chcp</a></strong><br />
-</dt>
+<dt><strong><a name="item_chcp">chcp</a></strong>
+
 <dd>
-<strong>chcp</strong> is supported as a shell utility for displaying and changing 
-one's code page.  See also <a href="#item_chcp">chcp</a>.
+<p><strong>chcp</strong> is supported as a shell utility for displaying and changing 
+one's code page.  See also <a href="#item_chcp">chcp</a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_dataset_access">dataset access</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_dataset_access">dataset access</a></strong>
+
 <dd>
-For sequential data set access try:
+<p>For sequential data set access try:</p>
 </dd>
 <dd>
 <pre>
@@ -1385,22 +1390,23 @@ For sequential data set access try:
 <dd>
 <p>See also the OS390::Stdio module on CPAN.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_os_2f390_2c_z_2fos_iconv">OS/390, z/OS iconv</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_os_2f390_2c_z_2fos_iconv">OS/390, z/OS iconv</a></strong>
+
 <dd>
-<strong>iconv</strong> is supported as both a shell utility and a C RTL routine.
-See also the <code>iconv(1)</code> and <code>iconv(3)</code> manual pages.
+<p><strong>iconv</strong> is supported as both a shell utility and a C RTL routine.
+See also the <code>iconv(1)</code> and <code>iconv(3)</code> manual pages.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_locales">locales</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_locales">locales</a></strong>
+
 <dd>
-On OS/390 or z/OS see <em>locale</em> for information on locales.  The L10N files
+<p>On OS/390 or z/OS see <a href="../../locale.html">the locale manpage</a> for information on locales.  The L10N files
 are in <em>/usr/nls/locale</em>.  $Config{d_setlocale} is 'define' on OS/390
-or z/OS.
+or z/OS.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="vm_esa">VM/ESA?</a></h2>
@@ -1427,7 +1433,7 @@ seem to imply.</p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
-<p><a href="perllocale.html">the perllocale manpage</a>, <a href="perlfunc.html">the perlfunc manpage</a>, <a href="perlunicode.html">the perlunicode manpage</a>, <em>utf8</em>.</p>
+<p><a href="perllocale.html">the perllocale manpage</a>, <a href="perlfunc.html">the perlfunc manpage</a>, <a href="perlunicode.html">the perlunicode manpage</a>, <a href="../../utf8.html">the utf8 manpage</a>.</p>
 <p>
 </p>
 <hr />

@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>README.vmesa - building and installing Perl for VM/ESA.</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -58,7 +60,7 @@ on VM/ESA.</p>
 other versions, but that's the one we've tested it on.</p>
 <p>If you've downloaded the binary distribution, it needs to be
 installed below /usr/local.  Source code distributions have an
-automated `make install` step that means you do not need to extract
+automated ``make install'' step that means you do not need to extract
 the source code below /usr/local (though that is where it will be
 installed by default).  You may need to worry about the networking
 configuration files discussed in the last bullet below.</p>
@@ -85,35 +87,36 @@ privileges).</p>
 <p>There is a ``hints'' file for vmesa that specifies the correct values
 for most things.  Some things to watch out for are:</p>
 <ul>
-<li></li>
-this port does support dynamic loading but it's not had much testing
-<p></p>
-<li></li>
-Don't turn on the compiler optimization flag ``-O''.  There's
+<li>
+<p>this port does support dynamic loading but it's not had much testing</p>
+</li>
+<li>
+<p>Don't turn on the compiler optimization flag ``-O''.  There's
 a bug in the compiler (APAR PQ18812) that generates some bad code
-the optimizer is on.
-<p></p>
-<li></li>
-As VM/ESA doesn't fully support the <code>fork()</code> API programs relying on
+the optimizer is on.</p>
+</li>
+<li>
+<p>As VM/ESA doesn't fully support the <code>fork()</code> API programs relying on
 this call will not work. I've replaced <code>fork()/exec()</code> with <code>spawn()</code>
 and the standalone <code>exec()</code> with spawn(). This has a side effect when
 opening unnamed pipes in a shell script: there is no child process
-generated under.
-<p></p>
-<li></li>
-At the moment the hints file for VM/ESA basically bypasses all of the
+generated under.</p>
+</li>
+<li>
+<p>At the moment the hints file for VM/ESA basically bypasses all of the
 automatic configuration process.  This is because Configure relies on:
 1. The header files living in the Byte File System (you could put the
 there if you want); 2. The C preprocessor including the #include 
-statements in the preprocessor output (.i) file.
-<p></p></ul>
+statements in the preprocessor output (.i) file.</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="testing_anomalies_of_perl_on_vm_esa">Testing Anomalies of Perl on VM/ESA</a></h2>
-<p>The `make test` step runs a Perl Verification Procedure, usually before
+<p>The ``make test'' step runs a Perl Verification Procedure, usually before
 installation.  As the 5.6.1 kit was being assembled
 the following ``failures'' were known to appear on some machines
-during `make test` (mostly due to ASCII vs. EBCDIC conflicts),
+during ``make test'' (mostly due to ASCII vs. EBCDIC conflicts),
 your results may differ:</p>
 <p>[the list of failures being compiled]</p>
 <p>

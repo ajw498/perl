@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlobj - Perl objects</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -39,7 +41,8 @@
 <hr />
 <p>
 </p>
-<h1><a name="name">NAME</a></h1>
+<h1><a name="name_x_object__x_oop_">NAME
+ </a></h1>
 <p>perlobj - Perl objects</p>
 <p>
 </p>
@@ -52,22 +55,24 @@ in Perl can be found in <a href="perltoot.html">the perltoot manpage</a> and <a 
 <p>If you're still with us, then
 here are three very simple definitions that you should find reassuring.</p>
 <ol>
-<li></li>
-An object is simply a reference that happens to know which class it
-belongs to.
-<p></p>
-<li></li>
-A class is simply a package that happens to provide methods to deal
-with object references.
-<p></p>
-<li></li>
-A method is simply a subroutine that expects an object reference (or
-a package name, for class methods) as the first argument.
-<p></p></ol>
+<li>
+<p>An object is simply a reference that happens to know which class it
+belongs to.</p>
+</li>
+<li>
+<p>A class is simply a package that happens to provide methods to deal
+with object references.</p>
+</li>
+<li>
+<p>A method is simply a subroutine that expects an object reference (or
+a package name, for class methods) as the first argument.</p>
+</li>
+</ol>
 <p>We'll cover these points now in more depth.</p>
 <p>
 </p>
-<h2><a name="an_object_is_simply_a_reference">An Object is Simply a Reference</a></h2>
+<h2><a name="an_object_is_simply_a_reference_x_object__x_bless__x_constructor__x_new_">An Object is Simply a Reference
+   </a></h2>
 <p>Unlike say C++, Perl doesn't provide any special syntax for
 constructors.  A constructor is merely a subroutine that returns a
 reference to something ``blessed'' into a class, generally the
@@ -162,7 +167,8 @@ the following example:</p>
 operated on the object and not on the reference.</p>
 <p>
 </p>
-<h2><a name="a_class_is_simply_a_package">A Class is Simply a Package</a></h2>
+<h2><a name="a_class_is_simply_a_package_x_class__x_package__x__isa__x_inheritance_">A Class is Simply a Package
+   </a></h2>
 <p>Unlike say C++, Perl doesn't provide any special syntax for class
 definitions.  You use a package as a class by putting method
 definitions into the class.</p>
@@ -176,7 +182,8 @@ through @ISA are known as base classes of the current class.</p>
 <p>All classes implicitly inherit from class <code>UNIVERSAL</code> as their
 last base class.  Several commonly used methods are automatically
 supplied in the UNIVERSAL class; see <a href="#default_universal_methods">Default UNIVERSAL methods</a> for
-more details.</p>
+more details.
+  </p>
 <p>If a missing method is found in a base class, it is cached
 in the current class for efficiency.  Changing @ISA or defining new
 subroutines invalidates the cache and causes Perl to do the lookup again.</p>
@@ -185,9 +192,11 @@ class contains the requested method, these three places are searched
 all over again, this time looking for a method named AUTOLOAD().  If an
 AUTOLOAD is found, this method is called on behalf of the missing method,
 setting the package global $AUTOLOAD to be the fully qualified name of
-the method that was intended to be called.</p>
+the method that was intended to be called.
+</p>
 <p>If none of that works, Perl finally gives up and complains.</p>
-<p>If you want to stop the AUTOLOAD inheritance say simply</p>
+<p>If you want to stop the AUTOLOAD inheritance say simply
+</p>
 <pre>
         sub AUTOLOAD;</pre>
 <p>and the call will die using the name of the sub being called.</p>
@@ -198,7 +207,8 @@ anonymous hash, which serves as its own little namespace to be carved up
 by the various classes that might want to do something with the object.
 The only problem with this is that you can't sure that you aren't using
 a piece of the hash that isn't already used.  A reasonable workaround
-is to prepend your fieldname in the hash with the package name.</p>
+is to prepend your fieldname in the hash with the package name.
+ </p>
 <pre>
     sub bump {
         my $self = shift;
@@ -206,7 +216,8 @@ is to prepend your fieldname in the hash with the package name.</p>
     }</pre>
 <p>
 </p>
-<h2><a name="a_method_is_simply_a_subroutine">A Method is Simply a Subroutine</a></h2>
+<h2><a name="a_method_is_simply_a_subroutine_x_method_">A Method is Simply a Subroutine
+</a></h2>
 <p>Unlike say C++, Perl doesn't provide any special syntax for method
 definition.  (It does provide a little syntax for method invocation
 though.  More on that later.)  A method expects its first argument
@@ -241,7 +252,8 @@ and then uses that as an ordinary reference.</p>
     }</pre>
 <p>
 </p>
-<h2><a name="method_invocation">Method Invocation</a></h2>
+<h2><a name="method_invocation_x_invocation__x_method__x_arrow__x_______">Method Invocation
+    &gt;&gt;</a></h2>
 <p>For various historical and other reasons, Perl offers two equivalent
 ways to write a method call.  The simpler and more common way is to use
 the arrow notation:</p>
@@ -274,7 +286,8 @@ those methods do, but that doesn't matter above since we've forced Perl
 to start looking for the subroutines in <code>Critter</code>.</p>
 <p>As a special case of the above, you may use the <code>SUPER</code> pseudo-class to
 tell Perl to start looking for the method in the packages named in the
-current class's <code>@ISA</code> list.</p>
+current class's <code>@ISA</code> list.  
+</p>
 <pre>
     package MyCritter;
     use base 'Critter';    # sets @MyCritter::ISA = ('Critter');</pre>
@@ -287,7 +300,8 @@ current class's <code>@ISA</code> list.</p>
 <em>current package</em> and not to the <code>superclass(es)</code> of the object. Also, the
 <code>SUPER</code> pseudo-class can only currently be used as a modifier to a method
 name, but not in any of the other ways that class names are normally used,
-eg:</p>
+eg:
+</p>
 <pre>
     something-&gt;SUPER::method(...);      # OK
     SUPER::method(...);                 # WRONG
@@ -300,9 +314,13 @@ So the following statement is valid:</p>
 <p>and so is the following:</p>
 <pre>
     my $fred = (reverse &quot;rettirC&quot;)-&gt;find(reverse &quot;derF&quot;);</pre>
+<p>The right side of the arrow typically is the method name, but a simple 
+scalar variable containing either the method name or a subroutine 
+reference can also be used.</p>
 <p>
 </p>
-<h2><a name="indirect_object_syntax">Indirect Object Syntax</a></h2>
+<h2><a name="indirect_object_syntax_x_indirect_object_syntax__x_invocation__indirect__x_indirect_">Indirect Object Syntax
+  </a></h2>
 <p>The other way to invoke a method is by using the so-called ``indirect
 object'' notation.  This syntax was available in Perl 4 long before
 objects were introduced, and is still used with filehandles like this:</p>
@@ -358,77 +376,62 @@ to read code using the indirect object notation, so it's important to be
 familiar with it.</p>
 <p>
 </p>
-<h2><a name="default_universal_methods">Default UNIVERSAL methods</a></h2>
+<h2><a name="default_universal_methods_x_universal_">Default UNIVERSAL methods
+</a></h2>
 <p>The <code>UNIVERSAL</code> package automatically contains the following methods that
 are inherited by all other classes:</p>
 <dl>
-<dt><strong><a name="item_isa"><code>isa(CLASS)</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_isa"><code>isa(CLASS)</code>
+</a></strong>
+
 <dd>
-<a href="#item_isa"><code>isa</code></a> returns <em>true</em> if its object is blessed into a subclass of <code>CLASS</code>
+<p><a href="#item_isa"><code>isa</code></a> returns <em>true</em> if its object is blessed into a subclass of <code>CLASS</code></p>
 </dd>
 <dd>
-<p>You can also call <code>UNIVERSAL::isa</code> as a subroutine with two arguments.
-The first does not need to be an object or even a reference.  This
-allows you to check what a reference points to, or whether
-something is a reference of a given type. Example</p>
+<p>You can also call <code>UNIVERSAL::isa</code> as a subroutine with two arguments.  Of
+course, this will do the wrong thing if someone has overridden <a href="#item_isa"><code>isa</code></a> in a
+class, so don't do it.</p>
+</dd>
+<dd>
+<p>If you need to determine whether you've received a valid invocant, use the
+<code>blessed</code> function from <a href="../../Scalar/Util.html">the Scalar::Util manpage</a>:
+ </p>
 </dd>
 <dd>
 <pre>
-    if(UNIVERSAL::isa($ref, 'ARRAY')) {
-        #...
+    if (blessed($ref) &amp;&amp; $ref-&gt;isa( 'Some::Class')) {
+        # ...
     }</pre>
-</dd>
-<dd>
-<p>To determine if a reference is a blessed object, you can write</p>
-</dd>
-<dd>
-<pre>
-    print &quot;It's an object\n&quot; if UNIVERSAL::isa($val, 'UNIVERSAL');</pre>
-</dd>
-<p></p>
-<dt><strong><a name="item_can"><code>can(METHOD)</code></a></strong><br />
-</dt>
-<dd>
-<a href="#item_can"><code>can</code></a> checks to see if its object has a method called <code>METHOD</code>,
-if it does then a reference to the sub is returned, if it does not then
-<em>undef</em> is returned.
-</dd>
-<dd>
-<p><code>UNIVERSAL::can</code> can also be called as a subroutine with two arguments.
-It'll always return <em>undef</em> if its first argument isn't an object or a
-class name.    So here's another way to check if a reference is a
-blessed object</p>
-</dd>
-<dd>
-<pre>
-    print &quot;It's still an object\n&quot; if UNIVERSAL::can($val, 'can');</pre>
-</dd>
-<dd>
-<p>You can also use the <code>blessed</code> function of Scalar::Util:</p>
-</dd>
-<dd>
-<pre>
-    use Scalar::Util 'blessed';</pre>
-</dd>
-<dd>
-<pre>
-    my $blessing = blessed $suspected_object;</pre>
 </dd>
 <dd>
 <p><code>blessed</code> returns the name of the package the argument has been
 blessed into, or <code>undef</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_version">VERSION( [NEED] )</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_can"><code>can(METHOD)</code>
+</a></strong>
+
 <dd>
-<a href="#item_version"><code>VERSION</code></a> returns the version number of the class (package).  If the
+<p><a href="#item_can"><code>can</code></a> checks to see if its object has a method called <code>METHOD</code>,
+if it does then a reference to the sub is returned, if it does not then
+<em>undef</em> is returned.</p>
+</dd>
+<dd>
+<p><code>UNIVERSAL::can</code> can also be called as a subroutine with two arguments.  It'll
+always return <em>undef</em> if its first argument isn't an object or a class name.
+The same caveats for calling <code>UNIVERSAL::isa</code> directly apply here, too.</p>
+</dd>
+</li>
+<dt><strong><a name="item_version">VERSION( [NEED] )
+</a></strong>
+
+<dd>
+<p><a href="#item_version"><code>VERSION</code></a> returns the version number of the class (package).  If the
 NEED argument is given then it will check that the current version (as
 defined by the $VERSION variable in the given package) not less than
 NEED; it will die if this is not the case.  This method is normally
 called as a class method.  This method is called automatically by the
-<a href="#item_version"><code>VERSION</code></a> form of <code>use</code>.
+<a href="#item_version"><code>VERSION</code></a> form of <code>use</code>.</p>
 </dd>
 <dd>
 <pre>
@@ -436,7 +439,8 @@ called as a class method.  This method is called automatically by the
     # implies:
     A-&gt;VERSION(1.2);</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p><strong>NOTE:</strong> <a href="#item_can"><code>can</code></a> directly uses Perl's internal code for method lookup, and
 <a href="#item_isa"><code>isa</code></a> uses a very similar method and cache-ing strategy. This may cause
 strange effects if the Perl code dynamically changes @ISA in any package.</p>
@@ -445,7 +449,8 @@ You do not need to <code>use UNIVERSAL</code> to make these methods
 available to your program (and you should not do so).</p>
 <p>
 </p>
-<h2><a name="destructors">Destructors</a></h2>
+<h2><a name="destructors_x_destructor__x_destroy_">Destructors
+ </a></h2>
 <p>When the last reference to an object goes away, the object is
 automatically destroyed.  (This may even be after you exit, if you've
 stored references in global variables.)  If you want to capture control
@@ -457,6 +462,10 @@ that the reference is a read-only value, and cannot be modified by
 manipulating <code>$_[0]</code> within the destructor.  The object itself (i.e.
 the thingy the reference points to, namely <code>${$_[0]}</code>, <code>@{$_[0]}</code>, 
 <code>%{$_[0]}</code> etc.) is not similarly constrained.</p>
+<p>Since DESTROY methods can be called at unpredictable times, it is
+important that you localise any global variables that the method may
+update.  In particular, localise <code>$@</code> if you use <code>eval {}</code> and
+localise <code>$?</code> if you use <code>system</code> or backticks.</p>
 <p>If you arrange to re-bless the reference before the destructor returns,
 perl will again call the DESTROY method for the re-blessed object after
 the current one returns.  This can be used for clean delegation of
@@ -475,7 +484,9 @@ book about object-oriented design methodology, and bang your forehead
 with it for the next six months or so.</p>
 <p>
 </p>
-<h2><a name="twophased_garbage_collection">Two-Phased Garbage Collection</a></h2>
+<h2><a name="twophased_garbage_collection_x_garbage_collection__x_gc__x_circular_reference__x_reference__circular__x_destroy__x_destructor_">Two-Phased Garbage Collection
+  
+  </a></h2>
 <p>For most purposes, Perl uses a fast and simple, reference-based
 garbage collection system.  That means there's an extra
 dereference going on at some level, so if you haven't built

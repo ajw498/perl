@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlmodstyle - Perl module style guide</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -119,95 +121,100 @@ most popular mistakes made by CPAN authors.</p>
 </p>
 <h2><a name="before_you_start">Before you start</a></h2>
 <ul>
-<li></li>
-Don't re-invent the wheel
-<p></p>
-<li></li>
-Patch, extend or subclass an existing module where possible
-<p></p>
-<li></li>
-Do one thing and do it well
-<p></p>
-<li></li>
-Choose an appropriate name
-<p></p></ul>
+<li>
+<p>Don't re-invent the wheel</p>
+</li>
+<li>
+<p>Patch, extend or subclass an existing module where possible</p>
+</li>
+<li>
+<p>Do one thing and do it well</p>
+</li>
+<li>
+<p>Choose an appropriate name</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="the_api">The API</a></h2>
 <ul>
-<li></li>
-API should be understandable by the average programmer
-<p></p>
-<li></li>
-Simple methods for simple tasks
-<p></p>
-<li></li>
-Separate functionality from output
-<p></p>
-<li></li>
-Consistent naming of subroutines or methods
-<p></p>
-<li></li>
-Use named parameters (a hash or hashref) when there are more than two
-parameters
-<p></p></ul>
+<li>
+<p>API should be understandable by the average programmer</p>
+</li>
+<li>
+<p>Simple methods for simple tasks</p>
+</li>
+<li>
+<p>Separate functionality from output</p>
+</li>
+<li>
+<p>Consistent naming of subroutines or methods</p>
+</li>
+<li>
+<p>Use named parameters (a hash or hashref) when there are more than two
+parameters</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="stability">Stability</a></h2>
 <ul>
-<li></li>
-Ensure your module works under <code>use strict</code> and <code>-w</code>
-<p></p>
-<li></li>
-Stable modules should maintain backwards compatibility
-<p></p></ul>
+<li>
+<p>Ensure your module works under <code>use strict</code> and <code>-w</code></p>
+</li>
+<li>
+<p>Stable modules should maintain backwards compatibility</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="documentation">Documentation</a></h2>
 <ul>
-<li></li>
-Write documentation in POD
-<p></p>
-<li></li>
-Document purpose, scope and target applications
-<p></p>
-<li></li>
-Document each publically accessible method or subroutine, including params and return values
-<p></p>
-<li></li>
-Give examples of use in your documentation
-<p></p>
-<li></li>
-Provide a README file and perhaps also release notes, changelog, etc
-<p></p>
-<li></li>
-Provide links to further information (URL, email)
-<p></p></ul>
+<li>
+<p>Write documentation in POD</p>
+</li>
+<li>
+<p>Document purpose, scope and target applications</p>
+</li>
+<li>
+<p>Document each publically accessible method or subroutine, including params and return values</p>
+</li>
+<li>
+<p>Give examples of use in your documentation</p>
+</li>
+<li>
+<p>Provide a README file and perhaps also release notes, changelog, etc</p>
+</li>
+<li>
+<p>Provide links to further information (URL, email)</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="release_considerations">Release considerations</a></h2>
 <ul>
-<li></li>
-Specify pre-requisites in Makefile.PL or Build.PL
-<p></p>
-<li></li>
-Specify Perl version requirements with <code>use</code>
-<p></p>
-<li></li>
-Include tests with your module
-<p></p>
-<li></li>
-Choose a sensible and consistent version numbering scheme (X.YY is the common Perl module numbering scheme)
-<p></p>
-<li></li>
-Increment the version number for every change, no matter how small
-<p></p>
-<li></li>
-Package the module using ``make dist''
-<p></p>
-<li></li>
-Choose an appropriate license (GPL/Artistic is a good default)
-<p></p></ul>
+<li>
+<p>Specify pre-requisites in Makefile.PL or Build.PL</p>
+</li>
+<li>
+<p>Specify Perl version requirements with <code>use</code></p>
+</li>
+<li>
+<p>Include tests with your module</p>
+</li>
+<li>
+<p>Choose a sensible and consistent version numbering scheme (X.YY is the common Perl module numbering scheme)</p>
+</li>
+<li>
+<p>Increment the version number for every change, no matter how small</p>
+</li>
+<li>
+<p>Package the module using ``make dist''</p>
+</li>
+<li>
+<p>Choose an appropriate license (GPL/Artistic is a good default)</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -253,19 +260,20 @@ will help people find and remember your module, and make programming
 with your module more intuitive.</p>
 <p>When naming your module, consider the following:</p>
 <ul>
-<li></li>
-Be descriptive (i.e. accurately describes the purpose of the module).
-<p></p>
-<li></li>
-Be consistent with existing modules.
-<p></p>
-<li></li>
-Reflect the functionality of the module, not the implementation.
-<p></p>
-<li></li>
-Avoid starting a new top-level hierarchy, especially if a suitable
-hierarchy already exists under which you could place your module.
-<p></p></ul>
+<li>
+<p>Be descriptive (i.e. accurately describes the purpose of the module).</p>
+</li>
+<li>
+<p>Be consistent with existing modules.</p>
+</li>
+<li>
+<p>Reflect the functionality of the module, not the implementation.</p>
+</li>
+<li>
+<p>Avoid starting a new top-level hierarchy, especially if a suitable
+hierarchy already exists under which you could place your module.</p>
+</li>
+</ul>
 <p>You should contact <a href="mailto:modules@perl.org">modules@perl.org</a> to ask them about your module name
 before publishing your module.  You should also try to ask people who 
 are already familiar with the module's application domain and the CPAN
@@ -284,42 +292,43 @@ of interfaces available.  There are pros and cons of each technique, which
 should be considered when you design your API.</p>
 <p>According to Damian Conway, you should consider using OO:</p>
 <ul>
-<li></li>
-When the system is large or likely to become so
-<p></p>
-<li></li>
-When the data is aggregated in obvious structures that will become objects
-<p></p>
-<li></li>
-When the types of data form a natural hierarchy that can make use of inheritance
-<p></p>
-<li></li>
-When operations on data vary according to data type (making
-polymorphic invocation of methods feasible)
-<p></p>
-<li></li>
-When it is likely that new data types may be later introduced
-into the system, and will need to be handled by existing code
-<p></p>
-<li></li>
-When interactions between data are best represented by
-overloaded operators
-<p></p>
-<li></li>
-When the implementation of system components is likely to
-change over time (and hence should be encapsulated)
-<p></p>
-<li></li>
-When the system design is itself object-oriented
-<p></p>
-<li></li>
-When large amounts of client code will use the software (and
-should be insulated from changes in its implementation)
-<p></p>
-<li></li>
-When many separate operations will need to be applied to the
-same set of data
-<p></p></ul>
+<li>
+<p>When the system is large or likely to become so</p>
+</li>
+<li>
+<p>When the data is aggregated in obvious structures that will become objects</p>
+</li>
+<li>
+<p>When the types of data form a natural hierarchy that can make use of inheritance</p>
+</li>
+<li>
+<p>When operations on data vary according to data type (making
+polymorphic invocation of methods feasible)</p>
+</li>
+<li>
+<p>When it is likely that new data types may be later introduced
+into the system, and will need to be handled by existing code</p>
+</li>
+<li>
+<p>When interactions between data are best represented by
+overloaded operators</p>
+</li>
+<li>
+<p>When the implementation of system components is likely to
+change over time (and hence should be encapsulated)</p>
+</li>
+<li>
+<p>When the system design is itself object-oriented</p>
+</li>
+<li>
+<p>When large amounts of client code will use the software (and
+should be insulated from changes in its implementation)</p>
+</li>
+<li>
+<p>When many separate operations will need to be applied to the
+same set of data</p>
+</li>
+</ul>
 <p>Think carefully about whether OO is appropriate for your module.
 Gratuitous object orientation results in complex APIs which are
 difficult for the average module user to understand or use.</p>
@@ -330,22 +339,22 @@ difficult for the average module user to understand or use.</p>
 The following guidelines may help you judge whether your API is
 sufficiently straightforward:</p>
 <dl>
-<dt><strong><a name="item_write_simple_routines_to_do_simple_things_2e">Write simple routines to do simple things.</a></strong><br />
-</dt>
+<dt><strong><a name="item_write_simple_routines_to_do_simple_things_2e">Write simple routines to do simple things.</a></strong>
+
 <dd>
-It's better to have numerous simple routines than a few monolithic ones.
+<p>It's better to have numerous simple routines than a few monolithic ones.
 If your routine changes its behaviour significantly based on its
 arguments, it's a sign that you should have two (or more) separate
-routines.
+routines.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_separate_functionality_from_output_2e">Separate functionality from output.</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_separate_functionality_from_output_2e">Separate functionality from output.</a></strong>
+
 <dd>
-Return your results in the most generic form possible and allow the user 
+<p>Return your results in the most generic form possible and allow the user 
 to choose how to use them.  The most generic form possible is usually a
 Perl data structure which can then be used to generate a text report,
-HTML, XML, a database query, or whatever else your users require.
+HTML, XML, a database query, or whatever else your users require.</p>
 </dd>
 <dd>
 <p>If your routine iterates through some kind of list (such as a list of
@@ -354,23 +363,23 @@ so that users can manipulate each element of the list in turn.
 File::Find provides an example of this with its 
 <code>find(\&amp;wanted, $dir)</code> syntax.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_provide_sensible_shortcuts_and_defaults_2e">Provide sensible shortcuts and defaults.</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_provide_sensible_shortcuts_and_defaults_2e">Provide sensible shortcuts and defaults.</a></strong>
+
 <dd>
-Don't require every module user to jump through the same hoops to achieve a
+<p>Don't require every module user to jump through the same hoops to achieve a
 simple result.  You can always include optional parameters or routines for 
 more complex or non-standard behaviour.  If most of your users have to
 type a few almost identical lines of code when they start using your
 module, it's a sign that you should have made that behaviour a default.
 Another good indicator that you should use defaults is if most of your 
-users call your routines with the same arguments.
+users call your routines with the same arguments.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_naming_conventions">Naming conventions</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_naming_conventions">Naming conventions</a></strong>
+
 <dd>
-Your naming should be consistent.  For instance, it's better to have:
+<p>Your naming should be consistent.  For instance, it's better to have:</p>
 </dd>
 <dd>
 <pre>
@@ -391,11 +400,11 @@ Your naming should be consistent.  For instance, it's better to have:
 <p>This applies equally to method names, parameter names, and anything else
 which is visible to the user (and most things that aren't!)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_parameter_passing">Parameter passing</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_parameter_passing">Parameter passing</a></strong>
+
 <dd>
-Use named parameters. It's easier to use a hash like this:
+<p>Use named parameters. It's easier to use a hash like this:</p>
 </dd>
 <dd>
 <pre>
@@ -442,7 +451,8 @@ keys for historical reasons or as a matter of personal style, most new
 modules should use simple lower case keys.  Whatever you choose, be
 consistent!</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="strictness_and_warnings">Strictness and warnings</a></h2>
@@ -461,28 +471,29 @@ number.</p>
 <h2><a name="error_handling_and_messages">Error handling and messages</a></h2>
 <p>When your module encounters an error it should do one or more of:</p>
 <ul>
-<li></li>
-Return an undefined value.
-<p></p>
-<li></li>
-set <code>$Module::errstr</code> or similar (<code>errstr</code> is a common name used by
+<li>
+<p>Return an undefined value.</p>
+</li>
+<li>
+<p>set <code>$Module::errstr</code> or similar (<code>errstr</code> is a common name used by
 DBI and other popular modules; if you choose something else, be sure to
-document it clearly).
-<p></p>
-<li></li>
-<code>warn()</code> or <code>carp()</code> a message to STDERR.
-<p></p>
-<li></li>
-<code>croak()</code> only when your module absolutely cannot figure out what to
+document it clearly).</p>
+</li>
+<li>
+<p><code>warn()</code> or <code>carp()</code> a message to STDERR.</p>
+</li>
+<li>
+<p><code>croak()</code> only when your module absolutely cannot figure out what to
 do.  (<code>croak()</code> is a better version of <code>die()</code> for use within 
 modules, which reports its errors from the perspective of the caller.  
-See <em>Carp</em> for details of <code>croak()</code>, <code>carp()</code> and other useful
-routines.)
-<p></p>
-<li></li>
-As an alternative to the above, you may prefer to throw exceptions using 
-the Error module.
-<p></p></ul>
+See <a href="../../Carp.html">the Carp manpage</a> for details of <code>croak()</code>, <code>carp()</code> and other useful
+routines.)</p>
+</li>
+<li>
+<p>As an alternative to the above, you may prefer to throw exceptions using 
+the Error module.</p>
+</li>
+</ul>
 <p>Configurable error handling can be very useful to your users.  Consider
 offering a choice of levels for warning and debug messages, an option to
 send messages to a separate file, a way to specify an error-handling
@@ -501,25 +512,26 @@ technical documentation, though you may wish to write additional
 documentation (white papers, tutorials, etc) in some other format.  
 You need to cover the following subjects:</p>
 <ul>
-<li></li>
-A synopsis of the common uses of the module
-<p></p>
-<li></li>
-The purpose, scope and target applications of your module
-<p></p>
-<li></li>
-Use of each publically accessible method or subroutine, including
-parameters and return values
-<p></p>
-<li></li>
-Examples of use
-<p></p>
-<li></li>
-Sources of further information
-<p></p>
-<li></li>
-A contact email address for the author/maintainer
-<p></p></ul>
+<li>
+<p>A synopsis of the common uses of the module</p>
+</li>
+<li>
+<p>The purpose, scope and target applications of your module</p>
+</li>
+<li>
+<p>Use of each publically accessible method or subroutine, including
+parameters and return values</p>
+</li>
+<li>
+<p>Examples of use</p>
+</li>
+<li>
+<p>Sources of further information</p>
+</li>
+<li>
+<p>A contact email address for the author/maintainer</p>
+</li>
+</ul>
 <p>The level of detail in Perl module documentation generally goes from
 less detailed to more detailed.  Your SYNOPSIS section should contain a
 minimal example of use (perhaps as little as one line of code; skip the
@@ -534,31 +546,32 @@ continues through the document, they should receive a progressively
 greater amount of knowledge.</p>
 <p>The recommended order of sections in Perl module documentation is:</p>
 <ul>
-<li></li>
-NAME
-<p></p>
-<li></li>
-SYNOPSIS
-<p></p>
-<li></li>
-DESCRIPTION
-<p></p>
-<li></li>
-One or more sections or subsections giving greater detail of available 
-methods and routines and any other relevant information.
-<p></p>
-<li></li>
-BUGS/CAVEATS/etc
-<p></p>
-<li></li>
-AUTHOR
-<p></p>
-<li></li>
-SEE ALSO
-<p></p>
-<li></li>
-COPYRIGHT and LICENSE
-<p></p></ul>
+<li>
+<p>NAME</p>
+</li>
+<li>
+<p>SYNOPSIS</p>
+</li>
+<li>
+<p>DESCRIPTION</p>
+</li>
+<li>
+<p>One or more sections or subsections giving greater detail of available 
+methods and routines and any other relevant information.</p>
+</li>
+<li>
+<p>BUGS/CAVEATS/etc</p>
+</li>
+<li>
+<p>AUTHOR</p>
+</li>
+<li>
+<p>SEE ALSO</p>
+</li>
+<li>
+<p>COPYRIGHT and LICENSE</p>
+</li>
+</ul>
 <p>Keep your documentation near the code it documents (``inline''
 documentation).  Include POD for a given method right above that 
 method's subroutine.  This makes it easier to keep the documentation up
@@ -572,25 +585,25 @@ giving pointers to further information (website, author email).</p>
 <p>An INSTALL file should be included, and should contain simple installation 
 instructions. When using ExtUtils::MakeMaker this will usually be:</p>
 <dl>
-<dt><strong><a name="item_perl_makefile_2epl">perl Makefile.PL</a></strong><br />
-</dt>
-<dt><strong><a name="item_make">make</a></strong><br />
-</dt>
-<dt><strong><a name="item_make_test">make test</a></strong><br />
-</dt>
-<dt><strong><a name="item_make_install">make install</a></strong><br />
-</dt>
+<dt><strong><a name="item_perl_makefile_2epl">perl Makefile.PL</a></strong>
+
+<dt><strong><a name="item_make">make</a></strong>
+
+<dt><strong><a name="item_make_test">make test</a></strong>
+
+<dt><strong><a name="item_make_install">make install</a></strong>
+
 </dl>
 <p>When using Module::Build, this will usually be:</p>
 <dl>
-<dt><strong><a name="item_perl_build_2epl">perl Build.PL</a></strong><br />
-</dt>
-<dt><strong><a name="item_perl_build">perl Build</a></strong><br />
-</dt>
-<dt><strong><a name="item_perl_build_test">perl Build test</a></strong><br />
-</dt>
-<dt><strong><a name="item_perl_build_install">perl Build install</a></strong><br />
-</dt>
+<dt><strong><a name="item_perl_build_2epl">perl Build.PL</a></strong>
+
+<dt><strong><a name="item_perl_build">perl Build</a></strong>
+
+<dt><strong><a name="item_perl_build_test">perl Build test</a></strong>
+
+<dt><strong><a name="item_perl_build_install">perl Build install</a></strong>
+
 </dl>
 <p>Release notes or changelogs should be produced for each release of your
 software describing user-visible changes to your module, in terms
@@ -641,18 +654,19 @@ modules, and which modules to rely on.</p>
 <p>Most importantly, choose modules which are as stable as possible.  In
 order of preference:</p>
 <ul>
-<li></li>
-Core Perl modules
-<p></p>
-<li></li>
-Stable CPAN modules
-<p></p>
-<li></li>
-Unstable CPAN modules
-<p></p>
-<li></li>
-Modules not available from CPAN
-<p></p></ul>
+<li>
+<p>Core Perl modules</p>
+</li>
+<li>
+<p>Stable CPAN modules</p>
+</li>
+<li>
+<p>Unstable CPAN modules</p>
+</li>
+<li>
+<p>Modules not available from CPAN</p>
+</li>
+</ul>
 <p>Specify version requirements for other Perl modules in the
 pre-requisites in your Makefile.PL or Build.PL.</p>
 <p>Be sure to specify Perl version requirements both in Makefile.PL or
@@ -727,51 +741,51 @@ main documentation.</p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
 <dl>
-<dt><strong><a name="item_perlstyle"><a href="perlstyle.html">the perlstyle manpage</a></a></strong><br />
-</dt>
+<dt><strong><a name="item_perlstyle"><a href="perlstyle.html">the perlstyle manpage</a></a></strong>
+
 <dd>
-General Perl style guide
+<p>General Perl style guide</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlnewmod"><a href="perlnewmod.html">the perlnewmod manpage</a></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlnewmod"><a href="perlnewmod.html">the perlnewmod manpage</a></a></strong>
+
 <dd>
-How to create a new module
+<p>How to create a new module</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_perlpod"><a href="perlpod.html">the perlpod manpage</a></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_perlpod"><a href="perlpod.html">the perlpod manpage</a></a></strong>
+
 <dd>
-POD documentation
+<p>POD documentation</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_podchecker"><a href="#item_podchecker">podchecker</a></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_podchecker"><a href="podchecker.html">the podchecker manpage</a></a></strong>
+
 <dd>
-Verifies your POD's correctness
+<p>Verifies your POD's correctness</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_packaging_tools">Packaging Tools</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_packaging_tools">Packaging Tools</a></strong>
+
 <dd>
-<a href="../ExtUtils/MakeMaker.html">the ExtUtils::MakeMaker manpage</a>, <a href="../Module/Build.html">the Module::Build manpage</a>
+<p><a href="../../ExtUtils/MakeMaker.html">the ExtUtils::MakeMaker manpage</a>, <a href="../../Module/Build.html">the Module::Build manpage</a></p>
 </dd>
-<p></p>
-<dt><strong><a name="item_testing_tools">Testing tools</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_testing_tools">Testing tools</a></strong>
+
 <dd>
-<a href="../Test/Simple.html">the Test::Simple manpage</a>, <a href="../Test/Inline.html">the Test::Inline manpage</a>, <a href="../Carp/Assert.html">the Carp::Assert manpage</a>, <a href="../Test/More.html">the Test::More manpage</a>, <a href="../Test/MockObject.html">the Test::MockObject manpage</a>
+<p><a href="../../Test/Simple.html">the Test::Simple manpage</a>, <a href="../../Test/Inline.html">the Test::Inline manpage</a>, <a href="../../Carp/Assert.html">the Carp::Assert manpage</a>, <a href="../../Test/More.html">the Test::More manpage</a>, <a href="../../Test/MockObject.html">the Test::MockObject manpage</a></p>
 </dd>
-<p></p>
-<dt><strong><a name="item_http_3a_2f_2fpause_2eperl_2eorg_2f"><a href="http://pause.perl.org/">http://pause.perl.org/</a></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_http_3a_2f_2fpause_2eperl_2eorg_2f"><a href="http://pause.perl.org/">http://pause.perl.org/</a></a></strong>
+
 <dd>
-Perl Authors Upload Server.  Contains links to information for module
-authors.
+<p>Perl Authors Upload Server.  Contains links to information for module
+authors.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_any_good_book_on_software_engineering">Any good book on software engineering</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_any_good_book_on_software_engineering">Any good book on software engineering</a></strong>
+
 </dl>
 <p>
 </p>

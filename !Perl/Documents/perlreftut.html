@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlreftut - Mark's very short tutorial about references</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -152,7 +154,8 @@ it once you have it.</p>
 reference to that variable.</p>
 <pre>
     $aref = \@array;         # $aref now holds a reference to @array
-    $href = \%hash;          # $href now holds a reference to %hash</pre>
+    $href = \%hash;          # $href now holds a reference to %hash
+    $sref = \$scalar;        # $sref now holds a reference to $scalar</pre>
 <p>Once the reference is stored in a variable like $aref or $href, you
 can copy it or store it just the same as any other scalar value:</p>
 <pre>
@@ -169,10 +172,10 @@ variable first.</p>
 that array.  <code>{ ITEMS }</code> makes a new, anonymous hash, and returns a
 reference to that hash.</p>
 <pre>
-    $aref = [ 1, &quot;foo&quot;, undef, 13 ];  
+    $aref = [ 1, &quot;foo&quot;, undef, 13 ];
     # $aref now holds a reference to an array</pre>
 <pre>
-    $href = { APR =&gt; 4, AUG =&gt; 8 };   
+    $href = { APR =&gt; 4, AUG =&gt; 8 };
     # $href now holds a reference to a hash</pre>
 <p>The references you get from rule 2 are the same kind of
 references that you get from rule 1:</p>
@@ -245,7 +248,7 @@ reference?''  First write the code for printing out a hash:</p>
 <p>
 </p>
 <h3><a name="use_rule_2"><strong>Use Rule 2</strong></a></h3>
-<p><strong>Use Rule 1</strong> is all you really need, because it tells you how to to
+<p><strong>Use Rule 1</strong> is all you really need, because it tells you how to do
 absolutely everything you ever need to do with references.  But the
 most common thing to do with an array or a hash is to extract a single
 element, and the <strong>Use Rule 1</strong> notation is cumbersome.  So there is an
@@ -330,7 +333,7 @@ and whose values are references to arrays of city names.  The data
 structure will look like this:</p>
 <pre>
            %table
-        +-------+---+   
+        +-------+---+
         |       |   |   +-----------+--------+
         |Germany| *----&gt;| Frankfurt | Berlin |
         |       |   |   +-----------+--------+
@@ -423,22 +426,22 @@ overview of the important parts, it should be easier to read the
 <a href="perlref.html">the perlref manpage</a> manual page, which discusses 100% of the details.</p>
 <p>Some of the highlights of <a href="perlref.html">the perlref manpage</a>:</p>
 <ul>
-<li></li>
-You can make references to anything, including scalars, functions, and
-other references.
-<p></p>
-<li></li>
-In <strong>Use Rule 1</strong>, you can omit the curly brackets whenever the thing
+<li>
+<p>You can make references to anything, including scalars, functions, and
+other references.</p>
+</li>
+<li>
+<p>In <strong>Use Rule 1</strong>, you can omit the curly brackets whenever the thing
 inside them is an atomic scalar variable like <code>$aref</code>.  For example,
 <code>@$aref</code> is the same as <code>@{$aref}</code>, and <code>$$aref[1]</code> is the same as
 <code>${$aref}[1]</code>.  If you're just starting out, you may want to adopt
-the habit of always including the curly brackets.
-<p></p>
-<li></li>
-This doesn't copy the underlying array:
+the habit of always including the curly brackets.</p>
+</li>
+<li>
+<p>This doesn't copy the underlying array:</p>
 <pre>
         $aref2 = $aref1;</pre>
-<p>You get two references to the same array.  If you modify 
+<p>You get two references to the same array.  If you modify
 <code>$aref1-&gt;[23]</code> and then look at
 <code>$aref2-&gt;[23]</code> you'll see the change.</p>
 <p>To copy the array, use</p>
@@ -450,15 +453,15 @@ initialized with the contents of the array referred to by <code>$aref1</code>.</
 <p>Similarly, to copy an anonymous hash, you can use</p>
 <pre>
         $href2 = {%{$href1}};</pre>
-<p></p>
-<li></li>
-To see if a variable contains a reference, use the <code>ref</code> function.  It
+</li>
+<li>
+<p>To see if a variable contains a reference, use the <code>ref</code> function.  It
 returns true if its argument is a reference.  Actually it's a little
 better than that: It returns <code>HASH</code> for hash references and <code>ARRAY</code>
-for array references.
-<p></p>
-<li></li>
-If you try to use a reference like a string, you get strings like
+for array references.</p>
+</li>
+<li>
+<p>If you try to use a reference like a string, you get strings like</p>
 <pre>
         ARRAY(0x80f5dec)   or    HASH(0x826afc0)</pre>
 <p>If you ever see a string that looks like this, you'll know you
@@ -466,14 +469,15 @@ printed out a reference by mistake.</p>
 <p>A side effect of this representation is that you can use <code>eq</code> to see
 if two references refer to the same thing.  (But you should usually use
 <code>==</code> instead because it's much faster.)</p>
-<p></p>
-<li></li>
-You can use a string as if it were a reference.  If you use the string
+</li>
+<li>
+<p>You can use a string as if it were a reference.  If you use the string
 <code>&quot;foo&quot;</code> as an array reference, it's taken to be a reference to the
 array <code>@foo</code>.  This is called a <em>soft reference</em> or <em>symbolic
 reference</em>.  The declaration <code>use strict 'refs'</code> disables this
-feature, which can cause all sorts of trouble if you use it by accident.
-<p></p></ul>
+feature, which can cause all sorts of trouble if you use it by accident.</p>
+</li>
+</ul>
 <p>You might prefer to go on to <a href="perllol.html">the perllol manpage</a> instead of <a href="perlref.html">the perlref manpage</a>; it
 discusses lists of lists and multidimensional arrays in detail.  After
 that, you should move on to <a href="perldsc.html">the perldsc manpage</a>; it's a Data Structure Cookbook

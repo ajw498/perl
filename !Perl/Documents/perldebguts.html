@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perldebguts - Guts of Perl debugging</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -45,9 +47,6 @@
 	<ul>
 
 		<li><a href="#using__env_perl_debug_mstats_">Using <code>$ENV{PERL_DEBUG_MSTATS}</code></a></li>
-		<li><a href="#example_of_using_dl_switch">Example of using <strong>-DL</strong> switch</a></li>
-		<li><a href="#dl_details"><strong>-DL</strong> details</a></li>
-		<li><a href="#limitations_of_dl_statistics">Limitations of <strong>-DL</strong> statistics</a></li>
 	</ul>
 
 	<li><a href="#see_also">SEE ALSO</a></li>
@@ -84,67 +83,68 @@ mechanisms are enabled by calling Perl with the <strong>-d</strong> switch.
 Specifically, the following additional features are enabled
 (cf. <a href="perlvar.html#__p">$^P in the perlvar manpage</a>):</p>
 <ul>
-<li></li>
-Perl inserts the contents of <code>$ENV{PERL5DB}</code> (or <code>BEGIN {require
-'perl5db.pl'}</code> if not present) before the first line of your program.
-<p></p>
-<li></li>
-Each array <code>@{&quot;_&lt;$filename&quot;}</code> holds the lines of $filename for a
+<li>
+<p>Perl inserts the contents of <code>$ENV{PERL5DB}</code> (or <code>BEGIN {require
+'perl5db.pl'}</code> if not present) before the first line of your program.</p>
+</li>
+<li>
+<p>Each array <code>@{&quot;_&lt;$filename&quot;}</code> holds the lines of $filename for a
 file compiled by Perl.  The same is also true for <code>eval</code>ed strings
 that contain subroutines, or which are currently being executed.
 The $filename for <code>eval</code>ed strings looks like <code>(eval 34)</code>.
-Code assertions in regexes look like <code>(re_eval 19)</code>.
+Code assertions in regexes look like <code>(re_eval 19)</code>.</p>
 <p>Values in this array are magical in numeric context: they compare
 equal to zero only if the line is not breakable.</p>
-<p></p>
-<li></li>
-Each hash <code>%{&quot;_&lt;$filename&quot;}</code> contains breakpoints and actions keyed
+</li>
+<li>
+<p>Each hash <code>%{&quot;_&lt;$filename&quot;}</code> contains breakpoints and actions keyed
 by line number.  Individual entries (as opposed to the whole hash)
 are settable.  Perl only cares about Boolean true here, although
 the values used by <em>perl5db.pl</em> have the form
-<code>&quot;$break_condition\0$action&quot;</code>.
+<code>&quot;$break_condition\0$action&quot;</code>.</p>
 <p>The same holds for evaluated strings that contain subroutines, or
 which are currently being executed.  The $filename for <code>eval</code>ed strings
 looks like <code>(eval 34)</code> or  <code>(re_eval 19)</code>.</p>
-<p></p>
-<li></li>
-Each scalar <code>${&quot;_&lt;$filename&quot;}</code> contains <code>&quot;_&lt;$filename&quot;</code>.  This is
+</li>
+<li>
+<p>Each scalar <code>${&quot;_&lt;$filename&quot;}</code> contains <code>&quot;_&lt;$filename&quot;</code>.  This is
 also the case for evaluated strings that contain subroutines, or
 which are currently being executed.  The $filename for <code>eval</code>ed
-strings looks like <code>(eval 34)</code> or <code>(re_eval 19)</code>.
-<p></p>
-<li></li>
-After each <code>require</code>d file is compiled, but before it is executed,
+strings looks like <code>(eval 34)</code> or <code>(re_eval 19)</code>.</p>
+</li>
+<li>
+<p>After each <code>require</code>d file is compiled, but before it is executed,
 <code>DB::postponed(*{&quot;_&lt;$filename&quot;})</code> is called if the subroutine
 <code>DB::postponed</code> exists.  Here, the $filename is the expanded name of
-the <code>require</code>d file, as found in the values of %INC.
-<p></p>
-<li></li>
-After each subroutine <code>subname</code> is compiled, the existence of
+the <code>require</code>d file, as found in the values of %INC.</p>
+</li>
+<li>
+<p>After each subroutine <code>subname</code> is compiled, the existence of
 <code>$DB::postponed{subname}</code> is checked.  If this key exists,
 <code>DB::postponed(subname)</code> is called if the <code>DB::postponed</code> subroutine
-also exists.
-<p></p>
-<li></li>
-A hash <code>%DB::sub</code> is maintained, whose keys are subroutine names
+also exists.</p>
+</li>
+<li>
+<p>A hash <code>%DB::sub</code> is maintained, whose keys are subroutine names
 and whose values have the form <code>filename:startline-endline</code>.
 <code>filename</code> has the form <code>(eval 34)</code> for subroutines defined inside
-<code>eval</code>s, or <code>(re_eval 19)</code> for those within regex code assertions.
-<p></p>
-<li></li>
-When the execution of your program reaches a point that can hold a
+<code>eval</code>s, or <code>(re_eval 19)</code> for those within regex code assertions.</p>
+</li>
+<li>
+<p>When the execution of your program reaches a point that can hold a
 breakpoint, the <code>DB::DB()</code> subroutine is called if any of the variables
 <code>$DB::trace</code>, <code>$DB::single</code>, or <code>$DB::signal</code> is true.  These variables
 are not <code>local</code>izable.  This feature is disabled when executing
 inside <code>DB::DB()</code>, including functions called from it 
-unless <code>$^D &amp; (1&lt;&lt;30)</code> is true.
-<p></p>
-<li></li>
-When execution of the program reaches a subroutine call, a call to
+unless <code>$^D &amp; (1&lt;&lt;30)</code> is true.</p>
+</li>
+<li>
+<p>When execution of the program reaches a subroutine call, a call to
 <code>&amp;DB::sub</code>(<em>args</em>) is made instead, with <code>$DB::sub</code> holding the
 name of the called subroutine. (This doesn't happen if the subroutine
-was compiled in the <code>DB</code> package.)
-<p></p></ul>
+was compiled in the <code>DB</code> package.)</p>
+</li>
+</ul>
 <p>Note that if <code>&amp;DB::sub</code> needs external data for it to work, no
 subroutine call is possible without it. As an example, the standard
 debugger's <code>&amp;DB::sub</code> depends on the <code>$DB::deep</code> variable
@@ -196,47 +196,49 @@ of an <code>o ...</code> debugger command (q.v. in <a href="perldebug.html#optio
 In addition to the file and subroutine-related variables mentioned above,
 the debugger also maintains various magical internal variables.</a></h3>
 <ul>
-<li></li>
-<code>@DB::dbline</code> is an alias for <code>@{&quot;::_&lt;current_file&quot;}</code>, which
+<li>
+<p><code>@DB::dbline</code> is an alias for <code>@{&quot;::_&lt;current_file&quot;}</code>, which
 holds the lines of the currently-selected file (compiled by Perl), either
 explicitly chosen with the debugger's <code>f</code> command, or implicitly by flow
-of execution.
+of execution.</p>
 <p>Values in this array are magical in numeric context: they compare
 equal to zero only if the line is not breakable.</p>
-<p></p>
-<li></li>
-<code>%DB::dbline</code>, is an alias for <code>%{&quot;::_&lt;current_file&quot;}</code>, which
+</li>
+<li>
+<p><code>%DB::dbline</code>, is an alias for <code>%{&quot;::_&lt;current_file&quot;}</code>, which
 contains breakpoints and actions keyed by line number in
 the currently-selected file, either explicitly chosen with the
-debugger's <code>f</code> command, or implicitly by flow of execution.
+debugger's <code>f</code> command, or implicitly by flow of execution.</p>
 <p>As previously noted, individual entries (as opposed to the whole hash)
 are settable.  Perl only cares about Boolean true here, although
 the values used by <em>perl5db.pl</em> have the form
 <code>&quot;$break_condition\0$action&quot;</code>.</p>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <h3><a name="debugger_customization_functions">Debugger customization functions</a></h3>
 <p>Some functions are provided to simplify customization.</p>
 <ul>
-<li></li>
-See <a href="perldebug.html#options">Options in the perldebug manpage</a> for description of options parsed by
+<li>
+<p>See <a href="perldebug.html#options">Options in the perldebug manpage</a> for description of options parsed by
 <code>DB::parse_options(string)</code> parses debugger options; see
-<em>pperldebug/Options</em> for a description of options recognized.
-<p></p>
-<li></li>
-<code>DB::dump_trace(skip[,count])</code> skips the specified number of frames
+<em>pperldebug/Options</em> for a description of options recognized.</p>
+</li>
+<li>
+<p><code>DB::dump_trace(skip[,count])</code> skips the specified number of frames
 and returns a list containing information about the calling frames (all
 of them, if <code>count</code> is missing).  Each entry is reference to a hash
 with keys <code>context</code> (either <code>.</code>, <code>$</code>, or <code>@</code>), <code>sub</code> (subroutine
 name, or info about <code>eval</code>), <code>args</code> (<code>undef</code> or a reference to
-an array), <code>file</code>, and <code>line</code>.
-<p></p>
-<li></li>
-<code>DB::print_trace(FH, skip[, count[, short]])</code> prints
+an array), <code>file</code>, and <code>line</code>.</p>
+</li>
+<li>
+<p><code>DB::print_trace(FH, skip[, count[, short]])</code> prints
 formatted info about caller frames.  The last two functions may be
-convenient as arguments to <code>&lt;</code>, <code>&lt;&lt;</code> commands.
-<p></p></ul>
+convenient as arguments to <code>&lt;</code>, <code>&lt;&lt;</code> commands.</p>
+</li>
+</ul>
 <p>Note that any variables and functions that are not documented in
 this manpages (or in <a href="perldebug.html">the perldebug manpage</a>) are considered for internal   
 use only, and as such are subject to change without notice.</p>
@@ -285,7 +287,7 @@ Examples use various values of <code>n</code> are shown to give you a feel
 for the difference between settings.  Long those it may be, this
 is not a complete listing, but only excerpts.</p>
 <ol>
-<li></li>
+<li>
 <pre>
   entering main::BEGIN
    entering Config::BEGIN
@@ -300,7 +302,7 @@ is not a complete listing, but only excerpts.</p>
    entering Config::FETCH
    entering Config::FETCH
    entering Config::FETCH</pre>
-<li></li>
+<li>
 <pre>
   entering main::BEGIN
    entering Config::BEGIN
@@ -321,7 +323,7 @@ is not a complete listing, but only excerpts.</p>
    entering Config::FETCH
    exited Config::FETCH
    entering Config::FETCH</pre>
-<li></li>
+<li>
 <pre>
   in  $=main::BEGIN() from /dev/null:0
    in  $=Config::BEGIN() from lib/Config.pm:2
@@ -338,7 +340,7 @@ is not a complete listing, but only excerpts.</p>
    in  $=Config::FETCH(ref(Config), 'PERL_SUBVERSION') from lib/Config.pm:574
    in  $=Config::FETCH(ref(Config), 'osname') from lib/Config.pm:574
    in  $=Config::FETCH(ref(Config), 'osvers') from lib/Config.pm:574</pre>
-<li></li>
+<li>
 <pre>
   in  $=main::BEGIN() from /dev/null:0
    in  $=Config::BEGIN() from lib/Config.pm:2
@@ -361,7 +363,7 @@ is not a complete listing, but only excerpts.</p>
    in  $=Config::FETCH(ref(Config), 'PERL_VERSION') from lib/Config.pm:574
    out $=Config::FETCH(ref(Config), 'PERL_VERSION') from lib/Config.pm:574
    in  $=Config::FETCH(ref(Config), 'PERL_SUBVERSION') from lib/Config.pm:574</pre>
-<li></li>
+<li>
 <pre>
   in  $=main::BEGIN() from /dev/null:0
    in  $=Config::BEGIN() from lib/Config.pm:2
@@ -381,7 +383,7 @@ is not a complete listing, but only excerpts.</p>
    out $=Config::FETCH('Config=HASH(0x1aa444)', 'package') from lib/Config.pm:574
    in  $=Config::FETCH('Config=HASH(0x1aa444)', 'baserev') from lib/Config.pm:574
    out $=Config::FETCH('Config=HASH(0x1aa444)', 'baserev') from lib/Config.pm:574</pre>
-<li></li>
+<li>
 <pre>
   in  $=CODE(0x15eca4)() from /dev/null:0
    in  $=CODE(0x182528)() from lib/Config.pm:2
@@ -472,78 +474,79 @@ optimizer may also use the knowledge that the match starts (at the
 shorter than 7 characters can possibly match.</p>
 <p>The fields of interest which may appear in this line are</p>
 <dl>
-<dt><strong><a name="item_anchored_string_at_pos"><a href="#item_anchored"><code>anchored</code></a> <em>STRING</em> <code>at</code> <em>POS</em></a></strong><br />
-</dt>
-<dt><strong><a name="item_floating_string_at_pos1_2e_2epos2"><code>floating</code> <em>STRING</em> <code>at</code> <em>POS1..POS2</em></a></strong><br />
-</dt>
+<dt><strong><a name="item_anchored_string_at_pos"><a href="#item_anchored"><code>anchored</code></a> <em>STRING</em> <code>at</code> <em>POS</em></a></strong>
+
+<dt><strong><a name="item_floating_string_at_pos1_2e_2epos2"><code>floating</code> <em>STRING</em> <code>at</code> <em>POS1..POS2</em></a></strong>
+
 <dd>
-See above.
+<p>See above.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_matching_floating_2fanchored"><code>matching floating/anchored</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_matching_floating_2fanchored"><code>matching floating/anchored</code></a></strong>
+
 <dd>
-Which substring to check first.
+<p>Which substring to check first.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_minlen"><code>minlen</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_minlen"><code>minlen</code></a></strong>
+
 <dd>
-The minimal length of the match.
+<p>The minimal length of the match.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_stclass"><code>stclass</code> <em>TYPE</em></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_stclass"><code>stclass</code> <em>TYPE</em></a></strong>
+
 <dd>
-Type of first matching node.
+<p>Type of first matching node.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_noscan"><code>noscan</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_noscan"><code>noscan</code></a></strong>
+
 <dd>
-Don't scan for the found substrings.
+<p>Don't scan for the found substrings.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_isall"><code>isall</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_isall"><code>isall</code></a></strong>
+
 <dd>
-Means that the optimizer information is all that the regular
+<p>Means that the optimizer information is all that the regular
 expression contains, and thus one does not need to enter the regex engine at
-all.
+all.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_gpos"><code>GPOS</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_gpos"><code>GPOS</code></a></strong>
+
 <dd>
-Set if the pattern contains <code>\G</code>.
+<p>Set if the pattern contains <code>\G</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_plus"><code>plus</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_plus"><code>plus</code></a></strong>
+
 <dd>
-Set if the pattern starts with a repeated char (as in <code>x+y</code>).
+<p>Set if the pattern starts with a repeated char (as in <code>x+y</code>).</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_implicit"><code>implicit</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_implicit"><code>implicit</code></a></strong>
+
 <dd>
-Set if the pattern starts with <code>.*</code>.
+<p>Set if the pattern starts with <code>.*</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_with_eval"><code>with eval</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_with_eval"><code>with eval</code></a></strong>
+
 <dd>
-Set if the pattern contain eval-groups, such as <code>(?{ code })</code> and
-<code>(??{ code })</code>.
+<p>Set if the pattern contain eval-groups, such as <code>(?{ code })</code> and
+<code>(??{ code })</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_anchored"><code>anchored(TYPE)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_anchored"><code>anchored(TYPE)</code></a></strong>
+
 <dd>
-If the pattern may match only at a handful of places, (with <code>TYPE</code>
-being <code>BOL</code>, <code>MBOL</code>, or <a href="#item_gpos"><code>GPOS</code></a>.  See the table below.
+<p>If the pattern may match only at a handful of places, (with <code>TYPE</code>
+being <code>BOL</code>, <code>MBOL</code>, or <a href="#item_gpos"><code>GPOS</code></a>.  See the table below.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>If a substring is known to match at end-of-line only, it may be
 followed by <code>$</code>, as in <code>floating `k'$</code>.</p>
 <p>The optimizer-specific information is used to avoid entering (a slow) regex
@@ -798,12 +801,12 @@ your execution using the <code>mstat()</code> function out of the standard
 Devel::Peek module.</p>
 <p>Here is some explanation of that format:</p>
 <dl>
-<dt><strong><a name="item_smallest"><code>buckets SMALLEST(APPROX)..GREATEST(APPROX)</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_smallest"><code>buckets SMALLEST(APPROX)..GREATEST(APPROX)</code></a></strong>
+
 <dd>
-Perl's <code>malloc()</code> uses bucketed allocations.  Every request is rounded
+<p>Perl's <code>malloc()</code> uses bucketed allocations.  Every request is rounded
 up to the closest bucket size available, and a bucket is taken from
-the pool of buckets of that size.
+the pool of buckets of that size.</p>
 </dd>
 <dd>
 <p>The line above describes the limits of buckets currently in use.
@@ -819,16 +822,16 @@ For larger buckets, the memory footprint may be one page greater
 than a power of 2.  If so, case the corresponding power of two is
 printed in the <code>APPROX</code> field above.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_free_2fused">Free/Used</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_free_2fused">Free/Used</a></strong>
+
 <dd>
-The 1 or 2 rows of numbers following that correspond to the number
+<p>The 1 or 2 rows of numbers following that correspond to the number
 of buckets of each size between <a href="#item_smallest"><code>SMALLEST</code></a> and <code>GREATEST</code>.  In
 the first row, the sizes (memory footprints) of buckets are powers
 of two--or possibly one page greater.  In the second row, if present,
 the memory footprints of the buckets are between the memory footprints
-of two buckets ``above''.
+of two buckets ``above''.</p>
 </dd>
 <dd>
 <p>For example, suppose under the previous example, the memory footprints
@@ -844,181 +847,52 @@ were</p>
 a 4-byte overhead, and thus an 8192-long bucket may take up to
 8188-byte allocations.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_sbrk"><code>Total sbrk(): SBRKed/SBRKs:CONTINUOUS</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_sbrk"><code>Total sbrk(): SBRKed/SBRKs:CONTINUOUS</code></a></strong>
+
 <dd>
-The first two fields give the total amount of memory perl sbrk(2)ed
+<p>The first two fields give the total amount of memory perl sbrk(2)ed
 (ess-broken? :-) and number of sbrk(2)s used.  The third number is
 what perl thinks about continuity of returned chunks.  So long as
 this number is positive, <code>malloc()</code> will assume that it is probable
-that <a href="#item_sbrk"><code>sbrk(2)</code></a> will provide continuous memory.
+that <a href="#item_sbrk"><code>sbrk(2)</code></a> will provide continuous memory.</p>
 </dd>
 <dd>
 <p>Memory allocated by external libraries is not counted.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_pad_3a_0"><code>pad: 0</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_pad_3a_0"><code>pad: 0</code></a></strong>
+
 <dd>
-The amount of sbrk(2)ed memory needed to keep buckets aligned.
+<p>The amount of sbrk(2)ed memory needed to keep buckets aligned.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_heads_3a_2192"><code>heads: 2192</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_heads_3a_2192"><code>heads: 2192</code></a></strong>
+
 <dd>
-Although memory overhead of bigger buckets is kept inside the bucket, for
+<p>Although memory overhead of bigger buckets is kept inside the bucket, for
 smaller buckets, it is kept in separate areas.  This field gives the
-total size of these areas.
+total size of these areas.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_chain_3a_0"><code>chain: 0</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_chain_3a_0"><code>chain: 0</code></a></strong>
+
 <dd>
-<code>malloc()</code> may want to subdivide a bigger bucket into smaller buckets.
+<p><code>malloc()</code> may want to subdivide a bigger bucket into smaller buckets.
 If only a part of the deceased bucket is left unsubdivided, the rest
 is kept as an element of a linked list.  This field gives the total
-size of these chunks.
+size of these chunks.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_tail_3a_6144"><code>tail: 6144</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_tail_3a_6144"><code>tail: 6144</code></a></strong>
+
 <dd>
-To minimize the number of sbrk(2)s, <code>malloc()</code> asks for more memory.  This
+<p>To minimize the number of sbrk(2)s, <code>malloc()</code> asks for more memory.  This
 field gives the size of the yet unused part, which is sbrk(2)ed, but
-never touched.
+never touched.</p>
 </dd>
-<p></p></dl>
-<p>
-</p>
-<h2><a name="example_of_using_dl_switch">Example of using <strong>-DL</strong> switch</a></h2>
-<p>(Note that -DL is obsolete since circa 5.6.0, and even before that
-Perl needed to be compiled with -DDEBUGGING.)</p>
-<p>Below we show how to analyse memory usage by</p>
-<pre>
-  do 'lib/auto/POSIX/autosplit.ix';</pre>
-<p>The file in question contains a header and 146 lines similar to</p>
-<pre>
-  sub getcwd;</pre>
-<p><strong>WARNING</strong>: The discussion below supposes 32-bit architecture.  In 
-newer releases of Perl, memory usage of the constructs discussed
-here is greatly improved, but the story discussed below is a real-life
-story.  This story is mercilessly terse, and assumes rather more than cursory
-knowledge of Perl internals.  Type space to continue, `q' to quit. 
-(Actually, you just want to skip to the next section.)</p>
-<p>Here is the itemized list of Perl allocations performed during parsing
-of this file:</p>
-<pre>
- !!! &quot;after&quot; at test.pl line 3.
-    Id  subtot   4   8  12  16  20  24  28  32  36  40  48  56  64  72  80 80+
-  0 02   13752   .   .   .   . 294   .   .   .   .   .   .   .   .   .   .   4
-  0 54    5545   .   .   8 124  16   .   .   .   1   1   .   .   .   .   .   3
-  5 05      32   .   .   .   .   .   .   .   1   .   .   .   .   .   .   .   .
-  6 02    7152   .   .   .   .   .   .   .   .   .   . 149   .   .   .   .   .
-  7 02    3600   .   .   .   .   . 150   .   .   .   .   .   .   .   .   .   .
-  7 03      64   .  -1   .   1   .   .   2   .   .   .   .   .   .   .   .   .
-  7 04    7056   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   7
-  7 17   38404   .   .   .   .   .   .   .   1   .   . 442 149   .   . 147   .
-  9 03    2078  17 249  32   .   .   .   .   2   .   .   .   .   .   .   .   .</pre>
-<p>To see this list, insert two <code>warn('!...')</code> statements around the call:</p>
-<pre>
-  warn('!');
-  do 'lib/auto/POSIX/autosplit.ix';
-  warn('!!! &quot;after&quot;');</pre>
-<p>and run it with Perl's <strong>-DL</strong> option.  The first <code>warn()</code> will print
-memory allocation info before parsing the file and will memorize
-the statistics at this point (we ignore what it prints).  The second
-<code>warn()</code> prints increments with respect to these memorized data.  This
-is the printout shown above.</p>
-<p>Different <em>Id</em>s on the left correspond to different subsystems of
-the perl interpreter.  They are just the first argument given to
-the perl memory allocation API named New().  To find what <code>9 03</code>
-means, just <strong>grep</strong> the perl source for <code>903</code>.  You'll find it in
-<em>util.c</em>, function savepvn().  (I know, you wonder why we told you
-to <strong>grep</strong> and then gave away the answer.  That's because grepping
-the source is good for the soul.)  This function is used to store
-a copy of an existing chunk of memory.  Using a C debugger, one can
-see that the function was called either directly from <code>gv_init()</code> or
-via sv_magic(), and that <code>gv_init()</code> is called from gv_fetchpv()--which
-was itself called from newSUB().  Please stop to catch your breath now.</p>
-<p><strong>NOTE</strong>: To reach this point in the debugger and skip the calls to
-<code>savepvn()</code> during the compilation of the main program, you should
-set a C breakpoint
-in Perl_warn(), continue until this point is reached, and <em>then</em> set
-a C breakpoint in Perl_savepvn().  Note that you may need to skip a
-handful of <code>Perl_savepvn()</code> calls that do not correspond to mass production
-of CVs (there are more <code>903</code> allocations than 146 similar lines of
-<em>lib/auto/POSIX/autosplit.ix</em>).  Note also that <code>Perl_</code> prefixes are
-added by macroization code in perl header files to avoid conflicts
-with external libraries.</p>
-<p>Anyway, we see that <code>903</code> ids correspond to creation of globs, twice
-per glob - for glob name, and glob stringification magic.</p>
-<p>Here are explanations for other <em>Id</em>s above:</p>
-<ol>
-<li></li>
-Creates bigger <code>XPV*</code> structures.  In the case above, it
-creates 3 <code>AV</code>s per subroutine, one for a list of lexical variable
-names, one for a scratchpad (which contains lexical variables and
-<code>targets</code>), and one for the array of scratchpads needed for
-recursion.
-<p>It also creates a <code>GV</code> and a <code>CV</code> per subroutine, all called from
-start_subparse().</p>
-<p></p>
-<li></li>
-Creates a C array corresponding to the <code>AV</code> of scratchpads and the
-scratchpad itself.  The first fake entry of this scratchpad is
-created though the subroutine itself is not defined yet.
-<p>It also creates C arrays to keep data for the stash.  This is one HV,
-but it grows; thus, there are 4 big allocations: the big chunks are not
-freed, but are kept as additional arenas for <code>SV</code> allocations.</p>
-<p></p>
-<li></li>
-Creates a <code>HEK</code> for the name of the glob for the subroutine.  This
-name is a key in a <em>stash</em>.
-<p>Big allocations with this <em>Id</em> correspond to allocations of new
-arenas to keep <code>HE</code>.</p>
-<p></p>
-<li></li>
-Creates a <code>GP</code> for the glob for the subroutine.
-<p></p>
-<li></li>
-Creates the <code>MAGIC</code> for the glob for the subroutine.
-<p></p>
-<li></li>
-Creates <em>arenas</em> which keep SVs.
-<p></p></ol>
-<p>
-</p>
-<h2><a name="dl_details"><strong>-DL</strong> details</a></h2>
-<p>If Perl is run with <strong>-DL</strong> option, then warn()s that start with `!'
-behave specially.  They print a list of <em>categories</em> of memory
-allocations, and statistics of allocations of different sizes for
-these categories.</p>
-<p>If <code>warn()</code> string starts with</p>
-<dl>
-<dt><strong><a name="item__21_21_21"><code>!!!</code></a></strong><br />
-</dt>
-<dd>
-print changed categories only, print the differences in counts of allocations.
-</dd>
-<p></p>
-<dt><strong><a name="item__21_21"><code>!!</code></a></strong><br />
-</dt>
-<dd>
-print grown categories only; print the absolute values of counts, and totals.
-</dd>
-<p></p>
-<dt><strong><a name="item__21"><code>!</code></a></strong><br />
-</dt>
-<dd>
-print nonempty categories, print the absolute values of counts and totals.
-</dd>
-<p></p></dl>
-<p>
-</p>
-<h2><a name="limitations_of_dl_statistics">Limitations of <strong>-DL</strong> statistics</a></h2>
-<p>If an extension or external library does not use the Perl API to
-allocate memory, such allocations are not counted.</p>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -1026,9 +900,9 @@ allocate memory, such allocations are not counted.</p>
 <p><a href="perldebug.html">the perldebug manpage</a>,
 <a href="perlguts.html">the perlguts manpage</a>,
 <a href="perlrun.html">the perlrun manpage</a>
-<em>re</em>,
+<a href="../../re.html">the re manpage</a>,
 and
-<a href="../Devel/DProf.html">the Devel::DProf manpage</a>.</p>
+<a href="../../Devel/DProf.html">the Devel::DProf manpage</a>.</p>
 <table border="0" width="100%" cellspacing="0" cellpadding="3">
 <tr><td class="block" style="background-color: #cccccc" valign="middle">
 <big><strong><span class="block">&nbsp;perldebguts - Guts of Perl debugging</span></strong></big>

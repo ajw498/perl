@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlguts - Introduction to the Perl API</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -93,6 +95,7 @@
 		<li><a href="#formatted_printing_of_ivs__uvs__and_nvs">Formatted Printing of IVs, UVs, and NVs</a></li>
 		<li><a href="#pointertointeger_and_integertopointer">Pointer-To-Integer and Integer-To-Pointer</a></li>
 		<li><a href="#source_documentation">Source Documentation</a></li>
+		<li><a href="#backwards_compatibility">Backwards compatibility</a></li>
 	</ul>
 
 	<li><a href="#unicode_support">Unicode Support</a></li>
@@ -230,11 +233,11 @@ might not be terminated by a NUL.</p>
 len);</code>. It might work with your compiler, but it won't work for everyone.
 Break this sort of statement up into separate assignments:</p>
 <pre>
-        SV *s;
-        STRLEN len;
-        char * ptr;
-        ptr = SvPV(s, len);
-        foo(ptr, len);</pre>
+    SV *s;
+    STRLEN len;
+    char * ptr;
+    ptr = SvPV(s, len);
+    foo(ptr, len);</pre>
 <p>If you want to know if the scalar value is TRUE, you can use:</p>
 <pre>
     SvTRUE(SV*)</pre>
@@ -379,7 +382,7 @@ stored in your SV.  The ``p'' stands for private.</p>
 For example, a tied SV may have a valid underlying value in the IV slot
 (so SvIOKp is true), but the data should be accessed via the FETCH
 routine rather than directly, so SvIOK is false. Another is when
-numeric conversion has occured and precision has been lost: only the
+numeric conversion has occurred and precision has been lost: only the
 private flag is set on 'lossy' values. So when an NV is converted to an
 IV with loss, SvIOKp, SvNOKp and SvNOK will be set, while SvIOK wont be.</p>
 <p>In general, though, it's best to use the <code>Sv*V</code> macros.</p>
@@ -694,10 +697,10 @@ be set, using the routines appropriate to the data type.</p>
 <p>There are additional macros whose values may be bitwise OR'ed with the
 <code>TRUE</code> argument to enable certain extra features.  Those bits are:</p>
 <dl>
-<dt><strong><a name="item_gv_addmulti">GV_ADDMULTI</a></strong><br />
-</dt>
+<dt><strong><a name="item_gv_addmulti">GV_ADDMULTI</a></strong>
+
 <dd>
-Marks the variable as multiply defined, thus preventing the:
+<p>Marks the variable as multiply defined, thus preventing the:</p>
 </dd>
 <dd>
 <pre>
@@ -706,11 +709,11 @@ Marks the variable as multiply defined, thus preventing the:
 <dd>
 <p>warning.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_gv_addwarn">GV_ADDWARN</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_gv_addwarn">GV_ADDWARN</a></strong>
+
 <dd>
-Issues the warning:
+<p>Issues the warning:</p>
 </dd>
 <dd>
 <pre>
@@ -719,7 +722,8 @@ Issues the warning:
 <dd>
 <p>if the variable did not exist before the function was called.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>If you do not specify a package name, the variable is created in the current
 package.</p>
 <p>
@@ -1206,155 +1210,157 @@ be almost negligible.) Note that any XSUB is automatically enclosed in
 an <code>ENTER</code>/<code>LEAVE</code> pair.</p>
 <p>Inside such a <em>pseudo-block</em> the following service is available:</p>
 <dl>
-<dt><strong><a name="item_saveint"><code>SAVEINT(int i)</code></a></strong><br />
-</dt>
-<dt><strong><a name="item_saveiv"><code>SAVEIV(IV i)</code></a></strong><br />
-</dt>
-<dt><strong><a name="item_savei32"><code>SAVEI32(I32 i)</code></a></strong><br />
-</dt>
-<dt><strong><a name="item_savelong"><code>SAVELONG(long i)</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_saveint"><code>SAVEINT(int i)</code></a></strong>
+
+<dt><strong><a name="item_saveiv"><code>SAVEIV(IV i)</code></a></strong>
+
+<dt><strong><a name="item_savei32"><code>SAVEI32(I32 i)</code></a></strong>
+
+<dt><strong><a name="item_savelong"><code>SAVELONG(long i)</code></a></strong>
+
 <dd>
-These macros arrange things to restore the value of integer variable
-<code>i</code> at the end of enclosing <em>pseudo-block</em>.
+<p>These macros arrange things to restore the value of integer variable
+<code>i</code> at the end of enclosing <em>pseudo-block</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_savesptr"><code>SAVESPTR(s)</code></a></strong><br />
-</dt>
-<dt><strong><a name="item_savepptr"><code>SAVEPPTR(p)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_savesptr"><code>SAVESPTR(s)</code></a></strong>
+
+<dt><strong><a name="item_savepptr"><code>SAVEPPTR(p)</code></a></strong>
+
 <dd>
-These macros arrange things to restore the value of pointers <a href="#item_s"><code>s</code></a> and
+<p>These macros arrange things to restore the value of pointers <a href="#item_s"><code>s</code></a> and
 <a href="#item_p"><code>p</code></a>. <a href="#item_s"><code>s</code></a> must be a pointer of a type which survives conversion to
 <code>SV*</code> and back, <a href="#item_p"><code>p</code></a> should be able to survive conversion to <code>char*</code>
-and back.
+and back.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_savefreesv"><code>SAVEFREESV(SV *sv)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_savefreesv"><code>SAVEFREESV(SV *sv)</code></a></strong>
+
 <dd>
-The refcount of <code>sv</code> would be decremented at the end of
+<p>The refcount of <code>sv</code> would be decremented at the end of
 <em>pseudo-block</em>.  This is similar to <code>sv_2mortal</code> in that it is also a
 mechanism for doing a delayed <code>SvREFCNT_dec</code>.  However, while <code>sv_2mortal</code>
 extends the lifetime of <code>sv</code> until the beginning of the next statement,
 <a href="#item_savefreesv"><code>SAVEFREESV</code></a> extends it until the end of the enclosing scope.  These
-lifetimes can be wildly different.
+lifetimes can be wildly different.</p>
 </dd>
 <dd>
 <p>Also compare <a href="#item_savemortalizesv"><code>SAVEMORTALIZESV</code></a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_savemortalizesv"><code>SAVEMORTALIZESV(SV *sv)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_savemortalizesv"><code>SAVEMORTALIZESV(SV *sv)</code></a></strong>
+
 <dd>
-Just like <a href="#item_savefreesv"><code>SAVEFREESV</code></a>, but mortalizes <code>sv</code> at the end of the current
+<p>Just like <a href="#item_savefreesv"><code>SAVEFREESV</code></a>, but mortalizes <code>sv</code> at the end of the current
 scope instead of decrementing its reference count.  This usually has the
 effect of keeping <code>sv</code> alive until the statement that called the currently
-live scope has finished executing.
+live scope has finished executing.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_savefreeop"><code>SAVEFREEOP(OP *op)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_savefreeop"><code>SAVEFREEOP(OP *op)</code></a></strong>
+
 <dd>
-The <code>OP *</code> is op_free()ed at the end of <em>pseudo-block</em>.
+<p>The <code>OP *</code> is op_free()ed at the end of <em>pseudo-block</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_savefreepv"><code>SAVEFREEPV(p)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_savefreepv"><code>SAVEFREEPV(p)</code></a></strong>
+
 <dd>
-The chunk of memory which is pointed to by <a href="#item_p"><code>p</code></a> is Safefree()ed at the
-end of <em>pseudo-block</em>.
+<p>The chunk of memory which is pointed to by <a href="#item_p"><code>p</code></a> is Safefree()ed at the
+end of <em>pseudo-block</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_saveclearsv"><code>SAVECLEARSV(SV *sv)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_saveclearsv"><code>SAVECLEARSV(SV *sv)</code></a></strong>
+
 <dd>
-Clears a slot in the current scratchpad which corresponds to <code>sv</code> at
-the end of <em>pseudo-block</em>.
+<p>Clears a slot in the current scratchpad which corresponds to <code>sv</code> at
+the end of <em>pseudo-block</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_savedelete"><code>SAVEDELETE(HV *hv, char *key, I32 length)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_savedelete"><code>SAVEDELETE(HV *hv, char *key, I32 length)</code></a></strong>
+
 <dd>
-The key <code>key</code> of <code>hv</code> is deleted at the end of <em>pseudo-block</em>. The
+<p>The key <code>key</code> of <code>hv</code> is deleted at the end of <em>pseudo-block</em>. The
 string pointed to by <code>key</code> is Safefree()ed.  If one has a <em>key</em> in
 short-lived storage, the corresponding string may be reallocated like
-this:
+this:</p>
 </dd>
 <dd>
 <pre>
   SAVEDELETE(PL_defstash, savepv(tmpbuf), strlen(tmpbuf));</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_savedestructor"><code>SAVEDESTRUCTOR(DESTRUCTORFUNC_NOCONTEXT_t f, void *p)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_savedestructor"><code>SAVEDESTRUCTOR(DESTRUCTORFUNC_NOCONTEXT_t f, void *p)</code></a></strong>
+
 <dd>
-At the end of <em>pseudo-block</em> the function <a href="#item_f"><code>f</code></a> is called with the
-only argument <a href="#item_p"><code>p</code></a>.
+<p>At the end of <em>pseudo-block</em> the function <a href="#item_f"><code>f</code></a> is called with the
+only argument <a href="#item_p"><code>p</code></a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_savedestructor_x"><code>SAVEDESTRUCTOR_X(DESTRUCTORFUNC_t f, void *p)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_savedestructor_x"><code>SAVEDESTRUCTOR_X(DESTRUCTORFUNC_t f, void *p)</code></a></strong>
+
 <dd>
-At the end of <em>pseudo-block</em> the function <a href="#item_f"><code>f</code></a> is called with the
-implicit context argument (if any), and <a href="#item_p"><code>p</code></a>.
+<p>At the end of <em>pseudo-block</em> the function <a href="#item_f"><code>f</code></a> is called with the
+implicit context argument (if any), and <a href="#item_p"><code>p</code></a>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_savestack_pos"><code>SAVESTACK_POS()</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_savestack_pos"><code>SAVESTACK_POS()</code></a></strong>
+
 <dd>
-The current offset on the Perl internal stack (cf. <code>SP</code>) is restored
-at the end of <em>pseudo-block</em>.
+<p>The current offset on the Perl internal stack (cf. <code>SP</code>) is restored
+at the end of <em>pseudo-block</em>.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>The following API list contains functions, thus one needs to
 provide pointers to the modifiable data explicitly (either C pointers,
 or Perlish <code>GV *</code>s).  Where the above macros take <code>int</code>, a similar
 function takes <code>int *</code>.</p>
 <dl>
-<dt><strong><a name="item_save_scalar"><code>SV* save_scalar(GV *gv)</code></a></strong><br />
-</dt>
+<dt><strong><a name="item_save_scalar"><code>SV* save_scalar(GV *gv)</code></a></strong>
+
 <dd>
-Equivalent to Perl code <code>local $gv</code>.
+<p>Equivalent to Perl code <code>local $gv</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_save_ary"><code>AV* save_ary(GV *gv)</code></a></strong><br />
-</dt>
-<dt><strong><a name="item_save_hash"><code>HV* save_hash(GV *gv)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_save_ary"><code>AV* save_ary(GV *gv)</code></a></strong>
+
+<dt><strong><a name="item_save_hash"><code>HV* save_hash(GV *gv)</code></a></strong>
+
 <dd>
-Similar to <a href="#item_save_scalar"><code>save_scalar</code></a>, but localize <code>@gv</code> and <code>%gv</code>.
+<p>Similar to <a href="#item_save_scalar"><code>save_scalar</code></a>, but localize <code>@gv</code> and <code>%gv</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_save_item"><code>void save_item(SV *item)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_save_item"><code>void save_item(SV *item)</code></a></strong>
+
 <dd>
-Duplicates the current value of <code>SV</code>, on the exit from the current
+<p>Duplicates the current value of <code>SV</code>, on the exit from the current
 <code>ENTER</code>/<code>LEAVE</code> <em>pseudo-block</em> will restore the value of <code>SV</code>
-using the stored value.
+using the stored value.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_save_list"><code>void save_list(SV **sarg, I32 maxsarg)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_save_list"><code>void save_list(SV **sarg, I32 maxsarg)</code></a></strong>
+
 <dd>
-A variant of <a href="#item_save_item"><code>save_item</code></a> which takes multiple arguments via an array
-<code>sarg</code> of <code>SV*</code> of length <code>maxsarg</code>.
+<p>A variant of <a href="#item_save_item"><code>save_item</code></a> which takes multiple arguments via an array
+<code>sarg</code> of <code>SV*</code> of length <code>maxsarg</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_save_svref"><code>SV* save_svref(SV **sptr)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_save_svref"><code>SV* save_svref(SV **sptr)</code></a></strong>
+
 <dd>
-Similar to <a href="#item_save_scalar"><code>save_scalar</code></a>, but will reinstate an <code>SV *</code>.
+<p>Similar to <a href="#item_save_scalar"><code>save_scalar</code></a>, but will reinstate an <code>SV *</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_save_aptr"><code>void save_aptr(AV **aptr)</code></a></strong><br />
-</dt>
-<dt><strong><a name="item_save_hptr"><code>void save_hptr(HV **hptr)</code></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_save_aptr"><code>void save_aptr(AV **aptr)</code></a></strong>
+
+<dt><strong><a name="item_save_hptr"><code>void save_hptr(HV **hptr)</code></a></strong>
+
 <dd>
-Similar to <a href="#item_save_svref"><code>save_svref</code></a>, but localize <code>AV *</code> and <code>HV *</code>.
+<p>Similar to <a href="#item_save_svref"><code>save_svref</code></a>, but localize <code>AV *</code> and <code>HV *</code>.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>The <code>Alias</code> module implements localization of the basic types within the
 <em>caller's scope</em>.  People who are interested in how to localize things in
 the containing scope should take a look there too.</p>
@@ -1460,21 +1466,17 @@ order to satisfy allocation requests more quickly.  However, on some
 platforms, it may cause spurious malloc or free errors.</p>
 <p>The following three macros are used to initially allocate memory :</p>
 <pre>
-    New(x, pointer, number, type);
-    Newc(x, pointer, number, type, cast);
-    Newz(x, pointer, number, type);</pre>
-<p>The first argument <a href="#item_x"><code>x</code></a> was a ``magic cookie'' that was used to keep track
-of who called the macro, to help when debugging memory problems.  However,
-the current code makes no use of this feature (most Perl developers now
-use run-time memory checkers), so this argument can be any number.</p>
-<p>The second argument <code>pointer</code> should be the name of a variable that will
+    Newx(pointer, number, type);
+    Newxc(pointer, number, type, cast);
+    Newxz(pointer, number, type);</pre>
+<p>The first argument <code>pointer</code> should be the name of a variable that will
 point to the newly allocated memory.</p>
-<p>The third and fourth arguments <code>number</code> and <code>type</code> specify how many of
+<p>The second and third arguments <code>number</code> and <code>type</code> specify how many of
 the specified type of data structure should be allocated.  The argument
-<code>type</code> is passed to <code>sizeof</code>.  The final argument to <code>Newc</code>, <code>cast</code>,
+<code>type</code> is passed to <code>sizeof</code>.  The final argument to <code>Newxc</code>, <code>cast</code>,
 should be used if the <code>pointer</code> argument is different from the <code>type</code>
 argument.</p>
-<p>Unlike the <code>New</code> and <code>Newc</code> macros, the <code>Newz</code> macro calls <code>memzero</code>
+<p>Unlike the <code>Newx</code> and <code>Newxc</code> macros, the <code>Newxz</code> macro calls <code>memzero</code>
 to zero out all the newly allocated memory.</p>
 <p>
 </p>
@@ -1687,7 +1689,7 @@ complicate matters, if a <code>UNOP</code> is actually a <code>null</code> op af
 optimization (see <a href="#compile_pass_2__context_propagation">Compile pass 2: context propagation</a>) it will still
 have children in accordance with its former type.</p>
 <p>Another way to examine the tree is to use a compiler back-end module, such
-as <a href="../B/Concise.html">the B::Concise manpage</a>.</p>
+as <a href="../../B/Concise.html">the B::Concise manpage</a>.</p>
 <p>
 </p>
 <h2><a name="compile_pass_1__check_routines">Compile pass 1: check routines</a></h2>
@@ -2050,103 +2052,114 @@ that table:</p>
 <p>The second column is the return type, the third column the name. Columns
 after that are the arguments. The first column is a set of flags:</p>
 <dl>
-<dt><strong><a name="item_a">A</a></strong><br />
-</dt>
+<dt><strong><a name="item_a">A</a></strong>
+
 <dd>
-This function is a part of the public API.
+<p>This function is a part of the public API. All such functions should also
+have 'd', very few do not.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_p">p</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_p">p</a></strong>
+
 <dd>
-This function has a <code>Perl_</code> prefix; ie, it is defined as <code>Perl_av_fetch</code>
+<p>This function has a <code>Perl_</code> prefix; i.e. it is defined as
+<code>Perl_av_fetch</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_d">d</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_d">d</a></strong>
+
 <dd>
-This function has documentation using the <code>apidoc</code> feature which we'll
-look at in a second.
+<p>This function has documentation using the <code>apidoc</code> feature which we'll
+look at in a second.  Some functions have 'd' but not 'A'; docs are good.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>Other available flags are:</p>
 <dl>
-<dt><strong><a name="item_s">s</a></strong><br />
-</dt>
+<dt><strong><a name="item_s">s</a></strong>
+
 <dd>
-This is a static function and is defined as <code>S_whatever</code>, and usually
-called within the sources as <code>whatever(...)</code>.
+<p>This is a static function and is defined as <code>STATIC S_whatever</code>, and
+usually called within the sources as <code>whatever(...)</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_n">n</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_n">n</a></strong>
+
 <dd>
-This does not use <code>aTHX_</code> and <code>pTHX</code> to pass interpreter context. (See
-<a href="perlguts.html#background_and_perl_implicit_context">Background and PERL_IMPLICIT_CONTEXT in the perlguts manpage</a>.)
+<p>This does not need a interpreter context, so the definition has no
+<code>pTHX</code>, and it follows that callers don't use <code>aTHX</code>.  (See
+<a href="perlguts.html#background_and_perl_implicit_context">Background and PERL_IMPLICIT_CONTEXT in the perlguts manpage</a>.)</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_r">r</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_r">r</a></strong>
+
 <dd>
-This function never returns; <code>croak</code>, <code>exit</code> and friends.
+<p>This function never returns; <code>croak</code>, <code>exit</code> and friends.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_f">f</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_f">f</a></strong>
+
 <dd>
-This function takes a variable number of arguments, <code>printf</code> style.
-The argument list should end with <code>...</code>, like this:
+<p>This function takes a variable number of arguments, <code>printf</code> style.
+The argument list should end with <code>...</code>, like this:</p>
 </dd>
 <dd>
 <pre>
     Afprd   |void   |croak          |const char* pat|...</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_m">M</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_m">M</a></strong>
+
 <dd>
-This function is part of the experimental development API, and may change
-or disappear without notice.
+<p>This function is part of the experimental development API, and may change
+or disappear without notice.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_o">o</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_o">o</a></strong>
+
 <dd>
-This function should not have a compatibility macro to define, say,
-<code>Perl_parse</code> to <code>parse</code>. It must be called as <code>Perl_parse</code>.
+<p>This function should not have a compatibility macro to define, say,
+<code>Perl_parse</code> to <code>parse</code>. It must be called as <code>Perl_parse</code>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_x">x</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_x">x</a></strong>
+
 <dd>
-This function isn't exported out of the Perl core.
+<p>This function isn't exported out of the Perl core.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_m">m</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_m">m</a></strong>
+
 <dd>
-This is implemented as a macro.
+<p>This is implemented as a macro.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_x">X</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_x">X</a></strong>
+
 <dd>
-This function is explicitly exported.
+<p>This function is explicitly exported.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_e">E</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_e">E</a></strong>
+
 <dd>
-This function is visible to extensions included in the Perl core.
+<p>This function is visible to extensions included in the Perl core.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_b">b</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_b">b</a></strong>
+
 <dd>
-Binary backward compatibility; this function is a macro but also has
-a <code>Perl_</code> implementation (which is exported).
+<p>Binary backward compatibility; this function is a macro but also has
+a <code>Perl_</code> implementation (which is exported).</p>
 </dd>
-<p></p></dl>
+</li>
+<dt><strong><a name="item_others">others</a></strong>
+
+<dd>
+<p>See the comments at the top of <code>embed.fnc</code> for others.</p>
+</dd>
+</li>
+</dl>
 <p>If you edit <em>embed.pl</em> or <em>embed.fnc</em>, you will need to run
 <code>make regen_headers</code> to force a rebuild of <em>embed.h</em> and other
 auto-generated files.</p>
@@ -2210,6 +2223,23 @@ source, like this:</p>
  */</pre>
 <p>Please try and supply some documentation if you add functions to the
 Perl core.</p>
+<p>
+</p>
+<h2><a name="backwards_compatibility">Backwards compatibility</a></h2>
+<p>The Perl API changes over time. New functions are added or the interfaces
+of existing functions are changed. The <code>Devel::PPPort</code> module tries to
+provide compatibility code for some of these changes, so XS writers don't
+have to code it themselves when supporting multiple versions of Perl.</p>
+<p><code>Devel::PPPort</code> generates a C header file <em>ppport.h</em> that can also
+be run as a Perl script. To generate <em>ppport.h</em>, run:</p>
+<pre>
+    perl -MDevel::PPPort -eDevel::PPPort::WriteFile</pre>
+<p>Besides checking existing XS code, the script can also be used to retrieve
+compatibility information for various API calls using the <code>--api-info</code>
+command line switch. For example:</p>
+<pre>
+  % perl ppport.h --api-info=sv_magicext</pre>
+<p>For details, see <code>perldoc ppport.h</code>.</p>
 <p>
 </p>
 <hr />
@@ -2376,27 +2406,28 @@ in a single byte.</p>
 <h2><a name="is_there_anything_else_i_need_to_know">Is there anything else I need to know?</a></h2>
 <p>Not really. Just remember these things:</p>
 <ul>
-<li></li>
-There's no way to tell if a string is UTF-8 or not. You can tell if an SV
+<li>
+<p>There's no way to tell if a string is UTF-8 or not. You can tell if an SV
 is UTF-8 by looking at is <code>SvUTF8</code> flag. Don't forget to set the flag if
 something should be UTF-8. Treat the flag as part of the PV, even though
-it's not - if you pass on the PV to somewhere, pass on the flag too.
-<p></p>
-<li></li>
-If a string is UTF-8, <strong>always</strong> use <code>utf8_to_uv</code> to get at the value,
-unless <code>UTF8_IS_INVARIANT(*s)</code> in which case you can use <code>*s</code>.
-<p></p>
-<li></li>
-When writing a character <code>uv</code> to a UTF-8 string, <strong>always</strong> use
+it's not - if you pass on the PV to somewhere, pass on the flag too.</p>
+</li>
+<li>
+<p>If a string is UTF-8, <strong>always</strong> use <code>utf8_to_uv</code> to get at the value,
+unless <code>UTF8_IS_INVARIANT(*s)</code> in which case you can use <code>*s</code>.</p>
+</li>
+<li>
+<p>When writing a character <code>uv</code> to a UTF-8 string, <strong>always</strong> use
 <code>uv_to_utf8</code>, unless <code>UTF8_IS_INVARIANT(uv))</code> in which case
-you can use <code>*s = uv</code>.
-<p></p>
-<li></li>
-Mixing UTF-8 and non-UTF-8 strings is tricky. Use <code>bytes_to_utf8</code> to get
+you can use <code>*s = uv</code>.</p>
+</li>
+<li>
+<p>Mixing UTF-8 and non-UTF-8 strings is tricky. Use <code>bytes_to_utf8</code> to get
 a new string which is UTF-8 encoded. There are tricks you can use to
 delay deciding whether you need to use a UTF-8 string until you get to a
-high character - <code>HALF_UPGRADE</code> is one of those.
-<p></p></ul>
+high character - <code>HALF_UPGRADE</code> is one of those.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -2433,9 +2464,7 @@ Perl uses the value of <code>o-&gt;op_ppaddr</code> as a key into the
 need to enter a name and description for your op at the appropriate
 place in the <code>PL_custom_op_names</code> and <code>PL_custom_op_descs</code> hashes.</p>
 <p>Forthcoming versions of <code>B::Generate</code> (version 1.0 and above) should
-directly support the creation of custom ops by name; <code>Opcodes::Custom</code> 
-will provide functions which make it trivial to ``register'' custom ops to
-the Perl interpreter.</p>
+directly support the creation of custom ops by name.</p>
 <p>
 </p>
 <hr />

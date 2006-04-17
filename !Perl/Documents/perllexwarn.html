@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perllexwarn - Perl Lexical Warnings</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -39,7 +41,8 @@
 <hr />
 <p>
 </p>
-<h1><a name="name">NAME</a></h1>
+<h1><a name="name_x_warning__lexical__x_warnings__x_warning_">NAME
+  </a></h1>
 <p>perllexwarn - Perl Lexical Warnings</p>
 <p>
 </p>
@@ -57,19 +60,19 @@ be applied to their module.</p>
 doesn't attempt to control the warnings will work unchanged.</p>
 <p>All warnings are enabled in a block by either of these:</p>
 <pre>
-    use warnings ;
-    use warnings 'all' ;</pre>
+    use warnings;
+    use warnings 'all';</pre>
 <p>Similarly all warnings are disabled in a block by either of these:</p>
 <pre>
-    no warnings ;
-    no warnings 'all' ;</pre>
+    no warnings;
+    no warnings 'all';</pre>
 <p>For example, consider the code below:</p>
 <pre>
-    use warnings ;
-    my @a ;
+    use warnings;
+    my @a;
     {
-        no warnings ;
-        my $b = @a[0] ;
+        no warnings;
+        my $b = @a[0];
     }
     my $c = @a[0];</pre>
 <p>The code in the enclosing block has warnings enabled, but the inner
@@ -95,7 +98,7 @@ example, in the code below, an <code>&quot;isn't numeric&quot;</code> warning wi
 be reported for the <code>$a</code> variable.</p>
 <pre>
     my $a = &quot;2:&quot; + 3;
-    no warnings ;
+    no warnings;
     my $b = &quot;2:&quot; + 3;</pre>
 <p>Note that neither the <strong>-w</strong> flag or the <code>$^W</code> can be used to
 disable/enable default warnings. They are still mandatory in this case.</p>
@@ -113,9 +116,9 @@ fundamentally flawed. For a start, say you want to disable warnings in
 a block of code. You might expect this to be enough to do the trick:</p>
 <pre>
      {
-         local ($^W) = 0 ;
-         my $a =+ 2 ;
-         my $b ; chop $b ;
+         local ($^W) = 0;
+         my $a =+ 2;
+         my $b; chop $b;
      }</pre>
 <p>When this code is run with the <strong>-w</strong> flag, a warning will be produced
 for the <code>$a</code> line -- <code>&quot;Reversed += operator&quot;</code>.</p>
@@ -124,8 +127,8 @@ disable compile-time warnings you need to rewrite the code like this:</p>
 <pre>
      {
          BEGIN { $^W = 0 }
-         my $a =+ 2 ;
-         my $b ; chop $b ;
+         my $a =+ 2;
+         my $b; chop $b;
      }</pre>
 <p>The other big problem with <code>$^W</code> is the way you can inadvertently
 change the warning setting in unexpected places in your code. For example,
@@ -135,13 +138,13 @@ the first will not.</p>
 <pre>
     sub doit
     {
-        my $b ; chop $b ;
+        my $b; chop $b;
     }</pre>
 <pre>
-    doit() ;</pre>
+    doit();</pre>
 <pre>
     {
-        local ($^W) = 1 ;
+        local ($^W) = 1;
         doit()
     }</pre>
 <p>This is a side-effect of <code>$^W</code> being dynamically scoped.</p>
@@ -153,31 +156,35 @@ over where warnings can or can't be tripped.</p>
 <p>There are three Command Line flags that can be used to control when
 warnings are (or aren't) produced:</p>
 <dl>
-<dt><strong><a name="item__2dw"><strong>-w</strong></a></strong><br />
-</dt>
+<dt><strong><a name="item__2dw_x_3c_2dw_3e"><strong>-w</strong>
+</a></strong>
+
 <dd>
-This is  the existing flag. If the lexical warnings pragma is <strong>not</strong>
+<p>This is  the existing flag. If the lexical warnings pragma is <strong>not</strong>
 used in any of you code, or any of the modules that you use, this flag
 will enable warnings everywhere. See <a href="#backward_compatibility">Backward Compatibility</a> for
-details of how this flag interacts with lexical warnings.
+details of how this flag interacts with lexical warnings.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dw"><strong>-W</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dw_x_3c_2dw_3e"><strong>-W</strong>
+</a></strong>
+
 <dd>
-If the <strong>-W</strong> flag is used on the command line, it will enable all warnings
+<p>If the <strong>-W</strong> flag is used on the command line, it will enable all warnings
 throughout the program regardless of whether warnings were disabled
 locally using <code>no warnings</code> or <code>$^W =0</code>. This includes all files that get
 included via <code>use</code>, <code>require</code> or <code>do</code>.
-Think of it as the Perl equivalent of the ``lint'' command.
+Think of it as the Perl equivalent of the ``lint'' command.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2dx"><strong>-X</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2dx_x_3c_2dx_3e"><strong>-X</strong>
+</a></strong>
+
 <dd>
-Does the exact opposite to the <strong>-W</strong> flag, i.e. it disables all warnings.
+<p>Does the exact opposite to the <strong>-W</strong> flag, i.e. it disables all warnings.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="backward_compatibility">Backward Compatibility</a></h2>
@@ -186,39 +193,41 @@ introduction of lexically scoped warnings, or have code that uses both
 lexical warnings and <code>$^W</code>, this section will describe how they interact.</p>
 <p>How Lexical Warnings interact with <strong>-w</strong>/<code>$^W</code>:</p>
 <ol>
-<li></li>
-If none of the three command line flags (<strong>-w</strong>, <strong>-W</strong> or <strong>-X</strong>) that
+<li>
+<p>If none of the three command line flags (<strong>-w</strong>, <strong>-W</strong> or <strong>-X</strong>) that
 control warnings is used and neither <code>$^W</code> or the <code>warnings</code> pragma
 are used, then default warnings will be enabled and optional warnings
 disabled.
 This means that legacy code that doesn't attempt to control the warnings
-will work unchanged.
-<p></p>
-<li></li>
-The <strong>-w</strong> flag just sets the global <code>$^W</code> variable as in 5.005 -- this
+will work unchanged.</p>
+</li>
+<li>
+<p>The <strong>-w</strong> flag just sets the global <code>$^W</code> variable as in 5.005 -- this
 means that any legacy code that currently relies on manipulating <code>$^W</code>
-to control warning behavior will still work as is.
-<p></p>
-<li></li>
-Apart from now being a boolean, the <code>$^W</code> variable operates in exactly
+to control warning behavior will still work as is.</p>
+</li>
+<li>
+<p>Apart from now being a boolean, the <code>$^W</code> variable operates in exactly
 the same horrible uncontrolled global way, except that it cannot
-disable/enable default warnings.
-<p></p>
-<li></li>
-If a piece of code is under the control of the <code>warnings</code> pragma,
+disable/enable default warnings.</p>
+</li>
+<li>
+<p>If a piece of code is under the control of the <code>warnings</code> pragma,
 both the <code>$^W</code> variable and the <strong>-w</strong> flag will be ignored for the
-scope of the lexical warning.
-<p></p>
-<li></li>
-The only way to override a lexical warnings setting is with the <strong>-W</strong>
-or <strong>-X</strong> command line flags.
-<p></p></ol>
+scope of the lexical warning.</p>
+</li>
+<li>
+<p>The only way to override a lexical warnings setting is with the <strong>-W</strong>
+or <strong>-X</strong> command line flags.</p>
+</li>
+</ol>
 <p>The combined effect of 3 &amp; 4 is that it will allow code which uses
 the <code>warnings</code> pragma to control the warning behavior of $^W-type
 code (using a <code>local $^W=0</code>) if it really wants to, but not vice-versa.</p>
 <p>
 </p>
-<h2><a name="category_hierarchy">Category Hierarchy</a></h2>
+<h2><a name="category_hierarchy_x_warning__categories_">Category Hierarchy
+</a></h2>
 <p>A hierarchy of ``categories'' have been defined to allow groups of warnings
 to be enabled/disabled in isolation.</p>
 <p>The current hierarchy is:</p>
@@ -318,16 +327,16 @@ to be enabled/disabled in isolation.</p>
        +- y2k</pre>
 <p>Just like the ``strict'' pragma any of these categories can be combined</p>
 <pre>
-    use warnings qw(void redefine) ;
-    no warnings qw(io syntax untie) ;</pre>
+    use warnings qw(void redefine);
+    no warnings qw(io syntax untie);</pre>
 <p>Also like the ``strict'' pragma, if there is more than one instance of the
 <code>warnings</code> pragma in a given scope the cumulative effect is additive.</p>
 <pre>
-    use warnings qw(void) ; # only &quot;void&quot; warnings enabled
+    use warnings qw(void); # only &quot;void&quot; warnings enabled
     ...
-    use warnings qw(io) ;   # only &quot;void&quot; &amp; &quot;io&quot; warnings enabled
+    use warnings qw(io);   # only &quot;void&quot; &amp; &quot;io&quot; warnings enabled
     ...
-    no warnings qw(void) ;  # only &quot;io&quot; warnings enabled</pre>
+    no warnings qw(void);  # only &quot;io&quot; warnings enabled</pre>
 <p>To determine which category a specific warning has been assigned to see
 <a href="perldiag.html">the perldiag manpage</a>.</p>
 <p>Note: In Perl 5.6.1, the lexical warnings category ``deprecated'' was a
@@ -335,25 +344,26 @@ sub-category of the ``syntax'' category. It is now a top-level category
 in its own right.</p>
 <p>
 </p>
-<h2><a name="fatal_warnings">Fatal Warnings</a></h2>
+<h2><a name="fatal_warnings_x_warning__fatal_">Fatal Warnings
+</a></h2>
 <p>The presence of the word ``FATAL'' in the category list will escalate any
 warnings detected from the categories specified in the lexical scope
 into fatal errors. In the code below, the use of <code>time</code>, <code>length</code>
 and <code>join</code> can all produce a <code>&quot;Useless use of xxx in void context&quot;</code>
 warning.</p>
 <pre>
-    use warnings ;</pre>
+    use warnings;</pre>
 <pre>
-    time ;</pre>
+    time;</pre>
 <pre>
     {
-        use warnings FATAL =&gt; qw(void) ;
-        length &quot;abc&quot; ;
+        use warnings FATAL =&gt; qw(void);
+        length &quot;abc&quot;;
     }</pre>
 <pre>
-    join &quot;&quot;, 1,2,3 ;</pre>
+    join &quot;&quot;, 1,2,3;</pre>
 <pre>
-    print &quot;done\n&quot; ;</pre>
+    print &quot;done\n&quot;;</pre>
 <p>When run it produces this output</p>
 <pre>
     Useless use of time in void context at fatal line 3.
@@ -375,7 +385,8 @@ except for those in the ``syntax'' category.</p>
     use warnings FATAL =&gt; 'all', NONFATAL =&gt; 'syntax';</pre>
 <p>
 </p>
-<h2><a name="reporting_warnings_from_a_module">Reporting Warnings from a Module</a></h2>
+<h2><a name="reporting_warnings_from_a_module_x_warning__reporting__x_warning__registering_">Reporting Warnings from a Module
+ </a></h2>
 <p>The <code>warnings</code> pragma provides a number of functions that are useful for
 module authors. These are used when you want to report a module-specific
 warning to a calling module has enabled warnings via the <code>warnings</code>
@@ -387,7 +398,7 @@ pragma.</p>
     use warnings::register;</pre>
 <pre>
     sub open {
-        my $path = shift ;
+        my $path = shift;
         if ($path !~ m#^/#) {
             warnings::warn(&quot;changing relative path to /var/abc&quot;)
                 if warnings::enabled();
@@ -395,7 +406,7 @@ pragma.</p>
         }
     }</pre>
 <pre>
-    1 ;</pre>
+    1;</pre>
 <p>The call to <code>warnings::register</code> will create a new warnings category
 called ``MyMod::abc'', i.e. the new category name matches the current
 package name. The <code>open</code> function in the module will display a warning
@@ -415,13 +426,13 @@ this snippet of code:</p>
 <pre>
     sub open {
         warnings::warnif(&quot;deprecated&quot;, 
-                         &quot;open is deprecated, use new instead&quot;) ;
-        new(@_) ;
+                         &quot;open is deprecated, use new instead&quot;);
+        new(@_);
     }</pre>
 <pre>
     sub new
     ...
-    1 ;</pre>
+    1;</pre>
 <p>The function <code>open</code> has been deprecated, so code has been included to
 display a warning message whenever the calling module has (at least) the
 ``deprecated'' warnings category enabled. Something like this, say.</p>
@@ -429,7 +440,7 @@ display a warning message whenever the calling module has (at least) the
     use warnings 'deprecated';
     use MyMod::Abc;
     ...
-    MyMod::Abc::open($filename) ;</pre>
+    MyMod::Abc::open($filename);</pre>
 <p>Either the <code>warnings::warn</code> or <code>warnings::warnif</code> function should be
 used to actually display the warnings message. This is because they can
 make use of the feature that allows warnings to be escalated into fatal
@@ -447,21 +458,21 @@ of a category name. In this case the functions will use the class name
 of the object as the warnings category.</p>
 <p>Consider this example:</p>
 <pre>
-    package Original ;</pre>
+    package Original;</pre>
 <pre>
-    no warnings ;
-    use warnings::register ;</pre>
+    no warnings;
+    use warnings::register;</pre>
 <pre>
     sub new
     {
-        my $class = shift ;
-        bless [], $class ;
+        my $class = shift;
+        bless [], $class;
     }</pre>
 <pre>
     sub check
     {
-        my $self = shift ;
-        my $value = shift ;</pre>
+        my $self = shift;
+        my $value = shift;</pre>
 <pre>
         if ($value % 2 &amp;&amp; warnings::enabled($self))
           { warnings::warn($self, &quot;Odd numbers are unsafe&quot;) }
@@ -469,36 +480,36 @@ of the object as the warnings category.</p>
 <pre>
     sub doit
     {
-        my $self = shift ;
-        my $value = shift ;
-        $self-&gt;check($value) ;
+        my $self = shift;
+        my $value = shift;
+        $self-&gt;check($value);
         # ...
     }</pre>
 <pre>
-    1 ;</pre>
+    1;</pre>
 <pre>
-    package Derived ;</pre>
+    package Derived;</pre>
 <pre>
-    use warnings::register ;
-    use Original ;
-    our @ISA = qw( Original ) ;
+    use warnings::register;
+    use Original;
+    our @ISA = qw( Original );
     sub new
     {
-        my $class = shift ;
-        bless [], $class ;
+        my $class = shift;
+        bless [], $class;
     }</pre>
 <pre>
-    1 ;</pre>
+    1;</pre>
 <p>The code below makes use of both modules, but it only enables warnings from 
 <code>Derived</code>.</p>
 <pre>
-    use Original ;
-    use Derived ;
+    use Original;
+    use Derived;
     use warnings 'Derived';
-    my $a = new Original ;
-    $a-&gt;doit(1) ;
-    my $b = new Derived ;
-    $a-&gt;doit(1) ;</pre>
+    my $a = new Original;
+    $a-&gt;doit(1);
+    my $b = new Derived;
+    $a-&gt;doit(1);</pre>
 <p>When this code is run only the <code>Derived</code> object, <code>$b</code>, will generate
 a warning.</p>
 <pre>
@@ -526,7 +537,7 @@ used.</p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
-<p><em>warnings</em>, <a href="perldiag.html">the perldiag manpage</a>.</p>
+<p><a href="../../warnings.html">the warnings manpage</a>, <a href="perldiag.html">the perldiag manpage</a>.</p>
 <p>
 </p>
 <hr />

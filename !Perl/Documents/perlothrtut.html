@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlothrtut - old tutorial on threads in Perl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -102,7 +104,7 @@ release 5.005. This model is now deprecated, and will be removed, probably
 in version 5.10. The interfaces described here were considered
 experimental, and are likely to be buggy.</p>
 <p>For information about the new interpreter threads (``ithreads'') model, see
-the <em>perlthrtut</em> tutorial, and the <em>threads</em> and <a href="../threads/shared.html">the threads::shared manpage</a>
+the <em>perlthrtut</em> tutorial, and the <a href="../../threads.html">the threads manpage</a> and <a href="../../threads/shared.html">the threads::shared manpage</a>
 modules.</p>
 <p>You are strongly encouraged to migrate any existing threads code to the
 new model as soon as possible.</p>
@@ -674,13 +676,13 @@ access to anything you like.  In addition, semaphores can allow more
 than one thread to access a resource at once, though by default
 semaphores only allow one thread access at a time.</p>
 <dl>
-<dt><strong><a name="item_basic_semaphores">Basic semaphores</a></strong><br />
-</dt>
+<dt><strong><a name="item_basic_semaphores">Basic semaphores</a></strong>
+
 <dd>
-Semaphores have two methods, down and up. down decrements the resource
+<p>Semaphores have two methods, down and up. down decrements the resource
 count, while up increments it.  down calls will block if the
 semaphore's current count would decrement below zero.  This program
-gives a quick demonstration:
+gives a quick demonstration:</p>
 </dd>
 <dd>
 <pre>
@@ -719,12 +721,12 @@ gives a quick demonstration:
 semaphore, though, makes sure that only one thread is accessing the
 global variable at once.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_advanced_semaphores">Advanced Semaphores</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_advanced_semaphores">Advanced Semaphores</a></strong>
+
 <dd>
-By default, semaphores behave like locks, letting only one thread
-<code>down()</code> them at a time.  However, there are other uses for semaphores.
+<p>By default, semaphores behave like locks, letting only one thread
+<code>down()</code> them at a time.  However, there are other uses for semaphores.</p>
 </dd>
 <dd>
 <p>Each semaphore has a counter attached to it. <code>down()</code> decrements the
@@ -765,7 +767,8 @@ threads quietly block and unblock themselves.</p>
 <p>Larger increments or decrements are handy in those cases where a
 thread needs to check out or return a number of resources at once.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="attributes__restricting_access_to_subroutines">Attributes: Restricting Access To Subroutines</a></h2>

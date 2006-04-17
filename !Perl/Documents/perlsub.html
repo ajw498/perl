@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlsub - Perl subroutines</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -51,13 +53,15 @@
 <hr />
 <p>
 </p>
-<h1><a name="name">NAME</a></h1>
+<h1><a name="name_x_subroutine__x_function_">NAME
+ </a></h1>
 <p>perlsub - Perl subroutines</p>
 <p>
 </p>
 <hr />
 <h1><a name="synopsis">SYNOPSIS</a></h1>
-<p>To declare subroutines:</p>
+<p>To declare subroutines:
+ </p>
 <pre>
     sub NAME;                     # A &quot;forward&quot; declaration.
     sub NAME(PROTO);              #  ditto, but with prototypes
@@ -68,16 +72,19 @@
     sub NAME(PROTO) BLOCK         #  ditto, but with prototypes
     sub NAME : ATTRS BLOCK        #  with attributes
     sub NAME(PROTO) : ATTRS BLOCK #  with prototypes and attributes</pre>
-<p>To define an anonymous subroutine at runtime:</p>
+<p>To define an anonymous subroutine at runtime:
+</p>
 <pre>
     $subref = sub BLOCK;                 # no proto
     $subref = sub (PROTO) BLOCK;         # with proto
     $subref = sub : ATTRS BLOCK;         # with attributes
     $subref = sub (PROTO) : ATTRS BLOCK; # with proto and attributes</pre>
-<p>To import subroutines:</p>
+<p>To import subroutines:
+</p>
 <pre>
     use MODULE qw(NAME1 NAME2 NAME3);</pre>
-<p>To call subroutines:</p>
+<p>To call subroutines:
+ </p>
 <pre>
     NAME(LIST);    # &amp; is optional with parentheses.
     NAME LIST;     # Parentheses optional if predeclared/imported.
@@ -101,7 +108,8 @@ collapse, losing their identities--but you may always use
 pass-by-reference instead to avoid this.  Both call and return lists may
 contain as many or as few scalar elements as you'd like.  (Often a
 function without an explicit return statement is called a subroutine, but
-there's really no difference from Perl's perspective.)</p>
+there's really no difference from Perl's perspective.)
+ </p>
 <p>Any arguments passed in show up in the array <code>@_</code>.  Therefore, if
 you called a function with two arguments, those would be stored in
 <code>$_[0]</code> and <code>$_[1]</code>.  The array <code>@_</code> is a local array, but its
@@ -113,24 +121,29 @@ was called, that element is created only when (and if) it is modified
 or a reference to it is taken.  (Some earlier versions of Perl
 created the element whether or not the element was assigned to.)
 Assigning to the whole array <code>@_</code> removes that aliasing, and does
-not update any arguments.</p>
-<p>The return value of a subroutine is the value of the last expression
-evaluated by that sub, or the empty list in the case of an empty sub.
-More explicitly, a <code>return</code> statement may be used to exit the
-subroutine, optionally specifying the returned value, which will be
-evaluated in the appropriate context (list, scalar, or void) depending
-on the context of the subroutine call.  If you specify no return value,
-the subroutine returns an empty list in list context, the undefined
-value in scalar context, or nothing in void context.  If you return
-one or more aggregates (arrays and hashes), these will be flattened
-together into one large indistinguishable list.</p>
+not update any arguments.
+  </p>
+<p>A <code>return</code> statement may be used to exit a subroutine, optionally
+specifying the returned value, which will be evaluated in the
+appropriate context (list, scalar, or void) depending on the context of
+the subroutine call.  If you specify no return value, the subroutine
+returns an empty list in list context, the undefined value in scalar
+context, or nothing in void context.  If you return one or more
+aggregates (arrays and hashes), these will be flattened together into
+one large indistinguishable list.</p>
+<p>If no <code>return</code> is found and if the last statement is an expression, its
+value is returned. If the last statement is a loop control structure
+like a <code>foreach</code> or a <code>while</code>, the returned value is unspecified. The
+empty sub returns the empty list.
+  </p>
 <p>Perl does not have named formal parameters.  In practice all you
 do is assign to a <code>my()</code> list of these.  Variables that aren't
 declared to be private are global variables.  For gory details
 on creating private variables, see <a href="#private_variables_via_my__">Private Variables via my()</a>
 and <a href="#temporary_values_via_local__">Temporary Values via local()</a>.  To create protected
 environments for a set of functions in a separate package (and
-probably a separate file), see <a href="perlmod.html#packages">Packages in the perlmod manpage</a>.</p>
+probably a separate file), see <a href="perlmod.html#packages">Packages in the perlmod manpage</a>.
+ </p>
 <p>Example:</p>
 <pre>
     sub max {
@@ -172,7 +185,8 @@ probably a separate file), see <a href="perlmod.html#packages">Packages in the p
 <p>Because the assignment copies the values, this also has the effect
 of turning call-by-reference into call-by-value.  Otherwise a
 function is free to do in-place modifications of <code>@_</code> and change
-its caller's values.</p>
+its caller's values.
+ </p>
 <pre>
     upcase_in($v1, $v2);  # this changes $v1 and $v2
     sub upcase_in {
@@ -180,7 +194,8 @@ its caller's values.</p>
     }</pre>
 <p>You aren't allowed to modify constants in this way, of course.  If an
 argument were actually literal and you tried to change it, you'd take a
-(presumably fatal) exception.   For example, this won't work:</p>
+(presumably fatal) exception.   For example, this won't work:
+ </p>
 <pre>
     upcase_in(&quot;frederick&quot;);</pre>
 <p>It would be much safer if the <code>upcase_in()</code> function
@@ -218,12 +233,14 @@ an argument to <code>defined()</code> or undef().  Nor is it optional when you
 want to do an indirect subroutine call with a subroutine name or
 reference using the <code>&amp;$subref()</code> or <code>&amp;{$subref}()</code> constructs,
 although the <code>$subref-&gt;()</code> notation solves that problem.
-See <a href="perlref.html">the perlref manpage</a> for more about all that.</p>
+See <a href="perlref.html">the perlref manpage</a> for more about all that.
+</p>
 <p>Subroutines may be called recursively.  If a subroutine is called
 using the <code>&amp;</code> form, the argument list is optional, and if omitted,
 no <code>@_</code> array is set up for the subroutine: the <code>@_</code> array at the
 time of the call is visible to subroutine instead.  This is an
-efficiency mechanism that new users may wish to avoid.</p>
+efficiency mechanism that new users may wish to avoid.
+</p>
 <pre>
     &amp;foo(1,2,3);        # pass three arguments
     foo(1,2,3);         # the same</pre>
@@ -236,20 +253,23 @@ efficiency mechanism that new users may wish to avoid.</p>
 <p>Not only does the <code>&amp;</code> form make the argument list optional, it also
 disables any prototype checking on arguments you do provide.  This
 is partly for historical reasons, and partly for having a convenient way
-to cheat if you know what you're doing.  See <em>Prototypes</em> below.</p>
+to cheat if you know what you're doing.  See <em>Prototypes</em> below.
+</p>
 <p>Subroutines whose names are in all upper case are reserved to the Perl
 core, as are modules whose names are in all lower case.  A subroutine in
 all capitals is a loosely-held convention meaning it will be called
 indirectly by the run-time system itself, usually due to a triggered event.
 Subroutines that do special, pre-defined things include <code>AUTOLOAD</code>, <code>CLONE</code>,
-<code>DESTROY</code> plus all functions mentioned in <a href="perltie.html">the perltie manpage</a> and <a href="../PerlIO/via.html">the PerlIO::via manpage</a>.</p>
+<code>DESTROY</code> plus all functions mentioned in <a href="perltie.html">the perltie manpage</a> and <a href="../../PerlIO/via.html">the PerlIO::via manpage</a>.</p>
 <p>The <code>BEGIN</code>, <code>CHECK</code>, <code>INIT</code> and <code>END</code> subroutines are not so much
 subroutines as named special code blocks, of which you can have more
 than one in a package, and which you can <strong>not</strong> call explicitly.  See
 <a href="perlmod.html#begin__check__init_and_end">BEGIN, CHECK, INIT and END in the perlmod manpage</a></p>
 <p>
 </p>
-<h2><a name="private_variables_via_my__">Private Variables via <code>my()</code></a></h2>
+<h2><a name="private_variables_via_my___x_my__x_variable__lexical__x_lexical__x_lexical_variable__x_scope__lexical__x_lexical_scope__x_attributes__my_">Private Variables via <code>my()</code>
+    
+ </a></h2>
 <p>Synopsis:</p>
 <pre>
     my $foo;            # declare $foo lexically local
@@ -259,7 +279,7 @@ than one in a package, and which you can <strong>not</strong> call explicitly.  
     my $x : Foo = $y;   # similar, with an attribute applied</pre>
 <p><strong>WARNING</strong>: The use of attribute lists on <code>my</code> declarations is still
 evolving.  The current semantics and interface are subject to change.
-See <em>attributes</em> and <a href="../Attribute/Handlers.html">the Attribute::Handlers manpage</a>.</p>
+See <a href="../../attributes.html">the attributes manpage</a> and <a href="../../Attribute/Handlers.html">the Attribute::Handlers manpage</a>.</p>
 <p>The <code>my</code> operator declares the listed variables to be lexically
 confined to the enclosing block, conditional (<code>if/unless/elsif/else</code>),
 loop (<code>for/foreach/while/until/continue</code>), subroutine, <code>eval</code>,
@@ -272,7 +292,8 @@ with <code>local</code> instead.</p>
 variables declared with <code>my</code> are totally hidden from the outside
 world, including any called subroutines.  This is true if it's the
 same subroutine called from itself or elsewhere--every call gets
-its own copy.</p>
+its own copy.
+</p>
 <p>This doesn't mean that a <code>my</code> variable declared in a statically
 enclosing lexical scope would be invisible.  Only dynamic scopes
 are cut off.   For example, the <code>bumpx()</code> function below has access
@@ -283,7 +304,8 @@ occurred at the same scope, presumably file scope.</p>
     sub bumpx { $x++ }</pre>
 <p>An <code>eval()</code>, however, can see lexical variables of the scope it is
 being evaluated in, so long as the names aren't hidden by declarations within
-the <code>eval()</code> itself.  See <a href="perlref.html">the perlref manpage</a>.</p>
+the <code>eval()</code> itself.  See <a href="perlref.html">the perlref manpage</a>.
+</p>
 <p>The parameter list to <code>my()</code> may be assigned to if desired, which allows you
 to initialize your variables.  (If no initializer is given for a
 particular variable, it is created with the undefined value.)  Commonly
@@ -353,13 +375,15 @@ on the scope of variables in statements with modifiers.</p>
 in the manner of <code>local</code>.  However, if the index variable is
 prefixed with the keyword <code>my</code>, or if there is already a lexical
 by that name in scope, then a new lexical is created instead.  Thus
-in the loop</p>
+in the loop
+ </p>
 <pre>
     for my $i (1, 2, 3) {
         some_function();
     }</pre>
 <p>the scope of $i extends to the end of the loop, but not beyond it,
-rendering the value of $i inaccessible within <code>some_function()</code>.</p>
+rendering the value of $i inaccessible within <code>some_function()</code>.
+ </p>
 <p>Some users may wish to encourage the use of lexically scoped variables.
 As an aid to catching implicit uses to package variables,
 which are always global, if you say</p>
@@ -415,7 +439,8 @@ have to be in the symbol table of some package to be found.  See
 this.</p>
 <p>
 </p>
-<h2><a name="persistent_private_variables">Persistent Private Variables</a></h2>
+<h2><a name="persistent_private_variables_x_static__x_variable__persistent__x_variable__static__x_closure_">Persistent Private Variables
+   </a></h2>
 <p>Just because a lexical variable is lexically (also called statically)
 scoped to its enclosing block, <code>eval</code>, or <code>do</code> FILE, this doesn't mean that
 within a function it works like a C static.  It normally works more
@@ -466,7 +491,9 @@ from outside that file.  This strategy is sometimes used in modules
 to create private variables that the whole module can see.</p>
 <p>
 </p>
-<h2><a name="temporary_values_via_local__">Temporary Values via <code>local()</code></a></h2>
+<h2><a name="temporary_values_via_local___x_local__x_scope__dynamic__x_dynamic_scope__x_variable__local__x_variable__temporary_">Temporary Values via <code>local()</code>
+   
+</a></h2>
 <p><strong>WARNING</strong>: In general, you should be using <code>my</code> instead of <code>local</code>, because
 it's faster and safer.  Exceptions to this include the global punctuation
 variables, global filehandles and formats, and direct manipulation of the
@@ -516,7 +543,8 @@ through a loop.  Consequently, it's more efficient to localize your
 variables outside the loop.</p>
 <p>
 </p>
-<h3><a name="grammatical_note_on_local__">Grammatical note on <code>local()</code></a></h3>
+<h3><a name="grammatical_note_on_local___x_local__context_">Grammatical note on <code>local()</code>
+</a></h3>
 <p>A <code>local</code> is simply a modifier on an lvalue expression.  When you assign to
 a <code>local</code>ized variable, the <code>local</code> doesn't change whether its list is viewed
 as a scalar or an array.  So</p>
@@ -529,7 +557,8 @@ as a scalar or an array.  So</p>
 <p>supplies a scalar context.</p>
 <p>
 </p>
-<h3><a name="localization_of_special_variables">Localization of special variables</a></h3>
+<h3><a name="localization_of_special_variables_x_local__special_variable_">Localization of special variables
+</a></h3>
 <p>If you localize a special variable, you'll be giving a new value to it,
 but its magic won't go away.  That means that all side-effects related
 to this magic still work with the localized value.</p>
@@ -558,10 +587,12 @@ This will be fixed in a future release of Perl; in the meantime, avoid
 code that relies on any particular behaviour of localising tied arrays
 or hashes (localising individual elements is still okay).
 See <a href="perl58delta.html#localising_tied_arrays_and_hashes_is_broken">Localising Tied Arrays and Hashes Is Broken in the perl58delta manpage</a> for more
-details.</p>
+details.
+</p>
 <p>
 </p>
-<h3><a name="localization_of_globs">Localization of globs</a></h3>
+<h3><a name="localization_of_globs_x_local__glob__x_glob_">Localization of globs
+ </a></h3>
 <p>The construct</p>
 <pre>
     local *name;</pre>
@@ -577,7 +608,8 @@ $_, and avoid the potential problem listed above about $_ previously
 carrying a magic value, you should use <code>local *_</code> instead of <code>local $_</code>.</p>
 <p>
 </p>
-<h3><a name="localization_of_elements_of_composite_types">Localization of elements of composite types</a></h3>
+<h3><a name="localization_of_elements_of_composite_types_x_local__composite_type_element__x_local__array_element__x_local__hash_element_">Localization of elements of composite types
+  </a></h3>
 <p>It's also worth taking a moment to explain what happens when you
 <code>local</code>ize a member of a composite type (i.e. an array or hash element).
 In this case, the element is <code>local</code>ized <em>by name</em>. This means that
@@ -617,7 +649,8 @@ skipped elements with <code>undef</code>.  For instance, if you say</p>
 types is subject to change in future.</p>
 <p>
 </p>
-<h2><a name="lvalue_subroutines">Lvalue subroutines</a></h2>
+<h2><a name="lvalue_subroutines_x_lvalue__x_subroutine__lvalue_">Lvalue subroutines
+ </a></h2>
 <p><strong>WARNING</strong>: Lvalue subroutines are still experimental and the
 implementation may change in future versions of Perl.</p>
 <p>It is possible to return a modifiable value from a subroutine.
@@ -647,11 +680,11 @@ by a scalar. For example, consider:</p>
     (data(2),data(3)) = get_data(3,4);</pre>
 <p>all the subroutines are called in a list context.</p>
 <dl>
-<dt><strong><a name="item_lvalue_subroutines_are_experimental">Lvalue subroutines are EXPERIMENTAL</a></strong><br />
-</dt>
+<dt><strong><a name="item_lvalue_subroutines_are_experimental">Lvalue subroutines are EXPERIMENTAL</a></strong>
+
 <dd>
-They appear to be convenient, but there are several reasons to be
-circumspect.
+<p>They appear to be convenient, but there are several reasons to be
+circumspect.</p>
 </dd>
 <dd>
 <p>You can't use the return keyword, you must pass out the value before
@@ -685,10 +718,12 @@ subroutine never gets that chance.  Consider;</p>
     # set_arr_lv cannot stop this !
     set_arr_lv() = { a =&gt; 1 };</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
-<h2><a name="passing_symbol_table_entries__typeglobs_">Passing Symbol Table Entries (typeglobs)</a></h2>
+<h2><a name="passing_symbol_table_entries__typeglobs__x_typeglob__x___">Passing Symbol Table Entries (typeglobs)
+ </a></h2>
 <p><strong>WARNING</strong>: The mechanism described in this section was originally
 the only way to simulate pass-by-reference in older versions of
 Perl.  While it still works fine in modern versions, the new reference
@@ -726,13 +761,14 @@ the individual arrays.  For more on typeglobs, see
 <a href="perldata.html#typeglobs_and_filehandles">Typeglobs and Filehandles in the perldata manpage</a>.</p>
 <p>
 </p>
-<h2><a name="when_to_still_use_local__">When to Still Use <code>local()</code></a></h2>
+<h2><a name="when_to_still_use_local___x_local__x_variable__local_">When to Still Use <code>local()</code>
+ </a></h2>
 <p>Despite the existence of <code>my</code>, there are still three places where the
 <code>local</code> operator still shines.  In fact, in these three places, you
 <em>must</em> use <code>local</code> instead of <code>my</code>.</p>
 <ol>
-<li></li>
-You need to give a global variable a temporary value, especially $_.
+<li>
+<p>You need to give a global variable a temporary value, especially $_.</p>
 <p>The global variables, like <code>@ARGV</code> or the punctuation variables, must be 
 <code>local</code>ized with <code>local()</code>.  This block reads in <em>/etc/motd</em>, and splits
 it up into chunks separated by lines of equal signs, which are placed
@@ -746,9 +782,9 @@ in <code>@Fields</code>.</p>
     }</pre>
 <p>It particular, it's important to <code>local</code>ize $_ in any routine that assigns
 to it.  Look out for implicit assignments in <code>while</code> conditionals.</p>
-<p></p>
-<li></li>
-You need to create a local file or directory handle or a local function.
+</li>
+<li>
+<p>You need to create a local file or directory handle or a local function.</p>
 <p>A function that needs a filehandle of its own must use
 <code>local()</code> on a complete typeglob.   This can be used to create new symbol
 table entries:</p>
@@ -773,9 +809,9 @@ a local alias.</p>
     grow();                     # get the real grow() again</pre>
 <p>See <a href="perlref.html#function_templates">Function Templates in the perlref manpage</a> for more about manipulating
 functions by name in this way.</p>
-<p></p>
-<li></li>
-You want to temporarily change just one element of an array or hash.
+</li>
+<li>
+<p>You want to temporarily change just one element of an array or hash.</p>
 <p>You can <code>local</code>ize just one element of an aggregate.  Usually this
 is done on dynamics:</p>
 <pre>
@@ -786,10 +822,12 @@ is done on dynamics:</p>
     # interruptibility automatically restored here</pre>
 <p>But it also works on lexically declared aggregates.  Prior to 5.005,
 this operation could on occasion misbehave.</p>
-<p></p></ol>
+</li>
+</ol>
 <p>
 </p>
-<h2><a name="pass_by_reference">Pass by Reference</a></h2>
+<h2><a name="pass_by_reference_x_pass_by_reference__x_passbyreference__x_reference_">Pass by Reference
+  </a></h2>
 <p>If you want to pass more than one array or hash into a function--or
 return them from it--and have them maintain their integrity, then
 you're going to have to use an explicit pass-by-reference.  Before you
@@ -892,7 +930,8 @@ Notice to pass back just the bare *FH, not its reference.</p>
     }</pre>
 <p>
 </p>
-<h2><a name="prototypes">Prototypes</a></h2>
+<h2><a name="prototypes_x_prototype__x_subroutine__prototype_">Prototypes
+ </a></h2>
 <p>Perl supports a very limited kind of compile-time argument checking
 using function prototyping.  If you declare</p>
 <pre>
@@ -978,7 +1017,8 @@ arguments, just like <code>time()</code>.  That is, if you say</p>
 <p>you'll get <code>mytime() + 2</code>, not <code>mytime(2)</code>, which is how it would be parsed
 without a prototype.</p>
 <p>The interesting thing about <code>&amp;</code> is that you can generate new syntax with it,
-provided it's in the initial position:</p>
+provided it's in the initial position:
+</p>
 <pre>
     sub try (&amp;@) {
         my($try,$catch) = @_;
@@ -1000,7 +1040,8 @@ issues having to do with visibility of <code>@_</code>.  I'm ignoring that
 question for the moment.  (But note that if we make <code>@_</code> lexically
 scoped, those anonymous subroutines can act like closures... (Gee,
 is this sounding a little Lispish?  (Never mind.))))</p>
-<p>And here's a reimplementation of the Perl <code>grep</code> operator:</p>
+<p>And here's a reimplementation of the Perl <code>grep</code> operator:
+</p>
 <pre>
     sub mygrep (&amp;@) {
         my $code = shift;
@@ -1048,7 +1089,8 @@ starts scribbling on your <code>@_</code> parameter list.  Ouch!</p>
 to make the world a better place.</p>
 <p>
 </p>
-<h2><a name="constant_functions">Constant Functions</a></h2>
+<h2><a name="constant_functions_x_constant_">Constant Functions
+</a></h2>
 <p>Functions with a prototype of <code>()</code> are potential candidates for
 inlining.  If the result after optimization and constant folding
 is either a constant or a lexically-scoped scalar which has no other
@@ -1100,7 +1142,8 @@ inlining mechanism in some other way, such as</p>
     }</pre>
 <p>
 </p>
-<h2><a name="overriding_builtin_functions">Overriding Built-in Functions</a></h2>
+<h2><a name="overriding_builtin_functions_x_builtin__x_override__x_core__x_core__global_">Overriding Built-in Functions
+   </a></h2>
 <p>Many built-in functions may be overridden, though this should be tried
 only occasionally and for good reason.  Typically this might be
 done by a package attempting to emulate missing built-in functionality
@@ -1206,7 +1249,8 @@ the equivalent I/O operator <code>&lt;FILEHANDLE&gt;</code>.</p>
 <p>Finally, some built-ins (e.g. <code>exists</code> or <code>grep</code>) can't be overridden.</p>
 <p>
 </p>
-<h2><a name="autoloading">Autoloading</a></h2>
+<h2><a name="autoloading_x_autoloading__x_autoload_">Autoloading
+ </a></h2>
 <p>If you call a subroutine that is undefined, you would ordinarily
 get an immediate, fatal error complaining that the subroutine doesn't
 exist.  (Likewise for subroutines being used as methods, when the
@@ -1223,7 +1267,7 @@ because, that's why...</p>
 subroutine using eval(), then execute that subroutine using a special
 form of <code>goto()</code> that erases the stack frame of the <code>AUTOLOAD</code> routine
 without a trace.  (See the source to the standard module documented
-in <em>AutoLoader</em>, for example.)  But an <code>AUTOLOAD</code> routine can
+in <a href="../../AutoLoader.html">the AutoLoader manpage</a>, for example.)  But an <code>AUTOLOAD</code> routine can
 also just emulate the routine and never define it.   For example,
 let's pretend that a function that wasn't defined should just invoke
 <code>system</code> with those arguments.  All you'd do is:</p>
@@ -1247,16 +1291,17 @@ even need parentheses:</p>
 can treat undefined subroutine calls as calls to external programs.</p>
 <p>Mechanisms are available to help modules writers split their modules
 into autoloadable files.  See the standard AutoLoader module
-described in <em>AutoLoader</em> and in <em>AutoSplit</em>, the standard
-SelfLoader modules in <em>SelfLoader</em>, and the document on adding C
+described in <a href="../../AutoLoader.html">the AutoLoader manpage</a> and in <a href="../../AutoSplit.html">the AutoSplit manpage</a>, the standard
+SelfLoader modules in <a href="../../SelfLoader.html">the SelfLoader manpage</a>, and the document on adding C
 functions to Perl code in <a href="perlxs.html">the perlxs manpage</a>.</p>
 <p>
 </p>
-<h2><a name="subroutine_attributes">Subroutine Attributes</a></h2>
+<h2><a name="subroutine_attributes_x_attribute__x_subroutine__attribute__x_attrs_">Subroutine Attributes
+  </a></h2>
 <p>A subroutine declaration or definition may have a list of attributes
 associated with it.  If such an attribute list is present, it is
 broken up at space or colon boundaries and treated as though a
-<code>use attributes</code> had been seen.  See <em>attributes</em> for details
+<code>use attributes</code> had been seen.  See <a href="../../attributes.html">the attributes manpage</a> for details
 about what attributes are currently supported.
 Unlike the limitation with the obsolescent <code>use attrs</code>, the
 <code>sub : ATTRLIST</code> syntax works to associate the attributes with
@@ -1267,16 +1312,16 @@ list appended, which is only checked for whether its parentheses ('(',')')
 nest properly.</p>
 <p>Examples of valid syntax (even though the attributes are unknown):</p>
 <pre>
-    sub fnord (&amp;\%) : switch(10,foo(7,3))  :  expensive ;
-    sub plugh () : Ugly('\(&quot;) :Bad ;
+    sub fnord (&amp;\%) : switch(10,foo(7,3))  :  expensive;
+    sub plugh () : Ugly('\(&quot;) :Bad;
     sub xyzzy : _5x5 { ... }</pre>
 <p>Examples of invalid syntax:</p>
 <pre>
-    sub fnord : switch(10,foo() ; # ()-string not balanced
-    sub snoid : Ugly('(') ;       # ()-string not balanced
-    sub xyzzy : 5x5 ;             # &quot;5x5&quot; not a valid identifier
-    sub plugh : Y2::north ;       # &quot;Y2::north&quot; not a simple identifier
-    sub snurt : foo + bar ;       # &quot;+&quot; not a colon or space</pre>
+    sub fnord : switch(10,foo(); # ()-string not balanced
+    sub snoid : Ugly('(');        # ()-string not balanced
+    sub xyzzy : 5x5;              # &quot;5x5&quot; not a valid identifier
+    sub plugh : Y2::north;        # &quot;Y2::north&quot; not a simple identifier
+    sub snurt : foo + bar;        # &quot;+&quot; not a colon or space</pre>
 <p>The attribute list is passed as a list of constant strings to the code
 which associates them with the subroutine.  In particular, the second example
 of valid syntax above currently looks like this in terms of how it's
@@ -1284,7 +1329,7 @@ parsed and invoked:</p>
 <pre>
     use attributes __PACKAGE__, \&amp;plugh, q[Ugly('\(&quot;)], 'Bad';</pre>
 <p>For further details on attribute lists and their manipulation,
-see <em>attributes</em> and <a href="../Attribute/Handlers.html">the Attribute::Handlers manpage</a>.</p>
+see <a href="../../attributes.html">the attributes manpage</a> and <a href="../../Attribute/Handlers.html">the Attribute::Handlers manpage</a>.</p>
 <p>
 </p>
 <hr />

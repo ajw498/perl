@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlfaq2 - Obtaining and Learning about Perl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -21,10 +23,10 @@
 	<li><a href="#description">DESCRIPTION</a></li>
 	<ul>
 
-		<li><a href="#what_machines_support_perl_where_do_i_get_it">What machines support Perl?  Where do I get it?</a></li>
-		<li><a href="#how_can_i_get_a_binary_version_of_perl">How can I get a binary version of Perl?</a></li>
-		<li><a href="#i_don_t_have_a_c_compiler_on_my_system__how_can_i_compile_perl">I don't have a C compiler on my system.  How can I compile perl?</a></li>
-		<li><a href="#i_copied_the_perl_binary_from_one_machine_to_another__but_scripts_don_t_work_">I copied the Perl binary from one machine to another, but scripts don't work.</a></li>
+		<li><a href="#what_machines_support_perl_where_do_i_get_it">What machines support perl?  Where do I get it?</a></li>
+		<li><a href="#how_can_i_get_a_binary_version_of_perl">How can I get a binary version of perl?</a></li>
+		<li><a href="#i_don_t_have_a_c_compiler__how_can_i_build_my_own_perl_interpreter">I don't have a C compiler. How can I build my own Perl interpreter?</a></li>
+		<li><a href="#i_copied_the_perl_binary_from_one_machine_to_another__but_scripts_don_t_work_">I copied the perl binary from one machine to another, but scripts don't work.</a></li>
 		<li><a href="#i_grabbed_the_sources_and_tried_to_compile_but_gdbm_dynamic_loading_malloc_linking_____failed__how_do_i_make_it_work">I grabbed the sources and tried to compile but gdbm/dynamic loading/malloc/linking/... failed.  How do I make it work?</a></li>
 		<li><a href="#what_modules_and_extensions_are_available_for_perl_what_is_cpan_what_does_cpan_src_____mean">What modules and extensions are available for Perl?  What is CPAN?  What does CPAN/src/... mean?</a></li>
 		<li><a href="#is_there_an_iso_or_ansi_certified_version_of_perl">Is there an ISO or ANSI certified version of Perl?</a></li>
@@ -32,11 +34,10 @@
 		<li><a href="#what_are_the_perl_newsgroups_on_usenet_where_do_i_post_questions">What are the Perl newsgroups on Usenet?  Where do I post questions?</a></li>
 		<li><a href="#where_should_i_post_source_code">Where should I post source code?</a></li>
 		<li><a href="#perl_books">Perl Books</a></li>
-		<li><a href="#perl_in_magazines">Perl in Magazines</a></li>
-		<li><a href="#perl_on_the_net__ftp_and_www_access">Perl on the Net: FTP and WWW Access</a></li>
+		<li><a href="#which_magazines_have_perl_content">Which magazines have Perl content?</a></li>
 		<li><a href="#what_mailing_lists_are_there_for_perl">What mailing lists are there for Perl?</a></li>
-		<li><a href="#archives_of_comp_lang_perl_misc">Archives of comp.lang.perl.misc</a></li>
-		<li><a href="#where_can_i_buy_a_commercial_version_of_perl">Where can I buy a commercial version of Perl?</a></li>
+		<li><a href="#where_are_the_archives_for_comp_lang_perl_misc">Where are the archives for comp.lang.perl.misc?</a></li>
+		<li><a href="#where_can_i_buy_a_commercial_version_of_perl">Where can I buy a commercial version of perl?</a></li>
 		<li><a href="#where_do_i_send_bug_reports">Where do I send bug reports?</a></li>
 		<li><a href="#what_is_perl_com_perl_mongers_pm_org_perl_org_cpan_org">What is perl.com? Perl Mongers? pm.org? perl.org? cpan.org?</a></li>
 	</ul>
@@ -49,7 +50,7 @@
 <p>
 </p>
 <h1><a name="name">NAME</a></h1>
-<p>perlfaq2 - Obtaining and Learning about Perl ($Revision: 1.29 $, $Date: 2004/10/25 18:37:23 $)</p>
+<p>perlfaq2 - Obtaining and Learning about Perl ($Revision: 1.39 $, $Date: 2006/01/08 14:27:07 $)</p>
 <p>
 </p>
 <hr />
@@ -59,19 +60,19 @@ source and documentation for Perl, support, and
 related matters.</p>
 <p>
 </p>
-<h2><a name="what_machines_support_perl_where_do_i_get_it">What machines support Perl?  Where do I get it?</a></h2>
-<p>The standard release of Perl (the one maintained by the perl
+<h2><a name="what_machines_support_perl_where_do_i_get_it">What machines support perl?  Where do I get it?</a></h2>
+<p>The standard release of perl (the one maintained by the perl
 development team) is distributed only in source code form.  You
 can find this at <a href="http://www.cpan.org/src/latest.tar.gz">http://www.cpan.org/src/latest.tar.gz</a> , which
 is in a standard Internet format (a gzipped archive in POSIX tar format).</p>
 <p>Perl builds and runs on a bewildering number of platforms.  Virtually
-all known and current Unix derivatives are supported (Perl's native
+all known and current Unix derivatives are supported (perl's native
 platform), as are other systems like VMS, DOS, OS/2, Windows,
 QNX, BeOS, OS X, MPE/iX and the Amiga.</p>
 <p>Binary distributions for some proprietary platforms, including
 Apple systems, can be found <a href="http://www.cpan.org/ports/">http://www.cpan.org/ports/</a> directory.
 Because these are not part of the standard distribution, they may
-and in fact do differ from the base Perl port in a variety of ways.
+and in fact do differ from the base perl port in a variety of ways.
 You'll have to check their respective release notes to see just
 what the differences are.  These differences can be either positive
 (e.g. extensions for the features of the particular platform that
@@ -79,7 +80,7 @@ are not supported in the source release of perl) or negative (e.g.
 might be based upon a less current source release of perl).</p>
 <p>
 </p>
-<h2><a name="how_can_i_get_a_binary_version_of_perl">How can I get a binary version of Perl?</a></h2>
+<h2><a name="how_can_i_get_a_binary_version_of_perl">How can I get a binary version of perl?</a></h2>
 <p>If you don't have a C compiler because your vendor for whatever
 reasons did not include one with your system, the best thing to do is
 grab a binary version of gcc from the net and use that to compile perl
@@ -89,7 +90,7 @@ get free compilers for, not for Unix systems.</p>
 <pre>
     <a href="http://www.cpan.org/ports/">http://www.cpan.org/ports/</a>
     <a href="http://www.perl.com/pub/language/info/software.html">http://www.perl.com/pub/language/info/software.html</a></pre>
-<p>Someone looking for a Perl for Win16 might look to Laszlo Molnar's djgpp
+<p>Someone looking for a perl for Win16 might look to Laszlo Molnar's djgpp
 port in <a href="http://www.cpan.org/ports/#msdos">http://www.cpan.org/ports/#msdos</a> , which comes with clear
 installation instructions.  A simple installation guide for MS-DOS using
 Ilya Zakharevich's OS/2 port is available at
@@ -97,7 +98,7 @@ Ilya Zakharevich's OS/2 port is available at
 and similarly for Windows 3.1 at <a href="http://www.cs.ruu.nl/%7Epiet/perlwin3.html">http://www.cs.ruu.nl/%7Epiet/perlwin3.html</a> .</p>
 <p>
 </p>
-<h2><a name="i_don_t_have_a_c_compiler_on_my_system__how_can_i_compile_perl">I don't have a C compiler on my system.  How can I compile perl?</a></h2>
+<h2><a name="i_don_t_have_a_c_compiler__how_can_i_build_my_own_perl_interpreter">I don't have a C compiler. How can I build my own Perl interpreter?</a></h2>
 <p>Since you don't have a C compiler, you're doomed and your vendor
 should be sacrificed to the Sun gods.  But that doesn't help you.</p>
 <p>What you need to do is get a binary version of gcc for your system
@@ -105,7 +106,7 @@ first.  Consult the Usenet FAQs for your operating system for
 information on where to get such a binary version.</p>
 <p>
 </p>
-<h2><a name="i_copied_the_perl_binary_from_one_machine_to_another__but_scripts_don_t_work_">I copied the Perl binary from one machine to another, but scripts don't work.</a></h2>
+<h2><a name="i_copied_the_perl_binary_from_one_machine_to_another__but_scripts_don_t_work_">I copied the perl binary from one machine to another, but scripts don't work.</a></h2>
 <p>That's probably because you forgot libraries, or library paths differ.
 You really should build the whole distribution on the machine it will
 eventually live on, and then type <code>make install</code>.  Most other
@@ -180,13 +181,12 @@ installed as well: type <code>man perl</code> if you're on a system resembling U
 This will lead you to other important man pages, including how to set your
 $MANPATH.  If you're not on a Unix system, access to the documentation
 will be different; for example, documentation might only be in HTML format.  All
-proper Perl installations have fully-accessible documentation.</p>
+proper perl installations have fully-accessible documentation.</p>
 <p>You might also try <code>perldoc perl</code> in case your system doesn't
 have a proper man command, or it's been misinstalled.  If that doesn't
 work, try looking in /usr/local/lib/perl5/pod for documentation.</p>
-<p>If all else fails, consult <a href="http://perldoc.cpan.org/">http://perldoc.cpan.org/</a> or
-<a href="http://www.perldoc.com/">http://www.perldoc.com/</a> both offer the complete documentation
-in html format.</p>
+<p>If all else fails, consult <a href="http://perldoc.perl.org/">http://perldoc.perl.org/</a> which has the
+complete documentation in HTML and PDF format.</p>
 <p>Many good books have been written about Perl--see the section below
 for more details.</p>
 <p>Tutorial documents are included in current or upcoming Perl releases
@@ -195,11 +195,9 @@ approach to objects, <a href="perlopentut.html">the perlopentut manpage</a> for 
 <a href="perlreftut.html">the perlreftut manpage</a> for managing references, <a href="perlretut.html">the perlretut manpage</a> for regular
 expressions, <a href="perlthrtut.html">the perlthrtut manpage</a> for threads, <a href="perldebtut.html">the perldebtut manpage</a> for debugging,
 and <a href="perlxstut.html">the perlxstut manpage</a> for linking C and Perl together.  There may be more
-by the time you read this.  The following URLs might also be of
-assistance:</p>
+by the time you read this.  These URLs might also be useful:</p>
 <pre>
-    <a href="http://">http://</a><a href="perldoc.html">perldoc</a>.cpan.org/
-    <a href="http://www">http://www</a>.<a href="perldoc.html">perldoc</a>.com/
+    <a href="http://">http://</a><a href="perldoc.html">perldoc</a>.perl.org/
     <a href="http://bookmarks.cpan.org/search.cgi?cat=Training%2FTutorials">http://bookmarks.cpan.org/search.cgi?cat=Training%2FTutorials</a></pre>
 <p>
 </p>
@@ -225,7 +223,7 @@ at <a href="http://nntp.perl.org/group/">http://nntp.perl.org/group/</a> and the
 under the <code>perl.*</code> hierarchy at <a href="http://groups.google.com">http://groups.google.com</a> . Other
 groups are listed at <a href="http://lists.perl.org/">http://lists.perl.org/</a> ( also known as
 <a href="http://lists.cpan.org/">http://lists.cpan.org/</a> ).</p>
-<p>A nice place to ask questions is the PerlMonks site, 
+<p>A nice place to ask questions is the PerlMonks site,
 <a href="http://www.perlmonks.org/">http://www.perlmonks.org/</a> , or the Perl Beginners mailing list
 <a href="http://lists.perl.org/showlist.cgi?name=beginners">http://lists.perl.org/showlist.cgi?name=beginners</a> .</p>
 <p>Note that none of the above are supposed to write your code for you:
@@ -247,11 +245,12 @@ This is faster and more productive than just posting a request.</p>
 </p>
 <h2><a name="perl_books">Perl Books</a></h2>
 <p>A number of books on Perl and/or CGI programming are available.  A few
-of these are good, some are OK, but many aren't worth your money. 
+of these are good, some are OK, but many aren't worth your money.
 There is a list of these books, some with extensive reviews, at
-<a href="http://books.perl.org/">http://books.perl.org/</a> .</p>
+<a href="http://books.perl.org/">http://books.perl.org/</a> . If you don't see your book listed here, you
+can write to <a href="mailto:perlfaq-workers@perl.org">perlfaq-workers@perl.org</a> .</p>
 <p>The incontestably definitive reference book on Perl, written by
-the creator of Perl, is now (Sept 2004) in its third edition:</p>
+the creator of Perl, is Programming Perl:</p>
 <pre>
         Programming Perl (the &quot;Camel Book&quot;):
         by Larry Wall, Tom Christiansen, and Jon Orwant
@@ -267,13 +266,13 @@ of real-world examples, mini-tutorials, and complete programs is:</p>
         ISBN 0-596-00313-7 [2nd Edition August 2003]
         <a href="http://www.oreilly.com/catalog/perlckbk2/">http://www.oreilly.com/catalog/perlckbk2/</a></pre>
 <p>If you're already a seasoned programmer, then the Camel Book might
-suffice for you to learn Perl from.  If you're not, check out the
+suffice for you to learn Perl.  If you're not, check out the
 Llama book:</p>
 <pre>
-        Learning Perl (the &quot;Llama Book&quot;)
-        by Randal L. Schwartz and Tom Phoenix
-        ISBN 0-596-00132-0 [3rd edition July 2001]
-        <a href="http://www.oreilly.com/catalog/lperl3/">http://www.oreilly.com/catalog/lperl3/</a></pre>
+        Learning Perl
+        by Randal L. Schwartz, Tom Phoenix, and brian d foy
+        ISBN 0-596-10105-8 [4th edition July 2005]
+        <a href="http://www.oreilly.com/catalog/learnperl4/">http://www.oreilly.com/catalog/learnperl4/</a></pre>
 <p>And for more advanced information on writing larger programs,
 presented in the same style as the Llama book, continue your education
 with the Alpaca book:</p>
@@ -310,8 +309,8 @@ such as <em>Object Oriented Programming with Perl</em> by Damian Conway and
 useful.  Your mileage may (but, we hope, probably won't) vary.</p>
 <p>Recommended books on (or mostly on) Perl follow.</p>
 <dl>
-<dt><strong><a name="item_references">References</a></strong><br />
-</dt>
+<dt><strong><a name="item_references">References</a></strong>
+
 <dd>
 <pre>
         Programming Perl
@@ -326,15 +325,15 @@ useful.  Your mileage may (but, we hope, probably won't) vary.</p>
         ISBN 0-596-00032-4 [3rd edition May 2000]
         <a href="http://www.oreilly.com/catalog/perlpr3/">http://www.oreilly.com/catalog/perlpr3/</a></pre>
 </dd>
+<dt><strong><a name="item_tutorials">Tutorials</a></strong>
+
 <dd>
 <pre>
-        Perl in a Nutshell
-        by Ellen Siever, Stephan Spainhour, and Nathan Patwardhan
-        ISBN 1-56592-286-7 [1st edition December 1998]
-        <a href="http://www.oreilly.com/catalog/perlnut/">http://www.oreilly.com/catalog/perlnut/</a></pre>
+        Beginning Perl
+        by James Lee
+        ISBN 1-59059-391-X [2nd edition August 2004]
+        <a href="http://apress.com/book/bookDisplay.html?bID=344">http://apress.com/book/bookDisplay.html?bID=344</a></pre>
 </dd>
-<dt><strong><a name="item_tutorials">Tutorials</a></strong><br />
-</dt>
 <dd>
 <pre>
         Elements of Programming with Perl
@@ -345,9 +344,9 @@ useful.  Your mileage may (but, we hope, probably won't) vary.</p>
 <dd>
 <pre>
         Learning Perl
-        by Randal L. Schwartz and Tom Phoenix
-        ISBN 0-596-00132-0 [3rd edition July 2001]
-        <a href="http://www.oreilly.com/catalog/lperl3/">http://www.oreilly.com/catalog/lperl3/</a></pre>
+        by Randal L. Schwartz, Tom Phoenix, and brian d foy
+        ISBN 0-596-10105-8 [4th edition July 2005]
+        <a href="http://www.oreilly.com/catalog/learnperl4/">http://www.oreilly.com/catalog/learnperl4/</a></pre>
 </dd>
 <dd>
 <pre>
@@ -356,39 +355,15 @@ useful.  Your mileage may (but, we hope, probably won't) vary.</p>
         ISBN 0-596-00478-8 [1st edition June 2003]
         <a href="http://www.oreilly.com/catalog/lrnperlorm/">http://www.oreilly.com/catalog/lrnperlorm/</a></pre>
 </dd>
+<dt><strong><a name="item_task_2doriented">Task-Oriented</a></strong>
+
 <dd>
 <pre>
-        Learning Perl on Win32 Systems
-        by Randal L. Schwartz, Erik Olson, and Tom Christiansen,
-            with foreword by Larry Wall
-        ISBN 1-56592-324-3 [1st edition August 1997]
-        <a href="http://www.oreilly.com/catalog/lperlwin/">http://www.oreilly.com/catalog/lperlwin/</a></pre>
+        Writing Perl Modules for CPAN
+        by Sam Tregar
+        ISBN 1-59059-018-X [1st edition Aug 2002]
+        <a href="http://apress.com/book/bookDisplay.html?bID=14">http://apress.com/book/bookDisplay.html?bID=14</a></pre>
 </dd>
-<dd>
-<pre>
-        Perl: The Programmer's Companion
-        by Nigel Chapman
-        ISBN 0-471-97563-X [1997, 3rd printing Spring 1998]
-        <a href="http://www.wiley.com/compbooks/catalog/97563-X.htm">http://www.wiley.com/compbooks/catalog/97563-X.htm</a>
-        <a href="http://www.wiley.com/compbooks/chapman/perl/perltpc.html">http://www.wiley.com/compbooks/chapman/perl/perltpc.html</a> (errata etc)</pre>
-</dd>
-<dd>
-<pre>
-        Cross-Platform Perl
-        by Eric Foster-Johnson
-        ISBN 1-55851-483-X [2nd edition September 2000]
-        <a href="http://www.pconline.com/~erc/">http://www.pconline.com/~erc/</a><a href="perlbook.html">perlbook</a>.htm</pre>
-</dd>
-<dd>
-<pre>
-        MacPerl: Power and Ease
-        by Vicki Brown and Chris Nandor,
-            with foreword by Matthias Neeracher
-        ISBN 1-881957-32-2 [1st edition May 1998]
-        <a href="http://www.macperl.com/ptf_book/">http://www.macperl.com/ptf_book/</a></pre>
-</dd>
-<dt><strong><a name="item_task_2doriented">Task-Oriented</a></strong><br />
-</dt>
 <dd>
 <pre>
         The Perl Cookbook
@@ -404,8 +379,36 @@ useful.  Your mileage may (but, we hope, probably won't) vary.</p>
         ISBN 0-201-41975-0 [1st edition 1998]
         <a href="http://www.awl.com/">http://www.awl.com/</a></pre>
 </dd>
-<dt><strong><a name="item_special_topics">Special Topics</a></strong><br />
-</dt>
+<dd>
+<pre>
+        Real World SQL Server Administration with Perl
+        by Linchi Shea
+        ISBN 1-59059-097-X [1st edition July 2003]
+        <a href="http://apress.com/book/bookDisplay.html?bID=171">http://apress.com/book/bookDisplay.html?bID=171</a></pre>
+</dd>
+<dt><strong><a name="item_special_topics">Special Topics</a></strong>
+
+<dd>
+<pre>
+        Perl Best Practices
+        by Damian Conway
+        ISBN: 0-596-00173-8 [1st edition July 2005]
+        <a href="http://www.oreilly.com/catalog/perlbp/">http://www.oreilly.com/catalog/perlbp/</a></pre>
+</dd>
+<dd>
+<pre>
+        Higher Order Perl
+        by Mark-Jason Dominus
+        ISBN: 1558607013 [1st edition March 2005]
+        <a href="http://hop.perl.plover.com/">http://hop.perl.plover.com/</a></pre>
+</dd>
+<dd>
+<pre>
+        Perl 6 Now: The Core Ideas Illustrated with Perl 5
+        by Scott Walters
+        ISBN 1-59059-395-2 [1st edition December 2004]
+        <a href="http://apress.com/book/bookDisplay.html?bID=355">http://apress.com/book/bookDisplay.html?bID=355</a></pre>
+</dd>
 <dd>
 <pre>
         Mastering Regular Expressions
@@ -415,14 +418,14 @@ useful.  Your mileage may (but, we hope, probably won't) vary.</p>
 </dd>
 <dd>
 <pre>
-    Network Programming with Perl
+        Network Programming with Perl
         by Lincoln Stein
         ISBN 0-201-61571-1 [1st edition 2001]
         <a href="http://www.awlonline.com/">http://www.awlonline.com/</a></pre>
 </dd>
 <dd>
 <pre>
-    Object Oriented Perl
+        Object Oriented Perl
         Damian Conway
             with foreword by Randal L. Schwartz
         ISBN 1-884777-79-1 [1st edition August 1999]
@@ -430,14 +433,14 @@ useful.  Your mileage may (but, we hope, probably won't) vary.</p>
 </dd>
 <dd>
 <pre>
-    Data Munging with Perl
+        Data Munging with Perl
         Dave Cross
         ISBN 1-930110-00-6 [1st edition 2001]
         <a href="http://www.manning.com/cross">http://www.manning.com/cross</a></pre>
 </dd>
 <dd>
 <pre>
-    Mastering Perl/Tk
+        Mastering Perl/Tk
         by Steve Lidie and Nancy Walsh
         ISBN 1-56592-716-8 [1st edition January 2002]
         <a href="http://www.oreilly.com/catalog/mastperltk/">http://www.oreilly.com/catalog/mastperltk/</a></pre>
@@ -459,14 +462,14 @@ useful.  Your mileage may (but, we hope, probably won't) vary.</p>
 </dl>
 <p>
 </p>
-<h2><a name="perl_in_magazines">Perl in Magazines</a></h2>
+<h2><a name="which_magazines_have_perl_content">Which magazines have Perl content?</a></h2>
 <p>The first (and for a long time, only) periodical devoted to All Things Perl,
 <em>The Perl Journal</em> contains tutorials, demonstrations, case studies,
 announcements, contests, and much more.  <em>TPJ</em> has columns on web
 development, databases, Win32 Perl, graphical programming, regular
 expressions, and networking, and sponsors the Obfuscated Perl Contest
-and the Perl Poetry Contests.  Beginning in November 2002, TPJ moved to a 
-reader-supported monthly e-zine format in which subscribers can download 
+and the Perl Poetry Contests.  Beginning in November 2002, TPJ moved to a
+reader-supported monthly e-zine format in which subscribers can download
 issues as PDF documents. For more details on TPJ, see <a href="http://www.tpj.com/">http://www.tpj.com/</a></p>
 <p>Beyond this, magazines that frequently carry quality articles on
 Perl are <em>The Perl Review</em> ( <a href="http://www.theperlreview.com">http://www.theperlreview.com</a> ),
@@ -480,15 +483,6 @@ and Usenix's newsletter/magazine to its members, <em>login:</em>
 <a href="http://www.stonehenge.com/merlyn/LinuxMag/">http://www.stonehenge.com/merlyn/LinuxMag/</a> .</p>
 <p>
 </p>
-<h2><a name="perl_on_the_net__ftp_and_www_access">Perl on the Net: FTP and WWW Access</a></h2>
-<p>To get the best performance, pick a site from the list at
-<a href="http://www.cpan.org/SITES.html">http://www.cpan.org/SITES.html</a> . From there you can find the quickest
-site for you.</p>
-<p>You may also use xx.cpan.org where ``xx'' is the 2-letter country code
-for your domain; e.g. Australia would use au.cpan.org. [Note: This
-only applies to countries that host at least one mirror.]</p>
-<p>
-</p>
 <h2><a name="what_mailing_lists_are_there_for_perl">What mailing lists are there for Perl?</a></h2>
 <p>Most of the major modules (Tk, CGI, libwww-perl) have their own
 mailing lists.  Consult the documentation that came with the module for
@@ -498,7 +492,7 @@ subscription information.</p>
         <a href="http://lists.perl.org/">http://lists.perl.org/</a></pre>
 <p>
 </p>
-<h2><a name="archives_of_comp_lang_perl_misc">Archives of comp.lang.perl.misc</a></h2>
+<h2><a name="where_are_the_archives_for_comp_lang_perl_misc">Where are the archives for comp.lang.perl.misc?</a></h2>
 <p>The Google search engine now carries archived and searchable newsgroup
 content.</p>
 <p><a href="http://groups.google.com/groups?group=comp.lang.perl.misc">http://groups.google.com/groups?group=comp.lang.perl.misc</a></p>
@@ -508,8 +502,8 @@ to sift through all the content but often you will find the answer you
 seek.</p>
 <p>
 </p>
-<h2><a name="where_can_i_buy_a_commercial_version_of_perl">Where can I buy a commercial version of Perl?</a></h2>
-<p>In a real sense, Perl already <em>is</em> commercial software: it has a license
+<h2><a name="where_can_i_buy_a_commercial_version_of_perl">Where can I buy a commercial version of perl?</a></h2>
+<p>In a real sense, perl already <em>is</em> commercial software: it has a license
 that you can grab and carefully read to your manager. It is distributed
 in releases and comes in well-defined packages. There is a very large
 user community and an extensive literature.  The comp.lang.perl.*
@@ -521,19 +515,21 @@ better for everyone.</p>
 <p>However, these answers may not suffice for managers who require a
 purchase order from a company whom they can sue should anything go awry.
 Or maybe they need very serious hand-holding and contractual obligations.
-Shrink-wrapped CDs with Perl on them are available from several sources if
-that will help.  For example, many Perl books include a distribution of Perl,
+Shrink-wrapped CDs with perl on them are available from several sources if
+that will help.  For example, many Perl books include a distribution of perl,
 as do the O'Reilly Perl Resource Kits (in both the Unix flavor
 and in the proprietary Microsoft flavor); the free Unix distributions
-also all come with Perl.</p>
+also all come with perl.</p>
 <p>
 </p>
 <h2><a name="where_do_i_send_bug_reports">Where do I send bug reports?</a></h2>
 <p>If you are reporting a bug in the perl interpreter or the modules
 shipped with Perl, use the <em>perlbug</em> program in the Perl distribution or
-mail your report to <a href="mailto:perlbug@perl.org">perlbug@perl.org</a> .</p>
+mail your report to <a href="mailto:perlbug@perl.org">perlbug@perl.org</a> or at <a href="http://rt.perl.org/perlbug/">http://rt.perl.org/perlbug/</a> .</p>
+<p>For Perl modules, you can submit bug reports to the Request Tracker set
+up at <a href="http://rt.cpan.org">http://rt.cpan.org</a> .</p>
 <p>If you are posting a bug with a non-standard port (see the answer to
-``What platforms is Perl available for?''), a binary distribution, or a
+``What platforms is perl available for?''), a binary distribution, or a
 non-standard module (such as Tk, CGI, etc), then please see the
 documentation that came with it to determine the correct place to post
 bugs.</p>
@@ -560,14 +556,14 @@ groups, including the hosting of mailing lists and web sites.  See the
 Perl user group web site at <a href="http://www.pm.org/">http://www.pm.org/</a> for more information about
 joining, starting, or requesting services for a Perl user group.</p>
 <p><a href="http://www.cpan.org/">http://www.cpan.org/</a> is the Comprehensive Perl Archive Network,
-a replicated worlwide repository of Perl software, see
+a replicated worldwide repository of Perl software, see
 the <em>What is CPAN?</em> question earlier in this document.</p>
 <p>
 </p>
 <hr />
 <h1><a name="author_and_copyright">AUTHOR AND COPYRIGHT</a></h1>
-<p>Copyright (c) 1997-2001 Tom Christiansen and Nathan Torkington.
-All rights reserved.</p>
+<p>Copyright (c) 1997-2006 Tom Christiansen, Nathan Torkington, and
+other authors as noted. All rights reserved.</p>
 <p>This documentation is free; you can redistribute it and/or modify it
 under the same terms as Perl itself.</p>
 <p>Irrespective of its distribution, all code examples here are in the public

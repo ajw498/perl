@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perlreref - Perl Regular Expressions Reference</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -129,7 +131,7 @@ as the <a href="#see_also">SEE ALSO</a> section in this document.</p>
    \n       Newline
    \r       Carriage return
    \t       Tab
-   \038     Any octal ASCII value
+   \037     Any octal ASCII value
    \x7f     Any hexadecimal ASCII value
    \x{263a} A wide hexadecimal value
    \cx      Control-x
@@ -248,7 +250,7 @@ character class equivalent are given.  See <a href="perllocale.html">the perlloc
 <p>The use of those last three will slow down <strong>all</strong> regex use
 within your program. Consult <a href="perlvar.html">the perlvar manpage</a> for <code>@LAST_MATCH_START</code>
 to see equivalent expressions that won't cause slow down.
-See also <a href="../Devel/SawAmpersand.html">the Devel::SawAmpersand manpage</a>.</p>
+See also <a href="../../Devel/SawAmpersand.html">the Devel::SawAmpersand manpage</a>.</p>
 <pre>
    $1, $2 ...  hold the Xth captured expr
    $+    Last parenthesized pattern match
@@ -293,43 +295,44 @@ certain characters like the German ``sharp s'' there is a difference.</p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
 <ul>
-<li></li>
-<a href="perlretut.html">the perlretut manpage</a> for a tutorial on regular expressions.
-<p></p>
-<li></li>
-<a href="perlrequick.html">the perlrequick manpage</a> for a rapid tutorial.
-<p></p>
-<li></li>
-<a href="perlre.html">the perlre manpage</a> for more details.
-<p></p>
-<li></li>
-<a href="perlvar.html">the perlvar manpage</a> for details on the variables.
-<p></p>
-<li></li>
-<a href="perlop.html">the perlop manpage</a> for details on the operators.
-<p></p>
-<li></li>
-<a href="perlfunc.html">the perlfunc manpage</a> for details on the functions.
-<p></p>
-<li></li>
-<a href="perlfaq6.html">the perlfaq6 manpage</a> for FAQs on regular expressions.
-<p></p>
-<li></li>
-The <em>re</em> module to alter behaviour and aid
-debugging.
-<p></p>
-<li></li>
-<a href="perldebug.html#debugging_regular_expressions">Debugging regular expressions in the perldebug manpage</a>
-<p></p>
-<li></li>
-<a href="perluniintro.html">the perluniintro manpage</a>, <a href="perlunicode.html">the perlunicode manpage</a>, <em>charnames</em> and <em>locale</em>
-for details on regexes and internationalisation.
-<p></p>
-<li></li>
-<em>Mastering Regular Expressions</em> by Jeffrey Friedl
+<li>
+<p><a href="perlretut.html">the perlretut manpage</a> for a tutorial on regular expressions.</p>
+</li>
+<li>
+<p><a href="perlrequick.html">the perlrequick manpage</a> for a rapid tutorial.</p>
+</li>
+<li>
+<p><a href="perlre.html">the perlre manpage</a> for more details.</p>
+</li>
+<li>
+<p><a href="perlvar.html">the perlvar manpage</a> for details on the variables.</p>
+</li>
+<li>
+<p><a href="perlop.html">the perlop manpage</a> for details on the operators.</p>
+</li>
+<li>
+<p><a href="perlfunc.html">the perlfunc manpage</a> for details on the functions.</p>
+</li>
+<li>
+<p><a href="perlfaq6.html">the perlfaq6 manpage</a> for FAQs on regular expressions.</p>
+</li>
+<li>
+<p>The <a href="../../re.html">the re manpage</a> module to alter behaviour and aid
+debugging.</p>
+</li>
+<li>
+<p><a href="perldebug.html#debugging_regular_expressions">Debugging regular expressions in the perldebug manpage</a></p>
+</li>
+<li>
+<p><a href="perluniintro.html">the perluniintro manpage</a>, <a href="perlunicode.html">the perlunicode manpage</a>, <a href="../../charnames.html">the charnames manpage</a> and <a href="../../locale.html">the locale manpage</a>
+for details on regexes and internationalisation.</p>
+</li>
+<li>
+<p><em>Mastering Regular Expressions</em> by Jeffrey Friedl
 (<em><a href="http://regex.info/">http://regex.info/</a></em>) for a thorough grounding and
-reference on the topic.
-<p></p></ul>
+reference on the topic.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />

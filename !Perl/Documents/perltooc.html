@@ -1,7 +1,9 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>perltooc - Tom's OO Tutorial for Class Data in Perl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
 
@@ -65,22 +67,23 @@ class, but unlike program-wide globals, class attributes have meaning only to
 the class itself.</p>
 <p>Here are a few examples where class attributes might come in handy:</p>
 <ul>
-<li></li>
-to keep a count of the objects you've created, or how many are
-still extant.
-<p></p>
-<li></li>
-to extract the name or file descriptor for a logfile used by a debugging
-method.
-<p></p>
-<li></li>
-to access collective data, like the total amount of cash dispensed by
-all ATMs in a network in a given day.
-<p></p>
-<li></li>
-to access the last object created by a class, or the most accessed object,
-or to retrieve a list of all objects.
-<p></p></ul>
+<li>
+<p>to keep a count of the objects you've created, or how many are
+still extant.</p>
+</li>
+<li>
+<p>to extract the name or file descriptor for a logfile used by a debugging
+method.</p>
+</li>
+<li>
+<p>to access collective data, like the total amount of cash dispensed by
+all ATMs in a network in a given day.</p>
+</li>
+<li>
+<p>to access the last object created by a class, or the most accessed object,
+or to retrieve a list of all objects.</p>
+</li>
+</ul>
 <p>Unlike a true global, class attributes should not be accessed directly.
 Instead, their state should be inspected, and perhaps altered, only
 through the mediated access of <em>class methods</em>.  These class attributes
@@ -1067,6 +1070,8 @@ for a significant performance improvement:</p>
             $self-&gt;$coderef($newvalue);
         }
     }</pre>
+<p>If you override <code>UNIVERSAL::can</code> in your own classes, be sure to return the
+reference appropriately.</p>
 <p>
 </p>
 <h2><a name="locking_the_door_and_throwing_away_the_key">Locking the Door and Throwing Away the Key</a></h2>
