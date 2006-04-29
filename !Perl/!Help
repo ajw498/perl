@@ -6,5 +6,5 @@
 
 Set Perl$Help <Obey$Dir>.Documents.perl/html
 
-Filer_Run <Perl$Help>
-
+If "<Alias$@RunType_FAF>"<>"" Then IfThere <Perl$Help> Then Filer_Run <Perl$Help>
+IfThere <Obey$Dir>.ReadMe Then Filer_Run <Obey$Dir>.ReadMe

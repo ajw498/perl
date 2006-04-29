@@ -1,0 +1,43 @@
+#!/usr/bin/perl -w
+#
+#  $Id$
+#
+
+open(CHANGELOG, "<../!Perl/ChangeLog");
+$line = <CHANGELOG>;
+$line =~ /^v([\d\.]*) .*/;
+$version = $1;
+close CHANGELOG;
+
+open(OUT,">RiscPkg/Control");
+
+if (@ARGV > 0 and $ARGV[0] eq "doc") {
+print OUT qq{Package: Perl-Doc
+Priority: Optional
+Section: Programming
+Maintainer: Alex Waugh <alex\@alexwaugh.com>
+Standards-Version: 0.0.0
+Version: $version
+Licence: Free
+Description: HTML documentation for the Perl programming language.
+Depends: Perl (=$version)
+};
+
+} else {
+
+print OUT qq{Package: Perl
+Priority: Optional
+Section: Programming
+Maintainer: Alex Waugh <alex\@alexwaugh.com>
+Standards-Version: 0.0.0
+Version: $version
+Licence: Free
+Description: The Perl programming language interpreter.
+Recommends: Perl-Doc (=$version)
+};
+
+}
+#Depends: SharedUnixLibrary (>=1.07)
+
+close OUT;
+
