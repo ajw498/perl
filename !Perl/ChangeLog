@@ -1,3 +1,6 @@
+v5.8.8-1 4-Sep-06
+Removed debug printout on system() calls
+
 v5.8.8 17-Apr-06
 Updated to 5.8.8
 
