@@ -5,7 +5,7 @@
 
 open(CHANGELOG, "<../!Perl/ChangeLog");
 $line = <CHANGELOG>;
-$line =~ /^v([\d\.]*) .*/;
+$line =~ /^v([\d\.-]*) .*/;
 $version = $1;
 close CHANGELOG;
 
