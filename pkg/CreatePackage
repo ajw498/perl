@@ -33,11 +33,11 @@ Standards-Version: 0.0.0
 Version: $version
 Licence: Free
 Description: The Perl programming language interpreter.
+Depends: UnixLib (>=4.0-3)
 Recommends: Perl-Doc (=$version)
 };
 
 }
-#Depends: SharedUnixLibrary (>=1.07)
 
 close OUT;
 
