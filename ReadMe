@@ -1,7 +1,9 @@
 RISC OS Port of Perl 5.8.8
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is a port of Perl 5.8.8 for RISC OS. It is supplied under either the Artistic License or the GNU General Public License - see the files in the License directory for more information.
+This is a port of Perl 5.8.8 for RISC OS. It is supplied under either the
+Artistic License or the GNU General Public License - see the files in the
+License directory for more information.
 
 You should copy the !Perl application somewhere suitable, and ensure it
 is booted by the filer before use.  Do not attempt to merge it with
