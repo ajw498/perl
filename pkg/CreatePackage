@@ -14,9 +14,9 @@ open(OUT,">RiscPkg/Control");
 if (@ARGV > 0 and $ARGV[0] eq "doc") {
 print OUT qq{Package: Perl-Doc
 Priority: Optional
-Section: Programming
+Section: Development
 Maintainer: Alex Waugh <alex\@alexwaugh.com>
-Standards-Version: 0.0.0
+Standards-Version: 0.1.0
 Version: $version
 Licence: Free
 Description: HTML documentation for the Perl programming language.
@@ -27,9 +27,9 @@ Depends: Perl (=$version)
 
 print OUT qq{Package: Perl
 Priority: Optional
-Section: Programming
+Section: Development
 Maintainer: Alex Waugh <alex\@alexwaugh.com>
-Standards-Version: 0.0.0
+Standards-Version: 0.1.0
 Version: $version
 Licence: Free
 Description: The Perl programming language interpreter.
